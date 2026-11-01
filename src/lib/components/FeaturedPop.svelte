@@ -30,3 +30,4 @@
 		src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1298924&theme=dark&t=1793393067873"
 	/>
 </a>
+<a href="https://www.betterlaunch.co/product/lightcms"><img src="https://www.betterlaunch.co/badge-discover-light.svg" alt="Featured on Better Launch" width="200" height="56"></a>
