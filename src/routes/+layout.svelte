@@ -14,6 +14,7 @@ import { onMount } from "svelte";
 import { dev } from "$app/environment";
 import { page } from "$app/state";
 import Carbonbadge from "$lib/components/custom/CarbonBadge.svelte";
+import Featured from "$lib/components/Featured.svelte";
 import MetaTags from "$lib/components/custom/MetaTags.svelte";
 import StarRepoDialog from "$lib/components/custom/StarRepoDialog.svelte";
 import ToggleMode from "$lib/components/custom/ToggleMode.svelte";
@@ -188,11 +189,8 @@ function dismissStarDialog() {
 
     <Button href="https://app.youform.com/forms/smwrhikc" target="_blank" rel="noopener noreferrer">Contact Us</Button>
 
-    <a href="https://startupfa.me/s/lightcms?utm_source=www.lightcms.me" target="_blank" rel="noopener noreferrer"><img src="https://startupfa.me/badge?t=small&theme=dark&r=full" alt="LightCMS - Featured on Startup Fame" width="240" height="36" /></a>
-
+    <Featured />
     <Carbonbadge />
-
-    <a href="https://www.producthunt.com/products/lightcms-2?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-lightcms-2" target="_blank" rel="noopener noreferrer"><img alt="LightCMS - Git backed CMS for static site generators | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1298924&theme=dark&t=1793393067873" /></a>
   </div>
 </footer>
 </div>

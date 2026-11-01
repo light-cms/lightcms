@@ -73,7 +73,7 @@ async function findBotCommentId(
   owner: string,
   repo: string,
   prNumber: number,
-): Promise<number | undefined> {
+): Promise<number | bigint | undefined> {
   const { data: comments } = await context.octokit.rest.issues.listComments({
     owner,
     repo,
@@ -169,13 +169,6 @@ async function reviewContentChanges(context: PullRequestContext) {
   await ensureContentLabel(context, owner, repo, prNumber);
 }
 
-/**
- * Review pull requests that touch CMS content.
- *
- * Opened and synchronized events get an idempotent summary comment plus
- * a `content` label. Merged events are logged for observability. Every
- * Octokit call is guarded so one API failure cannot crash the webhook.
- */
 export async function handlePullRequest(context: PullRequestContext) {
   const { payload, log } = context;
 
