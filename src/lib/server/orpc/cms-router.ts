@@ -75,8 +75,9 @@ async function orpcTry<T>(
   try {
     return await fn();
   } catch (cause) {
+    console.error(cause);
     throw new ORPCError(errorCode, {
-      message: cause instanceof Error ? cause.message : fallbackMessage,
+      message: fallbackMessage,
     });
   }
 }
@@ -259,8 +260,8 @@ const deleteFolder = authedProcedure.input(dirInput).handler(async ({ input, con
     if (cause instanceof FolderNotFoundError) {
       throw new ORPCError("NOT_FOUND", { message: cause.message });
     }
-    const message = cause instanceof Error ? cause.message : "Could not delete folder.";
-    throw new ORPCError("BAD_REQUEST", { message });
+    console.error(cause);
+    throw new ORPCError("BAD_REQUEST", { message: "Could not delete folder." });
   }
 });
 
@@ -404,13 +405,15 @@ const listRepoBranchesProcedure = authedProcedure
       const branches = await listRepoBranches(ctx.client, repo);
       return { branches };
     } catch (cause) {
-      const message = cause instanceof Error ? cause.message : "Could not list branches.";
+      console.error(cause);
       const status =
         typeof cause === "object" && cause !== null && "status" in cause
           ? ((cause as { status?: number }).status ?? 500)
           : 500;
       const code = status === 404 ? "NOT_FOUND" : "INTERNAL_SERVER_ERROR";
-      throw new ORPCError(code, { message });
+      throw new ORPCError(code, {
+        message: code === "NOT_FOUND" ? "Branch not found." : "Could not list branches.",
+      });
     }
   });
 
@@ -448,14 +451,14 @@ const createRepoBranchProcedure = authedProcedure
       });
       return { branch: result };
     } catch (cause) {
-      const message = cause instanceof Error ? cause.message : "Could not create branch.";
+      console.error(cause);
       const status =
         typeof cause === "object" && cause !== null && "status" in cause
           ? ((cause as { status?: number }).status ?? 500)
           : 500;
       const code =
         status === 422 ? "BAD_REQUEST" : status === 404 ? "NOT_FOUND" : "INTERNAL_SERVER_ERROR";
-      throw new ORPCError(code, { message });
+      throw new ORPCError(code, { message: "Could not create branch." });
     }
   });
 

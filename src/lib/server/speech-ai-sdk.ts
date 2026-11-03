@@ -29,7 +29,11 @@ export function resolveSpeechConfig(_options?: TranscribeAiSdkOptions): Resolved
   const apiKey = process.env.SPEECH_API_KEY!;
   const model = process.env.SPEECH_MODEL!;
 
-  const baseURL = process.env.SPEECH_ENDPOINT!;
+  let baseURL = process.env.SPEECH_ENDPOINT?.trim() || undefined;
+  if (baseURL) {
+    baseURL = baseURL.replace(/\/audio\/transcriptions\/?$/i, "").replace(/\/+$/, "");
+    if (baseURL === "") baseURL = undefined;
+  }
 
   return {
     apiKey,

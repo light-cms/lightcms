@@ -41,7 +41,7 @@ export function serializeEntry(frontMatter: FrontMatter, body: string): string {
 }
 
 export function assertSlug(slug: string): void {
-  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+  if (!/^[a-z0-9]+(?:[-_][a-z0-9]+)*$/.test(slug)) {
     throw new Error("A slug must contain lowercase letters, numbers, and hyphens only.");
   }
 }

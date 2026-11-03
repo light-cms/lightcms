@@ -1,6 +1,5 @@
 <script lang="ts">
 import ArrowLeft from "@lucide/svelte/icons/arrow-left";
-import Calendar from "@lucide/svelte/icons/calendar";
 import Clock3 from "@lucide/svelte/icons/clock-3";
 import CloudCheck from "@lucide/svelte/icons/cloud-check";
 import FileCode from "@lucide/svelte/icons/file-code";
@@ -10,19 +9,23 @@ import LoaderCircle from "@lucide/svelte/icons/loader-circle";
 import Maximize from "@lucide/svelte/icons/maximize";
 import Minimize from "@lucide/svelte/icons/minimize";
 import Save from "@lucide/svelte/icons/save";
-import Settings2 from "@lucide/svelte/icons/settings-2";
 import Trash2 from "@lucide/svelte/icons/trash-2";
 import Type from "@lucide/svelte/icons/type";
+import X from "@lucide/svelte/icons/x";
 import { onMount, untrack } from "svelte";
 import { toast } from "svelte-sonner";
 import { enhance } from "$app/forms";
 import { goto } from "$app/navigation";
+import FrontmatterEditor from "$lib/components/cms/FrontmatterEditor.svelte";
+import {
+	frontmatterRecordToRows,
+	frontmatterRowsToRecord,
+	type FrontmatterRow,
+} from "$lib/components/cms/frontmatter.types";
 import SaveStatus from "$lib/components/cms/SaveStatus.svelte";
-import { FrontmatterDrawer, TagManager } from "$lib/components/custom";
 import { createEditor, Edra } from "$lib/components/edra/shadcn";
 import type { EdraEditorProps } from "$lib/components/edra/shadcn/editor";
 import { Button } from "$lib/components/ui/button";
-import { Checkbox } from "$lib/components/ui/checkbox";
 import {
 	Dialog,
 	DialogClose,
@@ -84,130 +87,7 @@ function parentPath(path: string): string {
 	return path.slice(0, lastSlashIndex);
 }
 
-function toFrontMatterEntries(
-	frontMatter: Record<string, unknown>,
-): Array<{ key: string; value: string }> {
-	const result: Array<{ key: string; value: string }> = [];
-	for (const [key, value] of Object.entries(frontMatter)) {
-		let serializedValue = "";
-		if (value instanceof Date) {
-			serializedValue = value.toISOString();
-		} else if (typeof value === "object" && value !== null) {
-			serializedValue = JSON.stringify(value);
-		} else if (value !== undefined && value !== null) {
-			serializedValue = String(value);
-		}
-		result.push({ key, value: serializedValue });
-	}
-	return result;
-}
-
 type EditorMode = "rich" | "markdown" | "raw";
-
-/** Frontmatter keys edited inline; the drawer only handles the rest. */
-const BASIC_FRONTMATTER_KEYS = [
-	"title",
-	"slug",
-	"description",
-	"date",
-	"draft",
-	"tags",
-] as const;
-
-function isBasicFrontmatterKey(key: string): boolean {
-	const normalized = key.trim().toLowerCase();
-	return BASIC_FRONTMATTER_KEYS.some((basicKey) => basicKey === normalized);
-}
-
-function findFrontmatterEntryIndex(key: string): number {
-	const normalized = key.trim().toLowerCase();
-	return frontMatterEntries.findIndex(
-		(entry) => entry.key.trim().toLowerCase() === normalized,
-	);
-}
-
-function getFrontmatterValue(key: string): string {
-	const index = findFrontmatterEntryIndex(key);
-	if (index === -1) {
-		return "";
-	}
-	return frontMatterEntries[index]?.value ?? "";
-}
-
-function setFrontmatterValue(key: string, value: string): void {
-	const index = findFrontmatterEntryIndex(key);
-
-	if (index === -1) {
-		if (value.length === 0) {
-			return;
-		}
-		frontMatterEntries = [...frontMatterEntries, { key, value }];
-	} else if (value.length === 0) {
-		frontMatterEntries = frontMatterEntries.filter(
-			(_, entryIndex) => entryIndex !== index,
-		);
-	} else {
-		frontMatterEntries = frontMatterEntries.map((entry, entryIndex) =>
-			entryIndex === index ? { ...entry, value } : entry,
-		);
-	}
-
-	hasUnsavedChanges = true;
-}
-
-function setDraftValue(checked: boolean): void {
-	if (!checked && findFrontmatterEntryIndex("draft") === -1) {
-		return;
-	}
-	setFrontmatterValue("draft", checked ? "true" : "false");
-}
-
-function parseTagList(value: string): string[] {
-	const trimmed = value.trim();
-	if (trimmed.length === 0) {
-		return [];
-	}
-
-	if (trimmed.startsWith("[")) {
-		try {
-			const parsed: unknown = JSON.parse(trimmed);
-			if (Array.isArray(parsed)) {
-				return parsed
-					.map((item) => String(item).trim())
-					.filter((item) => item.length > 0);
-			}
-		} catch {
-			// Not JSON — fall back to comma-separated values.
-		}
-	}
-
-	return trimmed
-		.split(",")
-		.map((item) => item.trim())
-		.filter((item) => item.length > 0);
-}
-
-function setTagsValue(tags: string[]): void {
-	setFrontmatterValue("tags", tags.length > 0 ? JSON.stringify(tags) : "");
-}
-
-/** Keys whose values must stay strings even when they look numeric or boolean. */
-const TEXT_FRONTMATTER_KEYS = new Set(["title", "slug", "description", "date"]);
-
-function parseFrontmatterValue(key: string, raw: string): unknown {
-	const normalized = key.trim().toLowerCase();
-	if (normalized === "draft") {
-		return raw.trim().toLowerCase() === "true";
-	}
-	if (TEXT_FRONTMATTER_KEYS.has(normalized)) {
-		return raw;
-	}
-	try {
-		return JSON.parse(raw);
-	} catch {
-		return raw;
-	}
-}
 
 let editorMode = $state<EditorMode>(
 	untrack(() => {
@@ -220,19 +100,10 @@ let editorMode = $state<EditorMode>(
 
 let bodyContent = $state(untrack(() => file.body ?? ""));
 let rawMarkdown = $state(untrack(() => file.body ?? ""));
-let frontMatterEntries = $state(
-	untrack(() => toFrontMatterEntries(file.frontMatter)),
+let frontmatterRows = $state<FrontmatterRow[]>(
+	untrack(() => frontmatterRecordToRows(file.frontMatter)),
 );
-let showFrontmatter = $state(false);
 
-const basicDraft = $derived(
-	getFrontmatterValue("draft").trim().toLowerCase() === "true",
-);
-const basicTags = $derived(parseTagList(getFrontmatterValue("tags")));
-const additionalFrontmatterCount = $derived(
-	frontMatterEntries.filter((entry) => !isBasicFrontmatterKey(entry.key))
-		.length,
-);
 let deleteDialogOpen = $state(false);
 let moveDialogOpen = $state(false);
 let destinationFolder = $state(untrack(() => parentPath(file.path)));
@@ -242,6 +113,18 @@ let hasUnsavedChanges = $state(false);
 let lastSaved = $state<Date | null>(null);
 let contentFullscreen = $state(false);
 let syncedPath: string | null = null;
+
+function handleCloseFile(): void {
+	if (hasUnsavedChanges) {
+		const confirmed = window.confirm(
+			"You have unsaved changes. Are you sure you want to close this file?",
+		);
+		if (!confirmed) {
+			return;
+		}
+	}
+	goto(backUrl);
+}
 
 const editor = untrack(() =>
 	createEditor({
@@ -265,7 +148,7 @@ $effect(() => {
 	const initialBody = file.body ?? "";
 	bodyContent = initialBody;
 	rawMarkdown = initialBody;
-	frontMatterEntries = toFrontMatterEntries(file.frontMatter);
+	frontmatterRows = frontmatterRecordToRows(file.frontMatter);
 	if (file.isMarkdown) {
 		editorMode = "rich";
 	} else {
@@ -273,7 +156,6 @@ $effect(() => {
 	}
 	destinationFolder = parentPath(file.path);
 	newFilename = file.filename;
-	showFrontmatter = false;
 	deleteDialogOpen = false;
 	moveDialogOpen = false;
 	isSaving = false;
@@ -307,17 +189,10 @@ function switchToRich() {
 }
 
 const frontMatterJson = $derived.by(() => {
-	if (frontMatterEntries.length === 0) {
+	if (frontmatterRows.length === 0) {
 		return "";
 	}
-	const obj: Record<string, unknown> = {};
-	for (const entry of frontMatterEntries) {
-		const trimmedKey = entry.key.trim();
-		if (trimmedKey.length === 0) {
-			continue;
-		}
-		obj[trimmedKey] = parseFrontmatterValue(trimmedKey, entry.value);
-	}
+	const obj = frontmatterRowsToRecord(frontmatterRows);
 	return JSON.stringify(obj);
 });
 
@@ -524,134 +399,35 @@ onMount(() => {
     <input type="hidden" name="frontMatter" value={frontMatterJson} />
   </form>
 
-  <!-- Front Matter: core fields stay inline, extras live in the drawer -->
+  <!-- IDE File Tab Header -->
+  <div class="flex items-center justify-between border-b border-border/80 bg-muted/40 px-3 pt-2 rounded-t-xl">
+    <div class="flex items-center gap-2 rounded-t-lg border-t border-x border-border/80 bg-card px-3.5 py-1.5 text-xs font-medium text-foreground shadow-2xs">
+      <FileCode size={14} class="text-primary shrink-0" />
+      <span class="font-mono text-xs font-semibold">{file.filename}</span>
+      <button
+        type="button"
+        class="ml-1 rounded p-0.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+        onclick={handleCloseFile}
+        title={backTitle}
+        aria-label="Close file"
+      >
+        <X size={13} />
+      </button>
+    </div>
+
+    <div class="hidden sm:flex items-center gap-2 pb-1 font-mono text-[11px] text-muted-foreground">
+      {file.path}
+    </div>
+  </div>
+
+  <!-- Front Matter Editor -->
   {#if file.isMarkdown}
-    <section class="space-y-4" aria-labelledby="frontmatter-heading">
-      <div class="flex flex-wrap items-start justify-between gap-3">
-        <div class="space-y-1">
-          <h3 id="frontmatter-heading" class="text-lg font-medium">
-            Front Matter
-          </h3>
-          <p class="text-xs text-muted-foreground">
-            Core metadata stored at the top of the file.
-          </p>
-        </div>
-
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          class="gap-1.5 text-xs"
-          onclick={() => (showFrontmatter = true)}
-        >
-          <Settings2 size={14} /> Additional fields
-          {#if additionalFrontmatterCount > 0}
-            <span
-              class="rounded-full bg-primary/10 px-1.5 py-0.5 font-mono text-[10px] text-primary"
-            >
-              {additionalFrontmatterCount}
-            </span>
-          {/if}
-        </Button>
-      </div>
-
-      <Separator />
-
-      <div class="grid gap-4 md:grid-cols-2">
-        <div class="grid gap-2 md:col-span-2">
-          <Label for="frontmatter-title" class="font-semibold">Title</Label>
-          <Input
-            id="frontmatter-title"
-            value={getFrontmatterValue("title")}
-            placeholder="Enter title..."
-            oninput={(event) =>
-              setFrontmatterValue("title", event.currentTarget.value)}
-          />
-        </div>
-
-        <div class="grid gap-2">
-          <Label for="frontmatter-slug" class="font-semibold">Slug</Label>
-          <Input
-            id="frontmatter-slug"
-            class="font-mono text-xs"
-            value={getFrontmatterValue("slug")}
-            placeholder="e.g. my-first-post"
-            oninput={(event) =>
-              setFrontmatterValue("slug", event.currentTarget.value)}
-          />
-        </div>
-
-        <div class="grid gap-2">
-          <Label for="frontmatter-date" class="font-semibold">Date</Label>
-          <div class="flex items-center gap-2">
-            <Input
-              id="frontmatter-date"
-              class="font-mono text-xs"
-              value={getFrontmatterValue("date")}
-              placeholder="YYYY-MM-DDTHH:mm:ssZ"
-              oninput={(event) =>
-                setFrontmatterValue("date", event.currentTarget.value)}
-            />
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              class="h-9 shrink-0 gap-1.5 text-[11px]"
-              title="Set to the current date and time"
-              onclick={() =>
-                setFrontmatterValue("date", new Date().toISOString())}
-            >
-              <Calendar size={12} /> Now
-            </Button>
-          </div>
-        </div>
-
-        <div class="grid gap-2 md:col-span-2">
-          <Label for="frontmatter-description" class="font-semibold">
-            Description
-          </Label>
-          <Textarea
-            id="frontmatter-description"
-            rows={3}
-            value={getFrontmatterValue("description")}
-            placeholder="Enter description..."
-            oninput={(event) =>
-              setFrontmatterValue("description", event.currentTarget.value)}
-          />
-        </div>
-
-        <div class="grid gap-2 md:col-span-2">
-          <Label for="frontmatter-draft" class="font-semibold">Draft</Label>
-          <div class="flex h-9 items-center gap-2 rounded-md border px-3">
-            <Checkbox
-              id="frontmatter-draft"
-              checked={basicDraft}
-              onCheckedChange={(checked) => setDraftValue(checked === true)}
-            />
-            <Label
-              for="frontmatter-draft"
-              class="cursor-pointer text-sm font-normal text-muted-foreground"
-            >
-              Hide from published builds
-            </Label>
-          </div>
-        </div>
-
-        <div class="md:col-span-2">
-          <TagManager tags={basicTags} onTagsChange={setTagsValue} />
-        </div>
-      </div>
-    </section>
-  {/if}
-
-  <!-- Additional frontmatter drawer (core fields are edited inline) -->
-  {#if file.isMarkdown}
-    <FrontmatterDrawer
-      bind:open={showFrontmatter}
-      bind:entries={frontMatterEntries}
-      hiddenKeys={BASIC_FRONTMATTER_KEYS}
-      onchange={() => (hasUnsavedChanges = true)}
-    />
+    <div class="rounded-xl border border-border/80 bg-card/40 p-4 sm:p-5 shadow-2xs">
+      <FrontmatterEditor
+        bind:rows={frontmatterRows}
+        onchange={() => (hasUnsavedChanges = true)}
+      />
+    </div>
   {/if}
 
   <!-- Main Content Card (Matching the Main CMS Editor) -->

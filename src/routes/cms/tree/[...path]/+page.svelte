@@ -55,6 +55,22 @@ let newFilenameInput = $state("");
 let draggedFilePath = $state<string | null>(null);
 let dropTargetFolder = $state<string | null>(null);
 
+function getFileEditUrl(fileItem: { path: string; extension?: string }): string | undefined {
+	const collectionUrl = collectionEntryUrl(fileItem.path, query);
+	if (collectionUrl) {
+		return collectionUrl;
+	}
+	const ext = fileItem.extension?.toLowerCase();
+	const isMarkdown = ext === "md" || ext === "mdx" || ext === "markdown";
+	if (isMarkdown) {
+		if (query) {
+			return `/cms/edit/${fileItem.path}?${query}`;
+		}
+		return `/cms/edit/${fileItem.path}`;
+	}
+	return undefined;
+}
+
 function openMoveDialog(
 	fileItem: { path: string; name: string },
 	prefilledTargetFolder?: string,
@@ -254,7 +270,7 @@ function treePathUrl(path: string): string {
 
         <!-- Files List -->
         {#each files as fileItem}
-          {@const editUrl = collectionEntryUrl(fileItem.path, query)}
+          {@const editUrl = getFileEditUrl(fileItem)}
           <section
             class="group flex items-center justify-between px-5 py-3 hover:bg-muted/40 transition-colors cursor-grab active:cursor-grabbing {draggedFilePath === fileItem.path ? 'opacity-40' : ''}"
             aria-label={`File ${fileItem.name}`}

@@ -10,6 +10,7 @@ import {
   Harper,
   IFrameExtended,
   ImageExtended,
+  ImageUpload,
   Mermaid,
   SlashCommand,
   SvelteNodeViewRenderer,
@@ -72,6 +73,9 @@ export const createEditor = (props?: EdraEditorProps) =>
         },
       }),
       MediaPlaceholder(MediaPlaceholderComp).configure({
+        onUpload: props?.onFileUpload,
+      }),
+      ImageUpload.configure({
         onUpload: props?.onFileUpload,
       }),
       ImageExtended(ImageExtendedComp),

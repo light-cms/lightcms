@@ -119,9 +119,9 @@ const transcribeSpeech = os
       });
       return result;
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Audio transcription failed.";
+      console.error(err);
       throw new ORPCError("INTERNAL_SERVER_ERROR", {
-        message,
+        message: "Audio transcription failed.",
       });
     }
   });
