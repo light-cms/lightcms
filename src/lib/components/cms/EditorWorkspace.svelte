@@ -18,6 +18,7 @@ import { enhance } from "$app/forms";
 import { goto } from "$app/navigation";
 import FrontmatterEditor from "$lib/components/cms/FrontmatterEditor.svelte";
 import {
+	DEFAULT_FRONTMATTER_FIELD_LABELS,
 	frontmatterRecordToRows,
 	frontmatterRowsToRecord,
 	type FrontmatterRow,
@@ -63,6 +64,7 @@ interface Props {
 	savedMessage?: string;
 	callAI?: EdraEditorProps["callAI"];
 	onFileUpload?: EdraEditorProps["onFileUpload"];
+	requiredFields?: readonly string[];
 }
 
 let {
@@ -79,6 +81,7 @@ let {
 	savedMessage = "Saved successfully",
 	callAI,
 	onFileUpload,
+	requiredFields = [],
 }: Props = $props();
 
 function parentPath(path: string): string {
@@ -341,8 +344,6 @@ onMount(() => {
         </h1>
       </div>
     </div>
-
-    <!-- Actions -->
     <div class="flex items-center gap-2.5">
       <SaveStatus saving={isSaving} {hasUnsavedChanges} {lastSaved} />
 
@@ -391,7 +392,32 @@ onMount(() => {
     method="POST"
     action={saveUrl}
     class="hidden"
-    use:enhance={({ formData }) => {
+    use:enhance={({ formData, cancel }) => {
+      if (file.isMarkdown) {
+        const record = frontmatterRowsToRecord(frontmatterRows);
+        for (const fieldName of requiredFields) {
+          const normalized = fieldName.trim().toLowerCase();
+          const val = record[fieldName];
+          const label = DEFAULT_FRONTMATTER_FIELD_LABELS[normalized] ?? fieldName;
+
+          if (val === undefined || val === null) {
+            toast.error(`${label} is required.`);
+            cancel();
+            return;
+          }
+          if (typeof val === "string" && val.trim().length === 0) {
+            toast.error(`${label} is required.`);
+            cancel();
+            return;
+          }
+          if (Array.isArray(val) && val.length === 0) {
+            toast.error(`${label} is required.`);
+            cancel();
+            return;
+          }
+        }
+      }
+
       let contentToSave = bodyContent;
       if (editor && editorMode === "rich") {
         contentToSave = editor.getMarkdown();

@@ -1,4 +1,4 @@
-## Be strict at code review and always follow the standard code quality guidelines
+### Be strict at code review and always follow the standard code quality guidelines
 
 no sloppy ternary operators use of or operator and operator unnecessaryly
 follow all the best practices in code. like all the best practices

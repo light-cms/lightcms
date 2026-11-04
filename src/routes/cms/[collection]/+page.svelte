@@ -567,4 +567,3 @@ function handleDropOnFolder(e: DragEvent, targetFolderName: string) {
 		</DialogContent>
 	</Dialog>
 {/if}
-

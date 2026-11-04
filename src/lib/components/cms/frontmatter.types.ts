@@ -8,6 +8,58 @@ export interface FrontmatterRow {
   rawComplexText?: string;
 }
 
+export const DEFAULT_FRONTMATTER_KEYS = [
+  "title",
+  "description",
+  "date",
+  "draft",
+  "keywords",
+  "tags",
+  "isCJKLanguage",
+  "headless",
+] as const;
+
+export type DefaultFrontmatterKey = (typeof DEFAULT_FRONTMATTER_KEYS)[number];
+
+const DEFAULT_FRONTMATTER_KEY_SET = new Set<string>(
+  DEFAULT_FRONTMATTER_KEYS.map((key) => key.toLowerCase()),
+);
+
+export const DEFAULT_FRONTMATTER_FIELD_TYPES: Record<string, FrontmatterType> = {
+  title: "string",
+  description: "string",
+  date: "string",
+  draft: "boolean",
+  keywords: "array",
+  tags: "array",
+  iscjklanguage: "boolean",
+  headless: "boolean",
+};
+
+export const DEFAULT_FRONTMATTER_FIELD_LABELS: Record<string, string> = {
+  title: "Title",
+  description: "Description",
+  date: "Date",
+  draft: "Draft",
+  keywords: "Keywords",
+  tags: "Tags",
+  iscjklanguage: "CJK Language",
+  headless: "Headless",
+};
+
+export function createDefaultFrontMatter(): Record<string, unknown> {
+  return {
+    title: "",
+    description: "",
+    date: new Date().toISOString().replace(/\.\d{3}Z$/, "Z"),
+    draft: false,
+    keywords: [],
+    tags: [],
+    isCJKLanguage: false,
+    headless: false,
+  };
+}
+
 export function inferFrontmatterType(val: unknown): FrontmatterType {
   if (typeof val === "boolean") {
     return "boolean";
@@ -24,6 +76,22 @@ export function inferFrontmatterType(val: unknown): FrontmatterType {
   return "string";
 }
 
+function isEmptyFrontmatterValue(val: unknown): boolean {
+  if (val === null || val === undefined) {
+    return true;
+  }
+  if (typeof val === "string" && val.trim().length === 0) {
+    return true;
+  }
+  if (Array.isArray(val) && val.length === 0) {
+    return true;
+  }
+  if (typeof val === "object" && !Array.isArray(val) && Object.keys(val).length === 0) {
+    return true;
+  }
+  return false;
+}
+
 export function frontmatterRecordToRows(
   data: Record<string, unknown>,
   allowedKeys?: readonly string[],
@@ -34,24 +102,54 @@ export function frontmatterRecordToRows(
 
   for (const [key, rawVal] of Object.entries(data)) {
     const normalizedKey = key.trim().toLowerCase();
-    if (normalizedKey.length === 0) continue;
-    if (allowedSet !== null && !allowedSet.has(normalizedKey)) continue;
-    if (
-      rawVal === null ||
-      rawVal === undefined ||
-      (typeof rawVal === "string" && rawVal.trim().length === 0) ||
-      (Array.isArray(rawVal) && rawVal.length === 0) ||
-      (typeof rawVal === "object" &&
-        rawVal !== null &&
-        !Array.isArray(rawVal) &&
-        Object.keys(rawVal).length === 0)
-    ) {
+    if (normalizedKey.length === 0) {
+      continue;
+    }
+    if (allowedSet !== null && !allowedSet.has(normalizedKey)) {
       continue;
     }
 
-    const type = inferFrontmatterType(rawVal);
+    const isDefaultKey = DEFAULT_FRONTMATTER_KEY_SET.has(normalizedKey);
+    if (!isDefaultKey && isEmptyFrontmatterValue(rawVal)) {
+      continue;
+    }
+
+    let type: FrontmatterType;
     let val: unknown = rawVal;
     let rawComplexText: string | undefined;
+
+    if (isDefaultKey) {
+      const defaultType = DEFAULT_FRONTMATTER_FIELD_TYPES[normalizedKey];
+      if (defaultType === "boolean" && typeof rawVal !== "boolean") {
+        type = "boolean";
+        if (typeof rawVal === "string") {
+          val = rawVal.trim().toLowerCase() === "true";
+        } else {
+          val = false;
+        }
+      } else if (defaultType === "array" && !Array.isArray(rawVal)) {
+        type = "array";
+        if (typeof rawVal === "string" && rawVal.trim().length > 0) {
+          val = rawVal
+            .split(",")
+            .map((item) => item.trim())
+            .filter((item) => item.length > 0);
+        } else {
+          val = [];
+        }
+      } else if (rawVal === null || rawVal === undefined) {
+        type = defaultType;
+        if (defaultType === "number") {
+          val = 0;
+        } else {
+          val = "";
+        }
+      } else {
+        type = inferFrontmatterType(rawVal);
+      }
+    } else {
+      type = inferFrontmatterType(rawVal);
+    }
 
     if (type === "string") {
       if (rawVal instanceof Date) {
@@ -69,10 +167,10 @@ export function frontmatterRecordToRows(
         val = Number.isNaN(parsed) ? 0 : parsed;
       }
     } else if (type === "boolean") {
-      val = Boolean(rawVal);
+      val = Boolean(val);
     } else if (type === "array") {
-      if (Array.isArray(rawVal)) {
-        val = rawVal.map((item) => String(item));
+      if (Array.isArray(val)) {
+        val = val.map((item) => String(item));
       } else {
         val = [];
       }

@@ -84,4 +84,7 @@ const pageTitle = $derived.by(() => {
   moveUrl={data.isNew ? undefined : `?/move${payloadQuery ? `&${payloadQuery}` : ""}`}
   {callAI}
   onFileUpload={uploadFile}
+  requiredFields={data.collection.fields
+    .filter((f) => f.required && f.name !== "body" && f.name !== "slug")
+    .map((f) => f.name)}
 />

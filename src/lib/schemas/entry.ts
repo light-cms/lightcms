@@ -89,7 +89,24 @@ function buildFieldSchema(field: LightCmsField): z.ZodTypeAny {
   }
 
   if (field.list && field.type !== "checkbox" && field.type !== "json" && field.type !== "number") {
-    return z.union([z.array(z.string()), z.string()]).default([]);
+    const listSchema = z.union([z.array(z.string()), z.string()]);
+    if (field.required) {
+      return listSchema
+        .refine(
+          (val) => {
+            if (Array.isArray(val)) {
+              return val.length > 0;
+            }
+            if (typeof val === "string") {
+              return val.trim().length > 0;
+            }
+            return false;
+          },
+          { message: `${field.label ?? field.name} is required.` },
+        )
+        .default([]);
+    }
+    return listSchema.default([]);
   }
 
   if (field.list && field.type === "number") {

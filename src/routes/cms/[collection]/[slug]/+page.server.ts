@@ -13,9 +13,10 @@ import {
   updateCollectionEntry,
 } from "$lib/server/cms";
 
+import { createDefaultFrontMatter } from "$lib/components/cms/frontmatter.types";
 import { getConfiguredCollection } from "$lib/server/cms-context";
 import { isGitHubStatus } from "$lib/server/github";
-import { joinPath, normalizeFolder } from "$lib/server/paths";
+import { joinPath, normalizeFolder, resolveEntryPath } from "$lib/server/paths";
 import { captureServerEvent } from "$lib/server/posthog";
 import type { Actions, PageServerLoad } from "./$types";
 
@@ -145,9 +146,17 @@ export const load: PageServerLoad = async ({ locals, params, url }) => {
 
   if (params.slug === "new") {
     const emptyFormData = buildEmptyFormData(collection);
-    const { body: _body, ...initialFrontMatter } = emptyFormData;
     const form = await superValidate(emptyFormData, zod4(schema));
     form.errors = {};
+
+    const initialFrontMatter = createDefaultFrontMatter();
+    for (const field of collection.fields) {
+      if (field.required && field.name !== "body" && field.name !== "slug") {
+        if (!(field.name in initialFrontMatter)) {
+          initialFrontMatter[field.name] = emptyFormData[field.name];
+        }
+      }
+    }
 
     return {
       isNew: true,
@@ -158,7 +167,7 @@ export const load: PageServerLoad = async ({ locals, params, url }) => {
       primaryField: collection.view?.primary ?? collection.fields[0].name,
       entry: {
         slug: String(emptyFormData.slug),
-        path: joinPath(collection.path, folder, `${emptyFormData.slug}.md`),
+        path: resolveEntryPath(collection.path, folder, `${emptyFormData.slug}.md`),
         body: "",
         frontMatter: initialFrontMatter as FrontMatter,
       },
@@ -229,6 +238,9 @@ export const actions: Actions = {
             val === null ||
             (typeof val === "string" && val.trim().length === 0)
           ) {
+            return fail(400, { error: `${field.label ?? field.name} is required.` });
+          }
+          if (field.list && Array.isArray(val) && val.length === 0) {
             return fail(400, { error: `${field.label ?? field.name} is required.` });
           }
         }
@@ -442,7 +454,7 @@ function buildEmptyFormData(collection: {
 }): Record<string, unknown> {
   // Default new-entry date as UTC — matches the ISO 8601 UTC storage format
   // and the UTC-only semantics used for <input type="datetime-local"> here.
-  const localNow = new Date().toISOString().slice(0, 16);
+  const localNow = new Date().toISOString().replace(/\.\d{3}Z$/, "Z");
 
   const data: Record<string, unknown> = {
     slug: Math.floor(Date.now() / 1000).toString(),
