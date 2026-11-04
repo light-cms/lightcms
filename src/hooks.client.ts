@@ -9,13 +9,13 @@ export function isPostHogInitialized() {
 }
 
 export function init() {
-  const key = import.meta.env.PUBLIC_POSTHOG_KEY;
-  const host = import.meta.env.PUBLIC_POSTHOG_HOST;
+  const key = import.meta.env.VITE_POSTHOG_PROJECT_TOKEN!;
+  const host = import.meta.env.VITE_POSTHOG_HOST!;
 
   if (!key) {
     if (dev) {
       console.warn(
-        "PUBLIC_POSTHOG_KEY variable required by PostHog is missing or un-configured, this causes events to be silently missed. This warning stops appearing once PUBLIC_POSTHOG_KEY is configured",
+        "VITE_POSTHOG_PROJECT_TOKEN variable required by PostHog is missing or un-configured, this causes events to be silently missed. This warning stops appearing once VITE_POSTHOG_PROJECT_TOKEN is configured",
       );
     }
     return;
@@ -24,7 +24,7 @@ export function init() {
   if (!host) {
     if (dev) {
       console.warn(
-        "PUBLIC_POSTHOG_HOST variable required by PostHog is missing or un-configured, this causes events to be silently missed. This warning stops appearing once PUBLIC_POSTHOG_HOST is configured",
+        "VITE_POSTHOG_HOST variable required by PostHog is missing or un-configured, this causes events to be silently missed. This warning stops appearing once VITE_POSTHOG_HOST is configured",
       );
     }
     return;

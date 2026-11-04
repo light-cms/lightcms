@@ -5,8 +5,8 @@ let posthogClient: PostHog | undefined;
 function getPostHogClient() {
   if (posthogClient) return posthogClient;
 
-  const key = import.meta.env.PUBLIC_POSTHOG_KEY;
-  const host = import.meta.env.PUBLIC_POSTHOG_HOST;
+  const key = import.meta.env.VITE_POSTHOG_PROJECT_TOKEN;
+  const host = import.meta.env.VITE_POSTHOG_HOST;
 
   if (!key || !host) {
     return;

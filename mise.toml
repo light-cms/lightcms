@@ -1,12 +1,11 @@
-[settings]
-experimental = true
-
 [tools]
 bun = "latest"
 biome = "latest"
 vp = "latest"
-doppler = "latest"
 turbo = "latest"
+sops = "latest"
+doppler = "latest"
+node = "24"
 
 [env]
 SOPS_AGE_RECIPIENTS = "age1a9p2k3u40mvdntpad4ga7akvnnqqwm6eskfr2yxkgq3u9lp7jfns2wgqty, age155th0ptdjf3gkp7pmzqcepe9kec9n3w32l87czf29fda4a2gj49ql0pg8a"
@@ -19,6 +18,9 @@ install = "bun install"
 build = "bun run turbo build"
 bot = "bun run bot:start"
 
-
 [deps]
 bun = { auto = true }
+git-submodule = { auto = true }
+
+[settings]
+experimental = true

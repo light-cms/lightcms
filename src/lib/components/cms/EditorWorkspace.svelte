@@ -51,6 +51,7 @@ interface EditorFile {
 
 interface Props {
 	file: EditorFile;
+	title?: string;
 	repository: string;
 	branch?: string | null;
 	backUrl: string;
@@ -66,6 +67,7 @@ interface Props {
 
 let {
 	file,
+	title,
 	repository,
 	branch = null,
 	backUrl,
@@ -188,6 +190,29 @@ function switchToRich() {
 	editorMode = "rich";
 }
 
+const displayHeading = $derived.by(() => {
+	const fmTitle = frontmatterRows.find((r) => r.key === "title")?.value;
+	if (typeof fmTitle === "string" && fmTitle.trim().length > 0) {
+		return fmTitle.trim();
+	}
+	if (title && title.trim().length > 0) {
+		return title.trim();
+	}
+	return file.filename;
+});
+
+const activeFilename = $derived.by(() => {
+	const fmSlug = frontmatterRows.find((r) => r.key === "slug")?.value;
+	if (typeof fmSlug === "string" && fmSlug.trim().length > 0) {
+		const clean = fmSlug.trim();
+		if (clean.endsWith(".md")) {
+			return clean;
+		}
+		return `${clean}.md`;
+	}
+	return file.filename;
+});
+
 const frontMatterJson = $derived.by(() => {
 	if (frontmatterRows.length === 0) {
 		return "";
@@ -287,13 +312,14 @@ onMount(() => {
   <!-- Top Bar -->
   <header class="flex flex-col gap-4 border-b border-border/50 pb-5 md:flex-row md:items-center md:justify-between">
     <div class="flex items-center gap-3">
-      <a
-        href={backUrl}
-        class="inline-flex size-9 items-center justify-center rounded-xl border bg-card text-muted-foreground hover:bg-muted hover:text-foreground transition-all"
+      <button
+        type="button"
+        onclick={handleCloseFile}
+        class="inline-flex size-9 items-center justify-center rounded-xl border bg-card text-muted-foreground hover:bg-muted hover:text-foreground transition-all cursor-pointer"
         title={backTitle}
       >
         <ArrowLeft size={16} />
-      </a>
+      </button>
       <div class="space-y-1">
         <div class="flex items-center gap-2 text-xs text-muted-foreground">
           <span class="font-mono">{repository}</span>
@@ -308,7 +334,7 @@ onMount(() => {
           </span>
         </div>
         <h1 class="text-xl font-black text-foreground sm:text-2xl flex items-center gap-2">
-          {file.filename}
+          {displayHeading}
           <span class="text-xs font-mono font-normal text-muted-foreground bg-muted px-2 py-0.5 rounded border">
             {file.path}
           </span>
@@ -380,7 +406,7 @@ onMount(() => {
       return async ({ result, update }) => {
         isSaving = false;
         await update({ reset: false, invalidateAll: reloadOnSave });
-        if (result.type === "success") {
+        if (result.type === "success" || result.type === "redirect") {
           hasUnsavedChanges = false;
           lastSaved = new Date();
           toast.success(savedMessage);
@@ -391,6 +417,8 @@ onMount(() => {
           } else {
             toast.error("Save failed");
           }
+        } else if (result.type === "error") {
+          toast.error(result.error?.message ?? "An unexpected error occurred.");
         }
       };
     }}
@@ -403,7 +431,7 @@ onMount(() => {
   <div class="flex items-center justify-between border-b border-border/80 bg-muted/40 px-3 pt-2 rounded-t-xl">
     <div class="flex items-center gap-2 rounded-t-lg border-t border-x border-border/80 bg-card px-3.5 py-1.5 text-xs font-medium text-foreground shadow-2xs">
       <FileCode size={14} class="text-primary shrink-0" />
-      <span class="font-mono text-xs font-semibold">{file.filename}</span>
+      <span class="font-mono text-xs font-semibold">{activeFilename}</span>
       <button
         type="button"
         class="ml-1 rounded p-0.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
@@ -498,7 +526,7 @@ onMount(() => {
         >
           <div class="flex min-w-0 items-center gap-2.5">
             <span class="truncate font-bold text-foreground">
-              {file.filename}
+              {displayHeading}
             </span>
             <span class="hidden font-mono text-xs text-muted-foreground sm:inline">
               {file.path}
@@ -649,7 +677,7 @@ onMount(() => {
         <Button
           variant="outline"
           type="button"
-          onclick={() => goto(backUrl)}
+          onclick={handleCloseFile}
         >
           Cancel
         </Button>
@@ -689,7 +717,7 @@ onMount(() => {
         <DialogHeader>
           <DialogTitle>Delete File</DialogTitle>
           <DialogDescription>
-            Are you sure you want to delete <span class="font-mono font-bold text-foreground">{file.filename}</span>?
+            Are you sure you want to delete <span class="font-mono font-bold text-foreground">{activeFilename}</span>?
             This will commit the deletion to the repository.
           </DialogDescription>
         </DialogHeader>

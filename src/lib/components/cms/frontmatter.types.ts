@@ -24,10 +24,31 @@ export function inferFrontmatterType(val: unknown): FrontmatterType {
   return "string";
 }
 
-export function frontmatterRecordToRows(data: Record<string, unknown>): FrontmatterRow[] {
+export function frontmatterRecordToRows(
+  data: Record<string, unknown>,
+  allowedKeys?: readonly string[],
+): FrontmatterRow[] {
   const rows: FrontmatterRow[] = [];
+  const allowedSet =
+    allowedKeys !== undefined ? new Set(allowedKeys.map((key) => key.trim().toLowerCase())) : null;
 
   for (const [key, rawVal] of Object.entries(data)) {
+    const normalizedKey = key.trim().toLowerCase();
+    if (normalizedKey.length === 0) continue;
+    if (allowedSet !== null && !allowedSet.has(normalizedKey)) continue;
+    if (
+      rawVal === null ||
+      rawVal === undefined ||
+      (typeof rawVal === "string" && rawVal.trim().length === 0) ||
+      (Array.isArray(rawVal) && rawVal.length === 0) ||
+      (typeof rawVal === "object" &&
+        rawVal !== null &&
+        !Array.isArray(rawVal) &&
+        Object.keys(rawVal).length === 0)
+    ) {
+      continue;
+    }
+
     const type = inferFrontmatterType(rawVal);
     let val: unknown = rawVal;
     let rawComplexText: string | undefined;

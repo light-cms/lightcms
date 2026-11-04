@@ -38,7 +38,7 @@ Edit `.env` with your PostHog project token:
 
 ```
 PUBLIC_POSTHOG_PROJECT_TOKEN=your_posthog_project_token_here
-PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
+PUBLIC_VITE_POSTHOG_HOST=https://us.i.posthog.com
 ```
 
 You can find your project token in your [PostHog project settings](https://app.posthog.com/project/settings).
@@ -109,7 +109,7 @@ let posthogClient: PostHog | null = null;
 export function getPostHogClient() {
   if (!posthogClient) {
     posthogClient = new PostHog(PUBLIC_POSTHOG_PROJECT_TOKEN, {
-      host: PUBLIC_POSTHOG_HOST,
+      host: PUBLIC_VITE_POSTHOG_HOST,
       flushAt: 1,
       flushInterval: 0,
     });
@@ -206,7 +206,7 @@ export default {
 # PostHog configuration
 # Get your PostHog project token from: https://app.posthog.com/project/settings
 PUBLIC_POSTHOG_PROJECT_TOKEN=your_posthog_project_token_here
-PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
+PUBLIC_VITE_POSTHOG_HOST=https://us.i.posthog.com
 
 ```
 
@@ -490,14 +490,13 @@ export function getAuthContext(): AuthState {
 
 ```ts
 import { PostHog } from "posthog-node";
-import { PUBLIC_POSTHOG_PROJECT_TOKEN, PUBLIC_POSTHOG_HOST } from "$env/static/public";
 
 let posthogClient: PostHog | null = null;
 
 export function getPostHogClient() {
   if (!posthogClient) {
-    posthogClient = new PostHog(PUBLIC_POSTHOG_PROJECT_TOKEN, {
-      host: PUBLIC_POSTHOG_HOST,
+    posthogClient = new PostHog(process.env.VITE_POSTHOG_PROJECT_TOKEN!, {
+      host: process.env.VITE_VITE_POSTHOG_HOST!,
       flushAt: 1,
       flushInterval: 0,
     });

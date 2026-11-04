@@ -7,8 +7,8 @@ import { NodeSDK } from "@opentelemetry/sdk-node";
 import { PostHogSpanProcessor } from "@posthog/ai/otel";
 import { registerTelemetry } from "ai";
 
-const key = process.env.PUBLIC_POSTHOG_KEY!;
-const host = process.env.PUBLIC_POSTHOG_HOST!;
+const key = process.env.VITE_POSTHOG_PROJECT_TOKEN!;
+const host = process.env.VITE_POSTHOG_HOST!;
 
 let posthogSpanProcessor: PostHogSpanProcessor | undefined;
 let posthogLogProcessor: BatchLogRecordProcessor | undefined;
@@ -17,13 +17,13 @@ let posthogLogger: ReturnType<typeof logs.getLogger> | undefined;
 if (!key) {
   if (process.env.NODE_ENV !== "production") {
     throw new Error(
-      "PUBLIC_POSTHOG_KEY variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once PUBLIC_POSTHOG_KEY is configured",
+      "VITE_POSTHOG_PROJECT_TOKEN variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once VITE_POSTHOG_PROJECT_TOKEN is configured",
     );
   }
 } else if (!host) {
   if (process.env.NODE_ENV !== "production") {
     throw new Error(
-      "PUBLIC_POSTHOG_HOST variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once PUBLIC_POSTHOG_HOST is configured",
+      "VITE_POSTHOG_HOST variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once VITE_POSTHOG_HOST is configured",
     );
   }
 } else {

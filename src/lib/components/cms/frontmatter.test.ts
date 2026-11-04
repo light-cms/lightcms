@@ -80,4 +80,33 @@ describe("frontmatter utilities", () => {
     expect(record["  "]).toBeUndefined();
     expect(record.validKey).toBe(100);
   });
+
+  it("handles slug and title rows for CMS entries correctly", () => {
+    const entryData = {
+      title: "My New Blog Post",
+      slug: "my-new-blog-post",
+      draft: true,
+      tags: ["sveltekit", "cms"],
+    };
+
+    const rows = frontmatterRecordToRows(entryData);
+    expect(rows).toHaveLength(4);
+
+    const titleRow = rows.find((r) => r.key === "title");
+    expect(titleRow?.value).toBe("My New Blog Post");
+
+    const slugRow = rows.find((r) => r.key === "slug");
+    expect(slugRow?.value).toBe("my-new-blog-post");
+
+    // Simulate updating slug
+    if (slugRow) {
+      slugRow.value = "updated-blog-post";
+    }
+
+    const updatedRecord = frontmatterRowsToRecord(rows);
+    expect(updatedRecord.slug).toBe("updated-blog-post");
+    expect(updatedRecord.title).toBe("My New Blog Post");
+    expect(updatedRecord.draft).toBe(true);
+    expect(updatedRecord.tags).toEqual(["sveltekit", "cms"]);
+  });
 });

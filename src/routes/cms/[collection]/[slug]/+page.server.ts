@@ -144,11 +144,9 @@ export const load: PageServerLoad = async ({ locals, params, url }) => {
   const schema = buildEditorSchema(collection);
 
   if (params.slug === "new") {
-    const emptyEntry: Record<string, unknown> = {
-      ...buildEmptyFormData(collection),
-      additionalFrontMatter: "[]",
-    };
-    const form = await superValidate(emptyEntry, zod4(schema));
+    const emptyFormData = buildEmptyFormData(collection);
+    const { body: _body, ...initialFrontMatter } = emptyFormData;
+    const form = await superValidate(emptyFormData, zod4(schema));
     form.errors = {};
 
     return {
@@ -159,16 +157,19 @@ export const load: PageServerLoad = async ({ locals, params, url }) => {
       folder,
       primaryField: collection.view?.primary ?? collection.fields[0].name,
       entry: {
-        slug: String(emptyEntry.slug),
-        path: joinPath(collection.path, folder),
+        slug: String(emptyFormData.slug),
+        path: joinPath(collection.path, folder, `${emptyFormData.slug}.md`),
         body: "",
-        frontMatter: {} as FrontMatter,
+        frontMatter: initialFrontMatter as FrontMatter,
       },
       form,
     };
   }
 
   const entry = await getCollectionEntry(collection, params.slug, ctx, folder);
+  if (!entry.frontMatter.slug) {
+    entry.frontMatter.slug = entry.slug;
+  }
   const formData = {
     slug: entry.slug,
     body: entry.body,
@@ -202,8 +203,100 @@ export const actions: Actions = {
     );
 
     const folder = normalizeFolder(url.searchParams.get("folder") ?? "");
+    const collectionUrl = `/cms/${encodeURIComponent(collection.name)}?${appendFolder(query, folder)}`;
+
+    const formData = await request.formData();
+    const rawContent = formData.get("content");
+    const rawFrontMatter = formData.get("frontMatter");
+
+    if (typeof rawContent === "string" || typeof rawFrontMatter === "string") {
+      const body = typeof rawContent === "string" ? rawContent : "";
+      let parsedFrontMatter: FrontMatter = {};
+
+      if (typeof rawFrontMatter === "string" && rawFrontMatter.trim().length > 0) {
+        try {
+          parsedFrontMatter = JSON.parse(rawFrontMatter) as FrontMatter;
+        } catch {
+          return fail(400, { error: "Invalid front matter format." });
+        }
+      }
+
+      for (const field of collection.fields) {
+        if (field.required && field.name !== "body" && field.name !== "slug") {
+          const val = parsedFrontMatter[field.name];
+          if (
+            val === undefined ||
+            val === null ||
+            (typeof val === "string" && val.trim().length === 0)
+          ) {
+            return fail(400, { error: `${field.label ?? field.name} is required.` });
+          }
+        }
+      }
+
+      let _slug = params.slug;
+      if (params.slug === "new") {
+        const fmSlug =
+          typeof parsedFrontMatter.slug === "string" ? parsedFrontMatter.slug.trim() : "";
+        if (fmSlug.length > 0) {
+          _slug = fmSlug;
+        } else if (
+          typeof parsedFrontMatter.title === "string" &&
+          parsedFrontMatter.title.trim().length > 0
+        ) {
+          _slug = parsedFrontMatter.title
+            .toLowerCase()
+            .trim()
+            .replace(/[^\w\s-]/g, "")
+            .replace(/[\s_-]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+        } else {
+          _slug = Math.floor(Date.now() / 1000).toString();
+        }
+
+        try {
+          await createCollectionEntry(collection, _slug, parsedFrontMatter, body, ctx, folder);
+        } catch (cause) {
+          return fail(500, { error: cause instanceof Error ? cause.message : String(cause) });
+        }
+        await captureServerEvent(locals.session.userId, "collection_entry_created");
+        throw redirect(303, collectionUrl);
+      }
+
+      const fmSlug =
+        typeof parsedFrontMatter.slug === "string" ? parsedFrontMatter.slug.trim() : "";
+      if (fmSlug.length > 0) {
+        _slug = fmSlug;
+      }
+
+      try {
+        await updateCollectionEntry(
+          collection,
+          params.slug,
+          _slug,
+          parsedFrontMatter,
+          body,
+          ctx,
+          folder,
+        );
+      } catch (cause) {
+        return fail(500, {
+          error: cause instanceof Error ? cause.message : "Could not update the entry.",
+        });
+      }
+
+      await captureServerEvent(locals.session.userId, "collection_entry_updated");
+
+      if (_slug !== params.slug) {
+        const entryUrl = `/cms/${encodeURIComponent(collection.name)}/${encodeURIComponent(_slug)}?${appendFolder(query, folder)}`;
+        throw redirect(303, entryUrl);
+      }
+
+      return { success: true, savedAt: new Date().toISOString() };
+    }
+
     const schema = buildEditorSchema(collection);
-    const form = await superValidate(request, zod4(schema));
+    const form = await superValidate(formData, zod4(schema));
 
     if (!form.valid) {
       return fail(400, { form });
@@ -220,7 +313,6 @@ export const actions: Actions = {
       additionalFrontMatter: string;
       [key: string]: unknown;
     };
-    const collectionUrl = `/cms/${encodeURIComponent(collection.name)}?${appendFolder(query, folder)}`;
 
     let frontMatter: FrontMatter;
     try {
@@ -317,20 +409,20 @@ export const actions: Actions = {
 
     const folder = normalizeFolder(url.searchParams.get("folder") ?? "");
     const formData = await request.formData();
-    const rawToFolder = formData.get("toFolder");
-    const rawNewSlug = formData.get("newSlug");
+    const rawToFolder = formData.get("destinationFolder") ?? formData.get("toFolder");
+    const rawNewSlug = formData.get("newFilename") ?? formData.get("newSlug");
 
     const toFolder = typeof rawToFolder === "string" ? rawToFolder.trim() : "";
     let newSlug = params.slug;
     if (typeof rawNewSlug === "string" && rawNewSlug.trim().length > 0) {
-      newSlug = rawNewSlug.trim();
+      newSlug = rawNewSlug.trim().replace(/\.md$/, "");
     }
 
     try {
       await moveCollectionEntry(collection, params.slug, folder, toFolder, ctx, newSlug);
     } catch (cause) {
       return fail(400, {
-        moveError: cause instanceof Error ? cause.message : "Could not move entry.",
+        error: cause instanceof Error ? cause.message : "Could not move entry.",
       });
     }
 

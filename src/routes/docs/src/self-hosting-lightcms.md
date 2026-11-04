@@ -158,8 +158,8 @@ the Probot wizard writes it.
 LightCMS reports analytics and errors to [PostHog](https://posthog.com). When the keys are missing, the app **throws in development** to stop events being silently dropped. In production they are optional, and telemetry is skipped when they are unset.
 
 ```bash
-PUBLIC_POSTHOG_KEY="phc_xxxxxxxxxxxx"
-PUBLIC_POSTHOG_HOST="https://us.i.posthog.com"
+VITE_POSTHOG_PROJECT_TOKEN="phc_xxxxxxxxxxxx"
+VITE_POSTHOG_HOST="https://us.i.posthog.com"
 ```
 
 ### Email: required for magic-link sign-in
@@ -324,12 +324,12 @@ One can use [groq](https://groq.com/) or [assemblyai](https://assemblyai.com/) o
 
 ## For development purpose you can use the following credentials for posthog
 
-PUBLIC_POSTHOG_KEY = "phc_AS2JXQsqEwNNreH5kra5Eefd5TijExE5eiLfwdzXLhPg"
+VITE_POSTHOG_PROJECT_TOKEN = "phc_AS2JXQsqEwNNreH5kra5Eefd5TijExE5eiLfwdzXLhPg"
 PUBLIC_POSTHOG_URL = "https://us.i.posthog.com"
 
 ```env
-PUBLIC_POSTHOG_KEY=phc_AS2JXQsqEwNNreH5kra5Eefd5TijExE5eiLfwdzXLhPg
-PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
+VITE_POSTHOG_PROJECT_TOKEN=phc_AS2JXQsqEwNNreH5kra5Eefd5TijExE5eiLfwdzXLhPg
+VITE_POSTHOG_HOST=https://us.i.posthog.com
 ```
 
 https://wit.ai
@@ -365,8 +365,8 @@ OPEN_AI_MODEL=
 OPEN_AI_APIKEY=
 ORIGIN=
 PRIVATE_KEY=
-PUBLIC_POSTHOG_HOST=
-PUBLIC_POSTHOG_KEY=
+VITE_POSTHOG_HOST=
+VITE_POSTHOG_PROJECT_TOKEN=
 SPEECH_API_KEY=
 SPEECH_ENDPOINT=
 SPEECH_MODEL=
