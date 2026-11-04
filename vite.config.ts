@@ -79,6 +79,6 @@ export default defineConfig({
         },
       },
     }),
-    mdsvex({ extensions: [".svelte", ".md"] }),
+    mdsvex({ extensions: [".svelte", ".md", ".mdx"] }),
   ],
 });

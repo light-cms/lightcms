@@ -20,6 +20,7 @@ import {
 import { createDraggableWidget } from "./draggable-widget.svelte.js";
 import MicWidgetPanel from "./MicWidgetPanel.svelte";
 import { SPEECH_PROVIDERS, type SpeechProvider } from "./speech-recognition.js";
+import { untrack } from "svelte";
 import { createSpeechRecognition } from "./speech-recognition.svelte";
 
 interface Props {
@@ -51,7 +52,7 @@ let {
 	shortcut = false,
 }: Props = $props();
 
-let selectedProvider = $state<SpeechProvider>(provider);
+let selectedProvider = $state<SpeechProvider>(untrack(() => provider));
 
 const speech = createSpeechRecognition({
 	get lang() {

@@ -9,7 +9,13 @@ import {
   moveFile,
 } from "$lib/server/github";
 
-import { getSlug, joinPath, normalizeFolder, resolveEntryPath } from "$lib/server/paths";
+import {
+  getSlug,
+  joinPath,
+  normalizeContentPath,
+  normalizeFolder,
+  resolveEntryPath,
+} from "$lib/server/paths";
 import { assertSlug, buildFrontMatter, parseFrontMatter, serializeEntry } from "./frontmatter";
 import { getEntryCommitMessage, resolveEntryContext } from "./slug-helpers.js";
 import {
@@ -85,6 +91,36 @@ async function mapWithConcurrency<T, R>(
   return results;
 }
 
+const ENTRY_MARKDOWN_EXTENSIONS = [".md", ".mdx", ".markdown"];
+
+function entryBasePath(collectionPath: string, folder: string): string {
+  return joinPath(collectionPath, normalizeFolder(folder));
+}
+
+async function findEntryFile(
+  collection: LightCmsCollection,
+  folder: string,
+  slug: string,
+  ctx: CmsContext,
+  repo: ReturnType<typeof resolveRepository>,
+): Promise<{
+  path: string;
+  extension: string;
+  source: Awaited<ReturnType<typeof getFileContent>>;
+}> {
+  const base = entryBasePath(collection.path, folder);
+  for (const extension of ENTRY_MARKDOWN_EXTENSIONS) {
+    const candidate = normalizeContentPath(`${base}/${slug}${extension}`);
+    try {
+      const source = await getFileContent(candidate, ctx.client, repo, ctx.branch);
+      return { path: candidate, extension, source };
+    } catch {
+      // Try the next supported markdown extension.
+    }
+  }
+  throw new Error(`Entry not found: ${slug}`);
+}
+
 export async function listCollectionEntries(
   collection: LightCmsCollection,
   ctx: CmsContext,
@@ -96,8 +132,11 @@ export async function listCollectionEntries(
   const folders = entries
     .filter((entry) => entry.type === "dir" && !entry.name.startsWith("."))
     .map((entry) => ({ name: entry.name, path: entry.path }));
+  const markdownExtensions = [".md", ".mdx", ".markdown"];
   const markdownEntries = entries.filter(
-    (entry) => entry.type === "file" && entry.path.endsWith(".md"),
+    (entry) =>
+      entry.type === "file" &&
+      markdownExtensions.some((extension) => entry.path.toLowerCase().endsWith(extension)),
   );
 
   const items = await mapWithConcurrency(markdownEntries, 5, async (entry) => {
@@ -155,8 +194,8 @@ export async function getCollectionEntry(
   folder = "",
 ): Promise<Entry> {
   const repo = resolveRepository(ctx);
-  const path = resolveEntryPath(collection.path, normalizeFolder(folder), slug);
-  const source = await getFileContent(path, ctx.client, repo, ctx.branch);
+  const found = await findEntryFile(collection, folder, slug, ctx, repo);
+  const source = found.source;
   const parsed = matter(source.content);
   const data = parsed.data ?? {};
   const { body: _body, ...frontMatter } = data as Record<string, unknown>;
@@ -193,12 +232,19 @@ export async function updateCollectionEntry(
   folder = "",
   targetFolder = folder,
 ) {
-  const { repo } = resolveEntryContext(collection, slug, targetFolder, ctx);
+  const repo = resolveRepository(ctx);
   assertSlug(currentSlug);
   const currentNormalizedFolder = normalizeFolder(folder);
   const targetNormalizedFolder = normalizeFolder(targetFolder);
-  const currentPath = resolveEntryPath(collection.path, currentNormalizedFolder, currentSlug);
-  const path = resolveEntryPath(collection.path, targetNormalizedFolder, slug);
+  const currentFound = await findEntryFile(collection, folder, currentSlug, ctx, repo).catch(
+    () => null,
+  );
+  const currentPath =
+    currentFound?.path ?? resolveEntryPath(collection.path, currentNormalizedFolder, currentSlug);
+  const currentExtension = currentFound?.extension ?? ".md";
+  const path = normalizeContentPath(
+    `${entryBasePath(collection.path, targetNormalizedFolder)}/${slug}${currentExtension}`,
+  );
   const title = resolveTitle(collection, frontMatter);
   const message = getEntryCommitMessage(collection, "update", title);
   const content = serializeEntry(frontMatter, body);
@@ -246,8 +292,15 @@ export async function moveCollectionEntry(
   assertSlug(currentSlug);
   assertSlug(newSlug);
 
-  const fromPath = resolveEntryPath(collection.path, normalizedFrom, currentSlug);
-  const toPath = resolveEntryPath(collection.path, normalizedTo, newSlug);
+  const currentFound = await findEntryFile(collection, fromFolder, currentSlug, ctx, repo).catch(
+    () => null,
+  );
+  const currentExtension = currentFound?.extension ?? ".md";
+  const fromPath =
+    currentFound?.path ?? resolveEntryPath(collection.path, normalizedFrom, currentSlug);
+  const toPath = normalizeContentPath(
+    `${entryBasePath(collection.path, normalizedTo)}/${newSlug}${currentExtension}`,
+  );
 
   if (fromPath === toPath) {
     return;
@@ -268,7 +321,9 @@ export async function deleteCollectionEntry(
   ctx: CmsContext,
   folder = "",
 ) {
-  const { repo, path } = resolveEntryContext(collection, slug, folder, ctx);
+  const repo = resolveRepository(ctx);
+  const found = await findEntryFile(collection, folder, slug, ctx, repo).catch(() => null);
+  const path = found?.path ?? resolveEntryPath(collection.path, normalizeFolder(folder), slug);
   const message = getEntryCommitMessage(collection, "delete", slug);
   await deleteFile(path, message, ctx.client, repo, ctx.branch);
 }

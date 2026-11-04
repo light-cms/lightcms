@@ -14,7 +14,9 @@ const { tooltip, children, shortCut }: Props = $props();
 <Tooltip.Provider delayDuration={100}>
 	<Tooltip.Root>
 		<Tooltip.Trigger>
-			{@render children()}
+			{#snippet child({ props })}
+				<span {...props}>{@render children()}</span>
+			{/snippet}
 		</Tooltip.Trigger>
 		<Tooltip.Content>
 			<span>{tooltip}</span>

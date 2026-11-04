@@ -133,11 +133,18 @@ function toBadge(frontmatter: Record<string, unknown>): string | null {
 }
 
 export async function loadDocEntries(): Promise<DocEntry[]> {
-  const modules = import.meta.glob("../../routes/docs/src/**/*.md", {
-    query: "?raw",
-    import: "default",
-    eager: true,
-  });
+  const modules = import.meta.glob(
+    [
+      "../../routes/docs/src/**/*.md",
+      "../../routes/docs/src/**/*.mdx",
+      "../../routes/docs/src/**/*.markdown",
+    ],
+    {
+      query: "?raw",
+      import: "default",
+      eager: true,
+    },
+  );
 
   const entries: DocEntry[] = [];
 

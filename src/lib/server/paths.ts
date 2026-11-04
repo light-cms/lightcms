@@ -34,8 +34,16 @@ export function joinPath(directoryPath: string, folder: string): string {
   return `${cleanDir}/${cleanFolder}`;
 }
 
+export const MARKDOWN_EXTENSIONS = [".md", ".mdx", ".markdown"];
+
+export function isMarkdownExtension(filename: string): boolean {
+  const lower = filename.toLowerCase();
+  return MARKDOWN_EXTENSIONS.some((extension) => lower.endsWith(extension));
+}
+
 export function normalizeExtension(filename: string): string {
-  if (filename.endsWith(".md")) {
+  const lower = filename.toLowerCase();
+  if (MARKDOWN_EXTENSIONS.some((extension) => lower.endsWith(extension))) {
     return filename;
   }
   return `${filename}.md`;
@@ -55,13 +63,13 @@ export function getSlug(directoryPath: string, filePath: string): string {
   const cleanFile = normalizeContentPath(filePath);
   const normalizedFile = normalizeExtension(cleanFile);
   if (cleanDir.length === 0) {
-    return normalizedFile.replace(/\.md$/, "");
+    return normalizedFile.replace(/\.(md|mdx|markdown)$/, "");
   }
   const prefix = `${cleanDir}/`;
   const relative = normalizedFile.startsWith(prefix)
     ? normalizedFile.slice(prefix.length)
     : normalizedFile;
-  return relative.replace(/\.md$/, "");
+  return relative.replace(/\.(md|mdx|markdown)$/, "");
 }
 
 export function resolveEntryPath(collectionPath: string, folder: string, filename: string): string {
