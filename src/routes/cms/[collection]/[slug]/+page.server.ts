@@ -20,7 +20,6 @@ import { joinPath, normalizeFolder, resolveEntryPath } from "$lib/server/paths";
 import { captureServerEvent } from "$lib/server/posthog";
 import type { Actions, PageServerLoad } from "./$types";
 
-/** Frontmatter keys rendered as inline form fields; the drawer handles the rest. */
 const INLINE_FRONTMATTER_KEYS = new Set(["title", "slug", "description", "date", "draft", "tags"]);
 
 const RESERVED_FRONTMATTER_KEYS = new Set(["body", "__proto__", "constructor", "prototype"]);
@@ -167,7 +166,7 @@ export const load: PageServerLoad = async ({ locals, params, url }) => {
       primaryField: collection.view?.primary ?? collection.fields[0].name,
       entry: {
         slug: String(emptyFormData.slug),
-        path: resolveEntryPath(collection.path, folder, `${emptyFormData.slug}.md`),
+        path: resolveEntryPath(collection.path, folder, `${params.slug}.md`),
         body: "",
         frontMatter: initialFrontMatter as FrontMatter,
       },

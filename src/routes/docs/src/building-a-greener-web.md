@@ -21,7 +21,7 @@ It costs a lot to load a page. Sometimes a page fails to load from cache the dat
 
 Like the airline industry the web can harm the planet. The layout you pick lets you show how much you care about Earth. The eco friendly way to share information is a static site generator that builds your site once and then serves it from a CDN.
 
-Why Static Sites Emit Carbon
+## Why Static Sites Emit Carbon
 
 To give a real‑time feel dynamic sites perform work every time someone interacts: they run code ask the database and send a full page from the server. So the server must stay online all the time even when nobody visits.
 
@@ -29,7 +29,7 @@ To give a real‑time feel dynamic sites perform work every time someone interac
 
 - No computing needed for each request. Serving a built file uses very little energy compared to rendering a page on the fly.
 
-- No always‑on database. Application servers and databases run all the time. Static sites do not need them.
+- No always on databases. No servers and databases runs all the time. Static sites do not need a server to be running 24/7. No database queries are made resulting in less carbon emissions are made.
 
 - Cache by default. A request that hits an edge cache moves no energy beyond the network hop.
 
@@ -77,7 +77,7 @@ Where LightCMS Fits
 
 - The CMS runs only while you write. No production database serves readers because readers are served by a CDN.
 
-# Cost of running Static Sites
+## Cost of Running Static Sites
 
 Static sites are usually cheaper or even free to host.
 

@@ -22,8 +22,9 @@ export const actions = {
       return fail(400, { form });
     }
 
+    const auth = getAuth();
     try {
-      await getAuth().api.signInMagicLink({
+      await auth.api.signInMagicLink({
         body: {
           email: form.data.email,
           callbackURL: "/cms",

@@ -24,9 +24,9 @@ let {
 	data: { title?: string; posts?: DocPost[] };
 } = $props();
 
-const title = $derived(data.title ?? "Documentation");
+const _title = $derived(data.title ?? "Documentation");
 const posts = $derived(data.posts ?? []);
-const guideLabel = $derived(posts.length === 1 ? "guide" : "guides");
+const _guideLabel = $derived(posts.length === 1 ? "guide" : "guides");
 </script>
 
 <section class="space-y-10 py-6 sm:py-10">
@@ -35,10 +35,10 @@ const guideLabel = $derived(posts.length === 1 ? "guide" : "guides");
 			class="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-semibold text-foreground"
 		>
 			<BookOpen size={13} class="text-primary" />
-			{title}
+			{_title}
 		</span>
 		<Badge variant="secondary">
-			{posts.length} {guideLabel}
+			{posts.length} {_guideLabel}
 		</Badge>
 	</header>
 
@@ -94,7 +94,7 @@ const guideLabel = $derived(posts.length === 1 ? "guide" : "guides");
 			>
 				<BookOpen size={22} />
 			</span>
-			<p class="text-sm font-semibold text-foreground">No guides yet</p>
+			<!-- <p class="text-sm font-semibold text-foreground">No guides yet</p> -->
 		</div>
 	{/if}
 

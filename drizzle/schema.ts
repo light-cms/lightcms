@@ -130,7 +130,6 @@ export const githubInstallation = pgTable(
   "github_installation",
   {
     userId: text("user_id").notNull(),
-    // You can use { mode: "bigint" } if numbers are exceeding js number limitations
     installationId: bigint("installation_id", { mode: "number" }).notNull(),
     accountLogin: text("account_login").notNull(),
     createdAt: timestamp("created_at", { mode: "string" }).defaultNow().notNull(),

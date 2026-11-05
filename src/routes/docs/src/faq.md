@@ -22,7 +22,7 @@ keywords:
 
 Estimates vary by method, but a typical page view emits on average a gram or two of CO2; heavy, poorly cached pages emit considerably more. Static, cached pages sit at the low end, like 0.002 grams/visit.
 
-### Is a Static Blog Eco-Friendly?
+### How is a static Site Eco Friendly?
 
 Among the greenest options available: cached files served from cdn, no always-on database no server rendering all the time, and content that remains readable and rebuildable for decades.
 

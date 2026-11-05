@@ -3,7 +3,7 @@ export const SITE = {
   origin: "https://lightcms.me",
   locale: "en_US",
   repository: "https://github.com/light-cms/lightcms",
-  contactEmail: "lightcms@zohomail.in",
+  contactEmail: "hello@lightcms.me",
   contactFormUrl: "https://app.youform.com/forms/smwrhikc",
   sponsorUrl: "https://upi.pratyay.online",
   blogUrl: "https://light-cms.github.io",
@@ -11,16 +11,16 @@ export const SITE = {
   blueskyUrl: "https://bsky.app/@lightcms.bsky.app",
 } as const;
 
-export const HOME_TITLE = `${SITE.name} | Git backed CMS for static site generators`;
+export const HOME_TITLE = `${SITE.name} | Git based CMS for static site generators`;
 
-export const ABOUT_TITLE = `About ${SITE.name} | A simple, Git backed headless CMS`;
+export const ABOUT_TITLE = `About ${SITE.name} | A simple, Git based headless CMS`;
 
 export const PRIVACY_TITLE = `Privacy Policy | ${SITE.name}`;
 
 export const DOCS_TITLE = `Documentation | ${SITE.name}`;
 
 export const HOME_DESCRIPTION =
-  "LightCMS is a Git-backed content workspace for editing and publishing markdown.";
+  "LightCMS is a Git based content workspace for editing and publishing markdown.";
 
 export const ABOUT_DESCRIPTION =
   "Learn how LightCMS works: a focused, fast CMS that stores every post as markdown in your own GitHub repository, with an access model Git already provides.";

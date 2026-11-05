@@ -17,16 +17,14 @@ keywords:
 preview: /og-image.png
 ---
 
-Over the years we have tried a lot of CMS's, but most were quite boring and didn't really hit the mark.
+Over the years we all have tried a lot of CMS's, but most were quite boring and didn't really hit the mark where you love writing.
 The best I could find was using Front Matter extension in VS Code. This helps you manage your content files, however opening up an entire code editor, pulling down git branches, and dealing with formatting conflicts and debugging tools just to publish a 3 paragraph article seems like a large amount of effort.
 
 Writing should be simple!
 
----
-
 ## Giving Everyone a Voice
 
-The main aim of having a CMS is giving everyone a voice. It is incredibly valuable to have your own space where you can publish.
+The main aim of having a website is having a voice where you own your words. It is incredibly valuable to have your own space where you can publish freely no need for a middleman to censor.
 
 If you have learnt something share it.
 
@@ -84,6 +82,6 @@ All the auditing, rollback and ownership of using a git backed repo whilst also 
 
 ## TL;DR
 
-Main goal is to give everyone a voice. Blogging shouldn’t feel like a high pressure engineering task. You should genuinely enjoy writing.
+LightCMS gives everyone a place to share their ideas. Blogging should not feel like a high-pressure engineering task. It should be something you genuinely enjoy.
 
-"Everyone has an idea to share and a voice to speak. Share yours."
+"Everyone has an idea worth sharing. Share yours."

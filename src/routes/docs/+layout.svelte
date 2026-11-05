@@ -1,17 +1,12 @@
 <script lang="ts">
-import ExternalLink from "@lucide/svelte/icons/external-link";
 import Menu from "@lucide/svelte/icons/menu";
-import Search from "@lucide/svelte/icons/search";
-import Sparkles from "@lucide/svelte/icons/sparkles";
 import X from "@lucide/svelte/icons/x";
 import { page } from "$app/state";
-import {
-	DocSearchModal,
-	DocSidebar,
-	DocTableOfContents,
-} from "$lib/components/docs";
 import { Button } from "$lib/components/ui/button";
 import type { LayoutData } from "./$types";
+import { DocSearchModal, DocSidebar } from "$lib/components/docs";
+import DocTableOfContents from "$lib/components/docs/DocTableOfContents.svelte";
+import { Search } from "@lucide/svelte";
 
 let { data, children }: { data: LayoutData; children: any } = $props();
 

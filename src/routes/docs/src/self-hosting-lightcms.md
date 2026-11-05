@@ -21,7 +21,7 @@ keywords:
 preview: /og-image.png
 ---
 
-Want LightCMS fully under your control? LightCMS is a [SvelteKit](https://svelte.dev) application so it can be deployed anywhere, backed by a postgre database and a GitHub App(octokit). Your content never leaves your own GitHub repositories.
+Want LightCMS fully under your control? LightCMS is a [SvelteKit](https://svelte.dev) application, so it can be deployed anywhere, backed by a PostgreSQL database and a GitHub App (Octokit). Your content never leaves your own GitHub repositories.
 
 This guide walks you through everything you need to run your own instance: creating the GitHub App, provisioning
 PostgreSQL, configuring environment variables, and deploying.
@@ -40,13 +40,13 @@ PostgreSQL, configuring environment variables, and deploying.
 
 ## Prerequisites
 
-- **[mise](https://mise.jdx.dev)**: installs and managing tasks dependencies. I will be assuming you have it installed.
+- **[mise](https://mise.jdx.dev)**: installs and manages task dependencies. This guide assumes you have it installed.
 - **PostgreSQL**: a database that accepts TLS connections. Cloud providers such as [Neon](https://neon.tech),
-  [Supabase](https://supabase.com) or [Nile](https://thenile.dev) works well. See
+  [Supabase](https://supabase.com) or [Nile](https://thenile.dev) work well. See
   [awesome-free-postgres](https://github.com/alexeyfv/awesome-free-postgres) for free options.
 - **GitHub account**: needed to register the GitHub App.
-- **SMTP provider** (for magic links): If you have a domain then [Resend](https://resend.com) will be having an awesome experience,
-  if not then [Zoho Mail](https://www.zoho.com/mail) remember to create a app password.
+- **SMTP provider** (for magic links): If you have a domain, [Resend](https://resend.com) is a good option.
+  Otherwise, use [Zoho Mail](https://www.zoho.com/mail) and create an app password.
 
 > **TLS is mandatory.** The application connects to PostgreSQL with `ssl: "require"`. A local PostgreSQL instance
 > without TLS enabled will be rejected, so use a hosted database or configure TLS on your own server.
@@ -57,14 +57,6 @@ Clone the repository and install dependencies:
 
 ```bash
 cd lightcms
-mise trust
-mise deps
-mise run install
-```
-
-Install the toolchain and the project dependencies:
-
-```bash
 mise trust
 mise deps
 mise run install
@@ -104,7 +96,7 @@ Create the app in **GitHub Settings → Developer settings → GitHub Apps → N
 | Webhook URL    | `https://<your-domain>/api/github/webhook`                      |
 | Webhook secret | A random secret (see [Generating secrets](#generating-secrets)) |
 
-**Repository permissions**
+## Repository permissions
 
 | Permission        | Access         | Used for                                    |
 | ----------------- | -------------- | ------------------------------------------- |
@@ -300,8 +292,9 @@ labels on `pull_request`, and `installation` logging.
 
 ## 6. Production deployment
 
-The project is configured with sveltekit which is very vendor agnostic, so
-[Vercel](https://vercel.com) [netlify](https://www.netlify.com/) [cloudflare workers](https://www.cloudflare.com/) all are supported deployment targets out of the box.
+The project is configured with SvelteKit, which is vendor agnostic. [Vercel](https://vercel.com),
+[Netlify](https://www.netlify.com/) and [Cloudflare Workers](https://www.cloudflare.com/) are all supported
+deployment targets out of the box.
 
 1. Import your Git repository into deployment platform.
 2. Add every environment variable from [step 3](#3-configure-environment-variables) in **Project Settings → Environment
@@ -325,14 +318,14 @@ One can use [groq](https://groq.com/) or [assemblyai](https://assemblyai.com/) o
 ## For development purpose you can use the following credentials for posthog
 
 VITE_POSTHOG_PROJECT_TOKEN = "phc_AS2JXQsqEwNNreH5kra5Eefd5TijExE5eiLfwdzXLhPg"
-PUBLIC_POSTHOG_URL = "https://us.i.posthog.com"
+PUBLIC_POSTHOG_URL = "<https://us.i.posthog.com>"
 
 ```env
 VITE_POSTHOG_PROJECT_TOKEN=phc_AS2JXQsqEwNNreH5kra5Eefd5TijExE5eiLfwdzXLhPg
 VITE_POSTHOG_HOST=https://us.i.posthog.com
 ```
 
-https://wit.ai
+<https://wit.ai>
 
 ![wit.ai](https://i.ibb.co/MySskPTt/image.png)
 
@@ -375,4 +368,4 @@ WIT_AI_CLIENT_TOKEN=
 WIT_AI_TOKEN=
 ```
 
-![configuration for the bot](https://i.ibb.co/jP5tgcJH/image.png)
+![Bot configuration](https://i.ibb.co/jP5tgcJH/image.png)

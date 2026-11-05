@@ -65,9 +65,9 @@ function createAuth() {
   });
 }
 
-let instance: ReturnType<typeof betterAuth> | null = null;
+let instance: ReturnType<typeof createAuth> | null = null;
 
-export function getAuth(): ReturnType<typeof betterAuth> {
+export function getAuth(): ReturnType<typeof createAuth> {
   if (!instance) {
     instance = createAuth();
   }
