@@ -10,10 +10,9 @@ tags:
   - lightcms
   - static-sites
   - green-web
-keywords:
-  - lightcms
-  - faq
-  - static sites
+keywords: cms
+weight: 1
+isCJKLanguage: false
 ---
 
 ## Frequently Asked Questions
@@ -24,8 +23,12 @@ Estimates vary by method, but a typical page view emits on average a gram or two
 
 ### How is a static Site Eco Friendly?
 
-Among the greenest options available: cached files served from cdn, no always-on database no server rendering all the time, and content that remains readable and rebuildable for decades.
+Static sites are among the greenest options available: where cached files are served from a CDN, there's no always on database, no server rendering all the time, and content that remains readable and rebuildable for decades.
 
 ### What is sustainable web?
 
-A practice of minimizing the energy cost of the web: lean pages, efficient code, renewable hosting, durable content, and measured impact of which static architecture is the foundation.
+A practice of minimizing the energy cost of the web:
+lean pages,
+efficient code,
+Better Seo, and
+measured impact of which static architecture is the foundation.

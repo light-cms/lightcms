@@ -9,12 +9,9 @@ tags:
   - green-web
   - co2
   - ssg
-keywords:
-  - static sites
-  - green web
-  - sustainability
-  - website carbon
+keywords: lightcms
 preview: /og-image.png
+serial: 3
 ---
 
 It costs a lot to load a page. Sometimes a page fails to load from cache the database is hit multiple times and each query uses a lot of power emitting kilograms of CO2. It is said that 2–4% of co2 emissions come from the web.
@@ -23,7 +20,7 @@ Like the airline industry the web can harm the planet. The layout you pick lets 
 
 ## Why Static Sites Emit Carbon
 
-To give a real‑time feel dynamic sites perform work every time someone interacts: they run code ask the database and send a full page from the server. So the server must stay online all the time even when nobody visits.
+To give a reactive effect sites generally perform the rendering work every time someone interacts: they run code ask the database and send a full page from the server. So the server must stay online all the time even when nobody visits.
 
 - A static site builds once. The finished HTML is copied to CDN edge nodes worldwide. Served from cache:
 
@@ -47,17 +44,17 @@ How to Measure Your Websites Carbon Emissions
 
 You cannot improve what you do if you do not measure it:
 
-- **[Website Carbon Calculator](https://www.websitecarbon.com/)** – estimates grams of CO2 emitted per page view and compares your site against the average.
+- [Website Carbon Calculator](https://www.websitecarbon.com/) – estimates grams of CO2 emitted per page view and compares your site against the average.
 
-- Ecograder – rates page experience, accessibility, green hosting and carbon emissions estimates.
+- Eco grader – rates page experience, accessibility, green hosting and carbon emissions estimates.
 
-- GreenFrame – simulates user scenarios and multistep interactions to measure application level carbon footprint and energy consumption.
+- Green Frame – simulates user scenarios and multistep interactions to measure application level carbon footprint and energy consumption.
 
-- WebPageTest – provides in depth performance diagnostics alongside carbon footprint estimates and Core Web Vitals breakdowns.
+- WebPage Test – provides in depth performance diagnostics alongside carbon footprint estimates and Core Web Vitals breakdowns.
 
 - Green Web Checker – checks whether a domains hosting infrastructure runs on renewable energy.
 
-- Real‑user metrics & Core Web Vitals – metrics like Largest Content‑ful Paint (LCP) and total transfer of initial bundle downloaded by any new user on every visit.
+- Real‑user metrics & Core Web Vitals – metrics like Largest contentful Paint (LCP) and total transfer of initial bundle downloaded by any new user on every visit.
 
 How to Build a Greener Web
 
@@ -82,11 +79,11 @@ Where LightCMS Fits
 Static sites are usually cheaper or even free to host.
 
 - [GitHub Pages](https://pages.github.com/)
-- [codeberg pages](https://codeberg.org/pages)
+- [Codeberg pages](https://codeberg.org/pages)
 - [Cloudflare Pages](https://pages.cloudflare.com/)
 - [Vercel](https://vercel.com/)
 - [Netlify](https://www.netlify.com/)
-- [bitbucket pages](https://bitbucket.org/pages)
+- [Bitbucket pages](https://bitbucket.org/pages)
 - [Render](https://render.com/)
 - [surge](https://surge.sh/)
 

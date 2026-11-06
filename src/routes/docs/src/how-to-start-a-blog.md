@@ -1,5 +1,4 @@
----
-title: "How to Start a Blog in 2026: Static sites & Markdown"
+xtitle: "How to Start a Blog in 2026: Static sites & Markdown"
 description: Guide to starting a fast, cheap, durable blog with Markdown, a
   static site generator, and a Git backed CMS — no hosting bills, no lock in.
 serial: 12
@@ -20,7 +19,7 @@ keywords:
 preview: /og-image.png
 ---
 
-In 2026, starting a blog is easier and cheaper than ever. You no longer need a WordPress host, a page builder, or a monthly platform fee. You can build a blog with markdown files, a static site generator, free hosting, and a git-based CMS. At no cost. And your blog will load faster than 99% of blogs about blogging.
+In 2026, starting a blog is easier and cheaper than ever. You no longer need a WordPress host, a page builder, or a monthly platform fee. You can build a blog with Markdown files, a static site generator, free hosting, and a git-based CMS. At no cost. And your blog will load faster than 99% of blogs about blogging.
 
 ## 1. Create your repository
 
@@ -73,7 +72,7 @@ Publish content consistently! Search engines favor consistent problem solving co
 | Hosting (Cloudflare Pages/GitHub Pages) | Free tier            |
 | Git-based CMS (LightCMS/self-hosted)    | Free and open source |
 
-You can build a real publication for just the price of a domain name. And there's one more column nobody mentions. The energy. Serving your static site via a CDN means it emits a fraction of the CO2 of a server-rendered site.
+You can build a real publication for just the price of a domain name. And there's one more column nobody mentions. The energy. Serving your static site via a CDN means it emits a fraction of the CO2 of a server rendered site.
 
 ---
 
@@ -81,7 +80,7 @@ You can build a real publication for just the price of a domain name. And there'
 
 ### Why write?
 
-Mainly, to give everyone a voice. We all have our own experiences, insights and stories to share. Writing about how you fixed a tricky bug or what you learned saves someone across the world hours of frustration. It also preserves your knowledge for the future. And you're building on the independent web.
+Mainly, to give everyone a voice. We all have our own experiences, insights, and stories to share. Writing about how you fixed a tricky bug or what you learned saves someone across the world hours of frustration. It also preserves your knowledge for the future. And you're building on the independent web.
 
 ### Should I start a blog in 2026?
 
@@ -89,8 +88,8 @@ Yes! Your own blog is a lasting asset. Static blogs stay fast, cheap to run, and
 
 ### Do I need to know how to code?
 
-No! The static site generator only needs setting up once (plenty of one-click starters exist). After setting that up, you can publish your content through LightCMS. You might need to adjust your template, but your LLM agent can do that for you.
+No! The static site generator only needs setting up once (plenty of one-click starters exist). After setting that up, you can publish your content through [LightCMS](https://lightcms.me). You might need to adjust your template, but your LLM agent can do that for you.
 
 ### Can I start a blog for free?
 
-Yes! It's all free. The static site generator, hosting, and git-based CMS.
+Yes! It's all free. The static site generator, hosting, and git based CMS.

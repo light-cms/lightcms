@@ -45,7 +45,10 @@
           "title": "keywords",
           "name": "keywords",
           "type": "choice",
-          "choices": ["lightcms", "cms"]
+          "choices": [
+            "lightcms",
+            "cms"
+          ]
         },
         {
           "title": "preview",
@@ -61,6 +64,16 @@
           "title": "serial",
           "name": "serial",
           "type": "number"
+        },
+        {
+          "title": "section",
+          "name": "section",
+          "type": "string"
+        },
+        {
+          "title": "badge",
+          "name": "badge",
+          "type": "string"
         }
       ]
     }

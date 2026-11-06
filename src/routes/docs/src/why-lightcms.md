@@ -1,87 +1,85 @@
 ---
-title: Why LightCMS?
-description: The philosophy behind LightCMS — why writing should be frictionless, why Git backed content matters, and keeping complexity away from the writer.
+title: "Why LightCMS: Git-backed publishing without the lock-in"
+description: Most CMS platforms own your content. LightCMS keeps it in your Git repo, in plain Markdown, deployed by your own pipeline.
 serial: 2
-section: Get Started
-date: 2026-09-18T00:41:00Z
+date: 2026-10-14T14:00:00Z
 draft: false
 tags:
-  - cms
-  - philosophy
   - lightcms
+  - git
+  - cms
+  - static
+  - markdown
+  - publishing
 keywords:
   - why lightcms
-  - git-backed cms
-  - static sites
-  - carbon footprint
+  - git based cms
+  - headless cms
+  - markdown cms
+  - static site cms
 preview: /og-image.png
 ---
 
-Over the years we all have tried a lot of CMS's, but most were quite boring and didn't really hit the mark where you love writing.
-The best I could find was using Front Matter extension in VS Code. This helps you manage your content files, however opening up an entire code editor, pulling down git branches, and dealing with formatting conflicts and debugging tools just to publish a 3 paragraph article seems like a large amount of effort.
+Most content platforms store your writing in their database, render it on their servers, and charge you to keep accessing it. When the platform shuts down, raises prices, or changes its terms, your content goes with it.
 
-Writing should be simple!
+[LightCMS](https://lightcms.me) takes a different position: your content lives in your own Git repository as plain Markdown files. [LightCMS](https://lightcms.me) never touches your readers — it only runs while you're writing.
 
-## Giving Everyone a Voice
+## The Core Problem with Hosted CMS Platforms
 
-The main aim of having a website is having a voice where you own your words. It is incredibly valuable to have your own space where you can publish freely no need for a middleman to censor.
+When you publish on a traditional hosted CMS, you're renting space in someone else's database. That sounds fine until something goes wrong.
 
-If you have learnt something share it.
+The platform kills your plan tier. They add a new storage limit. They get acquired. The import tool breaks. Suddenly migrating years of content is an afternoon of work you didn't budget for.
 
-If you have created something interesting write about it.
+Even when nothing goes wrong, the lock-in is quiet but real. Your content is trapped in a proprietary format behind an API. You can't run a `grep` on your own articles. You can't diff a draft against the previous version. You can't resolve a merge conflict in a post.
 
-If you have solved a difficult bug that took you 3 days to understand, write about it! Someone will search for that exact error in 6 months time and find your solution.
+With [LightCMS](https://lightcms.me), content is committed to your repo as Markdown files. That's it. Your publishing pipeline is just a static site generator — Astro, Hugo, Jekyll, Eleventy, Zola, whatever you're already using. [LightCMS](https://lightcms.me) is the editor layer on top. Swap it out anytime, and your content is untouched.
 
-Everyone should have their own space on the internet to say what they want. You shouldn’t have to use a private social media platform to publish essays and technical information.
+## What Git based publishing actually means
 
-You shouldn’t have to be a senior DevOps engineer or full stack web developer to get started.
+Every save is a commit. Every edit is auditable and version controlled. Every post has a full history going back to the first draft.
 
----
+Collaboration works the same way it does for code: branches for drafts, pull requests for review, commit messages as a changelog. If you're already comfortable with Git, this is the mental model you already have for everything else in your stack.
 
-## Static Sites
+The flipside is that readers never hit [LightCMS](https://lightcms.me). Content is committed to your repository, the build pipeline runs (Cloudflare Pages, Netlify, Vercel, GitHub Pages), and the output is static HTML served from a CDN edge node. No application server sits between your reader and the content.
 
-Static sites are the easiest, quickest and most robust way to publish content.
+This matters for performance — cached static files load fast. It also matters for cost. Most of these hosts have free tiers that cover a high-traffic personal site or small publication without a monthly bill.
 
-Fast: Content is pre-rendered so HTML and CSS can be served from edge CDNs.
+## The editor doesn't make you think about any of this
 
-Secure: No runtime or database to expose.
+The Git mechanics run in the background. From the editor, the experience is just writing.
 
-Green: Very little computation is done, no database queries are made meaning less carbon emissions are made. Tools like [Website Carbon](https://www.websitecarbon.com) show how much of an impact this makes.
+The TipTap-based editor writes clean Markdown. You can dictate using any Whisper-compatible API or Wit.ai if you prefer voice. The built-in AI copilot, which works with any OpenAI-compatible endpoint, can refine a draft, fix a sentence, or pick up where you left off.
 
-There are some amazing static site generators out there such as [Astro](https://astro.build), [Hugo](https://gohugo.io), [Jekyll](https://jekyllrb.com), [SvelteKit](https://svelte.dev) and [Eleventy](https://www.11ty.dev).
+When you hit publish, LightCMS commits the file to the path you've configured and your deployment pipeline takes over. If you're on Cloudflare Pages, the post is live within about a minute.
 
-The issue is that whilst they are easy to run they are not easy to manage.
+## What LightCMS is not
 
-You shouldn’t have to know about git rebase flags, markdown linters in the terminal, front matter yaml validation or GitHub token scopes to publish your thoughts. It is too much to ask a non technical person or a tired developer to open up a code editor.
+It's not a hosted blogging platform. There's no LightCMS-managed CDN between you and your readers. LightCMS is software you run — as a self-hosted SvelteKit application, or through a hosted instance — and it writes to repositories you own.
 
----
+It's also not trying to replace your deployment setup. The assumption is you already have a static site generator and a hosting provider. LightCMS gives non-technical contributors a way to publish without touching a terminal, while keeping the repository as the source of truth for technical ones.
 
-## Green Web = Static Web
+## The sustainability angle
 
-Static sites are green. Dynamic sites use electricity for every request, static sites only use it once and then serve from cache meaning less energy is used. No database running 24/7, no computation per view.
+Static sites emit significantly less CO2 per page view than server-rendered equivalents. There's no always-on database, no per-request rendering, and no server to keep warm. A page view that hits a CDN cache is mostly just a network hop.
 
-Content that lasts is green! Using simple markdown files in your own repo means you can always read and rebuild your content. Platforms will shut down and WordPress installs will go bad. Every blog that switches to static from a database driven site will reduce their carbon footprint.
+[Research puts a typical static, cached page at around 0.002 grams of CO2 per visit](https://www.websitecarbon.com/) — versus a gram or more for a heavy, server-rendered page. That gap compounds across millions of page views.
 
-Read more here [Building a Greener Web](/docs/building-a-greener-web).
+It's not the primary reason to choose a static architecture, but it's a real benefit if the environmental cost of infrastructure matters to you.
 
----
+## Who it's for
 
-## Easy to Write With
+LightCMS is a good fit if:
 
-LightCMS aims to make it easy to write and publish content.
+- You're a developer running a blog on a static site generator and want a decent editor for yourself or collaborators
+- You want your writing to outlast any single platform
+- You want zero hosting costs for content delivery
+- You want your content in a format that AI coding agents, search tools, and custom scripts can all read natively
 
-Content is stored in git. Articles are kept as simple markdown in your own GitHub repo.
+It's not a good fit if you need real-time features, complex relational content structures, or a fully managed platform where someone else handles infrastructure.
 
-Automated CI/CD. You can use your current build pipelines or build and deploy your site using github actions.
+## Where to go from here
 
-Easy to write. The author can open the editor in their browser, write and click publish.
-
-All the auditing, rollback and ownership of using a git backed repo whilst also giving the author a distraction free environment to want to write.
-
----
-
-## TL;DR
-
-LightCMS gives everyone a place to share their ideas. Blogging should not feel like a high-pressure engineering task. It should be something you genuinely enjoy.
-
-"Everyone has an idea worth sharing. Share yours."
+- [Getting started with LightCMS](/docs/getting-started-with-lightcms) — overview of features and how it works
+- [How to start a blog](/docs/how-to-start-a-blog) — pick a template and go from zero to published
+- [Self-hosting LightCMS](/docs/self-hosting-lightcms) — run your own instance, full configuration reference
+- [Static sites and CO2](/docs/building-a-greener-web) — the environmental case for static publishing in more depth

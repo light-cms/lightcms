@@ -19,14 +19,14 @@ preview: /og-image.png
 ---
 
 Reaching your audience directly after posting new content is among the most effective ways to
-build a loyal, dedicated readerbase. Yet the conventional way of running a newsletter has grown
+build a loyal, dedicated reader base. Yet the conventional way of running a newsletter has grown
 unnecessarily clunky and costly.
 
-LightCMS takes a modern, developer friendly approach instead: **Git driven newsletters** powered by [Newsy](https://newsy.lightcms.me/). for further details, check out the [repo](https://github.com/light-cms/newsy).
+[LightCMS](https://www.lightcms.me) takes a modern, developer friendly approach instead: **Git driven newsletters** powered by [Newsy](https://newsy.lightcms.me/). for further details, check out the [repo](https://github.com/light-cms/newsy).
 
 ## The Git Driven Approach: Newsy
 
-The [Newsy](https://newsy.lightcms.me) philosophy is straightforward: **Your Github issues serve as the single source of truth for your newsletter.**
+The [Newsy](https://newsy.lightcms.me) philosophy is straightforward: **Your GitHub issues serve as the single source of truth for your newsletter.**
 
 [Newsy](https://newsy.lightcms.me) is an open source, automated newsletter service that keeps an eye on your GitHub repository:
 

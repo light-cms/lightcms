@@ -51,7 +51,7 @@ PostgreSQL, configuring environment variables, and deploying.
 > **TLS is mandatory.** The application connects to PostgreSQL with `ssl: "require"`. A local PostgreSQL instance
 > without TLS enabled will be rejected, so use a hosted database or configure TLS on your own server.
 
-## 1. Fork the repository and install dependencies
+## 1. Fork the Repository and Install Dependencies
 
 Clone the repository and install dependencies:
 
@@ -222,7 +222,7 @@ CDN_KEY="<cdn-api-key>"
 variables are unset, LightCMS falls back to embedding the image in the document as a base64 `data:` URL. This works,
 but it makes your Markdown files much larger, so configure a CDN for real use.
 
-### Local webhook forwarding (development only)
+### Local Webhook Forwarding (Development Only)
 
 ```bash
 WEBHOOK_PROXY_URL="https://smee.io/<your-channel>"
@@ -315,7 +315,7 @@ And any openai compatible API for transcription. |
 One can use [groq](https://groq.com/) or [assemblyai](https://assemblyai.com/) or |
 [elevenlabs](https://elevenlabs.io/) or [deepgram](https://deepgram.com/) or [sarvam](https://sarvam.ai/). |
 
-## For development purpose you can use the following credentials for posthog
+## For Development Purpose You Can Use the Following Credentials for Posthog
 
 VITE_POSTHOG_PROJECT_TOKEN = "phc_AS2JXQsqEwNNreH5kra5Eefd5TijExE5eiLfwdzXLhPg"
 PUBLIC_POSTHOG_URL = "<https://us.i.posthog.com>"
@@ -325,7 +325,7 @@ VITE_POSTHOG_PROJECT_TOKEN=phc_AS2JXQsqEwNNreH5kra5Eefd5TijExE5eiLfwdzXLhPg
 VITE_POSTHOG_HOST=https://us.i.posthog.com
 ```
 
-<https://wit.ai>
+[witai](https://wit.ai)
 
 ![wit.ai](https://i.ibb.co/MySskPTt/image.png)
 

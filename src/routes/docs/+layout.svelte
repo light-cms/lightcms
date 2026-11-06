@@ -17,7 +17,7 @@ const sections = $derived(data.sections ?? []);
 const headings = $derived(page.data.headings ?? []);
 const currentSlug = $derived(page.data.slug ?? "");
 
-function closeMobileMenu(): void {
+function _closeMobileMenu(): void {
 	mobileMenuOpen = false;
 }
 </script>
@@ -119,7 +119,7 @@ function closeMobileMenu(): void {
 		<button
 			type="button"
 			class="fixed inset-0 cursor-default bg-background/80 backdrop-blur-xs transition-opacity"
-			onclick={closeMobileMenu}
+			onclick={_closeMobileMenu}
 			aria-label="Close menu backdrop"
 		></button>
 
@@ -140,7 +140,7 @@ function closeMobileMenu(): void {
 					variant="ghost"
 					size="icon"
 					class="size-8"
-					onclick={closeMobileMenu}
+					onclick={_closeMobileMenu}
 					aria-label="Close menu"
 				>
 					<X size={16} />
@@ -148,7 +148,7 @@ function closeMobileMenu(): void {
 			</div>
 
 			<div class="flex-1 overflow-y-auto pr-1">
-				<DocSidebar {sections} onLinkClick={closeMobileMenu} />
+				<Sidebar {sections} onLinkClick={_closeMobileMenu} />
 			</div>
 
 			<div class="mt-6 border-t border-border pt-4 text-xs text-muted-foreground">
