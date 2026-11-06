@@ -23,18 +23,22 @@ let active = $state<{ issue: HarperIssue; from: number; to: number } | null>(
 let cleanup: (() => void) | null = null;
 
 const handleClick = (event: MouseEvent) => {
-	if (popover?.contains(event.target as Node)) return;
+	if (popover !== null && popover.contains(event.target as Node)) {
+		return;
+	}
 	const target = event.target as HTMLElement | null;
-	if (!target) return;
+	if (target === null) {
+		return;
+	}
 	const idAttr = target.closest<HTMLElement>("[data-harper-id]");
-	if (!idAttr) {
+	if (idAttr === null) {
 		close();
 		return;
 	}
 	const payload = decodeHarperPayload(
 		idAttr.getAttribute("data-harper-payload"),
 	);
-	if (!payload) {
+	if (payload === null) {
 		close();
 		return;
 	}
@@ -45,7 +49,10 @@ const handleClick = (event: MouseEvent) => {
 		close();
 		return;
 	}
-	const length = textNode?.textContent?.length ?? 0;
+	let length = 0;
+	if (textNode !== null && textNode.textContent !== null) {
+		length = textNode.textContent.length;
+	}
 	const end = start + length;
 	anchor = idAttr;
 	active = { issue: payload, from: start, to: end };
@@ -53,7 +60,9 @@ const handleClick = (event: MouseEvent) => {
 };
 
 const position = async () => {
-	if (!anchor || !popover) return;
+	if (anchor === null || popover === null) {
+		return;
+	}
 	const { x, y } = await computePosition(anchor, popover, {
 		placement: "bottom-start",
 		middleware: [offset(6), flip(), shift({ padding: 8 })],
@@ -62,47 +71,64 @@ const position = async () => {
 };
 
 $effect(() => {
-	if (!anchor || !popover) return;
-	cleanup?.();
+	if (anchor === null || popover === null) {
+		return;
+	}
+	if (cleanup !== null) {
+		cleanup();
+	}
 	cleanup = autoUpdate(anchor, popover, () => {
 		void position();
 	});
 	return () => {
-		cleanup?.();
-		cleanup = null;
+		if (cleanup !== null) {
+			cleanup();
+			cleanup = null;
+		}
 	};
 });
 
 const close = () => {
-	cleanup?.();
-	cleanup = null;
+	if (cleanup !== null) {
+		cleanup();
+		cleanup = null;
+	}
 	active = null;
 	anchor = null;
 };
 
 const accept = (suggestion: string) => {
-	if (!active) return;
+	if (active === null) {
+		return;
+	}
 	const { from, to } = active;
 	editor.chain().focus().insertContentAt({ from, to }, suggestion).run();
 	close();
 };
 
-const dismiss = () => close();
+const dismiss = () => {
+	close();
+};
 
-const readSuggestions = $derived(active?.issue.suggestions ?? []);
-const readMessage = $derived(active?.issue.message ?? "");
+const readSuggestions = $derived(
+	active !== null ? active.issue.suggestions : [],
+);
+const readMessage = $derived(active !== null ? active.issue.message : "");
+const readProblem = $derived(active !== null ? active.issue.problem : undefined);
 
 onMount(() => {
 	const dom = editor.view.dom;
 	dom.addEventListener("click", handleClick);
 	return () => {
 		dom.removeEventListener("click", handleClick);
-		cleanup?.();
+		if (cleanup !== null) {
+			cleanup();
+		}
 	};
 });
 </script>
 
-{#if active}
+{#if active !== null}
   <div
     bind:this={popover}
     class="harper-popover pointer-events-auto fixed z-50 flex max-w-sm flex-col gap-2 rounded-lg border border-border bg-popover p-3 text-popover-foreground shadow-xl"
@@ -121,8 +147,14 @@ onMount(() => {
         <X class="size-3.5" />
       </button>
     </div>
-    {#if readMessage}
-      <p class="text-xs text-muted-foreground">{readMessage}</p>
+    {#if readProblem || readMessage}
+      <p class="text-xs text-muted-foreground">
+        {#if readProblem}
+          <code class="rounded bg-muted px-1 py-0.5 font-mono text-xs font-semibold text-foreground">{readProblem}</code>
+          <span class="mx-1 text-muted-foreground">—</span>
+        {/if}
+        {readMessage}
+      </p>
     {/if}
     <div class="flex flex-wrap gap-1.5">
       {#each readSuggestions as suggestion (suggestion)}
@@ -131,7 +163,7 @@ onMount(() => {
           onclick={() => accept(suggestion)}
           class="rounded-md border border-border bg-background px-2 py-1 text-xs font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
         >
-          {suggestion}
+          {suggestion === "" ? "Remove" : suggestion}
         </button>
       {:else}
         <span class="text-xs text-muted-foreground">No suggestions available.</span>

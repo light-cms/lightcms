@@ -34,65 +34,169 @@ interface IssueMeta {
   issue: HarperIssue;
 }
 
-const collectTextSegments = (doc: PMNode): Array<{ from: number; to: number; text: string }> => {
-  const segments: Array<{ from: number; to: number; text: string }> = [];
+interface RawTextSegment {
+  from: number;
+  to: number;
+  text: string;
+}
+
+interface MappedSegment {
+  docFrom: number;
+  docTo: number;
+  plainFrom: number;
+  plainTo: number;
+}
+
+interface PreparedPlainText {
+  plainText: string;
+  segments: MappedSegment[];
+}
+
+const collectTextSegments = (doc: PMNode): RawTextSegment[] => {
+  const segments: RawTextSegment[] = [];
+
   doc.descendants((node, pos) => {
-    if (!node.isText) return true;
-    if (node.marks.some((mark) => mark.type.name === "code")) return false;
+    if (!node.isText) {
+      return true;
+    }
+
+    const hasCodeMark = node.marks.some((mark) => mark.type.name === "code");
+    if (hasCodeMark) {
+      return false;
+    }
+
+    let textContent = "";
+    if (typeof node.text === "string") {
+      textContent = node.text;
+    }
+
     segments.push({
       from: pos,
       to: pos + node.nodeSize,
-      text: node.text ?? "",
+      text: textContent,
     });
+
     return true;
   });
+
   return segments;
 };
 
-const buildPlainText = (segments: Array<{ from: number; to: number; text: string }>): string => {
-  let cursor = 0;
-  let result = "";
-  for (const segment of segments) {
-    const gap = segment.from - cursor;
-    if (gap > 0) result += "\n".repeat(gap);
-    result += segment.text;
-    cursor = segment.to;
+const preparePlainText = (rawSegments: RawTextSegment[]): PreparedPlainText => {
+  let plainText = "";
+  const segments: MappedSegment[] = [];
+
+  for (let i = 0; i < rawSegments.length; i += 1) {
+    const raw = rawSegments[i];
+    if (i > 0) {
+      plainText += "\n\n";
+    }
+
+    const plainFrom = plainText.length;
+    plainText += raw.text;
+    const plainTo = plainText.length;
+
+    segments.push({
+      docFrom: raw.from,
+      docTo: raw.to,
+      plainFrom,
+      plainTo,
+    });
   }
-  return result;
+
+  return { plainText, segments };
 };
 
-const remapIssuesToDoc = (
-  segments: Array<{ from: number; to: number; text: string }>,
-  issues: HarperIssue[],
-): IssueMeta[] => {
-  if (segments.length === 0) return [];
-  const plainStarts: number[] = [];
-  let plainOffset = 0;
-  for (const segment of segments) {
-    plainStarts.push(plainOffset);
-    plainOffset += segment.text.length;
+const remapIssuesToDoc = (segments: MappedSegment[], issues: HarperIssue[]): IssueMeta[] => {
+  if (segments.length === 0 || issues.length === 0) {
+    return [];
   }
-  const totalPlain = plainOffset;
+
   const mapped: IssueMeta[] = [];
+
   for (const issue of issues) {
-    if (issue.from < 0 || issue.to > totalPlain || issue.from === issue.to) continue;
-    for (let i = 0; i < segments.length; i += 1) {
-      const segment = segments[i];
-      const segStart = plainStarts[i] ?? 0;
-      const segEnd = segStart + segment.text.length;
-      const overlapFrom = Math.max(issue.from, segStart);
-      const overlapTo = Math.min(issue.to, segEnd);
-      if (overlapFrom >= overlapTo) continue;
-      const docFrom = segment.from + (overlapFrom - segStart);
-      const docTo = segment.from + (overlapTo - segStart);
-      mapped.push({ from: docFrom, to: docTo, issue });
+    if (issue.from < 0 || issue.to <= issue.from) {
+      continue;
+    }
+
+    for (const segment of segments) {
+      const overlapPlainFrom = Math.max(issue.from, segment.plainFrom);
+      const overlapPlainTo = Math.min(issue.to, segment.plainTo);
+
+      if (overlapPlainFrom < overlapPlainTo) {
+        const docFrom = segment.docFrom + (overlapPlainFrom - segment.plainFrom);
+        const docTo = segment.docFrom + (overlapPlainTo - segment.plainFrom);
+
+        mapped.push({ from: docFrom, to: docTo, issue });
+      }
     }
   }
+
   return mapped;
+};
+
+const encodePayload = (issue: HarperIssue): string => {
+  const safe = {
+    id: issue.id,
+    problem: issue.problem,
+    message: issue.message,
+    suggestions: issue.suggestions,
+  };
+  return encodeURIComponent(JSON.stringify(safe));
+};
+
+export const decodeHarperPayload = (raw: string | null): HarperIssue | null => {
+  if (raw === null || raw.length === 0) {
+    return null;
+  }
+
+  try {
+    const json = JSON.parse(decodeURIComponent(raw));
+    if (typeof json !== "object" || json === null) {
+      return null;
+    }
+
+    let id = "";
+    if (typeof json.id === "string") {
+      id = json.id;
+    }
+    if (id.length === 0) {
+      return null;
+    }
+
+    let message = "";
+    if (typeof json.message === "string") {
+      message = json.message;
+    }
+
+    let problem: string | undefined = undefined;
+    if (typeof json.problem === "string") {
+      problem = json.problem;
+    }
+
+    let suggestions: string[] = [];
+    if (Array.isArray(json.suggestions)) {
+      suggestions = json.suggestions.filter(
+        (value: unknown): value is string => typeof value === "string",
+      );
+    }
+
+    return {
+      id,
+      from: 0,
+      to: 0,
+      message,
+      suggestions,
+      problem,
+    };
+  } catch {
+    return null;
+  }
 };
 
 const buildDecorations = (doc: PMNode, metas: IssueMeta[]): DecorationSet => {
   const decorations: Decoration[] = [];
+
   for (const meta of metas) {
     const payload = encodePayload(meta.issue);
     decorations.push(
@@ -103,33 +207,8 @@ const buildDecorations = (doc: PMNode, metas: IssueMeta[]): DecorationSet => {
       }),
     );
   }
+
   return DecorationSet.create(doc, decorations);
-};
-
-const encodePayload = (issue: HarperIssue): string => {
-  const safe = {
-    id: issue.id,
-    message: issue.message,
-    suggestions: issue.suggestions,
-  };
-  return encodeURIComponent(JSON.stringify(safe));
-};
-
-export const decodeHarperPayload = (raw: string | null): HarperIssue | null => {
-  if (!raw) return null;
-  try {
-    const json = JSON.parse(decodeURIComponent(raw));
-    if (!json || typeof json !== "object") return null;
-    const message = typeof json.message === "string" ? json.message : "";
-    const suggestions = Array.isArray(json.suggestions)
-      ? json.suggestions.filter((value: unknown): value is string => typeof value === "string")
-      : [];
-    const id = typeof json.id === "string" ? json.id : "";
-    if (!id) return null;
-    return { id, from: 0, to: 0, message, suggestions };
-  } catch {
-    return null;
-  }
 };
 
 export const Harper = Extension.create({
@@ -142,7 +221,9 @@ export const Harper = Extension.create({
 
     const schedule = () => {
       pending = true;
-      if (timer) clearTimeout(timer);
+      if (timer !== null) {
+        clearTimeout(timer);
+      }
       timer = setTimeout(() => {
         timer = null;
         void runLint();
@@ -150,22 +231,32 @@ export const Harper = Extension.create({
     };
 
     const runLint = async () => {
-      if (!pending) return;
+      if (!pending) {
+        return;
+      }
       pending = false;
+
       try {
         const doc = editor.state.doc;
-        const segments = collectTextSegments(doc).filter((segment) => {
+        const rawSegments = collectTextSegments(doc).filter((segment) => {
           const $pos = doc.resolve(segment.from);
           for (let d = $pos.depth; d >= 0; d -= 1) {
-            if (SKIPPED_NODE_TYPES.has($pos.node(d).type.name)) return false;
+            if (SKIPPED_NODE_TYPES.has($pos.node(d).type.name)) {
+              return false;
+            }
           }
           return true;
         });
-        const plainText = buildPlainText(segments);
+
+        const { plainText, segments } = preparePlainText(rawSegments);
         const issues = await lintText(plainText);
         const metas = remapIssuesToDoc(segments, issues);
         const view = editor.view;
-        if (!view || view.isDestroyed) return;
+
+        if (!view || view.isDestroyed) {
+          return;
+        }
+
         view.dispatch(view.state.tr.setMeta(HARPER_PLUGIN_KEY, { metas }));
       } catch (error) {
         console.error("[harper] lint failed:", error);
@@ -178,9 +269,11 @@ export const Harper = Extension.create({
         state: {
           init: () => DecorationSet.empty,
           apply(tr, oldState, _oldEditorState, newEditorState) {
-            if (tr.docChanged) schedule();
+            if (tr.docChanged) {
+              schedule();
+            }
             const meta = tr.getMeta(HARPER_PLUGIN_KEY) as { metas: IssueMeta[] } | undefined;
-            if (meta) {
+            if (meta !== undefined) {
               return buildDecorations(newEditorState.doc, meta.metas);
             }
             return oldState.map(tr.mapping, newEditorState.doc);
@@ -190,6 +283,17 @@ export const Harper = Extension.create({
           decorations(state) {
             return HARPER_PLUGIN_KEY.getState(state) as DecorationSet;
           },
+        },
+        view() {
+          schedule();
+          return {
+            destroy() {
+              if (timer !== null) {
+                clearTimeout(timer);
+                timer = null;
+              }
+            },
+          };
         },
       }),
     ];
