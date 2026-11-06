@@ -93,7 +93,6 @@
     "clsx": "^2.1.1",
     "dayjs": "^1.11.23",
     "gray-matter": "^4.0.3",
-    "harper.js": "^2.13.0",
     "katex": "^0.18.11",
     "lodash.throttle": "^4.1.1",
     "lowlight": "^3.3.0",
