@@ -4,9 +4,9 @@ date: null
 draft: false
 weight: 0
 tags:
-    - cms
-    - lightcms
-    - green-web
+  - cms
+  - lightcms
+  - green-web
 isCJKLanguage: false
 headless: false
 keywords: ""
@@ -16,7 +16,6 @@ serial: 0
 section: ""
 badge: ""
 ---
-
 
 Documentation is the part of a project that everyone agrees matters and nobody quite agrees on how to handle. Look at five open source projects and you'll find five different setups. Some work well. Most drift into neglect.
 

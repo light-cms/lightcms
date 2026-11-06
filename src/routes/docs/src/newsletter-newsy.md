@@ -1,6 +1,6 @@
 ---
-title: Newsletter & Email Automation
-description: How to configure automated newsletters for your blog using Newsy and Git driven publishing without expensive third-party platforms.
+title: Newsletter
+description: How to configure automated newsletters for your blog using Newsy.
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: false

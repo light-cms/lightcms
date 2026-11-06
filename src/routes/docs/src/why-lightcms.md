@@ -54,9 +54,7 @@ When you hit publish, LightCMS commits the file to the path you've configured an
 
 ## What LightCMS is not
 
-It's not a hosted blogging platform. There's no LightCMS-managed CDN between you and your readers. LightCMS is software you run — as a self-hosted SvelteKit application, or through a hosted instance — and it writes to repositories you own.
-
-It's also not trying to replace your deployment setup. The assumption is you already have a static site generator and a hosting provider. LightCMS gives non-technical contributors a way to publish without touching a terminal, while keeping the repository as the source of truth for technical ones.
+It's not a hosted blogging platform. There's no LightCMS managed infrastructure between you and your readers. LightCMS is software you run as a writer and it writes to repositories you own.
 
 ## The sustainability angle
 

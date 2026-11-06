@@ -38,7 +38,13 @@ function toIsoDate(value: unknown): string | null {
   return null;
 }
 
-function toSlug(path: string): string {
+function toSlug(path: string, frontmatter?: Record<string, unknown>): string {
+  if (typeof frontmatter?.slug === "string") {
+    const trimmed = frontmatter.slug.trim().replace(/^\/+/, "");
+    if (trimmed.length > 0) {
+      return trimmed;
+    }
+  }
   const segment = path.split("/").pop();
   if (!segment) {
     return "";
@@ -156,7 +162,7 @@ export async function loadDocEntries(): Promise<DocEntry[]> {
       continue;
     }
 
-    const slug = toSlug(path);
+    const slug = toSlug(path, frontmatter);
 
     entries.push({
       slug,

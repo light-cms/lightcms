@@ -32,7 +32,7 @@ To give a reactive effect sites generally perform the rendering work every time 
 
 - Small payloads. The HTML made from Markdown is tiny. No heavy JavaScript or fat CSS is sent to the client. The client always receives the file so it loads faster.
 
-You all may have heard the study ["milliseconds make millions"](https://www.deloitte.com/ie/en/services/consulting/research/milliseconds-make-millions.html)
+You all may have heard the study [milliseconds make millions](https://www.deloitte.com/ie/en/services/consulting/research/milliseconds-make-millions.html)
 
 The Ripple Effect: Durability Is Sustainability
 
@@ -60,11 +60,11 @@ How to Build a Greener Web
 
 1. **Serve statically from a CDN** – the way to cut energy for content sites.
 
-2. Static sites are built once. Then served from a CDN making it the most energy‑friendly way forward.
+2. Static sites are built once. Then served from a CDN making it the most eco friendly way of building a website.
 
 3. Ship JavaScript. Every kilobyte must be read, parsed, executed and stored on the visitors battery and bandwidth.
 
-4. Cache images. Media is usually the part of a page so serve it through the CDN and use modern formats like WebP.
+4. Cache images. Media is usually the largest part of a page so serve it through the CDN and use modern formats like WebP.
 
 Where LightCMS Fits
 

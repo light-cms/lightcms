@@ -45,10 +45,7 @@
           "title": "keywords",
           "name": "keywords",
           "type": "choice",
-          "choices": [
-            "lightcms",
-            "cms"
-          ]
+          "choices": ["lightcms", "cms"]
         },
         {
           "title": "preview",

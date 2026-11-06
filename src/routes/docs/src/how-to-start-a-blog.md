@@ -1,22 +1,24 @@
 xtitle: "How to Start a Blog in 2026: Static sites & Markdown"
 description: Guide to starting a fast, cheap, durable blog with Markdown, a
-  static site generator, and a Git backed CMS — no hosting bills, no lock in.
+static site generator, and a Git backed CMS — no hosting bills, no lock in.
 serial: 12
 date: 2026-10-14T12:50:00Z
 draft: false
 tags:
-  - blogging
-  - static
-  - sites
-  - markdown
-  - getting-started
-keywords:
-  - how to start a blog
-  - start a blog for free
-  - markdown blog
-  - static site blog
-  - best way to start a blog 2026
-preview: /og-image.png
+
+- blogging
+- static
+- sites
+- markdown
+- getting-started
+  keywords:
+- how to start a blog
+- start a blog for free
+- markdown blog
+- static site blog
+- best way to start a blog 2026
+  preview: /og-image.png
+
 ---
 
 In 2026, starting a blog is easier and cheaper than ever. You no longer need a WordPress host, a page builder, or a monthly platform fee. You can build a blog with Markdown files, a static site generator, free hosting, and a git-based CMS. At no cost. And your blog will load faster than 99% of blogs about blogging.
@@ -78,7 +80,7 @@ You can build a real publication for just the price of a domain name. And there'
 
 ## FAQs
 
-### Why write?
+### Why Write?
 
 Mainly, to give everyone a voice. We all have our own experiences, insights, and stories to share. Writing about how you fixed a tricky bug or what you learned saves someone across the world hours of frustration. It also preserves your knowledge for the future. And you're building on the independent web.
 
@@ -86,7 +88,7 @@ Mainly, to give everyone a voice. We all have our own experiences, insights, and
 
 Yes! Your own blog is a lasting asset. Static blogs stay fast, cheap to run, and won't face "this platform has closed" for decades.
 
-### Do I need to know how to code?
+### Do I Need to Know How to Code?
 
 No! The static site generator only needs setting up once (plenty of one-click starters exist). After setting that up, you can publish your content through [LightCMS](https://lightcms.me). You might need to adjust your template, but your LLM agent can do that for you.
 
