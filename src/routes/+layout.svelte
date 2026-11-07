@@ -128,7 +128,7 @@ function dismissStarDialog() {
       <nav class="flex items-center gap-2" aria-label="Primary navigation">
         <a
           class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-bold rounded-xl transition-all duration-200 {page.url.pathname.startsWith('/cms') ? 'bg-primary/10 text-primary' : 'hover:bg-accent hover:text-accent-foreground text-muted-foreground'}"
-          href="/cms"
+          href={session ? '/cms' : '/auth?next=%2Fcms'}
           aria-label="CMS workspace"
           aria-current={page.url.pathname.startsWith("/cms")}
         >
@@ -137,7 +137,7 @@ function dismissStarDialog() {
         </a>
         <a
           class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-bold rounded-xl transition-all duration-200 {isDocs ? 'bg-primary/10 text-primary' : 'hover:bg-accent hover:text-accent-foreground text-muted-foreground'}"
-          href="/docs"
+          href="/docs/getting-started-with-lightcms"
           aria-label="Documentation"
           aria-current={isDocs ? "page" : undefined}
         >

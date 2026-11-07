@@ -1,6 +1,6 @@
 ---
 title: Newsletter
-description: How to configure automated newsletters for your blog using Newsy.
+description: "Set up automated newsletters for your static blog with Newsy: posts published straight from Git, subscriber emails sent for you, no monthly platform fee."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: false

@@ -31,9 +31,9 @@ Visit the [light-cms](https://github.com/light-cms) organisation. Pick a templat
 | ----------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------ | ---------------------------- |
 | [astro_blog](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) with Starlight | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
 | [eleventy_blog](https://github.com/light-cms/eleventy_blog) | [Eleventy](https://www.11ty.dev)            | [Demo](https://blogs.lightcms.me/eleventy_blog/) | `npm install && npm run dev` |
-| [hugo_blog](https://github.com/light-cms/hugo_blog)         | [Hugo](https://gohugo.io)                   | [Demo](https://light-cms.github.io/hugo_blog/)   | `hugo server`                |
+| [hugo_blog](https://github.com/light-cms/hugo_blog)         | [Hugo](https://gohugo.io)                   | [Demo](https://blogs.lightcms.me/hugo_blog/)     | `hugo server`                |
 | [jekyll_blog](https://github.com/light-cms/jekyll_blog)     | [Jekyll](https://jekyllrb.com)              | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bundle exec jekyll serve`   |
-| [zola_blog](https://github.com/light-cms/zola_blog)         | [Zola](https://www.getzola.org)             | [Demo](https://light-cms.github.io/zola_blog/)   | `zola serve`                 |
+| [zola_blog](https://github.com/light-cms/zola_blog)         | [Zola](https://www.getzola.org)             | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola serve`                 |
 | [zine_blog](https://github.com/light-cms/zine_blog)         | [Zine](https://zine-ssg.io)                 | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zine`                       |
 
 All templates include:
@@ -90,7 +90,7 @@ Yes! Your own blog is a lasting asset. Static blogs stay fast, cheap to run, and
 
 ### Do I Need to Know How to Code?
 
-No! The static site generator only needs setting up once (plenty of one-click starters exist). After setting that up, you can publish your content through [LightCMS](https://lightcms.me). You might need to adjust your template, but your LLM agent can do that for you.
+No! The static site generator only needs setting up once (plenty of one-click starters exist). After setting that up, you can publish your content through [LightCMS](https://www.lightcms.me). You might need to adjust your template, but your LLM agent can do that for you.
 
 ### Can I start a blog for free?
 

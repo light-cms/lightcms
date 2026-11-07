@@ -131,8 +131,8 @@ function getSuggestionClass(index: number): string {
   >
     <div class="flex items-start justify-between gap-2">
       <div class="flex items-center gap-1.5 text-xs font-semibold text-foreground">
-        <Sparkles class="size-3.5 text-primary" />
-        <span>Suggestion</span>
+        <!-- <Sparkles class="size-3.5 text-primary" /> -->
+        <!-- <span>Suggestion</span> -->
       </div>
       <button
         type="button"

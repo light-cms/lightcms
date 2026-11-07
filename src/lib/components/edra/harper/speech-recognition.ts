@@ -21,8 +21,24 @@ export type SpeechRecognitionHandler = (text: string, isFinal: boolean) => void;
 export type SpeechRecognitionInterimHandler = (text: string) => void;
 export type SpeechRecognitionErrorHandler = (err: SpeechRecognitionError) => void;
 
+export function isMicrophoneAllowed(): boolean {
+  if (typeof document === "undefined") {
+    return true;
+  }
+  const policy = (
+    document as Document & { permissionsPolicy?: { allowsFeature: (f: string) => boolean } }
+  ).permissionsPolicy;
+  if (!policy) {
+    return true;
+  }
+  return policy.allowsFeature("microphone");
+}
+
 export function isSpeechRecognitionSupported(): boolean {
   if (typeof window === "undefined") {
+    return false;
+  }
+  if (!isMicrophoneAllowed()) {
     return false;
   }
   const hasMediaDevices =

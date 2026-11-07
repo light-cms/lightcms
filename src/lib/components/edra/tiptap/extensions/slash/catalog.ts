@@ -15,7 +15,6 @@ import Sparkles from "@lucide/svelte/icons/sparkles";
 import SquareCode from "@lucide/svelte/icons/square-code";
 import Table from "@lucide/svelte/icons/table";
 import Type from "@lucide/svelte/icons/type";
-import Video from "@lucide/svelte/icons/video";
 import type { EdraCommand } from "../../../commands/index.js";
 import type { Editor } from "../../../tiptap/index.js";
 
@@ -140,14 +139,6 @@ export const SLASH_GROUPS: SlashGroup[] = [
         tooltip: "Image",
         onClick: (editor: Editor) => {
           editor.chain().focus().insertMediaPlaceholder({ mediaType: "image" }).run();
-        },
-      },
-      {
-        icon: Video,
-        name: "video",
-        tooltip: "Video",
-        onClick: (editor: Editor) => {
-          editor.chain().focus().insertMediaPlaceholder({ mediaType: "video" }).run();
         },
       },
       {
