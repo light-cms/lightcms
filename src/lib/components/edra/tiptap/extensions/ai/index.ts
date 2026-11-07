@@ -26,7 +26,20 @@ declare module "@tiptap/core" {
        * Unset a AIHighlight mark
        */
       unsetAIHighlight: () => ReturnType;
+      /**
+       * Open the AI prompt dialog / popover
+       */
+      openAI: (options?: { prompt?: string }) => ReturnType;
+      /**
+       * Close the AI prompt dialog / popover
+       */
+      closeAI: () => ReturnType;
     };
+  }
+
+  interface EditorEvents {
+    openAI: { prompt?: string } | undefined;
+    closeAI: undefined;
   }
 }
 
@@ -91,12 +104,26 @@ export const AIHighlight = Mark.create<AIHighlightOptions>({
         ({ commands }) => {
           return commands.unsetMark(this.name);
         },
+      openAI:
+        (options) =>
+        ({ editor }) => {
+          editor.emit("openAI", options);
+          return true;
+        },
+      closeAI:
+        () =>
+        ({ editor }) => {
+          editor.emit("closeAI", undefined);
+          return true;
+        },
     };
   },
 
   addKeyboardShortcuts() {
     return {
       "Mod-Shift-ai": () => this.editor.commands.toggleAIHighlight(),
+      "Mod-j": () => this.editor.commands.openAI(),
+      "Mod-Shift-u": () => this.editor.commands.openAI(),
       // Space bar activation on new line
       Space: () => {
         const { state } = this.editor;
@@ -110,15 +137,7 @@ export const AIHighlight = Mark.create<AIHighlightOptions>({
         const isEmpty = $from.parent.textContent.length === 0;
 
         if (isAtStart && isEmpty) {
-          // Insert a space character first
-          this.editor.commands.insertContent(" ");
-          // Select the space we just inserted
-          const pos = this.editor.state.selection.$from.pos;
-          this.editor.commands.setTextSelection({ from: pos - 1, to: pos });
-          // Apply transparent highlight
-          this.editor.commands.setAIHighlight({ color: "transparent" });
-          // Move cursor to the end of the selection
-          this.editor.commands.focus();
+          this.editor.commands.openAI();
           return true;
         }
 
@@ -168,15 +187,18 @@ export const addAIHighlight = (editor: Editor, color?: string) => {
     const depth = $pos.depth;
     const blockFrom = $pos.start(depth);
     const blockTo = $pos.end(depth);
-    editor
-      .chain()
-      .setTextSelection({ from: blockFrom, to: blockTo })
-      .setAIHighlight({ color: color ?? "#c1ecf970" })
-      .run();
+    if (blockFrom < blockTo) {
+      editor
+        .chain()
+        .setTextSelection({ from: blockFrom, to: blockTo })
+        .setAIHighlight({ color: color ?? "#c1ecf970" })
+        .run();
+    }
   } else {
     editor
       .chain()
       .setAIHighlight({ color: color ?? "#c1ecf970" })
       .run();
   }
+  editor.commands.openAI();
 };

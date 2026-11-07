@@ -115,34 +115,40 @@ export function handleKeyDown(e: KeyboardEvent): boolean {
 
 <div
 	bind:this={scrollContainer}
-	class="max-h-72 w-56 overflow-y-auto rounded-lg border border-border bg-popover p-1 text-popover-foreground shadow-md"
+	class="max-h-80 w-64 sm:w-72 overflow-y-auto rounded-2xl border border-border bg-popover/95 p-1.5 text-popover-foreground shadow-2xl backdrop-blur-md"
 	class:hidden={!items.length}
 >
 	{#each items as grp, groupIndex (groupIndex)}
-		<div class="px-2 py-1.5 text-xs font-medium text-muted-foreground select-none">
+		<div class="px-2.5 py-1.5 text-xs font-medium text-muted-foreground select-none">
 			{grp.title}
 		</div>
 
-		{#each grp.commands as command, commandIndex (commandIndex)}
-			{@const Icon = command.icon}
+		{#each grp.commands as cmd, commandIndex (commandIndex)}
+			{@const Icon = cmd.icon}
 			{@const isActive = selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex}
+			{@const isPurple = cmd.name === "ai" || cmd.name === "image" || grp.name === "upload"}
 			<Button
 				variant="ghost"
 				size="sm"
 				id={`slash-${groupIndex}-${commandIndex}`}
-				class="relative flex w-full cursor-default justify-start gap-2 rounded-md px-2 py-1.5 text-sm outline-hidden transition-colors select-none h-auto
+				class="relative flex w-full cursor-pointer items-center justify-start gap-2.5 rounded-xl px-2.5 py-2 text-sm outline-hidden transition-colors select-none h-auto
 					{isActive
 					? 'bg-accent text-accent-foreground'
 					: 'text-popover-foreground hover:bg-accent hover:text-accent-foreground'}
-					[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+					[&_svg]:pointer-events-none [&_svg]:shrink-0"
 				onpointerenter={() => {
 					selectedGroupIndex = groupIndex;
 					selectedCommandIndex = commandIndex;
 				}}
 				onclick={() => selectItem(groupIndex, commandIndex)}
 			>
-				<Icon class="text-muted-foreground" />
-				<span>{command.tooltip}</span>
+				<Icon class="size-4.5 shrink-0 {isPurple ? 'text-[#8b5cf6] dark:text-[#a78bfa]' : 'text-muted-foreground'}" />
+				<div class="flex flex-col items-start overflow-hidden text-start">
+					<span class="text-sm font-medium leading-tight text-foreground">{cmd.tooltip}</span>
+					{#if cmd.description}
+						<span class="text-xs leading-tight text-muted-foreground truncate">{cmd.description}</span>
+					{/if}
+				</div>
 			</Button>
 		{/each}
 	{/each}

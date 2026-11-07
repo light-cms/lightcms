@@ -5,6 +5,9 @@ export interface AIContentManagerState {
   aiContentFrom: number;
   aiContentTo: number;
   originalFrom: number;
+  originalTo: number;
+  originalText: string;
+  wasEmptyBlock: boolean;
   aiResponse: string;
   lastPrompt: string;
   generating: boolean;
@@ -20,6 +23,9 @@ export function createAIContentManager(editor: Editor) {
     aiContentFrom: 0,
     aiContentTo: 0,
     originalFrom: 0,
+    originalTo: 0,
+    originalText: "",
+    wasEmptyBlock: false,
     aiResponse: "",
     lastPrompt: "",
     generating: false,
@@ -28,7 +34,9 @@ export function createAIContentManager(editor: Editor) {
 
   /** Throttle editor updates to ~100ms to avoid excessive transactions */
   function scheduleEditorUpdate(onFlush: () => void) {
-    if (state.updateTimer) return;
+    if (state.updateTimer) {
+      return;
+    }
     state.updateTimer = setTimeout(() => {
       onFlush();
       state.updateTimer = null;
@@ -41,7 +49,9 @@ export function createAIContentManager(editor: Editor) {
       clearTimeout(state.updateTimer);
       state.updateTimer = null;
     }
-    if (!state.aiResponse) return;
+    if (!state.aiResponse) {
+      return;
+    }
 
     try {
       const oldDocSize = editor.state.doc.content.size;
@@ -79,7 +89,7 @@ export function createAIContentManager(editor: Editor) {
         state.aiContentFrom,
         state.aiContentTo,
         editor.state.schema.marks["ai-highlight"].create({
-          color: "var(--color-muted)",
+          color: "#c1ecf970",
         }),
       );
       editor.view.dispatch(tr);
@@ -114,31 +124,32 @@ export function createAIContentManager(editor: Editor) {
     }
   }
 
-  /** Replace: delete original selection, keep AI text */
-  function replaceSelection() {
-    try {
-      const response = state.aiResponse;
-      editor.chain().deleteRange({ from: state.originalFrom, to: state.aiContentTo }).run();
-      editor
-        .chain()
-        .insertContentAt(state.originalFrom, response, {
-          contentType: "markdown",
-        })
-        .run();
-      removeAIHighlight(editor);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  /** Insert below: AI text is already below the selection — just accept */
-  function insertNext() {
+  /** Accept: commit AI text, remove highlight */
+  function accept() {
     removeAIHighlight(editor);
+    state.aiResponse = "";
+    state.generating = false;
   }
 
-  /** Copy AI response to clipboard */
-  async function copyToClipboard() {
-    await window.navigator.clipboard.writeText(state.aiResponse);
+  /** Discard: delete AI content, restore original state */
+  function discardChanges() {
+    cleanupAIContent();
+    if (state.wasEmptyBlock) {
+      try {
+        editor.chain().insertContentAt(state.originalFrom, { type: "paragraph" }).run();
+      } catch (error) {
+        console.error("Error restoring empty block:", error);
+      }
+    } else if (state.originalText) {
+      try {
+        editor.chain().insertContentAt(state.originalFrom, state.originalText).run();
+      } catch (error) {
+        console.error("Error restoring original text:", error);
+      }
+    }
+    removeAIHighlight(editor);
+    state.aiResponse = "";
+    state.generating = false;
   }
 
   /** Retry: delete AI content, re-run with same prompt */
@@ -150,13 +161,6 @@ export function createAIContentManager(editor: Editor) {
     }
   }
 
-  /** Discard: delete AI content, keep original, reset */
-  function discardChanges() {
-    cleanupAIContent();
-    removeAIHighlight(editor);
-    state.aiResponse = "";
-  }
-
   /** Close AI: full cleanup */
   function closeAI(stopGenerating: () => void) {
     stopGenerating();
@@ -164,6 +168,7 @@ export function createAIContentManager(editor: Editor) {
     removeAIHighlight(editor);
     state.aiResponse = "";
     state.lastPrompt = "";
+    state.generating = false;
   }
 
   /** Initialize positions for a new AI generation */
@@ -171,13 +176,31 @@ export function createAIContentManager(editor: Editor) {
     state.generating = true;
     state.lastPrompt = prompt;
     state.aiResponse = "";
+
     if (!isRetry) {
       const { from, to } = editor.state.selection;
       state.originalFrom = from;
-      const to_ = editor.state.doc.resolve(to);
-      const depth = Math.min(to_.depth, 1) || 1;
-      state.aiContentFrom = to_.after(depth);
-      state.aiContentTo = state.aiContentFrom;
+      state.originalTo = to;
+
+      const $from = editor.state.doc.resolve(from);
+      const isBlockEmpty = $from.parent.textContent.trim().length === 0;
+
+      if (isBlockEmpty) {
+        state.wasEmptyBlock = true;
+        state.originalText = "";
+        state.aiContentFrom = $from.start($from.depth);
+        state.aiContentTo = $from.end($from.depth);
+      } else if (from !== to) {
+        state.wasEmptyBlock = false;
+        state.originalText = editor.state.doc.textBetween(from, to);
+        state.aiContentFrom = from;
+        state.aiContentTo = to;
+      } else {
+        state.wasEmptyBlock = false;
+        state.originalText = "";
+        state.aiContentFrom = from;
+        state.aiContentTo = from;
+      }
     } else {
       state.aiContentTo = state.aiContentFrom;
     }
@@ -188,9 +211,7 @@ export function createAIContentManager(editor: Editor) {
     scheduleEditorUpdate,
     flushEditorUpdate,
     cleanupAIContent,
-    replaceSelection,
-    insertNext,
-    copyToClipboard,
+    accept,
     retry,
     discardChanges,
     closeAI,

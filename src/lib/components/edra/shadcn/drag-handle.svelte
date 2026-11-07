@@ -98,15 +98,44 @@ onMount(() => {
 });
 
 const context = () => ({ editor, currentNode, currentNodePos });
+
+function handlePlusClick() {
+	if (currentNodePos >= 0) {
+		const isEmpty = (currentNode?.textContent?.length ?? 0) === 0;
+		if (isEmpty) {
+			editor.chain().focus().setTextSelection(currentNodePos + 1).insertContent("/").run();
+		} else {
+			const endPos = currentNodePos + (currentNode?.nodeSize ?? 0);
+			editor
+				.chain()
+				.focus()
+				.insertContentAt(endPos, { type: "paragraph" })
+				.setTextSelection(endPos + 1)
+				.insertContent("/")
+				.run();
+		}
+	} else {
+		editor.chain().focus().insertContent("/").run();
+	}
+}
 </script>
 
-<div bind:this={element} class={cn('z-0!', className)} style="visibility: hidden;">
+<div bind:this={element} class={cn('z-0! flex items-center gap-0.5', className)} style="visibility: hidden;">
 	<Button
 		variant="ghost"
-		class="z-0! size-7! rounded-sm opacity-60 hover:opacity-100 focus-visible:opacity-100 active:opacity-100"
+		size="icon"
+		title="Click to open menu"
+		class="z-0! size-6! rounded-sm p-0 opacity-60 hover:opacity-100 focus-visible:opacity-100 text-muted-foreground hover:text-foreground"
+		onclick={handlePlusClick}
+	>
+		<Plus class="size-4" />
+	</Button>
+	<Button
+		variant="ghost"
+		class="z-0! size-6! rounded-sm p-0 opacity-60 hover:opacity-100 focus-visible:opacity-100 active:opacity-100 text-muted-foreground hover:text-foreground"
 		onclick={() => (menuOpen = !menuOpen)}
 	>
-		<GripVertical />
+		<GripVertical class="size-4" />
 	</Button>
 	{#if type === 'extended'}
 		<DropdownMenu.Root bind:open={menuOpen}>
