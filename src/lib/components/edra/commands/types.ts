@@ -6,6 +6,7 @@ export interface EdraCommand {
   name: string;
   icon: typeof Icon;
   tooltip: string;
+  description?: string;
   shortCut?: string;
   onClick?: (editor: Editor) => void;
   turnInto?: (editor: Editor, node: Node, pos: number) => void;

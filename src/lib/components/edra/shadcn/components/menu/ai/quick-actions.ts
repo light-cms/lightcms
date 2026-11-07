@@ -15,7 +15,8 @@ export type AiActionId =
   | "simplify"
   | "summarize"
   | "continue"
-  | "solve";
+  | "solve"
+  | "explain";
 
 export interface QuickAction {
   id: AiActionId;
@@ -23,13 +24,20 @@ export interface QuickAction {
   icon: typeof Sparkles;
 }
 
-export const QUICK_ACTIONS: readonly QuickAction[] = [
+export const EMPTY_QUICK_ACTIONS: readonly QuickAction[] = [
+  { id: "continue", label: "Continue writing", icon: PenLine },
+  { id: "summarize", label: "Add a summary", icon: RefreshCcwDot },
+  { id: "explain", label: "Explain", icon: Brain },
+];
+
+export const SELECTION_QUICK_ACTIONS: readonly QuickAction[] = [
   { id: "improve", label: "Improve writing", icon: Sparkles },
   { id: "grammer", label: "Fix spelling & grammar", icon: CheckCheck },
   { id: "shorter", label: "Make shorter", icon: ArrowDownWideNarrow },
   { id: "longer", label: "Make longer", icon: TextWrap },
   { id: "simplify", label: "Simplify language", icon: Feather },
   { id: "summarize", label: "Summarize", icon: RefreshCcwDot },
-  { id: "continue", label: "Continue writing", icon: PenLine },
-  { id: "solve", label: "Solve problem", icon: Brain },
+  { id: "explain", label: "Explain", icon: Brain },
 ];
+
+export const QUICK_ACTIONS: readonly QuickAction[] = SELECTION_QUICK_ACTIONS;

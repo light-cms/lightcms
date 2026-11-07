@@ -98,3 +98,14 @@ export const SIMPLIFY_LANGUAGE_PROMPT = (text: string) => {
 `;
   return generatePrompt(userPrompt, undefined, text);
 };
+
+export const EXPLAIN_PROMPT = (text: string) => {
+  const userPrompt = `
+    Explain the following text or topic in clear, comprehensive, and engaging terms.
+    Rules:
+    1. Explain key concepts clearly.
+    2. Provide helpful context or examples.
+    3. Output ONLY the explanation.
+`;
+  return generatePrompt(userPrompt, undefined, text);
+};

@@ -17,6 +17,13 @@
   margin: 1rem 0;
 }
 
+.tiptap mark {
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.25rem;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 /* For Placeholder */
 .tiptap .is-empty:not(blockquote.is-empty)::before {
   float: left;

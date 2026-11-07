@@ -175,16 +175,16 @@ export async function transcribeAudioWithWitAi(
     );
   }
 
-  let audioPayload: Uint8Array;
-  if (audioData instanceof Uint8Array) {
-    audioPayload = audioData;
-  } else if (audioData instanceof ArrayBuffer) {
-    audioPayload = new Uint8Array(audioData);
+  let buffer: Buffer;
+  if (Buffer.isBuffer(audioData)) {
+    buffer = audioData;
+  } else if (audioData instanceof Uint8Array) {
+    buffer = Buffer.from(audioData.buffer, audioData.byteOffset, audioData.byteLength);
   } else {
-    audioPayload = new Uint8Array(audioData as ArrayBuffer);
+    buffer = Buffer.from(audioData as ArrayBuffer);
   }
 
-  if (audioPayload.byteLength === 0) {
+  if (buffer.length === 0) {
     return { text: "", isFinal: true };
   }
   const requestedContentType = options?.contentType?.split(";")[0]?.trim().toLowerCase();
@@ -197,7 +197,7 @@ export async function transcribeAudioWithWitAi(
       Authorization: `Bearer ${token}`,
       "Content-Type": uploadContentType,
     },
-    body: audioPayload,
+    body: new Uint8Array(buffer),
   });
 
   if (!response.ok) {

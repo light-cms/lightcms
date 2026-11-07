@@ -1,11 +1,11 @@
-import { computePosition, flip, offset, shift } from "@floating-ui/dom";
+import { computePosition, flip, hide, inline, offset, shift } from "@floating-ui/dom";
 import type { Editor } from "../tiptap/Editor.ts";
 import { decodeHarperPayload } from "../tiptap/extensions/harper/index.ts";
 import type { HarperIssue } from "./types.ts";
 
 export const DEFAULT_OPEN_DELAY_MS = 150;
 export const DEFAULT_SWITCH_DELAY_MS = 50;
-export const DEFAULT_CLOSE_DELAY_MS = 200;
+export const DEFAULT_CLOSE_DELAY_MS = 250;
 
 export interface HarperActiveIssue {
   readonly issue: HarperIssue;
@@ -87,11 +87,36 @@ export function createHarperHoverController(
       close();
       return;
     }
-    const { x, y } = await computePosition(anchor, popover, {
+    const result = await computePosition(anchor, popover, {
+      strategy: "fixed",
       placement: "bottom-start",
-      middleware: [offset(6), flip(), shift({ padding: 8 })],
+      middleware: [
+        inline(),
+        offset(6),
+        flip({
+          fallbackPlacements: ["top-start", "bottom-end", "top-end"],
+          padding: 8,
+        }),
+        shift({ padding: 8 }),
+        hide(),
+      ],
     });
-    Object.assign(popover.style, { left: `${x}px`, top: `${y}px` });
+    if (!anchor.isConnected) {
+      close();
+      return;
+    }
+    let visibility = "visible";
+    if (result.middlewareData.hide !== undefined) {
+      if (result.middlewareData.hide.referenceHidden === true) {
+        visibility = "hidden";
+      }
+    }
+    Object.assign(popover.style, {
+      position: "fixed",
+      left: `${result.x}px`,
+      top: `${result.y}px`,
+      visibility,
+    });
   }
 
   function openForElement(element: HTMLElement): void {

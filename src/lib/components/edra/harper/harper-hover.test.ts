@@ -7,11 +7,22 @@ import {
   createHarperHoverController,
 } from "./harper-hover.svelte.ts";
 
+const computePositionMock = vi.fn(
+  async (_reference?: unknown, _floating?: unknown, _options?: unknown) => ({
+    x: 10,
+    y: 20,
+    middlewareData: {},
+  }),
+);
+
 vi.mock("@floating-ui/dom", () => ({
-  computePosition: vi.fn(async () => ({ x: 10, y: 20 })),
+  computePosition: (reference: unknown, floating: unknown, options?: unknown) =>
+    computePositionMock(reference, floating, options),
   flip: () => ({ name: "flip" }),
   offset: () => ({ name: "offset" }),
   shift: () => ({ name: "shift" }),
+  inline: () => ({ name: "inline" }),
+  hide: () => ({ name: "hide" }),
 }));
 
 class FakeNode {
@@ -419,5 +430,84 @@ describe("harper-hover controller", () => {
     expect(controller.isOpen).toBe(false);
 
     unmount();
+  });
+
+  it("positions popover with strategy: fixed and updates coordinates", async () => {
+    const { editor, dom } = createMockEditor();
+    const popover = new FakeNode();
+    const controller = createHarperHoverController({
+      editor,
+      getPopoverElement: () => popover as unknown as HTMLElement,
+    });
+
+    const unmount = controller.mount();
+    const issueEl = createIssueElement("issue-1");
+    dom.dispatch("click", createFakeMouseEvent("click", issueEl));
+    expect(controller.isOpen).toBe(true);
+
+    computePositionMock.mockResolvedValueOnce({
+      x: 120,
+      y: 340,
+      middlewareData: {},
+    });
+
+    await controller.position();
+
+    expect(computePositionMock).toHaveBeenCalledWith(
+      issueEl,
+      popover,
+      expect.objectContaining({
+        strategy: "fixed",
+        placement: "bottom-start",
+      }),
+    );
+    expect(popover.style.position).toBe("fixed");
+    expect(popover.style.left).toBe("120px");
+    expect(popover.style.top).toBe("340px");
+    expect(popover.style.visibility).toBe("visible");
+
+    unmount();
+  });
+
+  it("hides popover when referenceHidden is true in middlewareData", async () => {
+    const { editor, dom } = createMockEditor();
+    const popover = new FakeNode();
+    const controller = createHarperHoverController({
+      editor,
+      getPopoverElement: () => popover as unknown as HTMLElement,
+    });
+
+    const unmount = controller.mount();
+    const issueEl = createIssueElement("issue-1");
+    dom.dispatch("click", createFakeMouseEvent("click", issueEl));
+
+    computePositionMock.mockResolvedValueOnce({
+      x: 120,
+      y: 340,
+      middlewareData: {
+        hide: {
+          referenceHidden: true,
+        },
+      },
+    });
+
+    await controller.position();
+
+    expect(popover.style.visibility).toBe("hidden");
+
+    unmount();
+  });
+
+  it("gracefully ignores position if anchor or popover is null", async () => {
+    const { editor } = createMockEditor();
+    let popover: FakeNode | null = null;
+    const controller = createHarperHoverController({
+      editor,
+      getPopoverElement: () => popover as unknown as HTMLElement,
+    });
+
+    computePositionMock.mockClear();
+    await controller.position();
+    expect(computePositionMock).not.toHaveBeenCalled();
   });
 });
