@@ -1,6 +1,7 @@
 ---
-title: Frequently Asked Questions
-description: Answers to common questions about LightCMS, static sites, and building a greener web.
+slug: faq
+title: "LightCMS FAQ: static sites, Git & Markdown"
+description: "Answers to common questions about LightCMS how Git-backed editing works, which static site generators fit, self-hosting, pricing and content ownership."
 section: Reference
 badge: FAQ
 date: 2026-10-14T13:30:00Z

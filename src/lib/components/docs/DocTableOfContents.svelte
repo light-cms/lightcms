@@ -105,7 +105,7 @@ onDestroy(() => {
 		<div class="space-y-2 border-t border-border/60 pt-4 text-xs">
 			{#if slug}
 				<a
-					href={`https://github.com/pbteja1998/lightcms/edit/main/src/routes/docs/src/${slug}.md`}
+					href={`https://github.com/light-cms/lightcms/edit/main/src/routes/docs/src/${slug}.md`}
 					target="_blank"
 					rel="noreferrer noopener"
 					class="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-primary"

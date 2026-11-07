@@ -24,7 +24,6 @@ export const commandStrings = {
   orderedList: "Ordered List",
   taskList: "Task List",
   imagePlaceholder: "Image Placeholder",
-  videoPlaceholder: "Video Placeholder",
   audioPlaceholder: "Audio Placeholder",
   iframePlaceholder: "Iframe Placeholder",
   table: "Table",

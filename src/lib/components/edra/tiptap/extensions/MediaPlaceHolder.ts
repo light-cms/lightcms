@@ -14,9 +14,7 @@ declare module "@tiptap/core" {
       /**
        * Inserts a media placeholder
        */
-      insertMediaPlaceholder: (options: {
-        mediaType: "image" | "video" | "audio" | "iframe";
-      }) => ReturnType;
+      insertMediaPlaceholder: (options: { mediaType: "image" | "audio" | "iframe" }) => ReturnType;
 
       /**
        * Set the upload handler
@@ -135,8 +133,6 @@ export const MediaPlaceholder = (component: Component<NodeViewProps>) =>
                 editor.view.focus();
                 if (mediaType === "audio") {
                   editor.commands.setAudio({ src });
-                } else if (mediaType === "video") {
-                  editor.commands.setVideo({ src });
                 } else {
                   editor.commands.setImage({ src });
                 }

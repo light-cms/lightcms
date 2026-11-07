@@ -42,14 +42,6 @@ const callAI = async (
 };
 </script>
 
-<svelte:head>
-  <title>Live editor demo | LightCMS</title>
-  <meta
-    name="description"
-    content="Try the LightCMS editor with a sample post."
-  />
-</svelte:head>
-
 <EditorWorkspace
   file={data.file}
   repository={data.repository}

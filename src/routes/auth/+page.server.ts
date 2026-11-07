@@ -4,16 +4,23 @@ import { zod4 } from "sveltekit-superforms/adapters";
 import { z } from "zod";
 import { getAuth } from "$lib/server/auth";
 
+import type { PageServerLoad } from "./$types";
+
 const authFormSchema = z.object({
   email: z.string().trim().min(1, "Enter an email address."),
 });
 
-export const load = async () => ({
-  form: await superValidate(zod4(authFormSchema), { id: "auth-magic-link" }),
-});
+export const load: PageServerLoad = async ({ url }) => {
+  const next = url.searchParams.get("next");
+  const safeNext = next?.startsWith("/cms") ? next : "/cms";
+  return {
+    next: safeNext,
+    form: await superValidate(zod4(authFormSchema), { id: "auth-magic-link" }),
+  };
+};
 
 export const actions = {
-  default: async (event: { request: Request }) => {
+  default: async (event: { request: Request; url: URL }) => {
     const form = await superValidate(event.request, zod4(authFormSchema), {
       id: "auth-magic-link",
     });
@@ -22,13 +29,15 @@ export const actions = {
       return fail(400, { form });
     }
 
+    const next = event.url.searchParams.get("next");
+    const safeNext = next?.startsWith("/cms") ? next : "/cms";
     const auth = getAuth();
     try {
       await auth.api.signInMagicLink({
         body: {
           email: form.data.email,
-          callbackURL: "/cms",
-          newUserCallbackURL: "/cms",
+          callbackURL: safeNext,
+          newUserCallbackURL: safeNext,
         },
         headers: event.request.headers,
       });

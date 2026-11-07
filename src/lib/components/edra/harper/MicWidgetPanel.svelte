@@ -56,7 +56,7 @@ const handleProviderChange = (event: Event) => {
 		<GripHorizontal class="size-3.5 shrink-0 text-muted-foreground/50" aria-hidden="true" />
 		{#if speech.isTranscribing}
 			<Loader2Icon class="size-3.5 shrink-0 animate-spin text-primary" aria-hidden="true" />
-			<span class="font-medium">Transcribing…</span>
+			<!-- <span class="font-medium">Transcribing…</span> -->
 		{:else}
 			<span class="relative flex size-2 shrink-0" aria-hidden="true">
 				<span class="absolute inline-flex size-full animate-ping rounded-full bg-red-400 opacity-75"

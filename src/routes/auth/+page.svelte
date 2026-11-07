@@ -14,6 +14,7 @@ import { Input } from "$lib/components/ui/input";
 import type { PageData } from "./$types";
 
 let { data }: { data: PageData } = $props();
+const nextPath = $derived(data.next ?? "/cms");
 const authForm = untrack(() => superForm(data.form));
 const {
 	form: authValues,
@@ -33,7 +34,7 @@ async function signInWithGitHub() {
 	try {
 		await signIn.social({
 			provider: "github",
-			callbackURL: "/cms",
+			callbackURL: nextPath,
 			errorCallbackURL: "/auth",
 		});
 	} finally {
@@ -55,7 +56,7 @@ async function _linkGitHub() {
 	}
 }
 
-async function signOutUser() {
+async function _signOutUser() {
 	try {
 		await signOut();
 	} finally {
@@ -63,7 +64,7 @@ async function signOutUser() {
 	}
 }
 
-async function signInWithPasskey() {
+async function _signInWithPasskey() {
 	isUsingPasskey = true;
 
 	try {
@@ -73,13 +74,13 @@ async function signInWithPasskey() {
 			return;
 		}
 
-		window.location.assign("/cms");
+		window.location.assign(nextPath);
 	} finally {
 		isUsingPasskey = false;
 	}
 }
 
-async function addPasskey() {
+async function _addPasskey() {
 	isAddingPasskey = true;
 
 	try {
@@ -168,7 +169,7 @@ async function addPasskey() {
             size="sm"
             class="gap-2 text-xs font-semibold"
             disabled={isAddingPasskey}
-            onclick={addPasskey}
+            onclick={_addPasskey}
           >
             <FingerprintPattern size={15} />
             {isAddingPasskey ? "Adding..." : "Add passkey"}
@@ -177,7 +178,7 @@ async function addPasskey() {
             variant="destructive"
             size="sm"
             class="gap-2 text-xs font-semibold"
-            onclick={signOutUser}
+            onclick={_signOutUser}
           >
             <LogOut size={15} /> Sign out
           </Button>
@@ -198,7 +199,7 @@ async function addPasskey() {
           size="lg"
           class="w-full justify-center gap-2.5 text-sm font-semibold py-2.5"
           disabled={isUsingPasskey}
-          onclick={signInWithPasskey}
+          onclick={_signInWithPasskey}
         >
           <FingerprintPattern size={18} />
           {isUsingPasskey ? "Authenticating..." : "Use Passkey"}

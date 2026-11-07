@@ -36,9 +36,7 @@ async function handleFiles(fileList: FileList | File[] | null | undefined) {
 		}
 	}
 
-	const validFiles = mediaType === "image"
-		? filesArray.filter((f) => f.type.startsWith("image/"))
-		: filesArray;
+	const validFiles = filesArray.filter((f) => f.type.startsWith("image/"));
 
 	if (validFiles.length === 0) {
 		toast.error(`Please select valid ${mediaType} file(s).`);
@@ -90,11 +88,7 @@ function insertUploadedMedia(urls: string[]) {
 	const pos = typeof getPos === "function" ? getPos() : undefined;
 	const nodeSize = node?.nodeSize ?? 1;
 
-	const targetType = mediaType === "video"
-		? "video"
-		: mediaType === "audio"
-			? "audio"
-			: "image";
+	const targetType = mediaType === "audio" ? "audio" : "image";
 
 	if (typeof pos === "number") {
 		const contentNodes = urls.map((src) => ({
@@ -110,9 +104,7 @@ function insertUploadedMedia(urls: string[]) {
 			.run();
 	} else {
 		for (const src of urls) {
-			if (mediaType === "video") {
-				editor.chain().focus().setVideo({ src }).run();
-			} else if (mediaType === "audio") {
+			if (mediaType === "audio") {
 				editor.chain().focus().setAudio({ src }).run();
 			} else {
 				editor.chain().focus().setImage({ src }).run();
@@ -158,7 +150,7 @@ function handleDragLeave(event: DragEvent) {
 		<input
 			type="file"
 			bind:this={fileInputRef}
-			accept={mediaType === "image" ? "image/*" : mediaType === "video" ? "video/*" : "audio/*"}
+			accept="image/*"
 			multiple
 			onchange={(e) => void handleFiles(e.currentTarget.files)}
 			class="hidden"

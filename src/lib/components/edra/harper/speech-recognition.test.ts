@@ -55,7 +55,7 @@ describe("speech-recognition utilities", () => {
     });
 
     it("returns true when getUserMedia and MediaRecorder are available", () => {
-      stubGlobal("window", {});
+      stubGlobal("window", { permissionsPolicy: undefined });
       stubGlobal("navigator", {
         mediaDevices: { getUserMedia: () => Promise.resolve() },
       });

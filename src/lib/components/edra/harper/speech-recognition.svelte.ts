@@ -52,7 +52,8 @@ export function createSpeechRecognition(
 
   let audioStream: MediaStream | null = null;
   let audioContext: AudioContext | null = null;
-  let scriptProcessor: ScriptProcessorNode | null = null;
+  let audioWorkletNode: AudioWorkletNode | null = null;
+  let audioWorkletHandler: ((event: MessageEvent<Float32Array>) => void) | null = null;
   let mediaStreamSource: MediaStreamAudioSourceNode | null = null;
   let muteGainNode: GainNode | null = null;
   let audioBuffers: Float32Array[] = [];
@@ -66,14 +67,17 @@ export function createSpeechRecognition(
   const maxSamples = targetSampleRate * maxDuration;
 
   function cleanupAudioNodes(): void {
-    if (scriptProcessor) {
+    if (audioWorkletNode) {
       try {
-        scriptProcessor.disconnect();
+        audioWorkletNode.disconnect();
       } catch {
         // Ignore disconnect errors
       }
-      scriptProcessor.onaudioprocess = null;
-      scriptProcessor = null;
+      if (audioWorkletHandler) {
+        audioWorkletNode.port.removeEventListener("message", audioWorkletHandler);
+        audioWorkletHandler = null;
+      }
+      audioWorkletNode = null;
     }
 
     if (muteGainNode) {
@@ -216,11 +220,23 @@ export function createSpeechRecognition(
     }
 
     try {
-      if (typeof navigator === "undefined" || !navigator.mediaDevices?.getUserMedia) {
+      const mediaDevices = navigator.mediaDevices;
+      const policy =
+        typeof document !== "undefined"
+          ? (
+              document as Document & {
+                permissionsPolicy?: { allowsFeature: (f: string) => boolean };
+              }
+            ).permissionsPolicy
+          : undefined;
+      if (policy && !policy.allowsFeature("microphone")) {
+        throw new Error("Microphone is blocked by the site's permissions policy.");
+      }
+      if (typeof navigator === "undefined" || !mediaDevices?.getUserMedia) {
         throw new Error("Microphone access is not supported in this browser.");
       }
 
-      audioStream = await navigator.mediaDevices.getUserMedia({
+      audioStream = await mediaDevices.getUserMedia({
         audio: {
           echoCancellation: true,
           noiseSuppression: true,
@@ -238,22 +254,47 @@ export function createSpeechRecognition(
             sampleRate: targetSampleRate,
           });
           mediaStreamSource = audioContext.createMediaStreamSource(audioStream);
-          scriptProcessor = audioContext.createScriptProcessor(4096, 1, 1);
           audioBuffers = [];
+
+          const workletSource = `
+            class AudioCaptureProcessor extends AudioWorkletProcessor {
+              process(inputs) {
+                const input = inputs[0]?.[0];
+                if (input) {
+                  this.port.postMessage(new Float32Array(input));
+                }
+                return true;
+              }
+            }
+            registerProcessor("audio-capture-processor", AudioCaptureProcessor);
+          `;
+          const workletUrl = URL.createObjectURL(
+            new Blob([workletSource], { type: "application/javascript" }),
+          );
+          try {
+            await audioContext.audioWorklet.addModule(workletUrl);
+          } finally {
+            URL.revokeObjectURL(workletUrl);
+          }
+          audioWorkletNode = new AudioWorkletNode(audioContext, "audio-capture-processor", {
+            numberOfInputs: 1,
+            numberOfOutputs: 1,
+            outputChannelCount: [1],
+          });
 
           muteGainNode = audioContext.createGain();
           muteGainNode.gain.value = 0;
 
-          mediaStreamSource.connect(scriptProcessor);
-          scriptProcessor.connect(muteGainNode);
+          mediaStreamSource.connect(audioWorkletNode);
+          audioWorkletNode.connect(muteGainNode);
           muteGainNode.connect(audioContext.destination);
 
-          scriptProcessor.onaudioprocess = (event: AudioProcessingEvent) => {
+          audioWorkletHandler = (event: MessageEvent<Float32Array>) => {
             if (!isListening) {
               return;
             }
 
-            const channelData = event.inputBuffer.getChannelData(0);
+            const channelData = event.data;
             let sumSquares = 0;
             for (let i = 0; i < channelData.length; i += 1) {
               const s = channelData[i] ?? 0;
@@ -273,6 +314,7 @@ export function createSpeechRecognition(
               audioBuffers.push(new Float32Array(channelData.subarray(0, toCopy)));
             }
           };
+          audioWorkletNode.port.addEventListener("message", audioWorkletHandler);
 
           isListening = true;
           return;
@@ -337,7 +379,7 @@ export function createSpeechRecognition(
     isSpeaking = false;
     isTranscribing = true;
 
-    if (scriptProcessor && audioContext) {
+    if (audioWorkletNode && audioContext) {
       const recordedSampleRate = audioContext.sampleRate;
       cleanupAudioNodes();
       stopMediaStream();

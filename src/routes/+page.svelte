@@ -11,6 +11,9 @@ import Sparkles from "@lucide/svelte/icons/sparkles";
 import Zap from "@lucide/svelte/icons/zap";
 import Hero from "$lib/components/Hero.svelte";
 import Supademo from "$lib/components/Supademo.svelte";
+import type { PageData } from "./$types";
+
+let { data }: { data: PageData } = $props();
 
 </script>
 
@@ -31,7 +34,7 @@ import Supademo from "$lib/components/Supademo.svelte";
         <h1
           class="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
         >
-          Fall back in love with writing again.
+          The Git-based CMS built for static site generators
         </h1>
         <p class="text-base leading-relaxed text-muted-foreground sm:text-lg">
           Giving everyone a voice to speak. A <strong>lightweight cms</strong> and Git backed headless content workspace for sharing experiences over the web with zero friction.
@@ -41,7 +44,7 @@ import Supademo from "$lib/components/Supademo.svelte";
       <div class="flex flex-wrap items-center gap-4">
         <a
           class="inline-flex items-center justify-center gap-2.5 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-xs transition-transform hover:scale-[1.02] active:scale-[0.98]"
-          href="/cms"
+          href={data.session ? '/cms' : '/auth?next=%2Fcms'}
         >
           Open workspace
           <GitBranch size={17} />

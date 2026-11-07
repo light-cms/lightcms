@@ -1,12 +1,12 @@
 export const SITE = {
   name: "LightCMS",
-  origin: "https://lightcms.me",
+  origin: "https://www.lightcms.me",
   locale: "en_US",
   repository: "https://github.com/light-cms/lightcms",
   contactEmail: "hello@lightcms.me",
   contactFormUrl: "https://app.youform.com/forms/smwrhikc",
   sponsorUrl: "https://upi.pratyay.online",
-  blogUrl: "https://light-cms.github.io",
+  blogUrl: "https://blogs.lightcms.me",
   twitterUrl: "https://x.com/lightcms5",
   blueskyUrl: "https://bsky.app/@lightcms.bsky.app",
 } as const;
@@ -20,7 +20,12 @@ export const PRIVACY_TITLE = `Privacy Policy | ${SITE.name}`;
 export const DOCS_TITLE = `Documentation | ${SITE.name}`;
 
 export const HOME_DESCRIPTION =
-  "LightCMS is a Git based content workspace for editing and publishing markdown.";
+  "LightCMS is a Git based CMS for static sites.";
+
+export const DEMO_TITLE = `Live editor demo | ${SITE.name}`;
+
+export const DEMO_DESCRIPTION =
+  "Try the LightCMS editor in your browser: edit frontmatter, write Markdown and save a sample post. No account needed, nothing is committed to a repository.";
 
 export const ABOUT_DESCRIPTION =
   "Learn how LightCMS works: a focused, fast CMS that stores every post as markdown in your own GitHub repository, with an access model Git already provides.";
@@ -56,6 +61,7 @@ type RouteDefaults = { title: string; description: string };
 
 const ROUTE_DEFAULTS: Record<string, RouteDefaults> = {
   "/": { title: HOME_TITLE, description: HOME_DESCRIPTION },
+  "/demo": { title: DEMO_TITLE, description: DEMO_DESCRIPTION },
   "/about": { title: ABOUT_TITLE, description: ABOUT_DESCRIPTION },
   "/privacy": { title: PRIVACY_TITLE, description: PRIVACY_DESCRIPTION },
   "/docs": { title: DOCS_TITLE, description: DOCS_DESCRIPTION },

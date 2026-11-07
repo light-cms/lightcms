@@ -72,6 +72,7 @@ const speech = createSpeechRecognition({
 	onError(err) {
 		toast.error(err.message);
 	},
+	maxDurationSeconds: 15,
 });
 
 let anchorEl = $state<HTMLButtonElement | null>(null);
@@ -101,7 +102,7 @@ $effect(() => {
 	}
 });
 
-const activeLang = $derived(
+const _activeLang = $derived(
 	lang ??
 		(typeof navigator !== "undefined" && navigator.language
 			? navigator.language
@@ -117,11 +118,11 @@ const providerDisplayName = $derived.by(() => {
 	}
 });
 
-const buttonAriaLabel = $derived(
+const _buttonAriaLabel = $derived(
 	speech.isTranscribing
-		? `Transcribing audio with ${providerDisplayName}...`
+		? `Transcribing ${providerDisplayName}...`
 		: speech.isListening
-			? "Stop dictation"
+			? `Stop dictation`
 			: "Start dictation",
 );
 
@@ -136,16 +137,16 @@ const handleClick = () => {
 	speech.toggle();
 };
 
-const handleProviderChange = (nextProvider: SpeechProvider) => {
+const _handleProviderChange = (nextProvider: SpeechProvider) => {
 	selectedProvider = nextProvider;
 	speech.setProvider(nextProvider);
 };
 
-const handleStop = () => {
+const _handleStop = () => {
 	void speech.stop();
 };
 
-const handleShortcutKeydown = (event: KeyboardEvent) => {
+const _handleShortcutKeydown = (event: KeyboardEvent) => {
 	if (
 		!shortcut ||
 		!isDictationShortcut(event) ||
@@ -158,7 +159,7 @@ const handleShortcutKeydown = (event: KeyboardEvent) => {
 };
 </script>
 
-<svelte:document onkeydown={handleShortcutKeydown} />
+<svelte:document onkeydown={_handleShortcutKeydown} />
 
 <svelte:window onresize={() => widget.clampIntoView()} />
 
@@ -174,7 +175,7 @@ const handleShortcutKeydown = (event: KeyboardEvent) => {
 				'relative text-red-500 hover:text-red-600 dark:text-red-400',
 				className
 			)}
-			aria-label={buttonAriaLabel}
+			aria-label={_buttonAriaLabel}
 			aria-pressed={true}
 			data-state="active"
 		>
@@ -206,7 +207,7 @@ const handleShortcutKeydown = (event: KeyboardEvent) => {
 					!speech.isSupported && 'cursor-not-allowed opacity-40',
 					className
 				)}
-				aria-label={buttonAriaLabel}
+				aria-label={_buttonAriaLabel}
 				aria-pressed={false}
 				data-state="idle"
 			>
@@ -222,10 +223,10 @@ const handleShortcutKeydown = (event: KeyboardEvent) => {
 			bind:element={panelEl}
 			{speech}
 			{widget}
-			{activeLang}
-			{selectedProvider}
-			onProviderChange={handleProviderChange}
-			onStop={handleStop}
+			activeLang={_activeLang}
+			selectedProvider={selectedProvider}
+			onProviderChange={_handleProviderChange}
+			onStop={_handleStop}
 		/>
 	</Portal>
 {/if}

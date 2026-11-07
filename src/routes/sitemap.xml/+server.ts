@@ -11,6 +11,7 @@ type SitemapEntry = {
 
 const STATIC_ENTRIES: readonly SitemapEntry[] = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
+  { path: "/demo", changefreq: "monthly", priority: "0.7" },
   { path: "/about", changefreq: "monthly", priority: "0.6" },
   { path: "/docs", changefreq: "weekly", priority: "0.9" },
   { path: "/privacy", changefreq: "monthly", priority: "0.3" },
