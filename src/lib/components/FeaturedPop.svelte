@@ -31,3 +31,10 @@
 	/>
 </a>
 <a href="https://www.betterlaunch.co/product/lightcms"><img src="https://www.betterlaunch.co/badge-discover-light.svg" alt="Featured on Better Launch" width="200" height="56"></a>
+
+<a href="https://linksalad.me/projects/lightcms?utm_source=badge" target="_blank" rel="noopener noreferrer">
+  <img src="https://linksalad.me/images/badges/featured-on-light.svg" alt="Featured on LinkSalad" style="height:44px;width:auto"/>
+</a>
+<a href="https://postyourstartup.com/startup/lightcms?ref=badge" target="_blank">
+  <img src="https://postyourstartup.com/api/badge/lightcms?theme=light" alt="Featured on PostYourStartup" width="212" height="55" />
+</a>
