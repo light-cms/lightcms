@@ -150,6 +150,7 @@
   "trustedDependencies": [
     "protobufjs",
     "esbuild",
+    "core-js",
     "svelte-preprocess",
     "@parcel/watcher",
   ],

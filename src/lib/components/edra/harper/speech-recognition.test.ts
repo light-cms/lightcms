@@ -198,3 +198,77 @@ describe("speech-recognition utilities", () => {
     });
   });
 });
+
+describe("createSpeechRecognition", () => {
+  afterEach(() => {
+    unstubAllGlobals();
+  });
+
+  it("starts the AudioWorklet message port after registering its listener", async () => {
+    const port = {
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      start: vi.fn(),
+    };
+
+    class FakeAudioWorkletNode {
+      readonly port = port;
+
+      connect(): void {}
+      disconnect(): void {}
+    }
+
+    class FakeAudioContext {
+      readonly sampleRate = 16_000;
+      readonly destination = {};
+      readonly audioWorklet = {
+        addModule: vi.fn(async () => undefined),
+      };
+
+      createMediaStreamSource() {
+        return {
+          connect: vi.fn(),
+          disconnect: vi.fn(),
+        };
+      }
+
+      createGain() {
+        return {
+          gain: { value: 1 },
+          connect: vi.fn(),
+          disconnect: vi.fn(),
+        };
+      }
+
+      close(): Promise<void> {
+        return Promise.resolve();
+      }
+    }
+
+    const stopTrack = vi.fn();
+    stubGlobal("window", { AudioContext: FakeAudioContext });
+    stubGlobal("navigator", {
+      mediaDevices: {
+        getUserMedia: vi.fn(async () => ({
+          getTracks: () => [{ stop: stopTrack }],
+        })),
+      },
+    });
+    stubGlobal("AudioWorkletNode", FakeAudioWorkletNode);
+    stubGlobal("MediaRecorder", undefined);
+
+    const { createSpeechRecognition } = await import("./speech-recognition.svelte.js");
+    const speech = createSpeechRecognition({
+      onTranscript: vi.fn(),
+    });
+
+    await speech.start();
+
+    expect(port.addEventListener).toHaveBeenCalledWith("message", expect.any(Function));
+    expect(port.start).toHaveBeenCalledOnce();
+    expect(speech.isListening).toBe(true);
+
+    speech.destroy();
+    expect(stopTrack).toHaveBeenCalledOnce();
+  });
+});

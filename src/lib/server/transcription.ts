@@ -1,5 +1,5 @@
 import { SPEECH_PROVIDERS, type SpeechProvider } from "$lib/speech-providers";
-import { transcribeWithAiSdk } from "./speech-ai-sdk.js";
+import { isAiSdkSpeechConfigured, transcribeWithAiSdk } from "./speech-ai-sdk.js";
 import { isWitAiConfigured, transcribeAudioWithWitAi } from "./wit-ai.js";
 
 export type { SpeechProvider };
@@ -28,15 +28,15 @@ export function isSpeechProviderConfigured(provider: SpeechProvider): boolean {
   if (provider === SPEECH_PROVIDERS.wit) {
     return isWitAiConfigured();
   }
-  return Boolean(process.env.SPEECH_API_KEY?.trim());
+  return isAiSdkSpeechConfigured();
 }
 
 /**
- * The OpenAI-compatible backend is chosen whenever an API key is configured,
- * i.e. `SPEECH_API_KEY` is set.
+ * The OpenAI-compatible backend is chosen when both its API key and speech model
+ * are configured.
  */
 export function getDefaultSpeechProvider(): SpeechProvider | null {
-  if (process.env.SPEECH_API_KEY?.trim()) {
+  if (isAiSdkSpeechConfigured()) {
     return SPEECH_PROVIDERS.openaiCompatible;
   }
   if (isWitAiConfigured()) {
@@ -51,7 +51,7 @@ export function isSpeechTranscriptionConfigured(): {
   wit: boolean;
   defaultProvider: SpeechProvider | null;
 } {
-  const openaiCompatible = Boolean(process.env.SPEECH_API_KEY?.trim());
+  const openaiCompatible = isAiSdkSpeechConfigured();
   const wit = isWitAiConfigured();
 
   return {
@@ -67,12 +67,24 @@ export async function transcribeAudio(
   options?: TranscribeSpeechOptions,
 ): Promise<SpeechTranscriptionResult> {
   const requested = options?.provider;
-  const targetProvider =
-    requested && isSpeechProviderConfigured(requested) ? requested : getDefaultSpeechProvider();
+  let targetProvider: SpeechProvider | null = null;
+
+  if (requested === SPEECH_PROVIDERS.wit && isWitAiConfigured()) {
+    targetProvider = SPEECH_PROVIDERS.wit;
+  }
+  if (requested === SPEECH_PROVIDERS.openaiCompatible && isAiSdkSpeechConfigured(options)) {
+    targetProvider = SPEECH_PROVIDERS.openaiCompatible;
+  }
+  if (!targetProvider && isAiSdkSpeechConfigured(options)) {
+    targetProvider = SPEECH_PROVIDERS.openaiCompatible;
+  }
+  if (!targetProvider && isWitAiConfigured()) {
+    targetProvider = SPEECH_PROVIDERS.wit;
+  }
 
   if (!targetProvider) {
     throw new Error(
-      "No speech transcription provider is configured. Please set SPEECH_API_KEY (OpenAI-compatible) or WIT_AI_TOKEN (Wit.ai).",
+      "No speech transcription provider is configured. Please set SPEECH_API_KEY and SPEECH_MODEL (OpenAI-compatible), or WIT_AI_TOKEN (Wit.ai).",
     );
   }
 

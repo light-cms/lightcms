@@ -184,8 +184,9 @@
   },
   "trustedDependencies": [
     "@parcel/watcher",
+    "core-js",
     "esbuild",
-    "svelte-preprocess",
-    "protobufjs"
+    "protobufjs",
+    "svelte-preprocess"
   ]
 }
