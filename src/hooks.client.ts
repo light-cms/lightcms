@@ -9,8 +9,8 @@ export function isPostHogInitialized() {
 }
 
 export function init() {
-  const key = import.meta.env.VITE_POSTHOG_PROJECT_TOKEN;
-  const host = import.meta.env.VITE_POSTHOG_HOST;
+  const key = "phc_AS2JXQsqEwNNreH5kra5Eefd5TijExE5eiLfwdzXLhPg";
+  const host = "https://us.i.posthog.com";
 
   if (!key || !host) {
     if (dev) {
@@ -30,7 +30,7 @@ export function init() {
       capture_unhandled_rejections: true,
       capture_console_errors: false,
     },
-    person_profiles: "identified_only",
+    person_profiles: "always",
   });
   posthogInitialized = true;
 }
