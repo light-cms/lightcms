@@ -315,13 +315,14 @@ And any openai compatible API for transcription. |
 One can use [groq](https://groq.com/) or [assemblyai](https://assemblyai.com/) or |
 [elevenlabs](https://elevenlabs.io/) or [deepgram](https://deepgram.com/) or [sarvam](https://sarvam.ai/). |
 
-## For Development Purpose You Can Use the Following Credentials for Posthog
+## PostHog Credentials
 
-VITE_POSTHOG_PROJECT_TOKEN = "phc_AS2JXQsqEwNNreH5kra5Eefd5TijExE5eiLfwdzXLhPg"
-PUBLIC_POSTHOG_URL = "<https://us.i.posthog.com>"
+Use the project token from **your own** PostHog project (**Project settings → Project API key**). Do not reuse a token
+from this documentation: events sent with a shared token land in someone else's project, so its insights, alerts and
+notifications are not yours to read.
 
 ```env
-VITE_POSTHOG_PROJECT_TOKEN=phc_AS2JXQsqEwNNreH5kra5Eefd5TijExE5eiLfwdzXLhPg
+VITE_POSTHOG_PROJECT_TOKEN=phc_your_project_token
 VITE_POSTHOG_HOST=https://us.i.posthog.com
 ```
 

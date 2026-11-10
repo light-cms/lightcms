@@ -37,3 +37,6 @@ session-ses_08e9.md
 .crush/
 .claude
 .vitest/
+
+# Local PostHog personal API key (never commit)
+.posthog-key

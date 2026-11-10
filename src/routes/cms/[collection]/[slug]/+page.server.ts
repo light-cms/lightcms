@@ -16,7 +16,7 @@ import {
 import { createDefaultFrontMatter } from "$lib/components/cms/frontmatter.types";
 import { getConfiguredCollection } from "$lib/server/cms-context";
 import { isGitHubStatus } from "$lib/server/github";
-import { joinPath, normalizeFolder, resolveEntryPath } from "$lib/server/paths";
+import { normalizeFolder, resolveEntryPath } from "$lib/server/paths";
 import { captureServerEvent } from "$lib/server/posthog";
 import type { Actions, PageServerLoad } from "./$types";
 

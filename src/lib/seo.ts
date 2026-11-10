@@ -19,8 +19,7 @@ export const PRIVACY_TITLE = `Privacy Policy | ${SITE.name}`;
 
 export const DOCS_TITLE = `Documentation | ${SITE.name}`;
 
-export const HOME_DESCRIPTION =
-  "LightCMS is a Git based CMS for static sites.";
+export const HOME_DESCRIPTION = "LightCMS is a Git based CMS for static sites.";
 
 export const DEMO_TITLE = `Live editor demo | ${SITE.name}`;
 

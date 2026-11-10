@@ -12,6 +12,7 @@
     "sourceMap": true,
     "strict": true,
     "moduleResolution": "bundler",
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "types": ["node"]
   }
 }

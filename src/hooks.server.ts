@@ -1,8 +1,9 @@
-import { type Handle, redirect } from "@sveltejs/kit";
+import { type Handle, type HandleServerError, redirect } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 import { svelteKitHandler } from "better-auth/svelte-kit";
 import { building } from "$app/environment";
 import { getAuth } from "$lib/server/auth";
+import { captureServerError } from "$lib/server/posthog";
 
 const handleSecurityHeaders: Handle = async ({ event, resolve }) => {
   const response = await resolve(event);
@@ -49,3 +50,9 @@ const handleBetterAuth: Handle = async ({ event, resolve }) => {
 };
 
 export const handle: Handle = sequence(handleSecurityHeaders, handleBetterAuth);
+
+export const handleError: HandleServerError = async ({ error, status }) => {
+  if (status !== 404) {
+    await captureServerError(error);
+  }
+};

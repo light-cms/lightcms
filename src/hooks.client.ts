@@ -9,22 +9,13 @@ export function isPostHogInitialized() {
 }
 
 export function init() {
-  const key = import.meta.env.VITE_POSTHOG_PROJECT_TOKEN!;
-  const host = import.meta.env.VITE_POSTHOG_HOST!;
+  const key = import.meta.env.VITE_POSTHOG_PROJECT_TOKEN;
+  const host = import.meta.env.VITE_POSTHOG_HOST;
 
-  if (!key) {
+  if (!key || !host) {
     if (dev) {
       console.warn(
-        "VITE_POSTHOG_PROJECT_TOKEN variable required by PostHog is missing or un-configured, this causes events to be silently missed. This warning stops appearing once VITE_POSTHOG_PROJECT_TOKEN is configured",
-      );
-    }
-    return;
-  }
-
-  if (!host) {
-    if (dev) {
-      console.warn(
-        "VITE_POSTHOG_HOST variable required by PostHog is missing or un-configured, this causes events to be silently missed. This warning stops appearing once VITE_POSTHOG_HOST is configured",
+        "PostHog is not configured (VITE_POSTHOG_PROJECT_TOKEN / VITE_POSTHOG_HOST). Client analytics and error capture are disabled.",
       );
     }
     return;
@@ -32,12 +23,14 @@ export function init() {
 
   posthog.init(key, {
     api_host: host,
+    defaults: "2026-08-30",
     capture_pageview: "history_change",
     capture_exceptions: {
       capture_unhandled_errors: true,
       capture_unhandled_rejections: true,
       capture_console_errors: false,
     },
+    person_profiles: "identified_only",
   });
   posthogInitialized = true;
 }
