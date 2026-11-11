@@ -1,4 +1,6 @@
 import { error } from "@sveltejs/kit";
+import { localizeHref } from "$lib/paraglide/runtime.js";
+import { resolveLocaleFromPathname } from "$lib/i18n";
 import { absoluteUrl, SITE } from "$lib/seo";
 import { loadDocEntries } from "$lib/server/docs";
 import { renderDocMarkdown } from "$lib/server/markdown";
@@ -11,8 +13,9 @@ export const entries = async () => {
   return docs.map((doc) => ({ slug: doc.slug }));
 };
 
-export const load: PageServerLoad = async ({ params }) => {
-  const entries = await loadDocEntries();
+export const load: PageServerLoad = async ({ params, url }) => {
+  const locale = resolveLocaleFromPathname(url.pathname);
+  const entries = await loadDocEntries(locale);
 
   const index = entries.findIndex((entry) => entry.slug === params.slug);
   if (index === -1) {
@@ -23,9 +26,9 @@ export const load: PageServerLoad = async ({ params }) => {
   const previous = index > 0 ? entries[index - 1] : undefined;
   const next = entries[index + 1];
   const rendered = await renderDocMarkdown(current.raw);
-  const docUrl = absoluteUrl(`/docs/${current.slug}`);
-  const homeUrl = absoluteUrl("/");
-  const docsUrl = absoluteUrl("/docs");
+  const docUrl = absoluteUrl(localizeHref(`/docs/${current.slug}`, { locale }));
+  const homeUrl = absoluteUrl(localizeHref("/", { locale }));
+  const docsUrl = absoluteUrl(localizeHref("/docs", { locale }));
   const organization = {
     "@type": "Organization",
     name: SITE.name,
@@ -43,8 +46,19 @@ export const load: PageServerLoad = async ({ params }) => {
     badge: current.badge,
     slug: current.slug,
     previous:
-      previous === undefined ? null : { slug: `/docs/${previous.slug}`, title: previous.title },
-    next: next === undefined ? null : { slug: `/docs/${next.slug}`, title: next.title },
+      previous === undefined
+        ? null
+        : {
+            slug: localizeHref(`/docs/${previous.slug}`, { locale }),
+            title: previous.title,
+          },
+    next:
+      next === undefined
+        ? null
+        : {
+            slug: localizeHref(`/docs/${next.slug}`, { locale }),
+            title: next.title,
+          },
     seo: {
       title: `${current.title} | ${SITE.name}`,
       description: current.description,

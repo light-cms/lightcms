@@ -1,0 +1,44 @@
+#
+# Crowdin CLI configuration
+# https://crowdin.github.io/crowdin-cli/configuration
+#
+# Credentials are read from the environment when available:
+#   CROWDIN_PROJECT_ID=945897
+#   CROWDIN_PERSONAL_TOKEN=...
+#
+# The GitHub Actions workflow (.github/workflows/crowdin.yml) supplies both
+# from repository secrets. For local runs, export them in your shell or let
+# mise inject them from .env.
+#
+
+"project_id": "945897"
+"base_path": "."
+"base_url": "https://api.crowdin.com"
+
+"preserve_hierarchy": true
+
+"files": [
+  {
+    #
+    # UI messages consumed by Paraglide (project.inlang/settings.json).
+    # Keep every locale in messages/<locale>.json.
+    #
+    "source": "/messages/en.json",
+    "translation": "/messages/%locale%.json",
+    "type": "json"
+  },
+  {
+    #
+    # Docs are loaded by src/lib/server/docs.ts. Files in a locale folder
+    # (<locale>/<name>.md) override the English source with the same slug.
+    #
+    # In the Crowdin file settings, exclude the structural front matter keys
+    # (slug, serial, date, preview, badge, draft) from translation so the
+    # loader keeps resolving the same slug for every locale. Translate only
+    # title, description, keywords, and section.
+    #
+    "source": "/src/routes/docs/src/*.md",
+    "translation": "/src/routes/docs/src/%locale%/%original_file_name%",
+    "type": "md"
+  }
+]

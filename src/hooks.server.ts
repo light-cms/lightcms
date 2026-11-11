@@ -1,9 +1,11 @@
+import { building } from "$app/environment";
+import { getTextDirection } from "$lib/paraglide/runtime.js";
+import { paraglideMiddleware } from "$lib/paraglide/server.js";
+import { getAuth } from "$lib/server/auth";
+import { captureServerError } from "$lib/server/posthog";
 import { type Handle, type HandleServerError, redirect } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 import { svelteKitHandler } from "better-auth/svelte-kit";
-import { building } from "$app/environment";
-import { getAuth } from "$lib/server/auth";
-import { captureServerError } from "$lib/server/posthog";
 
 const handleSecurityHeaders: Handle = async ({ event, resolve }) => {
   const response = await resolve(event);
@@ -49,7 +51,20 @@ const handleBetterAuth: Handle = async ({ event, resolve }) => {
   return resolve(event);
 };
 
-export const handle: Handle = sequence(handleSecurityHeaders, handleBetterAuth);
+const handleParaglide: Handle = ({ event, resolve }) =>
+  paraglideMiddleware(event.request, ({ request, locale }) => {
+    return resolve(
+      { ...event, request },
+      {
+        transformPageChunk: ({ html }) =>
+          html
+            .replace("%paraglide.lang%", locale)
+            .replace("%paraglide.dir%", getTextDirection(locale)),
+      },
+    );
+  });
+
+export const handle: Handle = sequence(handleSecurityHeaders, handleBetterAuth, handleParaglide);
 
 export const handleError: HandleServerError = async ({ error, status }) => {
   if (status !== 404 && !building) {

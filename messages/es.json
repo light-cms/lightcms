@@ -1,0 +1,17 @@
+{
+  "skip_to_content": "Saltar al contenido",
+  "nav_home_label": "Inicio de LightCMS",
+  "nav_primary_label": "Navegación principal",
+  "nav_cms": "CMS",
+  "nav_cms_label": "Espacio de trabajo del CMS",
+  "nav_docs": "Documentación",
+  "nav_docs_label": "Documentación",
+  "nav_about": "Acerca de",
+  "nav_about_label": "Acerca de LightCMS",
+  "footer_contact": "Contáctanos",
+  "docs_menu": "Menú",
+  "docs_open_navigation_label": "Abrir la navegación de la documentación",
+  "docs_title": "Documentación",
+  "docs_search_placeholder": "Buscar en la documentación...",
+  "docs_search_label": "Buscar en la documentación"
+}

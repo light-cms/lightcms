@@ -1,5 +1,7 @@
 <script lang="ts">
 import { page } from "$app/state";
+import { localizeHref } from "$lib/paraglide/runtime.js";
+import { stripLocaleFromPathname } from "$lib/i18n";
 import type { DocNavSection } from "$lib/server/docs";
 import { cn } from "$lib/utils";
 
@@ -12,7 +14,7 @@ let {
 } = $props();
 
 function isActive(slug: string): boolean {
-	const currentPath = page.url.pathname;
+	const currentPath = stripLocaleFromPathname(page.url.pathname);
 	const targetPath = `/docs/${slug}`;
 	if (currentPath === targetPath) {
 		return true;
@@ -37,7 +39,7 @@ function isActive(slug: string): boolean {
 					{@const active = isActive(item.slug)}
 					<li>
 						<a
-							href={`/docs/${item.slug}`}
+							href={localizeHref(`/docs/${item.slug}`)}
 							onclick={onLinkClick}
 							class={cn(
 								"group flex items-center justify-between gap-2 rounded-lg px-3 py-1.5 text-sm transition-all duration-150",

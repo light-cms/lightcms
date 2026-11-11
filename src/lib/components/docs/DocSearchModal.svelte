@@ -2,6 +2,7 @@
 import ArrowRight from "@lucide/svelte/icons/arrow-right";
 import FileText from "@lucide/svelte/icons/file-text";
 import { goto } from "$app/navigation";
+import { localizeHref } from "$lib/paraglide/runtime.js";
 import * as Command from "$lib/components/ui/command";
 import type { DocNavSection } from "$lib/server/docs";
 
@@ -22,7 +23,7 @@ function handleKeydown(event: KeyboardEvent): void {
 
 function selectDoc(slug: string): void {
 	open = false;
-	goto(`/docs/${slug}`);
+	goto(localizeHref(`/docs/${slug}`));
 }
 </script>
 

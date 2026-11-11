@@ -1,4 +1,5 @@
 import matter from "gray-matter";
+import { baseLocale } from "$lib/paraglide/runtime.js";
 import { DEFAULT_OG_IMAGE } from "$lib/seo";
 
 export interface DocEntry {
@@ -138,7 +139,13 @@ function toBadge(frontmatter: Record<string, unknown>): string | null {
   return null;
 }
 
-export async function loadDocEntries(): Promise<DocEntry[]> {
+const DOC_LOCALE_DIR = /\/docs\/src\/([A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})?)\//;
+
+function toDocLocale(path: string): string | undefined {
+  return DOC_LOCALE_DIR.exec(path.replaceAll("\\", "/"))?.[1];
+}
+
+export async function loadDocEntries(locale: string = baseLocale): Promise<DocEntry[]> {
   const modules = import.meta.glob(
     [
       "../../routes/docs/src/**/*.md",
@@ -152,7 +159,8 @@ export async function loadDocEntries(): Promise<DocEntry[]> {
     },
   );
 
-  const entries: DocEntry[] = [];
+  const baseEntries = new Map<string, DocEntry>();
+  const localizedEntries = new Map<string, DocEntry>();
 
   for (const [path, file] of Object.entries(modules)) {
     const raw = typeof file === "string" ? file : "";
@@ -162,9 +170,13 @@ export async function loadDocEntries(): Promise<DocEntry[]> {
       continue;
     }
 
-    const slug = toSlug(path, frontmatter);
+    const fileLocale = toDocLocale(path);
+    if (fileLocale !== undefined && fileLocale !== locale) {
+      continue;
+    }
 
-    entries.push({
+    const slug = toSlug(path, frontmatter);
+    const entry: DocEntry = {
       slug,
       title: toTitle(frontmatter, slug),
       description: toDescription(frontmatter, raw),
@@ -175,17 +187,30 @@ export async function loadDocEntries(): Promise<DocEntry[]> {
       raw,
       section: toSection(frontmatter, slug),
       badge: toBadge(frontmatter),
-    });
+    };
+
+    if (fileLocale === locale) {
+      localizedEntries.set(slug, entry);
+    } else {
+      baseEntries.set(slug, entry);
+    }
   }
 
-  entries.sort((a, b) => {
+  const entries = new Map(baseEntries);
+  for (const [slug, entry] of localizedEntries) {
+    entries.set(slug, entry);
+  }
+
+  const result = [...entries.values()];
+
+  result.sort((a, b) => {
     if (a.serial !== b.serial) {
       return a.serial - b.serial;
     }
     return a.slug.localeCompare(b.slug);
   });
 
-  return entries;
+  return result;
 }
 
 export function groupDocsBySection(entries: DocEntry[]): DocNavSection[] {

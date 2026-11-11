@@ -1,0 +1,8 @@
+{
+  "$schema": "https://raw.githubusercontent.com/inlang/paraglide/main/packages/paraglide-js/schema.json",
+  "messages": {
+    "de": {
+      "messages": {}
+    }
+  }
+}

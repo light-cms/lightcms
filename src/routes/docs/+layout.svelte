@@ -7,6 +7,7 @@ import type { LayoutData } from "./$types";
 import { DocSearchModal, DocSidebar } from "$lib/components/docs";
 import DocTableOfContents from "$lib/components/docs/DocTableOfContents.svelte";
 import { Search } from "@lucide/svelte";
+import * as m from "$lib/paraglide/messages.js";
 
 let { data, children }: { data: LayoutData; children: any } = $props();
 
@@ -35,10 +36,10 @@ function _closeMobileMenu(): void {
 			size="sm"
 			class="h-8 gap-1.5 px-2.5 lg:hidden text-xs"
 			onclick={() => (mobileMenuOpen = true)}
-			aria-label="Open documentation navigation"
+			aria-label={m.docs_open_navigation_label()}
 		>
 			<Menu size={15} />
-			<span class="font-mono text-xs">Menu</span>
+			<span class="font-mono text-xs">{m.docs_menu()}</span>
 		</Button>
 
 	</div>
@@ -49,11 +50,11 @@ function _closeMobileMenu(): void {
 			type="button"
 			onclick={() => (searchOpen = true)}
 			class="group flex h-8 w-44 sm:w-64 cursor-pointer items-center justify-between rounded-lg border border-border/80 bg-muted/40 px-3 text-xs text-muted-foreground transition-all duration-150 hover:border-primary/50 hover:bg-muted/70 hover:text-foreground"
-			aria-label="Search documentation"
+			aria-label={m.docs_search_label()}
 		>
 			<span class="flex items-center gap-2 truncate">
 				<Search size={13} class="text-primary/80 transition-transform group-hover:scale-110" />
-				<span class="truncate">Search docs...</span>
+				<span class="truncate">{m.docs_search_placeholder()}</span>
 			</span>
 			<kbd
 				class="hidden sm:inline-flex items-center rounded border border-border/80 bg-background/80 px-1.5 py-0.5 font-mono text-[10px] font-bold text-muted-foreground"
@@ -134,7 +135,7 @@ function _closeMobileMenu(): void {
 					>
 						LC
 					</span>
-					<span class="font-bold text-sm text-foreground">Documentation</span>
+					<span class="font-bold text-sm text-foreground">{m.docs_title()}</span>
 				</div>
 				<Button
 					variant="ghost"
@@ -148,7 +149,7 @@ function _closeMobileMenu(): void {
 			</div>
 
 			<div class="flex-1 overflow-y-auto pr-1">
-				<Sidebar {sections} onLinkClick={_closeMobileMenu} />
+				<DocSidebar {sections} onLinkClick={_closeMobileMenu} />
 			</div>
 
 			<div class="mt-6 border-t border-border pt-4 text-xs text-muted-foreground">

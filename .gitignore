@@ -40,3 +40,6 @@ session-ses_08e9.md
 
 # Local PostHog personal API key (never commit)
 .posthog-key
+# Paraglide
+src/lib/paraglide
+project.inlang/cache/
