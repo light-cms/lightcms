@@ -25,6 +25,7 @@ preview: /og-image.png
 
 [light-cms](https://github.com/light-cms) 組織を参照してください。テンプレートを選択し、このテンプレートを使用をクリックします。これにより、アカウントに新しいリポジトリが作成されます。それぞれがサンプル内容の小さなブログの例です。
 
+<<<<<<< HEAD
 | テンプレート                                                | ジェネレーター                              | デモ                                             | ローカルで実行               |
 | ----------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------ | ---------------------------- |
 | [astro_blog](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) with Starlight | [デモ](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
@@ -70,6 +71,54 @@ CSS フレームワークを学んだり、設定ファイルを編集したり�
 | 静的サイトジェネレーター                     | フリー (オープンソース) |
 | ホスティング (Cloudflare Pages/GitHub Pages) | 無料Tier                |
 | Gitベース CMS (LightCMS/self-hosted)         | フリーでオープン ソース |
+||||||| 580c49f
+=======
+| テンプレート                                                      | ジェネレーター                                     | デモ                                             | ローカルで実行                              |
+| ----------------------------------------------------------- | ------------------------------------------- | ---------------------------------------------- | ------------------------------------ |
+| [astro_blog](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) with Starlight | [デモ](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
+| [eleventy_blog](https://github.com/light-cms/eleventy_blog) | [イレブン](https://www.11ty.dev)                | [デモ](https://blogs.lightcms.me/eleventy_blog/) | `npm install && npm run dev` |
+| [hugo_blog](https://github.com/light-cms/hugo_blog)         | [ヒューゴ](https://gohugo.io)                   | [デモ](https://blogs.lightcms.me/hugo_blog/)     | `ヒューゴサーバー`                           |
+| [jekyll_blog](https://github.com/light-cms/jekyll_blog)     | [Jekyll](https://jekyllrb.com)              | [デモ](https://blogs.lightcms.me/jekyll_blog/)   | `バンドルexec jekyll serve`              |
+| [zola_blog](https://github.com/light-cms/zola_blog)         | [Zola](https://www.getzola.org)             | [デモ](https://blogs.lightcms.me/zola_blog/)     | `ゾラサーブ`                              |
+| [zine_blog](https://github.com/light-cms/zine_blog)         | [Zine](https://zine-ssg.io)                 | [デモ](https://blogs.lightcms.me/zine_blog/)     | `zine`                               |
+
+すべてのテンプレートは次のとおりです:
+
+- `.github/workflow` フォルダ内の GitHub Actions ファイル。
+- 編集するサンプルコンテンツ。
+- リポジトリ内の [mise.toml](https://mise.jdx.dev) という名前の `mise.toml` 設定ファイル。 `jekyll_blog` は `Gemfile` と Docker Compose に依存しています。
+
+## 2. AI コーディングエージェントを使用してカスタマイズ
+
+CSS フレームワークを学んだり、設定ファイルを編集したりする必要はありません。好みのAIコーディング環境(カーソル、クロードコード、コパイロット、アンチグラビティなど)でリポジトリを開きます。エージェントに教えてください:
+
+> テーマを更新して、編集用の暖かいフォントを使用します。テーマにオーダーメイドの色をダーク/ライトモードにします。私の個人的なブログのナビゲーションをスタイル。
+
+あなたのエージェントは、テーマトークンとレイアウト調整を使用してコンポーネントのスタイリングを処理します。
+
+## 3. LightCMSで書いて公開する
+
+リポジトリを設定した後、ターミナルに触れる必要はありません。
+
+1. GitHub アカウントで [LightCMS](/docs/getting-started-with-lightcms) にログインします。
+2. あなたのブログのリポジトリを選択してください。
+3. 素晴らしいエディタを使用してあなたの記事を作成します。そして、あなたのAI副操縦士が助けています。
+4. 公開ボタンを押してください。 LightCMSはクリーンマークダウンであなたの投稿をコミットします。ビルドとデプロイパイプラインは、ポストを即座にデプロイします。
+
+## 4. オーディエンスを拡大する
+
+一貫してコンテンツを公開します！検索エンジンは、一貫性のある問題解決を支持します。また、無料でCore Web Vitalsを入手できます。静的なサイトでは、あなたのページは速くとどまります。 [Newsy](/docs/newsletter-newsy) であなたの投稿をニュースレターに変えましょう。
+
+---
+
+## コストの内訳：
+
+| 項目                                     | コスト           |
+| -------------------------------------- | ------------- |
+| 静的サイトジェネレーター                           | フリー (オープンソース) |
+| ホスティング (Cloudflare Pages/GitHub Pages) | 無料Tier        |
+| Gitベース CMS (LightCMS/self-hosted)      | フリーでオープン ソース  |
+>>>>>>> refs/remotes/upstream/main
 
 ドメイン名の価格だけのための実際の出版物を構築することができます。そして誰も言及していないコラムがもう１つありますエネルギー。 CDN経由で静的サイトを提供することは、レンダリングされたサイトのCO2のほんの一部を放出することを意味します。
 

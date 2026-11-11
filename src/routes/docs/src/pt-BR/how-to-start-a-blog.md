@@ -25,6 +25,7 @@ Em 2026, iniciar um blog é mais fácil e mais barato do que nunca. Você não p
 
 Visite a organização [light-cms](https://github.com/light-cms). Escolha um modelo e clique em Usar este modelo. Cria um novo repositório em sua conta. Cada um é um pequeno exemplo de blog com conteúdo de amostra.
 
+<<<<<<< HEAD
 | Modelo                                                       | Gerador                                    | Demonstração                                             | Executar localmente          |
 | ------------------------------------------------------------ | ------------------------------------------ | -------------------------------------------------------- | ---------------------------- |
 | [bloco_de_ástrofe](https://github.com/light-cms/astro_blog)  | [Astro](https://astro.build) com Starlight | [Demonstração](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
@@ -33,6 +34,17 @@ Visite a organização [light-cms](https://github.com/light-cms). Escolha um mod
 | [joelho_blog](https://github.com/light-cms/jekyll_blog)      | [Jekyll](https://jekyllrb.com)             | [Demonstração](https://blogs.lightcms.me/jekyll_blog/)   | `bundle exec jeyll serve`    |
 | [ola_blog](https://github.com/light-cms/zola_blog)           | [Zola](https://www.getzola.org)            | [Demonstração](https://blogs.lightcms.me/zola_blog/)     | `Senha de serviço`           |
 | [zine_blog](https://github.com/light-cms/zine_blog)          | [Zine](https://zine-ssg.io)                | [Demonstração](https://blogs.lightcms.me/zine_blog/)     | `zine`                       |
+||||||| 580c49f
+=======
+| Modelo                                                        | Gerador                                    | Demonstração                                             | Executar localmente                  |
+| ------------------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------- | ------------------------------------ |
+| [bloco_de_ástrofe](https://github.com/light-cms/astro_blog) | [Astro](https://astro.build) com Starlight | [Demonstração](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
+| [blog_principal](https://github.com/light-cms/eleventy_blog)  | [Elevativo](https://www.11ty.dev)          | [Demonstração](https://blogs.lightcms.me/eleventy_blog/) | `npm install && npm run dev` |
+| [blog_Em_eurralho](https://github.com/light-cms/hugo_blog)  | [Hugo](https://gohugo.io)                  | [Demonstração](https://blogs.lightcms.me/hugo_blog/)     | `servidor hugo`                      |
+| [joelho_blog](https://github.com/light-cms/jekyll_blog)       | [Jekyll](https://jekyllrb.com)             | [Demonstração](https://blogs.lightcms.me/jekyll_blog/)   | `bundle exec jeyll serve`            |
+| [ola_blog](https://github.com/light-cms/zola_blog)            | [Zola](https://www.getzola.org)            | [Demonstração](https://blogs.lightcms.me/zola_blog/)     | `Senha de serviço`                   |
+| [zine_blog](https://github.com/light-cms/zine_blog)           | [Zine](https://zine-ssg.io)                | [Demonstração](https://blogs.lightcms.me/zine_blog/)     | `zine`                               |
+>>>>>>> refs/remotes/upstream/main
 
 Todos os modelos incluem:
 

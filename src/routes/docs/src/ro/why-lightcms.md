@@ -2,7 +2,12 @@
 title: "De ce LightCMS: CMS sprijinit de Git-uri pentru site-uri statice"
 description: Majoritatea platformelor CMS dețin conținutul tău. LightCMS îl păstrează în repozitoriul tău Git, în marcaje simple, implementat de propria ta conductă.
 serial: 2
+<<<<<<< HEAD
 date: "2026-10-14T14:00:00: Z"
+||||||| 580c49f
+=======
+date: '2026-10-14T14:00:00: Z'
+>>>>>>> refs/remotes/upstream/main
 draft: fals
 tags:
   - beculețe

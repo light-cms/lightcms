@@ -25,6 +25,7 @@ preview: /og-image.png
 
 Vizitați organizația [light-cms](https://github.com/light-cms). Alegeți un șablon și faceți clic pe Utilizați acest șablon. Acest lucru creează un nou repo în contul dvs. Fiecare este un mic exemplu de blog funcțional, cu conținut eșantion.
 
+<<<<<<< HEAD
 | Șablon                                              | Generator                                 | Demo                                             | Rulează local                |
 | --------------------------------------------------- | ----------------------------------------- | ------------------------------------------------ | ---------------------------- |
 | [Blog](https://github.com/light-cms/astro_blog)     | [Astro](https://astro.build) cu Starlight | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
@@ -33,6 +34,17 @@ Vizitați organizația [light-cms](https://github.com/light-cms). Alegeți un ș
 | [blog](https://github.com/light-cms/jekyll_blog)    | [Ecran](https://jekyllrb.com)             | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bundle exec jekyll serve`   |
 | [zola_blog](https://github.com/light-cms/zola_blog) | [Zola](https://www.getzola.org)           | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola servește`              |
 | [zine_blog](https://github.com/light-cms/zine_blog) | [Zină](https://zine-ssg.io)               | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zine`                       |
+||||||| 580c49f
+=======
+| Șablon                                              | Generator                                 | Demo                                             | Rulează local                        |
+| --------------------------------------------------- | ----------------------------------------- | ------------------------------------------------ | ------------------------------------ |
+| [Blog](https://github.com/light-cms/astro_blog)     | [Astro](https://astro.build) cu Starlight | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
+| [blog](https://github.com/light-cms/eleventy_blog)  | [Unsprezece](https://www.11ty.dev)        | [Demo](https://blogs.lightcms.me/eleventy_blog/) | `npm install && npm run dev` |
+| [ugo_blog](https://github.com/light-cms/hugo_blog)  | [Hugo](https://gohugo.io)                 | [Demo](https://blogs.lightcms.me/hugo_blog/)     | `îmbrățișare server`                 |
+| [blog](https://github.com/light-cms/jekyll_blog)    | [Ecran](https://jekyllrb.com)             | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bundle exec jekyll serve`           |
+| [zola_blog](https://github.com/light-cms/zola_blog) | [Zola](https://www.getzola.org)           | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola servește`                      |
+| [zine_blog](https://github.com/light-cms/zine_blog) | [Zină](https://zine-ssg.io)               | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zine`                               |
+>>>>>>> refs/remotes/upstream/main
 
 Toate șabloanele includ:
 
