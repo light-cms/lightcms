@@ -2,7 +2,8 @@
 <script lang="ts">
   import type { Pathname } from '$app/types';
   import { resolve } from '$app/paths';
-  import { locales, localizeHref, resolveLocaleFromPathname, setLocale, stripLocaleFromPathname } from '$lib/i18n';
+  import { browser } from '$app/environment';
+import { locales, localizeHref, resolveLocaleFromPathname, setLocale, stripLocaleFromPathname, getTextDirection } from '$lib/i18n';
   import * as m from '$lib/i18n/messages';
   import Blocks from "@lucide/svelte/icons/blocks";
   import BookOpen from "@lucide/svelte/icons/book-open";
@@ -47,7 +48,12 @@ const userInitial = $derived(
   const isDocs = $derived(currentPath.startsWith("/docs"));
 
   $effect(() => {
-    setLocale(resolveLocaleFromPathname(page.url.pathname));
+    const locale = resolveLocaleFromPathname(page.url.pathname);
+    setLocale(locale);
+    if (browser) {
+      document.documentElement.lang = locale;
+      document.documentElement.dir = getTextDirection(locale);
+    }
   });
 
   let posthogClient: typeof import("posthog-js").default | undefined;

@@ -10,6 +10,7 @@ import {
 	localeMetadata,
 	locales,
 	localizeHref,
+	setLocale,
 	type Locale,
 } from "$lib/i18n";
 import * as m from "$lib/i18n/messages";
@@ -19,6 +20,7 @@ const currentLocale = $derived(getLocale());
 const currentMeta = $derived(localeMetadata[currentLocale]);
 
 let searchQuery = $state("");
+let open = $state(false);
 
 function getFilteredLocales(queryText: string): readonly Locale[] {
 	const query = queryText.trim().toLowerCase();
@@ -43,9 +45,14 @@ function getTargetUrl(targetLocale: Locale): string {
 
 function switchLocale(targetLocale: Locale): void {
 	if (targetLocale === currentLocale) {
+		open = false;
+		searchQuery = "";
 		return;
 	}
+	setLocale(targetLocale);
 	const targetUrl = getTargetUrl(targetLocale);
+	open = false;
+	searchQuery = "";
 	goto(targetUrl);
 }
 
@@ -55,8 +62,9 @@ const triggerAriaLabel = $derived(
 </script>
 
 <DropdownMenu.Root
-	onOpenChange={(open) => {
-		if (!open) {
+	bind:open
+	onOpenChange={(isOpen) => {
+		if (!isOpen) {
 			searchQuery = "";
 		}
 	}}
