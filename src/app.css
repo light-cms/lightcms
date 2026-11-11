@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@fontsource-variable/jetbrains-mono/wght.css";
+/*@import "https://cdn.jsdelivr.net/npm/@fontsource-variable/jetbrains-mono@5.3.0/index.min.css";*/
 @import "tw-animate-css";
 @import "@skeletonlabs/skeleton";
 @import "@skeletonlabs/skeleton-svelte";
@@ -28,8 +28,8 @@
 @import "@skeletonlabs/skeleton/themes/vox";
 @import "@skeletonlabs/skeleton/themes/wintry";
 @import "shadcn-svelte/tailwind.css";
-@import "@fontsource-variable/inter";
-@import "@fontsource-variable/geist";
+/*@import "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/index.min.css";*/
+/*@import "https://cdn.jsdelivr.net/npm/@fontsource-variable/geist@5.3.0/index.min.css";*/
 
 /* Tailwind dark variant disabled here to avoid CSS parser warnings */
 
