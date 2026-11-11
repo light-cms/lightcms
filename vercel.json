@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "sveltekit",
   "redirects": [
     {
       "source": "/docs/2026-09-18-why-lightcms",

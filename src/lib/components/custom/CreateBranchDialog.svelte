@@ -14,6 +14,7 @@ import {
 } from "$lib/components/ui/dialog";
 import { Input } from "$lib/components/ui/input";
 import { Label } from "$lib/components/ui/label";
+import * as m from "$lib/i18n/messages";
 import { createLightCmsClient } from "$lib/orpc-client";
 
 interface BranchOption {
@@ -107,7 +108,7 @@ async function submit(event: SubmitEvent) {
 		<DialogHeader>
 			<DialogTitle class="flex items-center gap-2">
 				<GitFork size={16} class="text-primary-500" />
-				Create Branch
+				{m.branch_dialog_title()}
 			</DialogTitle>
 			<DialogDescription>
 				Branch <span class="font-mono font-semibold text-foreground">{repository}</span> to safely
@@ -116,7 +117,7 @@ async function submit(event: SubmitEvent) {
 		</DialogHeader>
 		<form class="space-y-4" onsubmit={submit}>
 			<div class="space-y-2">
-				<Label for="create-branch-name">New branch name</Label>
+				<Label for="create-branch-name">{m.branch_dialog_name_label()}</Label>
 				<Input
 					id="create-branch-name"
 					name="name"
@@ -131,7 +132,7 @@ async function submit(event: SubmitEvent) {
 				</p>
 			</div>
 			<div class="space-y-2">
-				<Label for="create-branch-from">Branch from</Label>
+				<Label for="create-branch-from">{m.branch_dialog_from_label()}</Label>
 				<Input
 					id="create-branch-from"
 					name="from"
@@ -172,15 +173,15 @@ async function submit(event: SubmitEvent) {
 			{/if}
 			<DialogFooter>
 				<Button type="button" variant="outline" onclick={() => (dialogOpen = false)} disabled={submitting}>
-					Cancel
+					{m.action_cancel()}
 				</Button>
 				<Button type="submit" class="gap-2" disabled={submitting}>
 					{#if submitting}
 						<LoaderCircle size={15} class="animate-spin" />
-						Creating…
+						{m.branch_dialog_submitting()}
 					{:else}
 						<Plus size={15} />
-						Create branch
+						{m.branch_dialog_submit()}
 					{/if}
 				</Button>
 			</DialogFooter>

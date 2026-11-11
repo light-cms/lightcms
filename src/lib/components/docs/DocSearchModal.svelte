@@ -2,8 +2,9 @@
 import ArrowRight from "@lucide/svelte/icons/arrow-right";
 import FileText from "@lucide/svelte/icons/file-text";
 import { goto } from "$app/navigation";
-import { localizeHref } from "$lib/paraglide/runtime.js";
 import * as Command from "$lib/components/ui/command";
+import { localizeHref } from "$lib/i18n";
+import * as m from "$lib/i18n/messages";
 import type { DocNavSection } from "$lib/server/docs";
 
 let {
@@ -29,11 +30,15 @@ function selectDoc(slug: string): void {
 
 <svelte:window onkeydown={handleKeydown} />
 
-<Command.Dialog bind:open title="Search Documentation" description="Search all documentation articles and topics">
-	<Command.Input placeholder="Search documentation... (⌘K)" />
+<Command.Dialog
+	bind:open
+	title={m.docs_search_modal_title()}
+	description={m.docs_search_modal_description()}
+>
+	<Command.Input placeholder={m.docs_search_modal_placeholder()} />
 	<Command.List class="max-h-96 overflow-y-auto p-2">
 		<Command.Empty class="py-8 text-center text-sm text-muted-foreground">
-			No documentation found. Try a different query.
+			{m.docs_search_modal_empty()}
 		</Command.Empty>
 
 		{#each sections as section (section.title)}

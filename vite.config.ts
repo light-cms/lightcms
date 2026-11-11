@@ -1,11 +1,8 @@
-import { paraglideVitePlugin } from "@inlang/paraglide-js";
 import adapter from "@sveltejs/adapter-vercel";
 import { sveltekit } from "@sveltejs/kit/vite";
 import tailwindcss from "@tailwindcss/vite";
 import { mdsvex } from "mdsvex";
 import { defineConfig } from "vite-plus";
-import linguiForSvelte from "lingui-for-svelte/unplugin/vite";
-import linguiMacro from "unplugin-lingui-macro/vite";
 
 export default defineConfig({
   test: {
@@ -72,8 +69,6 @@ export default defineConfig({
   },
   plugins: [
     tailwindcss(),
-    linguiMacro(),
-    linguiForSvelte(),
     sveltekit({
       adapter: adapter(),
       paths: {
@@ -92,11 +87,5 @@ export default defineConfig({
       },
     }),
     mdsvex({ extensions: [".svelte", ".md", ".mdx"] }),
-    // paraglideVitePlugin({
-    //   project: "./project.inlang",
-    //   outdir: "./src/lib/paraglide",
-    //   strategy: ["url", "cookie", "preferredLanguage", "baseLocale"],
-    //   emitTsDeclarations: true,
-    // }),
   ],
 });

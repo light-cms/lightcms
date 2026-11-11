@@ -1,6 +1,6 @@
 import { building } from "$app/environment";
-import { getTextDirection } from "$lib/paraglide/runtime.js";
-import { paraglideMiddleware } from "$lib/paraglide/server.js";
+import { getTextDirection, resolveLocaleFromPathname } from "$lib/i18n";
+import { runWithLocale } from "$lib/server/i18n";
 import { getAuth } from "$lib/server/auth";
 import { captureServerError } from "$lib/server/posthog";
 import { type Handle, type HandleServerError, redirect } from "@sveltejs/kit";
@@ -51,20 +51,21 @@ const handleBetterAuth: Handle = async ({ event, resolve }) => {
   return resolve(event);
 };
 
-const handleParaglide: Handle = ({ event, resolve }) =>
-  paraglideMiddleware(event.request, ({ request, locale }) => {
-    return resolve(
-      { ...event, request },
-      {
-        transformPageChunk: ({ html }) =>
-          html
-            .replace("%paraglide.lang%", locale)
-            .replace("%paraglide.dir%", getTextDirection(locale)),
-      },
-    );
-  });
+const handleI18n: Handle = ({ event, resolve }) => {
+  const locale = resolveLocaleFromPathname(event.url.pathname);
+  return runWithLocale(locale, () =>
+    resolve(event, {
+      transformPageChunk: ({ html }) =>
+        html
+          .replace("%app.lang%", locale)
+          .replace("%app.dir%", getTextDirection(locale))
+          .replace("%paraglide.lang%", locale)
+          .replace("%paraglide.dir%", getTextDirection(locale)),
+    }),
+  );
+};
 
-export const handle: Handle = sequence(handleSecurityHeaders, handleBetterAuth, handleParaglide);
+export const handle: Handle = sequence(handleSecurityHeaders, handleBetterAuth, handleI18n);
 
 export const handleError: HandleServerError = async ({ error, status }) => {
   if (status !== 404 && !building) {

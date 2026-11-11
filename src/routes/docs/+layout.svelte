@@ -7,7 +7,7 @@ import type { LayoutData } from "./$types";
 import { DocSearchModal, DocSidebar } from "$lib/components/docs";
 import DocTableOfContents from "$lib/components/docs/DocTableOfContents.svelte";
 import { Search } from "@lucide/svelte";
-import * as m from "$lib/paraglide/messages.js";
+import * as m from "$lib/i18n/messages";
 
 let { data, children }: { data: LayoutData; children: any } = $props();
 

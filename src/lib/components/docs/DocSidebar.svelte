@@ -1,6 +1,6 @@
 <script lang="ts">
 import { page } from "$app/state";
-import { localizeHref } from "$lib/paraglide/runtime.js";
+import { localizeHref } from "$lib/i18n";
 import { stripLocaleFromPathname } from "$lib/i18n";
 import type { DocNavSection } from "$lib/server/docs";
 import { cn } from "$lib/utils";

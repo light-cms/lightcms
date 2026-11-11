@@ -1,6 +1,5 @@
 import { error } from "@sveltejs/kit";
-import { localizeHref } from "$lib/paraglide/runtime.js";
-import { resolveLocaleFromPathname } from "$lib/i18n";
+import { localizeHref, resolveLocaleFromPathname } from "$lib/i18n";
 import { absoluteUrl, SITE } from "$lib/seo";
 import { loadDocEntries } from "$lib/server/docs";
 import { renderDocMarkdown } from "$lib/server/markdown";

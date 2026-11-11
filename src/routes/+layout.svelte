@@ -2,9 +2,8 @@
 <script lang="ts">
   import type { Pathname } from '$app/types';
   import { resolve } from '$app/paths';
-  import { locales, localizeHref } from '$lib/paraglide/runtime.js';
-  import * as m from '$lib/paraglide/messages.js';
-  import { stripLocaleFromPathname } from '$lib/i18n';
+  import { locales, localizeHref, resolveLocaleFromPathname, setLocale, stripLocaleFromPathname } from '$lib/i18n';
+  import * as m from '$lib/i18n/messages';
   import Blocks from "@lucide/svelte/icons/blocks";
   import BookOpen from "@lucide/svelte/icons/book-open";
   import Info from "@lucide/svelte/icons/info";
@@ -22,6 +21,7 @@
   import Featured from "$lib/components/Featured.svelte";
   import MetaTags from "$lib/components/custom/MetaTags.svelte";
   import StarRepoDialog from "$lib/components/custom/StarRepoDialog.svelte";
+  import LanguageSwitcher from "$lib/components/custom/LanguageSwitcher.svelte";
   import ToggleMode from "$lib/components/custom/ToggleMode.svelte";
   import { Avatar } from "$lib/components/ui/avatar";
   import { Button } from "$lib/components/ui/button";
@@ -45,6 +45,10 @@ const userInitial = $derived(
 );
   const currentPath = $derived(stripLocaleFromPathname(page.url.pathname));
   const isDocs = $derived(currentPath.startsWith("/docs"));
+
+  $effect(() => {
+    setLocale(resolveLocaleFromPathname(page.url.pathname));
+  });
 
   let posthogClient: typeof import("posthog-js").default | undefined;
   let identifiedUserId: string | undefined;
@@ -162,7 +166,11 @@ const userInitial = $derived(
 
         <span class="mx-1 h-5 w-px bg-border/60" aria-hidden="true"></span>
 
-        <a class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary text-primary-foreground text-xs font-bold rounded-xl shadow-xs hover:opacity-90 active:scale-[0.98] transition-all duration-200" href="/auth">
+        <a
+          class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-primary text-primary-foreground text-xs font-bold rounded-xl shadow-xs hover:opacity-90 active:scale-[0.98] transition-all duration-200"
+          href="/auth"
+          aria-label={m.auth_title()}
+        >
           {#if session}
             <Avatar.Root class="size-5 shrink-0 border border-primary-foreground/20 rounded-full overflow-hidden">
               <Avatar.Fallback class="text-xs font-black bg-primary-foreground text-primary flex items-center justify-center size-full"
@@ -174,6 +182,7 @@ const userInitial = $derived(
           {/if}
         </a>
 
+        <LanguageSwitcher />
         <ToggleMode />
       </nav>
     </div>

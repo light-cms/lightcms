@@ -2,6 +2,8 @@
 import ArrowLeft from "@lucide/svelte/icons/arrow-left";
 import { goto } from "$app/navigation";
 import { authClient, signOut } from "$lib/auth-client";
+import { localizeHref } from "$lib/i18n";
+import * as m from "$lib/i18n/messages";
 
 let _isSigningOut = $state(true);
 let _errorMessage = $state<string>("");
@@ -53,7 +55,7 @@ $effect(() => {
 </script>
 
 <svelte:head>
-  <title>Signing out | LightCMS</title>
+  <title>{m.signout_title()} | LightCMS</title>
 </svelte:head>
 
 <section
@@ -68,18 +70,23 @@ $effect(() => {
   {#if _errorMessage}
     <h1 class="text-2xl font-bold text-foreground">{_errorMessage}</h1>
   {:else}
-    <h1 class="text-2xl font-bold text-foreground">Signing you out</h1>
+    <h1 class="text-2xl font-bold text-foreground">{m.signout_title()}</h1>
   {/if}
 
   <p class="text-sm text-muted-foreground">
     {#if _errorMessage}
       {_errorMessage}
     {:else}
-      You will be redirected to the homepage in a moment.
+      {m.signout_redirecting()}
     {/if}
   </p>
 
   {#if !_isSigningOut}
-    <a class="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-xs mt-2" href="/">Continue</a>
+    <a
+      class="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-xs mt-2"
+      href={localizeHref("/")}
+    >
+      {m.signout_continue()}
+    </a>
   {/if}
 </section>

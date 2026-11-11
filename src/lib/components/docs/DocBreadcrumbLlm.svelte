@@ -4,11 +4,11 @@ import ChevronDown from "@lucide/svelte/icons/chevron-down";
 import ChevronRight from "@lucide/svelte/icons/chevron-right";
 import Copy from "@lucide/svelte/icons/copy";
 import FileCode from "@lucide/svelte/icons/file-code";
-import FileText from "@lucide/svelte/icons/file-text";
 import Link from "@lucide/svelte/icons/link";
 import { toast } from "svelte-sonner";
 import { Button } from "$lib/components/ui/button";
 import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+import * as m from "$lib/i18n/messages";
 
 let {
 	section = "Get Started",
@@ -36,21 +36,21 @@ async function copyForLlm(): Promise<void> {
 	try {
 		await navigator.clipboard.writeText(promptContext);
 		copied = true;
-		toast.success("Copied page markdown for LLM!");
+		toast.success(m.docs_toast_copied_llm());
 		setTimeout(() => {
 			copied = false;
 		}, 2000);
 	} catch {
-		toast.error("Failed to copy to clipboard");
+		toast.error(m.docs_toast_copy_failed());
 	}
 }
 
 async function copyPageLink(): Promise<void> {
 	try {
 		await navigator.clipboard.writeText(window.location.href);
-		toast.success("Page link copied to clipboard!");
+		toast.success(m.docs_toast_copied_link());
 	} catch {
-		toast.error("Failed to copy link");
+		toast.error(m.docs_toast_copy_link_failed());
 	}
 }
 </script>
@@ -76,20 +76,20 @@ async function copyPageLink(): Promise<void> {
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content align="end" class="w-56 font-sans">
 			<DropdownMenu.Label class="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-				LLM Actions
+				{m.docs_llm_actions()}
 			</DropdownMenu.Label>
 			<DropdownMenu.Item onclick={copyForLlm} class="gap-2 text-xs">
 				{#if copied}
 					<Check size={14} class="text-emerald-500" />
-					<span class="text-emerald-500 font-semibold">Copied!</span>
+					<span class="text-emerald-500 font-semibold">{m.docs_copied()}</span>
 				{:else}
 					<Copy size={14} class="text-muted-foreground" />
-					<span>Copy for LLM (.md)</span>
+					<span>{m.docs_copy_llm()}</span>
 				{/if}
 			</DropdownMenu.Item>
 			<DropdownMenu.Item onclick={copyPageLink} class="gap-2 text-xs">
 				<Link size={14} class="text-muted-foreground" />
-				<span>Copy Page Link</span>
+				<span>{m.docs_copy_link()}</span>
 			</DropdownMenu.Item>
 		</DropdownMenu.Content>
 	</DropdownMenu.Root>

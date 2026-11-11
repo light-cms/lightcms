@@ -11,6 +11,8 @@ import {
 	CardHeader,
 	CardTitle,
 } from "$lib/components/ui/card";
+import { localizeHref } from "$lib/i18n";
+import * as m from "$lib/i18n/messages";
 
 interface DocPost {
 	slug: string;
@@ -24,9 +26,11 @@ let {
 	data: { title?: string; posts?: DocPost[] };
 } = $props();
 
-const _title = $derived(data.title ?? "Documentation");
+const title = $derived(data.title ?? m.docs_title());
 const posts = $derived(data.posts ?? []);
-const _guideLabel = $derived(posts.length === 1 ? "guide" : "guides");
+const guideLabel = $derived(
+	posts.length === 1 ? m.docs_guide_singular() : m.docs_guide_plural(),
+);
 </script>
 
 <section class="space-y-10 py-6 sm:py-10">
@@ -35,10 +39,10 @@ const _guideLabel = $derived(posts.length === 1 ? "guide" : "guides");
 			class="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-semibold text-foreground"
 		>
 			<BookOpen size={13} class="text-primary" />
-			{_title}
+			{title}
 		</span>
 		<Badge variant="secondary">
-			{posts.length} {_guideLabel}
+			{posts.length} {guideLabel}
 		</Badge>
 	</header>
 
@@ -46,7 +50,7 @@ const _guideLabel = $derived(posts.length === 1 ? "guide" : "guides");
 		<div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
 			{#each posts as post, i}
 				<a
-					href={post.slug}
+					href={localizeHref(post.slug)}
 					class="group block h-full rounded-xl transition-all duration-200 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
 				>
 					<Card class="h-full transition-shadow duration-200 group-hover:shadow-md">
@@ -74,7 +78,7 @@ const _guideLabel = $derived(posts.length === 1 ? "guide" : "guides");
 							<span
 								class="inline-flex items-center gap-1.5 text-xs font-bold text-primary"
 							>
-								Read guide
+								{m.docs_read_guide()}
 								<ArrowRight
 									size={14}
 									class="transition-transform duration-200 group-hover:translate-x-1"
@@ -94,7 +98,6 @@ const _guideLabel = $derived(posts.length === 1 ? "guide" : "guides");
 			>
 				<BookOpen size={22} />
 			</span>
-			<!-- <p class="text-sm font-semibold text-foreground">No guides yet</p> -->
 		</div>
 	{/if}
 

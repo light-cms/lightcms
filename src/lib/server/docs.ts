@@ -1,5 +1,5 @@
 import matter from "gray-matter";
-import { baseLocale } from "$lib/paraglide/runtime.js";
+import { baseLocale } from "$lib/i18n";
 import { DEFAULT_OG_IMAGE } from "$lib/seo";
 
 export interface DocEntry {
@@ -160,9 +160,16 @@ export async function loadDocEntries(locale: string = baseLocale): Promise<DocEn
   );
 
   const baseEntries = new Map<string, DocEntry>();
+  const baseFilenameToSlug = new Map<string, string>();
   const localizedEntries = new Map<string, DocEntry>();
 
+  // Pass 1: Parse base English source docs
   for (const [path, file] of Object.entries(modules)) {
+    const fileLocale = toDocLocale(path);
+    if (fileLocale !== undefined) {
+      continue;
+    }
+
     const raw = typeof file === "string" ? file : "";
     const { data: frontmatter } = matter(raw);
 
@@ -170,13 +177,11 @@ export async function loadDocEntries(locale: string = baseLocale): Promise<DocEn
       continue;
     }
 
-    const fileLocale = toDocLocale(path);
-    if (fileLocale !== undefined && fileLocale !== locale) {
-      continue;
-    }
-
+    const filename = path.split("/").pop() ?? path;
     const slug = toSlug(path, frontmatter);
-    const entry: DocEntry = {
+    baseFilenameToSlug.set(filename, slug);
+
+    baseEntries.set(slug, {
       slug,
       title: toTitle(frontmatter, slug),
       description: toDescription(frontmatter, raw),
@@ -187,12 +192,50 @@ export async function loadDocEntries(locale: string = baseLocale): Promise<DocEn
       raw,
       section: toSection(frontmatter, slug),
       badge: toBadge(frontmatter),
-    };
+    });
+  }
 
-    if (fileLocale === locale) {
-      localizedEntries.set(slug, entry);
-    } else {
-      baseEntries.set(slug, entry);
+  // Pass 2: If a localized locale is requested, overlay translated docs
+  if (locale !== baseLocale) {
+    for (const [path, file] of Object.entries(modules)) {
+      const fileLocale = toDocLocale(path);
+      if (fileLocale !== locale) {
+        continue;
+      }
+
+      const raw = typeof file === "string" ? file : "";
+      const { data: frontmatter } = matter(raw);
+
+      if (frontmatter.draft === true) {
+        continue;
+      }
+
+      const filename = path.split("/").pop() ?? path;
+      // Inherit the canonical slug from the corresponding base doc if matched by filename
+      const slug = baseFilenameToSlug.get(filename) ?? toSlug(path, frontmatter);
+      const baseEntry = baseEntries.get(slug);
+
+      const parsedSerial = toSerial(frontmatter);
+      const serial = parsedSerial !== 0 ? parsedSerial : (baseEntry?.serial ?? 0);
+
+      const parsedPreview = toPreview(frontmatter);
+      const preview =
+        parsedPreview !== DEFAULT_OG_IMAGE
+          ? parsedPreview
+          : (baseEntry?.preview ?? DEFAULT_OG_IMAGE);
+
+      localizedEntries.set(slug, {
+        slug,
+        title: toTitle(frontmatter, slug),
+        description: toDescription(frontmatter, raw),
+        keywords: toKeywords(frontmatter),
+        serial,
+        date: toIsoDate(frontmatter.date) ?? baseEntry?.date ?? null,
+        preview,
+        raw,
+        section: toSection(frontmatter, slug),
+        badge: toBadge(frontmatter) ?? baseEntry?.badge ?? null,
+      });
     }
   }
 

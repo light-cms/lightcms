@@ -13,6 +13,7 @@ import {
 } from "$lib/components/ui/dialog";
 import { Input } from "$lib/components/ui/input";
 import { Label } from "$lib/components/ui/label";
+import * as m from "$lib/i18n/messages";
 
 interface Props {
 	open?: boolean;
@@ -29,10 +30,12 @@ let {
 	targetPath,
 	error = "",
 	action = "?/createFolder",
-	title = "New Folder",
+	title,
 	description,
 	onSuccess,
 }: Props = $props();
+
+const dialogTitle = $derived(title ?? m.folder_dialog_title());
 
 let folderName = $state("");
 
@@ -48,7 +51,7 @@ $effect(() => {
 		<DialogHeader>
 			<DialogTitle class="flex items-center gap-2">
 				<Sparkles size={16} class="text-primary-500" />
-				{title}
+				{dialogTitle}
 			</DialogTitle>
 			<DialogDescription>
 				{#if description}
@@ -72,7 +75,7 @@ $effect(() => {
 			}}
 		>
 			<div class="grid gap-2 py-4">
-				<Label for="create-folder-input">Folder name</Label>
+				<Label for="create-folder-input">{m.folder_dialog_name_label()}</Label>
 				<Input
 					id="create-folder-input"
 					name="name"
@@ -85,12 +88,12 @@ $effect(() => {
 				{/if}
 			</div>
 			<DialogFooter>
-				<Button type="button" variant="outline" onclick={() => (false)}>
-					Cancel
+				<Button type="button" variant="outline" onclick={() => (dialogOpen = false)}>
+					{m.action_cancel()}
 				</Button>
 				<Button type="submit" class="gap-2">
 					<FolderPlus size={15} />
-					Create folder
+					{m.folder_dialog_submit()}
 				</Button>
 			</DialogFooter>
 		</form>

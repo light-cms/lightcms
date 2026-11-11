@@ -8,7 +8,6 @@ on:
       - "messages/en.json"
       - "src/routes/docs/src/*.md"
       - "crowdin.yml"
-      - "project.inlang/settings.json"
   schedule:
     # Pull completed translations every Monday at 06:00 UTC.
     - cron: "0 6 * * 1"
@@ -29,16 +28,18 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Upload sources and download translations
-        uses: crowdin/github-action@v2
+        uses: crowdin/github-action@v3
         with:
           config: crowdin.yml
           upload_sources: true
           upload_translations: false
           download_translations: true
           # Leave untranslated keys out of exported message files so
-          # Paraglide falls back to the base locale instead of showing
+          # the native i18n runtime falls back to the base locale instead of showing
           # English text under a translated locale.
           skip_untranslated_strings: true
+          # Omit downloading documentation files that have not been translated.
+          skip_untranslated_files: true
           localization_branch_name: l10n_crowdin
           create_pull_request: true
           pull_request_title: "chore(i18n): sync Crowdin translations"
@@ -50,6 +51,6 @@ jobs:
           pull_request_base_branch_name: main
           commit_message: "chore(i18n): update translations from Crowdin"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}

@@ -2,6 +2,7 @@
 import ArrowUp from "@lucide/svelte/icons/arrow-up";
 import ExternalLink from "@lucide/svelte/icons/external-link";
 import { onDestroy, onMount } from "svelte";
+import * as m from "$lib/i18n/messages";
 import type { DocHeading } from "$lib/server/markdown";
 import { cn } from "$lib/utils";
 
@@ -79,7 +80,7 @@ onDestroy(() => {
 		<h4
 			class="font-mono text-[11px] font-bold uppercase tracking-wider text-muted-foreground/70"
 		>
-			On This Page
+			{m.docs_toc_title()}
 		</h4>
 
 		<ul class="space-y-1 border-l border-border/60 pl-3">
@@ -111,7 +112,7 @@ onDestroy(() => {
 					class="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-primary"
 				>
 					<ExternalLink size={12} />
-					<span>Edit page on GitHub</span>
+					<span>{m.docs_edit_github()}</span>
 				</a>
 			{/if}
 			<button
@@ -120,7 +121,7 @@ onDestroy(() => {
 				class="flex cursor-pointer items-center gap-1.5 text-muted-foreground transition-colors hover:text-primary"
 			>
 				<ArrowUp size={12} />
-				<span>Back to top</span>
+				<span>{m.docs_back_to_top()}</span>
 			</button>
 		</div>
 	</div>
