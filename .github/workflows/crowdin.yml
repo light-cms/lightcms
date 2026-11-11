@@ -8,6 +8,7 @@ on:
       - "messages/en.json"
       - "src/routes/docs/src/*.md"
       - "crowdin.yml"
+      - "project.inlang/settings.json"
   schedule:
     # Pull completed translations every Monday at 06:00 UTC.
     - cron: "0 6 * * 1"
@@ -34,6 +35,10 @@ jobs:
           upload_sources: true
           upload_translations: false
           download_translations: true
+          # Leave untranslated keys out of exported message files so
+          # Paraglide falls back to the base locale instead of showing
+          # English text under a translated locale.
+          skip_untranslated_strings: true
           localization_branch_name: l10n_crowdin
           create_pull_request: true
           pull_request_title: "chore(i18n): sync Crowdin translations"
@@ -41,6 +46,8 @@ jobs:
             Automated translations downloaded from Crowdin.
 
             Review the new strings and merge when ready.
+          pull_request_labels: i18n
+          pull_request_base_branch_name: main
           commit_message: "chore(i18n): update translations from Crowdin"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

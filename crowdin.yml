@@ -17,28 +17,139 @@
 
 "preserve_hierarchy": true
 
+#
+# Only export locales that exist in project.inlang/settings.json. The
+# Crowdin project also has an `en` target language, which is redundant with
+# the `en` source locale; excluding it here keeps the first download from
+# overwriting messages/en.json and src/routes/docs/src/*.md.
+#
+"export_languages": [
+  "ro",
+  "fr",
+  "es-ES",
+  "af",
+  "ar",
+  "ca",
+  "cs",
+  "da",
+  "de",
+  "el",
+  "fi",
+  "he",
+  "hu",
+  "it",
+  "ja",
+  "ko",
+  "nl",
+  "no",
+  "pl",
+  "pt-PT",
+  "ru",
+  "sr",
+  "sv-SE",
+  "tr",
+  "uk",
+  "zh-CN",
+  "zh-TW",
+  "vi",
+  "pt-BR"
+]
+
 "files": [
   {
     #
     # UI messages consumed by Paraglide (project.inlang/settings.json).
-    # Keep every locale in messages/<locale>.json.
+    #
+    # `%locale%` is used instead of `%two_letters_code%` because the
+    # two-letter placeholder collapses every language that shares a code:
+    # pt-PT/pt-BR both become `pt` and zh-CN/zh-TW both become `zh`, and the
+    # CLI silently drops one of each pair. `%locale%` keeps all 29 targets
+    # distinct, and `languages_mapping` renames each one to the locale code
+    # Paraglide expects. Keys are Crowdin language ids, not locales: Serbian
+    # is `sr` even though `%locale%` renders `sr-SP`.
     #
     "source": "/messages/en.json",
     "translation": "/messages/%locale%.json",
-    "type": "json"
+    "type": "json",
+    "update_option": "update_as_unapproved",
+    "excluded_target_languages": ["en"],
+    "languages_mapping": {
+      "locale": {
+        "af": "af",
+        "ar": "ar",
+        "ca": "ca",
+        "cs": "cs",
+        "da": "da",
+        "de": "de",
+        "el": "el",
+        "es-ES": "es",
+        "fi": "fi",
+        "fr": "fr",
+        "he": "he",
+        "hu": "hu",
+        "it": "it",
+        "ja": "ja",
+        "ko": "ko",
+        "nl": "nl",
+        "no": "no",
+        "pl": "pl",
+        "pt-PT": "pt",
+        "ro": "ro",
+        "ru": "ru",
+        "sr": "sr",
+        "sv-SE": "sv",
+        "tr": "tr",
+        "uk": "uk",
+        "vi": "vi"
+      }
+    }
   },
   {
     #
     # Docs are loaded by src/lib/server/docs.ts. Files in a locale folder
     # (<locale>/<name>.md) override the English source with the same slug.
     #
-    # In the Crowdin file settings, exclude the structural front matter keys
-    # (slug, serial, date, preview, badge, draft) from translation so the
-    # loader keeps resolving the same slug for every locale. Translate only
-    # title, description, keywords, and section.
+    # `fm_md` is Front Matter Markdown: Crowdin parses the YAML front matter
+    # instead of treating it as body text. In the Crowdin file settings,
+    # exclude the structural keys (slug, serial, weight, date, preview,
+    # badge, draft, isCJKLanguage, headless, tags) from translation so the
+    # loader keeps resolving the same slug and metadata for every locale.
+    # Translate only title, description, keywords, and section.
     #
     "source": "/src/routes/docs/src/*.md",
     "translation": "/src/routes/docs/src/%locale%/%original_file_name%",
-    "type": "md"
+    "type": "fm_md",
+    "update_option": "update_as_unapproved",
+    "excluded_target_languages": ["en"],
+    "languages_mapping": {
+      "locale": {
+        "af": "af",
+        "ar": "ar",
+        "ca": "ca",
+        "cs": "cs",
+        "da": "da",
+        "de": "de",
+        "el": "el",
+        "es-ES": "es",
+        "fi": "fi",
+        "fr": "fr",
+        "he": "he",
+        "hu": "hu",
+        "it": "it",
+        "ja": "ja",
+        "ko": "ko",
+        "nl": "nl",
+        "no": "no",
+        "pl": "pl",
+        "pt-PT": "pt",
+        "ro": "ro",
+        "ru": "ru",
+        "sr": "sr",
+        "sv-SE": "sv",
+        "tr": "tr",
+        "uk": "uk",
+        "vi": "vi"
+      }
+    }
   }
 ]

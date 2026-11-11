@@ -1,24 +1,22 @@
-xtitle: "How to Start a Blog in 2026: Static sites & Markdown"
-description: Guide to starting a fast, cheap, durable blog with Markdown, a
-static site generator, and a Git backed CMS — no hosting bills, no lock in.
+---
+title: "How to Start a Blog in 2026: Static sites & Markdown"
+description: "Guide to starting a fast, cheap, durable blog with Markdown, a static site generator, and a Git backed CMS — no hosting bills, no lock in."
 serial: 12
 date: 2026-10-14T12:50:00Z
 draft: false
 tags:
-
-- blogging
-- static
-- sites
-- markdown
-- getting-started
-  keywords:
-- how to start a blog
-- start a blog for free
-- markdown blog
-- static site blog
-- best way to start a blog 2026
-  preview: /og-image.png
-
+  - blogging
+  - static
+  - sites
+  - markdown
+  - getting-started
+keywords:
+  - how to start a blog
+  - start a blog for free
+  - markdown blog
+  - static site blog
+  - best way to start a blog 2026
+preview: /og-image.png
 ---
 
 In 2026, starting a blog is easier and cheaper than ever. You no longer need a WordPress host, a page builder, or a monthly platform fee. You can build a blog with Markdown files, a static site generator, free hosting, and a git-based CMS. At no cost. And your blog will load faster than 99% of blogs about blogging.

@@ -15,6 +15,10 @@
 
 <a href="https://www.producthunt.com/products/lightcms-2?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-lightcms-2" target="_blank" rel="noopener noreferrer"><img alt="LightCMS - Git backed CMS for static site generators | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1298924&amp;theme=dark&amp;t=1793393067873"></a>
 
+[![Crowdin](https://badges.crowdin.net/lightcms/localized.svg)](https://crowdin.com/project/lightcms)
+
+Translations are managed on [Crowdin](https://crowdin.com/). Special thanks to Crowdin for providing a free open-source license to help make this project accessible worldwide.
+
 ## Overview
 
 **Light CMS** is a lightweight, Git-backed content workspace designed for
