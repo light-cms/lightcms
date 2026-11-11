@@ -25,7 +25,6 @@ V roce 2026 je založení blogu jednodušší a levnější než kdykoliv předt
 
 Navštivte organizaci [light-cms](https://github.com/light-cms). Vyberte šablonu a klepněte na tlačítko Použít tuto šablonu. Toto vytvoří nový repozitář ve vašem účtu. Každý z nich je malý, pracovní příklad s obsahem vzorku.
 
-<<<<<<< HEAD
 | Šablona                                                     | Generátor                                 | Demo                                             | Spustit lokálně              |
 | ----------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------ | ---------------------------- |
 | [astro_blog](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) s hvězdičkou | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
@@ -34,17 +33,6 @@ Navštivte organizaci [light-cms](https://github.com/light-cms). Vyberte šablon
 | [Nový blog](https://github.com/light-cms/jekyll_blog)       | [Jekyll](https://jekyllrb.com)            | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bundle exec jekyll serve`   |
 | [Zola_blog](https://github.com/light-cms/zola_blog)         | [Zola](https://www.getzola.org)           | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola`                       |
 | [zine_blog](https://github.com/light-cms/zine_blog)         | [Zinek](https://zine-ssg.io)              | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zin`                        |
-||||||| 580c49f
-=======
-| Šablona                                                     | Generátor                                 | Demo                                             | Spustit lokálně                      |
-| ----------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------ | ------------------------------------ |
-| [astro_blog](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) s hvězdičkou | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
-| [eleventy_blog](https://github.com/light-cms/eleventy_blog) | [Jedenáct](https://www.11ty.dev)          | [Demo](https://blogs.lightcms.me/eleventy_blog/) | `npm install && npm run dev` |
-| [hugo_blog](https://github.com/light-cms/hugo_blog)         | [Hugo](https://gohugo.io)                 | [Demo](https://blogs.lightcms.me/hugo_blog/)     | `hugo server`                        |
-| [Nový blog](https://github.com/light-cms/jekyll_blog)       | [Jekyll](https://jekyllrb.com)            | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bundle exec jekyll serve`           |
-| [Zola_blog](https://github.com/light-cms/zola_blog)         | [Zola](https://www.getzola.org)           | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola`                               |
-| [zine_blog](https://github.com/light-cms/zine_blog)         | [Zinek](https://zine-ssg.io)              | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zin`                                |
->>>>>>> refs/remotes/upstream/main
 
 Všechny šablony zahrnují:
 

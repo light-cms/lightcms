@@ -25,7 +25,6 @@ In 2026 is het eenvoudiger dan ooit om een blog te beginnen dan ooit tevoren. U 
 
 Bezoek de [light-cms](https://github.com/light-cms) organisatie. Kies een sjabloon en klik op deze sjabloon. Dit maakt een nieuwe repo aan in uw account. Elk voorbeeld is een kleine, werkende blog met voorbeeldinhoud.
 
-<<<<<<< HEAD
 | Sjabloon                                                    | Generator                                  | Demo                                             | Lokaal uitvoeren             |
 | ----------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------ | ---------------------------- |
 | [astro_blog](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) met Starlight | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
@@ -34,17 +33,6 @@ Bezoek de [light-cms](https://github.com/light-cms) organisatie. Kies een sjablo
 | [Jekyll_blog](https://github.com/light-cms/jekyll_blog)     | [Jekll](https://jekyllrb.com)              | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bundel exec jekyll dienen`  |
 | [blogs](https://github.com/light-cms/zola_blog)             | [Zola](https://www.getzola.org)            | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola servet`                |
 | [zin_blogs](https://github.com/light-cms/zine_blog)         | [Zijn](https://zine-ssg.io)                | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zilver`                     |
-||||||| 580c49f
-=======
-| Sjabloon                                                    | Generator                                  | Demo                                             | Lokaal uitvoeren                     |
-| ----------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------ | ------------------------------------ |
-| [astro_blog](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) met Starlight | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
-| [eleventy_blog](https://github.com/light-cms/eleventy_blog) | [Twintig](https://www.11ty.dev)            | [Demo](https://blogs.lightcms.me/eleventy_blog/) | `npm install && npm run dev` |
-| [hugo_blog](https://github.com/light-cms/hugo_blog)         | [Knuffel](https://gohugo.io)               | [Demo](https://blogs.lightcms.me/hugo_blog/)     | `hugo server`                        |
-| [Jekyll_blog](https://github.com/light-cms/jekyll_blog)     | [Jekll](https://jekyllrb.com)              | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bundel exec jekyll dienen`          |
-| [blogs](https://github.com/light-cms/zola_blog)             | [Zola](https://www.getzola.org)            | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola servet`                        |
-| [zin_blogs](https://github.com/light-cms/zine_blog)         | [Zijn](https://zine-ssg.io)                | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zilver`                             |
->>>>>>> refs/remotes/upstream/main
 
 Alle sjablonen omvatten:
 

@@ -83,10 +83,10 @@ Utwórz aplikację w **GitHub Settings → Ustawienia programisty → GitHub App
 
 | Ustawienie               | Wartość                                                           |
 | ------------------------ | ----------------------------------------------------------------- |
-| Adres URL strony głównej | `https://<your-domain>`                                     |
-| Callback URL             | `https://<your-domain>/api/auth/callback/github`            |
-| Setup URL                | `https://<your-domain>/github/setup`                        |
-| URL webhooka             | `https://<your-domain>/api/github/webhook`                  |
+| Adres URL strony głównej | `https://<your-domain>`                                           |
+| Callback URL             | `https://<your-domain>/api/auth/callback/github`                  |
+| Setup URL                | `https://<your-domain>/github/setup`                              |
+| URL webhooka             | `https://<your-domain>/api/github/webhook`                        |
 | Sekret Webhooka          | Losowy sekret (patrz [Generowanie sekretów](#generating-secrets)) |
 
 ## Uprawnienia repozytorium

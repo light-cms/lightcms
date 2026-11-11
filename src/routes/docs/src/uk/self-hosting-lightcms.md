@@ -83,10 +83,10 @@ The wizard sets the app's webhook URL to a Smee channel (or `http://localhost:30
 
 | Налаштування           | Цінність                                                        |
 | ---------------------- | --------------------------------------------------------------- |
-| URL домашньої сторінки | `https://<your-domain>`                                   |
-| Callback URL           | `https://<your-domain>/api/auth/callback/github`          |
-| Setup URL              | `https://<your-domain>/github/налаштування`               |
-| URL вебхука            | `https://<your-domain>/api/github/webhook`                |
+| URL домашньої сторінки | `https://<your-domain>`                                         |
+| Callback URL           | `https://<your-domain>/api/auth/callback/github`                |
+| Setup URL              | `https://<your-domain>/github/налаштування`                     |
+| URL вебхука            | `https://<your-domain>/api/github/webhook`                      |
 | Секрет Webhook         | A random secret (see [Generating secrets](#generating-secrets)) |
 
 ## Дозволи для репозиторію

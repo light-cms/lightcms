@@ -25,7 +25,6 @@ En 2026, iniciar un blog es más fácil y más barato que nunca. Ya no necesita 
 
 Visita la organización [luct-cms](https://github.com/light-cms). Elija una plantilla y haga clic en Usar esta plantilla. Esto crea un nuevo repositorio en tu cuenta. Cada uno es un pequeño ejemplo de blog que funciona con contenido de muestra.
 
-<<<<<<< HEAD
 | Plantilla                                                   | Generador                                    | Demo                                             | Ejecutar localmente          |
 | ----------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------ | ---------------------------- |
 | [astro_blog](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) con luz estelar | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
@@ -34,17 +33,6 @@ Visita la organización [luct-cms](https://github.com/light-cms). Elija una plan
 | [blog de jekyl](https://github.com/light-cms/jekyll_blog)   | [Jekyl](https://jekyllrb.com)                | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `servir paquete exec jekyll` |
 | [zola_blog](https://github.com/light-cms/zola_blog)         | [Zola](https://www.getzola.org)              | [Demo](https://blogs.lightcms.me/zola_blog/)     | `servido`                    |
 | [zine_blog](https://github.com/light-cms/zine_blog)         | [Cine](https://zine-ssg.io)                  | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zine`                       |
-||||||| 580c49f
-=======
-| Plantilla                                                   | Generador                                    | Demo                                             | Ejecutar localmente                  |
-| ----------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------ | ------------------------------------ |
-| [astro_blog](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) con luz estelar | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
-| [blog_eleventy](https://github.com/light-cms/eleventy_blog) | [Verdadero](https://www.11ty.dev)            | [Demo](https://blogs.lightcms.me/eleventy_blog/) | `npm install && npm run dev` |
-| [hugo_blog](https://github.com/light-cms/hugo_blog)         | [Hugo](https://gohugo.io)                    | [Demo](https://blogs.lightcms.me/hugo_blog/)     | `servidor de hugo`                   |
-| [blog de jekyl](https://github.com/light-cms/jekyll_blog)   | [Jekyl](https://jekyllrb.com)                | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `servir paquete exec jekyll`         |
-| [zola_blog](https://github.com/light-cms/zola_blog)         | [Zola](https://www.getzola.org)              | [Demo](https://blogs.lightcms.me/zola_blog/)     | `servido`                            |
-| [zine_blog](https://github.com/light-cms/zine_blog)         | [Cine](https://zine-ssg.io)                  | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zine`                               |
->>>>>>> refs/remotes/upstream/main
 
 Todas las plantillas incluyen:
 

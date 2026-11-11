@@ -83,10 +83,10 @@ Erstelle die App in **GitHub Einstellungen → Entwicklereinstellungen → GitHu
 
 | Einstellung       | Wert                                                            |
 | ----------------- | --------------------------------------------------------------- |
-| Homepage URL      | `https://<your-domain>`                                   |
-| Callback URL      | `https://<your-domain>/api/auth/callback/github`          |
-| Setup URL         | `https://<your-domain>/github/setup`                      |
-| Webhook-URL       | `https://<your-domain>/api/github/webhook`                |
+| Homepage URL      | `https://<your-domain>`                                         |
+| Callback URL      | `https://<your-domain>/api/auth/callback/github`                |
+| Setup URL         | `https://<your-domain>/github/setup`                            |
+| Webhook-URL       | `https://<your-domain>/api/github/webhook`                      |
 | Webhook Geheimnis | A random secret (see [Generating secrets](#generating-secrets)) |
 
 ## Repository-Berechtigungen

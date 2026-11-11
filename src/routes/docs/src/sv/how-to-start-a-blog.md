@@ -25,7 +25,6 @@ preview: /og-image.png
 
 Besök organisationen [light-cms](https://github.com/light-cms). Välj en mall och klicka på Använd denna mall. Detta skapar en ny repo i ditt konto. Var och en är ett litet fungerande bloggexempel med exempelinnehåll.
 
-<<<<<<< HEAD
 | Mall                                                        | Generator                                  | Demo                                             | Kör lokalt                   |
 | ----------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------ | ---------------------------- |
 | [astro_blogg](https://github.com/light-cms/astro_blog)      | [Astro](https://astro.build) med Starlight | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
@@ -34,17 +33,6 @@ Besök organisationen [light-cms](https://github.com/light-cms). Välj en mall o
 | [jekyll_blogg](https://github.com/light-cms/jekyll_blog)    | [Jekyll](https://jekyllrb.com)             | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bunt exec jekyll tjäna`     |
 | [zola_blogg](https://github.com/light-cms/zola_blog)        | [Zola](https://www.getzola.org)            | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola tjäna`                 |
 | [zine_blogg](https://github.com/light-cms/zine_blog)        | [Zine](https://zine-ssg.io)                | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zine`                       |
-||||||| 580c49f
-=======
-| Mall                                                        | Generator                                  | Demo                                             | Kör lokalt                           |
-| ----------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------ | ------------------------------------ |
-| [astro_blogg](https://github.com/light-cms/astro_blog)      | [Astro](https://astro.build) med Starlight | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
-| [eleventy_blog](https://github.com/light-cms/eleventy_blog) | [Gott](https://www.11ty.dev)               | [Demo](https://blogs.lightcms.me/eleventy_blog/) | `npm install && npm run dev` |
-| [Bloggen](https://github.com/light-cms/hugo_blog)           | [Kramo](https://gohugo.io)                 | [Demo](https://blogs.lightcms.me/hugo_blog/)     | `hugo server`                        |
-| [jekyll_blogg](https://github.com/light-cms/jekyll_blog)    | [Jekyll](https://jekyllrb.com)             | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bunt exec jekyll tjäna`             |
-| [zola_blogg](https://github.com/light-cms/zola_blog)        | [Zola](https://www.getzola.org)            | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola tjäna`                         |
-| [zine_blogg](https://github.com/light-cms/zine_blog)        | [Zine](https://zine-ssg.io)                | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zine`                               |
->>>>>>> refs/remotes/upstream/main
 
 Alla mallar inkluderar:
 

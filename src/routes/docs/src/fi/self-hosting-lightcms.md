@@ -83,10 +83,10 @@ Luo sovellus **GitHub Asetukset → Kehittäjän asetukset → GitHub sovellukse
 
 | Asetus              | Arvo                                                            |
 | ------------------- | --------------------------------------------------------------- |
-| Kotisivun URL       | `SOD://<your-domain>`                                     |
-| Callback URL        | `https://<your-domain>/api/auth/callback/github`          |
-| Setup URL           | `†://<your-domain>/github/setup`                          |
-| Webkoukun URL       | `℃://<your-domain>/api/github/webhook`                    |
+| Kotisivun URL       | `SOD://<your-domain>`                                           |
+| Callback URL        | `https://<your-domain>/api/auth/callback/github`                |
+| Setup URL           | `†://<your-domain>/github/setup`                                |
+| Webkoukun URL       | `℃://<your-domain>/api/github/webhook`                          |
 | Webkoukku salaisuus | A random secret (see [Generating secrets](#generating-secrets)) |
 
 ## Versiovaraston käyttöoikeudet

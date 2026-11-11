@@ -27,15 +27,15 @@ preview: /og-image.png
 
 ## 区块如何一起适合的
 
-| 组件            | 目的                           | 必填          |
-| ------------- | ---------------------------- | ----------- |
-| PostgreSQL    | 存储用户、会话、密钥和 GitHub 安装        | 否           |
-| GitHub App    | 读取和写入你的仓库中的内容，并使用GitHub 签署用户 | 否           |
-| SMTP 提供商      | 发送魔法链接登录邮件                   | 是的，用于魔法链接登录 |
-| OpenAI兼容的 API | 授权 AI 复制器                    | 可选的         |
-| 语音到文本 API     | 授权语音听音                       | 可选的         |
-| 图像 CDN        | 上传到编辑器中的主机图像                 | 可选的         |
-| Posthog       | 产品分析和 AI 可观测性                | 仅在开发中需要     |
+| 组件             | 目的                                              | 必填                   |
+| ---------------- | ------------------------------------------------- | ---------------------- |
+| PostgreSQL       | 存储用户、会话、密钥和 GitHub 安装                | 否                     |
+| GitHub App       | 读取和写入你的仓库中的内容，并使用GitHub 签署用户 | 否                     |
+| SMTP 提供商      | 发送魔法链接登录邮件                              | 是的，用于魔法链接登录 |
+| OpenAI兼容的 API | 授权 AI 复制器                                    | 可选的                 |
+| 语音到文本 API   | 授权语音听音                                      | 可选的                 |
+| 图像 CDN         | 上传到编辑器中的主机图像                          | 可选的                 |
+| Posthog          | 产品分析和 AI 可观测性                            | 仅在开发中需要         |
 
 ## 必备条件
 
@@ -81,19 +81,19 @@ mise 运行机器人
 
 在 **GitHub 设置 -> 开发者设置 -> GitHub 应用程序 -> 新 GitHub App** 中创建应用程序，这些值：
 
-| 设置           | 值                                                      |
-| ------------ | ------------------------------------------------------ |
-| 主页 URL       | `https:///<your-domain>`                         |
+| 设置         | 值                                               |
+| ------------ | ------------------------------------------------ |
+| 主页 URL     | `https:///<your-domain>`                         |
 | Callback URL | `https://<your-domain>/api/auth/callback/github` |
 | Setup URL    | `https://<your-domain>/github/setup`             |
 | Webhook URL  | `https:///<your-domain>/api/github/webhook`      |
-| Webhook 密钥   | 随机私密(见 [生成秘密](#generating-secrets))                    |
+| Webhook 密钥 | 随机私密(见 [生成秘密](#generating-secrets))     |
 
 ## 仓库权限
 
-| 权限                | 访问权限           | 用于：                                         |
+| 权限              | 访问权限       | 用于：                                      |
 | ----------------- | -------------- | ------------------------------------------- |
-| `目录`              | 读写             | 读取和提交内容文件                                   |
+| `目录`            | 读写           | 读取和提交内容文件                          |
 | `Issues`          | Read and write | Review comments and labels on pull requests |
 | `Pull requests`   | Read-only      | Listing the files changed in a pull request |
 | `Commit statuses` | Read and write | Reporting content validation on pushes      |
@@ -240,9 +240,9 @@ bun 运行 db:put
 
 其他数据库脚本：
 
-| 命令                  | 描述                         |
-| ------------------- | -------------------------- |
-| `bun 运行 db:greater` | 编辑schema后生成迁移              |
+| 命令                  | 描述                                 |
+| --------------------- | ------------------------------------ |
+| `bun 运行 db:greater` | 编辑schema后生成迁移                 |
 | `bun 运行 db:studio`  | 在 Drizzle Studio 浏览并编辑您的数据 |
 
 ## 5. 本地运行

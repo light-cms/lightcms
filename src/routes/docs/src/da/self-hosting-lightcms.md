@@ -83,10 +83,10 @@ Opret appen i **GitHub indstillinger → Udviklerindstillinger → GitHub Apps �
 
 | Indstilling         | Værdi                                                                        |
 | ------------------- | ---------------------------------------------------------------------------- |
-| Hjemmeside URL      | `https://<your-domain>`                                                |
-| Callback URL        | `https://<your-domain>/api/auth/callback/github`                       |
-| Setup URL           | `https://<your-domain>/github/setup`                                   |
-| Webhook URL         | `https://<your-domain>/api/github/webhook`                             |
+| Hjemmeside URL      | `https://<your-domain>`                                                      |
+| Callback URL        | `https://<your-domain>/api/auth/callback/github`                             |
+| Setup URL           | `https://<your-domain>/github/setup`                                         |
+| Webhook URL         | `https://<your-domain>/api/github/webhook`                                   |
 | Webhook hemmelighed | En tilfældig hemmelighed (se [Genererer hemmeligheder](#generating-secrets)) |
 
 ## Repository tilladelser

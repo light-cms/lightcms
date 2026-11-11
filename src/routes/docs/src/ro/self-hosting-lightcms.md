@@ -83,10 +83,10 @@ Creați aplicația în **Setări GitHub → Setări pentru dezvoltatori → Apli
 
 | Setare                | Valoare                                                            |
 | --------------------- | ------------------------------------------------------------------ |
-| URL Pagina Principala | `http://<your-domain>`                                       |
-| Callback URL          | `https://<your-domain>/api/auth/callback/github`             |
-| Setup URL             | `http://<your-domain>/github/setup`                          |
-| URL Webhook           | `http://<your-domain>/api/github/webhook`                    |
+| URL Pagina Principala | `http://<your-domain>`                                             |
+| Callback URL          | `https://<your-domain>/api/auth/callback/github`                   |
+| Setup URL             | `http://<your-domain>/github/setup`                                |
+| URL Webhook           | `http://<your-domain>/api/github/webhook`                          |
 | Webhook secret        | Un secret aleatoriu (vezi [Generând secrete](#generating-secrets)) |
 
 ## Permisiuni repo

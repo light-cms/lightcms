@@ -2,12 +2,7 @@
 title: "Dlaczego LightCMS: CMS obsługiwane przez Gita dla witryn statycznych"
 description: Większość platform CMS posiada Twoje treści. LightCMS utrzymuje to w twoim repozytorium Git, w prostych Markdown wdrożonych przez Twój własny rurociąg.
 serial: 2
-<<<<<<< HEAD
-date: "2026-10-14T14:00: 00Z"
-||||||| 580c49f
-=======
-date: '2026-10-14T14:00: 00Z'
->>>>>>> refs/remotes/upstream/main
+date: 2026-10-14T14:00:00Z
 draft: fałszywy
 tags:
   - Światła

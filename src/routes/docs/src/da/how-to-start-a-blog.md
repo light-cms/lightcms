@@ -25,14 +25,14 @@ I 2026, starter en blog er nemmere og billigere end nogensinde. Du behøver ikke
 
 Besøg [lys-cms](https://github.com/light-cms) organisationen. Vælg en skabelon og klik på Brug denne skabelon. Dette skaber et nyt repo på din konto. Hver enkelt er et lille, arbejdende blogeksempel med prøveindhold.
 
-| Skabelon                                                    | Generator                                  | Demo                                             | Kør lokalt                           |
-| ----------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------ | ------------------------------------ |
+| Skabelon                                                    | Generator                                  | Demo                                             | Kør lokalt                   |
+| ----------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------ | ---------------------------- |
 | [astro_blog](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) med Starlight | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
 | [eleventy_blog](https://github.com/light-cms/eleventy_blog) | [Højtyve](https://www.11ty.dev)            | [Demo](https://blogs.lightcms.me/eleventy_blog/) | `npm install && npm run dev` |
-| [hugo_blog](https://github.com/light-cms/hugo_blog)         | [Hugo](https://gohugo.io)                  | [Demo](https://blogs.lightcms.me/hugo_blog/)     | `hugo server`                        |
-| [jekyll_blog](https://github.com/light-cms/jekyll_blog)     | [Jekyll](https://jekyllrb.com)             | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bundle exec jekyll tjene`           |
-| [zola_blog](https://github.com/light-cms/zola_blog)         | [Zola](https://www.getzola.org)            | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola tjener`                        |
-| [zine_blog](https://github.com/light-cms/zine_blog)         | [Zine](https://zine-ssg.io)                | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zin`                                |
+| [hugo_blog](https://github.com/light-cms/hugo_blog)         | [Hugo](https://gohugo.io)                  | [Demo](https://blogs.lightcms.me/hugo_blog/)     | `hugo server`                |
+| [jekyll_blog](https://github.com/light-cms/jekyll_blog)     | [Jekyll](https://jekyllrb.com)             | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bundle exec jekyll tjene`   |
+| [zola_blog](https://github.com/light-cms/zola_blog)         | [Zola](https://www.getzola.org)            | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola tjener`                |
+| [zine_blog](https://github.com/light-cms/zine_blog)         | [Zine](https://zine-ssg.io)                | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zin`                        |
 
 Alle skabeloner omfatter:
 

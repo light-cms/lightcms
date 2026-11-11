@@ -83,10 +83,10 @@ Cree la aplicación en **Configuración de GitHub → Configuración del desarro
 
 | Ajustes            | Valor                                                                |
 | ------------------ | -------------------------------------------------------------------- |
-| URL de la página   | `https://<your-domain>`                                        |
-| Callback URL       | `https://<your-domain>/api/auth/callback/github`               |
-| Setup URL          | `https://<your-domain>/github/setup`                           |
-| URL de Webhook     | `https://<your-domain>/api/github/webhook`                     |
+| URL de la página   | `https://<your-domain>`                                              |
+| Callback URL       | `https://<your-domain>/api/auth/callback/github`                     |
+| Setup URL          | `https://<your-domain>/github/setup`                                 |
+| URL de Webhook     | `https://<your-domain>/api/github/webhook`                           |
 | Secreto de Webhook | Un secreto aleatorio (ver [Generando secretos](#generating-secrets)) |
 
 ## Permisos de repositorio

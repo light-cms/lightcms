@@ -25,7 +25,6 @@ preview: /og-image.png
 
 Επισκεφθείτε τον οργανισμό [light-cms](https://github.com/light-cms). Επιλέξτε ένα πρότυπο και κάντε κλικ στο στοιχείο Χρήση αυτού του προτύπου. Αυτό δημιουργεί ένα νέο repo στο λογαριασμό σας. Κάθε ένα είναι ένα μικρό, λειτουργώντας παράδειγμα blog με το περιεχόμενο δείγματος.
 
-<<<<<<< HEAD
 | Πρότυπο                                                     | Γεννήτρια                                 | Επίδειξη                                             | Εκτέλεση τοπικά                       |
 | ----------------------------------------------------------- | ----------------------------------------- | ---------------------------------------------------- | ------------------------------------- |
 | [astro_blog](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) με Starlight | [Επίδειξη](https://blogs.lightcms.me/astro_blog/)    | `εγκατάσταση npm && npm εκτέλεση dev` |
@@ -34,17 +33,6 @@ preview: /og-image.png
 | [jekyll_blog](https://github.com/light-cms/jekyll_blog)     | [Jekyll](https://jekyllrb.com)            | [Επίδειξη](https://blogs.lightcms.me/jekyll_blog/)   | `πακέτο exec jekyll εξυπηρετούν`      |
 | [zola_blog](https://github.com/light-cms/zola_blog)         | [Ζόλα](https://www.getzola.org)           | [Επίδειξη](https://blogs.lightcms.me/zola_blog/)     | `zola εξυπηρετούν`                    |
 | [zine_blog](https://github.com/light-cms/zine_blog)         | [Zine](https://zine-ssg.io)               | [Επίδειξη](https://blogs.lightcms.me/zine_blog/)     | `ζίνη`                                |
-||||||| 580c49f
-=======
-| Πρότυπο                                                     | Γεννήτρια                                 | Επίδειξη                                             | Εκτέλεση τοπικά                               |
-| ----------------------------------------------------------- | ----------------------------------------- | ---------------------------------------------------- | --------------------------------------------- |
-| [astro_blog](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) με Starlight | [Επίδειξη](https://blogs.lightcms.me/astro_blog/)    | `εγκατάσταση npm && npm εκτέλεση dev` |
-| [eleventy_blog](https://github.com/light-cms/eleventy_blog) | [Eleventy](https://www.11ty.dev)          | [Επίδειξη](https://blogs.lightcms.me/eleventy_blog/) | `εγκατάσταση npm && npm εκτέλεση dev` |
-| [hugo_blog](https://github.com/light-cms/hugo_blog)         | [Ουγκώ](https://gohugo.io)                | [Επίδειξη](https://blogs.lightcms.me/hugo_blog/)     | `εξυπηρετητής hugo`                           |
-| [jekyll_blog](https://github.com/light-cms/jekyll_blog)     | [Jekyll](https://jekyllrb.com)            | [Επίδειξη](https://blogs.lightcms.me/jekyll_blog/)   | `πακέτο exec jekyll εξυπηρετούν`              |
-| [zola_blog](https://github.com/light-cms/zola_blog)         | [Ζόλα](https://www.getzola.org)           | [Επίδειξη](https://blogs.lightcms.me/zola_blog/)     | `zola εξυπηρετούν`                            |
-| [zine_blog](https://github.com/light-cms/zine_blog)         | [Zine](https://zine-ssg.io)               | [Επίδειξη](https://blogs.lightcms.me/zine_blog/)     | `ζίνη`                                        |
->>>>>>> refs/remotes/upstream/main
 
 Όλα τα πρότυπα περιλαμβάνουν:
 

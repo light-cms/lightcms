@@ -83,10 +83,10 @@ Maak de app in **GitHub instellingen → Ontwikkelaarsinstellingen → GitHub Ap
 
 | Instellingen    | Waarde                                                                 |
 | --------------- | ---------------------------------------------------------------------- |
-| Startpagina URL | `https://<your-domain>`                                          |
-| Callback URL    | `https://<your-domain>/api/auth/callback/github`                 |
-| Setup URL       | `https://<your-domain>/github/setup`                             |
-| Webhook URL     | `https://<your-domain>/api/github/webhook`                       |
+| Startpagina URL | `https://<your-domain>`                                                |
+| Callback URL    | `https://<your-domain>/api/auth/callback/github`                       |
+| Setup URL       | `https://<your-domain>/github/setup`                                   |
+| Webhook URL     | `https://<your-domain>/api/github/webhook`                             |
 | Webhook geheim  | Een willekeurig geheim (zie [geheimen genereren](#generating-secrets)) |
 
 ## Repository rechten

@@ -25,14 +25,14 @@ Vuonna 2026, blogin aloittaminen on helpompaa ja halvempaa kuin koskaan. Et enä
 
 Vieraile [light-cms](https://github.com/light-cms) -organisaatiossa. Valitse malli ja napsauta Käytä tätä mallia. Tämä luo uuden repon tilillesi. Jokainen on pieni, toimiva blogi esimerkki näytteen sisältöä.
 
-| Malli                                                        | Generaattori                               | Demo                                             | Suorita paikallisesti                 |
-| ------------------------------------------------------------ | ------------------------------------------ | ------------------------------------------------ | ------------------------------------- |
+| Malli                                                        | Generaattori                               | Demo                                             | Suorita paikallisesti         |
+| ------------------------------------------------------------ | ------------------------------------------ | ------------------------------------------------ | ----------------------------- |
 | [astro_blogi](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) Starlightilla | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm asentaa && npm ajaa dev` |
 | [eleventy_blogi](https://github.com/light-cms/eleventy_blog) | [Eleventy](https://www.11ty.dev)           | [Demo](https://blogs.lightcms.me/eleventy_blog/) | `npm asentaa && npm ajaa dev` |
-| [hugo_blogi](https://github.com/light-cms/hugo_blog)         | [Hugo](https://gohugo.io)                  | [Demo](https://blogs.lightcms.me/hugo_blog/)     | `hugo palvelin`                       |
-| [jekyll_blogi](https://github.com/light-cms/jekyll_blog)     | [Jekyll](https://jekyllrb.com)             | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `nippu exec jekyll serve`             |
-| [zola_blogi](https://github.com/light-cms/zola_blog)         | [Zola](https://www.getzola.org)            | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola palvelee`                       |
-| [zine_blogi](https://github.com/light-cms/zine_blog)         | [Sinkki](https://zine-ssg.io)              | [Demo](https://blogs.lightcms.me/zine_blog/)     | `tsiini`                              |
+| [hugo_blogi](https://github.com/light-cms/hugo_blog)         | [Hugo](https://gohugo.io)                  | [Demo](https://blogs.lightcms.me/hugo_blog/)     | `hugo palvelin`               |
+| [jekyll_blogi](https://github.com/light-cms/jekyll_blog)     | [Jekyll](https://jekyllrb.com)             | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `nippu exec jekyll serve`     |
+| [zola_blogi](https://github.com/light-cms/zola_blog)         | [Zola](https://www.getzola.org)            | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola palvelee`               |
+| [zine_blogi](https://github.com/light-cms/zine_blog)         | [Sinkki](https://zine-ssg.io)              | [Demo](https://blogs.lightcms.me/zine_blog/)     | `tsiini`                      |
 
 Kaikki mallit sisältävät:
 

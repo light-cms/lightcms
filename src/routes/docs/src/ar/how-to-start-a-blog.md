@@ -65,18 +65,18 @@ preview: /og-image.png
 
 ## توزيع التكاليف
 
-| البند | التكلفة |
-| ------------------------------------------------- | --------------------- |
-| مولد الموقع الثابت | مجاني (مفتوح المصدر) |
-| الاستضافة (صفحات كلاودلاري/صفحات GitHub ) | مستوى مجاني |
-| قالب | مولد | تجريبي | تشغيل محليا |
+| البند                                                       | التكلفة                                    |
+| ----------------------------------------------------------- | ------------------------------------------ |
+| مولد الموقع الثابت                                          | مجاني (مفتوح المصدر)                       |
+| الاستضافة (صفحات كلاودلاري/صفحات GitHub )                      | مستوى مجاني                                |
+| قالب                                                        | مولد                                       | تجريبي                                             | تشغيل محليا                          |
 | ----------------------------------------------------------- | ------------------------------------------ | -------------------------------------------------- | ------------------------------------ |
-| [مدونة_مدوّنة](https://github.com/light-cms/astro_blog) | [Astro](https://astro.build) مع ضوء النجوم | [تجريبي](https://blogs.lightcms.me/astro_blog/) | `npm تثبيت && npm تشغيل dev` |
-| [أحد المدوّنات](https://github.com/light-cms/eleventy_blog) | [سبعة وعشرون](https://www.11ty.dev) | [تجريبي](https://blogs.lightcms.me/eleventy_blog/) | `npm تثبيت && npm تشغيل dev` |
-| [مدونة_هوغو](https://github.com/light-cms/hugo_blog) | [هوغو](https://gohugo.io) | [تجريبي](https://blogs.lightcms.me/hugo_blog/) | `خادم hugo` |
-| [jkyll_blog](https://github.com/light-cms/jekyll_blog) | [جيكل](https://jekyllrb.com) | [تجريبي](https://blogs.lightcms.me/jekyll_blog/) | `خدمة حزمة الجيكيل الخارجية` |
-| [Zola_blog](https://github.com/light-cms/zola_blog) | [زولا](https://www.getzola.org) | [تجريبي](https://blogs.lightcms.me/zola_blog/) | `خدمة الزولا` |
-| [zine_blog](https://github.com/light-cms/zine_blog) | [الزين](https://zine-ssg.io) | [تجريبي](https://blogs.lightcms.me/zine_blog/) | `الزين` |
+| [مدونة_مدوّنة](https://github.com/light-cms/astro_blog)      | [Astro](https://astro.build) مع ضوء النجوم | [تجريبي](https://blogs.lightcms.me/astro_blog/)    | `npm تثبيت && npm تشغيل dev`         |
+| [أحد المدوّنات](https://github.com/light-cms/eleventy_blog)  | [سبعة وعشرون](https://www.11ty.dev)        | [تجريبي](https://blogs.lightcms.me/eleventy_blog/) | `npm تثبيت && npm تشغيل dev`         |
+| [مدونة_هوغو](https://github.com/light-cms/hugo_blog)        | [هوغو](https://gohugo.io)                  | [تجريبي](https://blogs.lightcms.me/hugo_blog/)     | `خادم hugo`                          |
+| [jkyll_blog](https://github.com/light-cms/jekyll_blog)      | [جيكل](https://jekyllrb.com)               | [تجريبي](https://blogs.lightcms.me/jekyll_blog/)   | `خدمة حزمة الجيكيل الخارجية`         |
+| [Zola_blog](https://github.com/light-cms/zola_blog)         | [زولا](https://www.getzola.org)             | [تجريبي](https://blogs.lightcms.me/zola_blog/)     | `خدمة الزولا`                         |
+| [zine_blog](https://github.com/light-cms/zine_blog)         | [الزين](https://zine-ssg.io)               | [تجريبي](https://blogs.lightcms.me/zine_blog/)     | `الزين`                              |
 
 وتشمل جميع القوالب:
 
@@ -109,10 +109,10 @@ preview: /og-image.png
 
 ## توزيع التكاليف
 
-| البند                                              | التكلفة               |
-| -------------------------------------------------- | --------------------- |
-| مولد الموقع الثابت                                 | مجاني (مفتوح المصدر)  |
-| الاستضافة (صفحات كلاودلاري/صفحات GitHub )          | مستوى مجاني           |
+| البند                                             | التكلفة               |
+| ------------------------------------------------- | --------------------- |
+| مولد الموقع الثابت                                | مجاني (مفتوح المصدر)  |
+| الاستضافة (صفحات كلاودلاري/صفحات GitHub )            | مستوى مجاني           |
 | نظام CMS القائم على Gite (LightCMS/ذاتي الاستضافة) | مجانية ومفتوحة المصدر |
 
 يمكنك بناء منشور حقيقي فقط بسعر اسم النطاق. وهناك عمود آخر لا يذكر أحد. الطاقة خدمة موقعك الثابت عن طريق CDN يعني أنه ينبعث جزء من ثاني أكسيد الكربون من موقع تم توفيره من الخادم.

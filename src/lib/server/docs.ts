@@ -171,7 +171,13 @@ export async function loadDocEntries(locale: string = baseLocale): Promise<DocEn
     }
 
     const raw = typeof file === "string" ? file : "";
-    const { data: frontmatter } = matter(raw);
+    let frontmatter: Record<string, unknown> = {};
+    try {
+      const parsed = matter(raw);
+      frontmatter = parsed.data;
+    } catch {
+      // In case of corrupt or non-standard translation frontmatter, fallback safely
+    }
 
     if (frontmatter.draft === true) {
       continue;
@@ -204,7 +210,13 @@ export async function loadDocEntries(locale: string = baseLocale): Promise<DocEn
       }
 
       const raw = typeof file === "string" ? file : "";
-      const { data: frontmatter } = matter(raw);
+      let frontmatter: Record<string, unknown> = {};
+      try {
+        const parsed = matter(raw);
+        frontmatter = parsed.data;
+      } catch {
+        // In case of corrupt or non-standard translation frontmatter, fallback safely
+      }
 
       if (frontmatter.draft === true) {
         continue;

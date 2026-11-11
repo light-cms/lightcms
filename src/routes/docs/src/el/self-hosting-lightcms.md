@@ -83,10 +83,10 @@ mise run bot
 
 | Ρύθμιση             | Τιμή                                                                |
 | ------------------- | ------------------------------------------------------------------- |
-| Url Αρχικής Σελίδας | `◆ ://<your-domain>`                                          |
-| Callback URL        | `https://<your-domain>/api/auth/callback/github`              |
-| Setup URL           | `◆ ://<your-domain>/github/setup`                             |
-| URL Webhook         | `◆ ://<your-domain>/api/github/webhook`                       |
+| Url Αρχικής Σελίδας | `◆ ://<your-domain>`                                                |
+| Callback URL        | `https://<your-domain>/api/auth/callback/github`                    |
+| Setup URL           | `◆ ://<your-domain>/github/setup`                                   |
+| URL Webhook         | `◆ ://<your-domain>/api/github/webhook`                             |
 | Μυστικό Webhook     | Ένα τυχαίο μυστικό (βλ. [Δημιουργία μυστικών](#generating-secrets)) |
 
 ## Δικαιώματα χώρου αποθήκευσης

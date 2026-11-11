@@ -25,14 +25,14 @@ preview: /og-image.png
 
 Посетите организацию [легких смс](https://github.com/light-cms). Выберите шаблон и нажмите Использовать этот шаблон. Это создает новый репозиторий в вашем аккаунте. Каждый из них небольшой, работающий пример блога с образцом содержимого.
 
-| Шаблон                                                           | Генератор                                   | Демо                                             | Локальный запуск                           |
-| ---------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------ | ------------------------------------------ |
+| Шаблон                                                           | Генератор                                   | Демо                                             | Локальный запуск                   |
+| ---------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------ | ---------------------------------- |
 | [астро_блог](https://github.com/light-cms/astro_blog)            | [Astro](https://astro.build) with Starlight | [Демо](https://blogs.lightcms.me/astro_blog/)    | `npm установить && npm запуск dev` |
 | [блог eleventy_blog](https://github.com/light-cms/eleventy_blog) | [Лифт](https://www.11ty.dev)                | [Демо](https://blogs.lightcms.me/eleventy_blog/) | `npm установить && npm запуск dev` |
-| [блог](https://github.com/light-cms/hugo_blog)                   | [Уго](https://gohugo.io)                    | [Демо](https://blogs.lightcms.me/hugo_blog/)     | `сервер hugo`                              |
-| [блог](https://github.com/light-cms/jekyll_blog)                 | [Чекилль](https://jekyllrb.com)             | [Демо](https://blogs.lightcms.me/jekyll_blog/)   | `сервисы exec в комплекте`                 |
-| [зола_блог](https://github.com/light-cms/zola_blog)              | [Зола](https://www.getzola.org)             | [Демо](https://blogs.lightcms.me/zola_blog/)     | `zola слуга`                               |
-| [zine_блог](https://github.com/light-cms/zine_blog)              | [Зина](https://zine-ssg.io)                 | [Демо](https://blogs.lightcms.me/zine_blog/)     | `zine`                                     |
+| [блог](https://github.com/light-cms/hugo_blog)                   | [Уго](https://gohugo.io)                    | [Демо](https://blogs.lightcms.me/hugo_blog/)     | `сервер hugo`                      |
+| [блог](https://github.com/light-cms/jekyll_blog)                 | [Чекилль](https://jekyllrb.com)             | [Демо](https://blogs.lightcms.me/jekyll_blog/)   | `сервисы exec в комплекте`         |
+| [зола_блог](https://github.com/light-cms/zola_blog)              | [Зола](https://www.getzola.org)             | [Демо](https://blogs.lightcms.me/zola_blog/)     | `zola слуга`                       |
+| [zine_блог](https://github.com/light-cms/zine_blog)              | [Зина](https://zine-ssg.io)                 | [Демо](https://blogs.lightcms.me/zine_blog/)     | `zine`                             |
 
 Все шаблоны включают:
 

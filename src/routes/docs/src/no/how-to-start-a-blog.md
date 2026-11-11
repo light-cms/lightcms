@@ -25,7 +25,6 @@ I 2026 er start av en blogg enklere og billigere enn noensinne. Du trenger ikke 
 
 Besøk [lysm](https://github.com/light-cms) organisasjonen. Velg en mal og klikk på denne malen. Dette skaper en ny repos i kontoen din. Hver er et lite, fungerende bloggeksempel med eksempelinnhold.
 
-<<<<<<< HEAD
 | Mal                                                          | Generator                                  | Demonstrasjon                                             | Kjør lokalt                  |
 | ------------------------------------------------------------ | ------------------------------------------ | --------------------------------------------------------- | ---------------------------- |
 | [astro_blogg](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) med Starlight | [Demonstrasjon](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
@@ -34,17 +33,6 @@ Besøk [lysm](https://github.com/light-cms) organisasjonen. Velg en mal og klikk
 | [jekyll_blogg](https://github.com/light-cms/jekyll_blog)     | [Jekyll](https://jekyllrb.com)             | [Demonstrasjon](https://blogs.lightcms.me/jekyll_blog/)   | `pakke exec jekyll serve`    |
 | [zola_blogg](https://github.com/light-cms/zola_blog)         | [Brygge](https://www.getzola.org)          | [Demonstrasjon](https://blogs.lightcms.me/zola_blog/)     | `zola serve`                 |
 | [kin_blogg](https://github.com/light-cms/zine_blog)          | [Glins](https://zine-ssg.io)               | [Demonstrasjon](https://blogs.lightcms.me/zine_blog/)     | `doktor`                     |
-||||||| 580c49f
-=======
-| Mal                                                          | Generator                                  | Demonstrasjon                                             | Kjør lokalt                          |
-| ------------------------------------------------------------ | ------------------------------------------ | --------------------------------------------------------- | ------------------------------------ |
-| [astro_blogg](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) med Starlight | [Demonstrasjon](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
-| [eleventy_blogg](https://github.com/light-cms/eleventy_blog) | [Forhøyet](https://www.11ty.dev)           | [Demonstrasjon](https://blogs.lightcms.me/eleventy_blog/) | `npm install && npm run dev` |
-| [hugo_blogg](https://github.com/light-cms/hugo_blog)         | [Fargetone](https://gohugo.io)             | [Demonstrasjon](https://blogs.lightcms.me/hugo_blog/)     | `hugo server`                        |
-| [jekyll_blogg](https://github.com/light-cms/jekyll_blog)     | [Jekyll](https://jekyllrb.com)             | [Demonstrasjon](https://blogs.lightcms.me/jekyll_blog/)   | `pakke exec jekyll serve`            |
-| [zola_blogg](https://github.com/light-cms/zola_blog)         | [Brygge](https://www.getzola.org)          | [Demonstrasjon](https://blogs.lightcms.me/zola_blog/)     | `zola serve`                         |
-| [kin_blogg](https://github.com/light-cms/zine_blog)          | [Glins](https://zine-ssg.io)               | [Demonstrasjon](https://blogs.lightcms.me/zine_blog/)     | `doktor`                             |
->>>>>>> refs/remotes/upstream/main
 
 Alle maler inkluderer:
 

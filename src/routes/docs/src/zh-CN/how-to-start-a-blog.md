@@ -25,14 +25,14 @@ preview: /og-image.png
 
 访问 [light-cms](https://github.com/light-cms) 组织。选择模板并单击使用此模板。这将在您的帐户中创建一个新的仓库. 每个都是一个小的工作博客样本，带有样品内容。
 
-| 模板                                                      | 生成器                                      | 演示模式                                             | 本地运行                          |
-| ------------------------------------------------------- | ---------------------------------------- | ------------------------------------------------ | ----------------------------- |
-| [astro_blog](https://github.com/light-cms/astro_blog)   | [Astro](https://astro.build) 与 Starlight | [演示模式](https://blogs.lightcms.me/astro_blog/)    | `npm 安装 && npm 运行dev` |
-| [十一位博客](https://github.com/light-cms/eleventy_blog)     | [十一](https://www.11ty.dev)               | [演示模式](https://blogs.lightcms.me/eleventy_blog/) | `npm 安装 && npm 运行dev` |
-| [hugo博客](https://github.com/light-cms/hugo_blog)        | [乌戈文](https://gohugo.io)                 | [演示模式](https://blogs.lightcms.me/hugo_blog/)     | `hugo 服务器`                    |
-| [jekyll_blog](https://github.com/light-cms/jekyll_blog) | [杰基尔](https://jekyllrb.com)              | [演示模式](https://blogs.lightcms.me/jekyll_blog/)   | `捆绑exec jekyll 服务`            |
-| [zola_博客](https://github.com/light-cms/zola_blog)       | [佐拉](https://www.getzola.org)            | [演示模式](https://blogs.lightcms.me/zola_blog/)     | `zola 服务`                     |
-| [zine_博客](https://github.com/light-cms/zine_blog)       | [Zine](https://zine-ssg.io)              | [演示模式](https://blogs.lightcms.me/zine_blog/)     | `锌色`                          |
+| 模板                                                     | 生成器                                    | 演示模式                                             | 本地运行                  |
+| -------------------------------------------------------- | ----------------------------------------- | ---------------------------------------------------- | ------------------------- |
+| [astro_blog](https://github.com/light-cms/astro_blog)    | [Astro](https://astro.build) 与 Starlight | [演示模式](https://blogs.lightcms.me/astro_blog/)    | `npm 安装 && npm 运行dev` |
+| [十一位博客](https://github.com/light-cms/eleventy_blog) | [十一](https://www.11ty.dev)              | [演示模式](https://blogs.lightcms.me/eleventy_blog/) | `npm 安装 && npm 运行dev` |
+| [hugo博客](https://github.com/light-cms/hugo_blog)       | [乌戈文](https://gohugo.io)               | [演示模式](https://blogs.lightcms.me/hugo_blog/)     | `hugo 服务器`             |
+| [jekyll_blog](https://github.com/light-cms/jekyll_blog)  | [杰基尔](https://jekyllrb.com)            | [演示模式](https://blogs.lightcms.me/jekyll_blog/)   | `捆绑exec jekyll 服务`    |
+| [zola_博客](https://github.com/light-cms/zola_blog)      | [佐拉](https://www.getzola.org)           | [演示模式](https://blogs.lightcms.me/zola_blog/)     | `zola 服务`               |
+| [zine_博客](https://github.com/light-cms/zine_blog)      | [Zine](https://zine-ssg.io)               | [演示模式](https://blogs.lightcms.me/zine_blog/)     | `锌色`                    |
 
 所有模板包括：
 
@@ -65,11 +65,11 @@ preview: /og-image.png
 
 ## 费用明细表
 
-| 项目                          | 费用     |
-| --------------------------- | ------ |
-| 静态站点生成器                     | 空闲(开源) |
-| 主机 (Cloudflare页面/GitHub 页面) | 免费层    |
-| 基于 Git 的 CMS (LightCMS/自主)  | 免费和开放源 |
+| 项目                              | 费用         |
+| --------------------------------- | ------------ |
+| 静态站点生成器                    | 空闲(开源)   |
+| 主机 (Cloudflare页面/GitHub 页面) | 免费层       |
+| 基于 Git 的 CMS (LightCMS/自主)   | 免费和开放源 |
 
 您可以为域名的价格构建一个真正的出版物。还有一列没有人提到。能量。通过 CDN 为您的静态站点服务意味着它会释放服务器渲染站点的一部分CO2。
 

@@ -83,10 +83,10 @@ Vytvořte aplikaci v **Nastavení GitHub → Nastavení vývojáře → GitHub a
 
 | Nastavení            | Hodnota                                                                      |
 | -------------------- | ---------------------------------------------------------------------------- |
-| URL domovské stránky | `https:////<your-domain>`                                              |
-| Callback URL         | `https://<your-domain>/api/auth/callback/github`                       |
-| Setup URL            | `https:////<your-domain>/github/setup`                                 |
-| URL webového háčku   | `https:////<your-domain>/api/github/webhook`                           |
+| URL domovské stránky | `https:////<your-domain>`                                                    |
+| Callback URL         | `https://<your-domain>/api/auth/callback/github`                             |
+| Setup URL            | `https:////<your-domain>/github/setup`                                       |
+| URL webového háčku   | `https:////<your-domain>/api/github/webhook`                                 |
 | Tajný webový háček   | náhodný tajný klíč (viz [Generování tajných informací](#generating-secrets)) |
 
 ## Oprávnění repositáře

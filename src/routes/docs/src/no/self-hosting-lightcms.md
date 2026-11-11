@@ -83,10 +83,10 @@ Lag appen i **GitHub innstillinger → Utvikler innstillinger → GitHub apper �
 
 | Innstilling        | Verdi                                                                     |
 | ------------------ | ------------------------------------------------------------------------- |
-| URL til hjemmeside | `https://<your-domain>`                                             |
-| Callback URL       | `https://<your-domain>/api/auth/callback/github`                    |
-| Setup URL          | `https://<your-domain>/github/setup`                                |
-| Nettkrok URL       | `https://<your-domain>/api/github/webhook`                          |
+| URL til hjemmeside | `https://<your-domain>`                                                   |
+| Callback URL       | `https://<your-domain>/api/auth/callback/github`                          |
+| Setup URL          | `https://<your-domain>/github/setup`                                      |
+| Nettkrok URL       | `https://<your-domain>/api/github/webhook`                                |
 | Webhook hemmelig   | En tilfeldig hemmelig (se [Genererer hemmeligheter](#generating-secrets)) |
 
 ## Repository tillatelser

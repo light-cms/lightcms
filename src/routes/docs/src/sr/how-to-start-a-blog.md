@@ -25,14 +25,14 @@ In 2026, starting a blog is easier and cheaper than ever. You no longer need a W
 
 Visit the [light-cms](https://github.com/light-cms) organisation. Pick a template and click Use this template. This creates a new repo in your account. Each is a small, working blog example with sample content.
 
-| Template                                                    | Generator                                   | Demo                                             | Run locally                          |
-| ----------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------ | ------------------------------------ |
+| Template                                                    | Generator                                   | Demo                                             | Run locally                  |
+| ----------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------ | ---------------------------- |
 | [astro_blog](https://github.com/light-cms/astro_blog)       | [Astro](https://astro.build) with Starlight | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm install && npm run dev` |
 | [eleventy_blog](https://github.com/light-cms/eleventy_blog) | [Eleventy](https://www.11ty.dev)            | [Demo](https://blogs.lightcms.me/eleventy_blog/) | `npm install && npm run dev` |
-| [hugo_blog](https://github.com/light-cms/hugo_blog)         | [Hugo](https://gohugo.io)                   | [Demo](https://blogs.lightcms.me/hugo_blog/)     | `hugo server`                        |
-| [jekyll_blog](https://github.com/light-cms/jekyll_blog)     | [Jekyll](https://jekyllrb.com)              | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bundle exec jekyll serve`           |
-| [zola_blog](https://github.com/light-cms/zola_blog)         | [Zola](https://www.getzola.org)             | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola serve`                         |
-| [zine_blog](https://github.com/light-cms/zine_blog)         | [Zine](https://zine-ssg.io)                 | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zine`                               |
+| [hugo_blog](https://github.com/light-cms/hugo_blog)         | [Hugo](https://gohugo.io)                   | [Demo](https://blogs.lightcms.me/hugo_blog/)     | `hugo server`                |
+| [jekyll_blog](https://github.com/light-cms/jekyll_blog)     | [Jekyll](https://jekyllrb.com)              | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bundle exec jekyll serve`   |
+| [zola_blog](https://github.com/light-cms/zola_blog)         | [Zola](https://www.getzola.org)             | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola serve`                 |
+| [zine_blog](https://github.com/light-cms/zine_blog)         | [Zine](https://zine-ssg.io)                 | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zine`                       |
 
 All templates include:
 

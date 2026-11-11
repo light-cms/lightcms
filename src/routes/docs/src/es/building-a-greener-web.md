@@ -1,11 +1,6 @@
 ---
 title: "Sitios estáticos y CO2: Construir una Web Greener"
-<<<<<<< HEAD
 description: "¿Por qué los sitios estáticos emiten menos carbono, cómo el almacenamiento en caché de CDN reduce el uso de energía y qué aspecto tiene una web más verde."
-||||||| 580c49f
-=======
-description: '¿Por qué los sitios estáticos emiten menos carbono, cómo el almacenamiento en caché de CDN reduce el uso de energía y qué aspecto tiene una web más verde.'
->>>>>>> refs/remotes/upstream/main
 date: 2026-10-14T13:30:00Z
 draft: falso
 tags:

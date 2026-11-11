@@ -25,7 +25,6 @@ preview: /og-image.png
 
 Besuchen Sie die [Light-cms](https://github.com/light-cms) Organisation. Wählen Sie eine Vorlage und klicken Sie auf Diese Vorlage verwenden. Dies erstellt ein neues Repo in Ihrem Konto. Jedes ist ein kleines, funktionierendes Blog-Beispiel mit Beispielinhalten.
 
-<<<<<<< HEAD
 | Vorlage                                                 | Generator                                  | Demo                                             | Lokal ausführen                   |
 | ------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------ | --------------------------------- |
 | [astro_blog](https://github.com/light-cms/astro_blog)   | [Astro](https://astro.build) mit Starlight | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm installieren && npm run dev` |
@@ -34,17 +33,6 @@ Besuchen Sie die [Light-cms](https://github.com/light-cms) Organisation. Wählen
 | [jekyll_blog](https://github.com/light-cms/jekyll_blog) | [Jekyll](https://jekyllrb.com)             | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bündelle exec jekyll dienen`     |
 | [zola_blog](https://github.com/light-cms/zola_blog)     | [Tila](https://www.getzola.org)            | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola servieren`                  |
 | [zine Blog](https://github.com/light-cms/zine_blog)     | [Zine](https://zine-ssg.io)                | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zine`                            |
-||||||| 580c49f
-=======
-| Vorlage                                                 | Generator                                  | Demo                                             | Lokal ausführen                           |
-| ------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------ | ----------------------------------------- |
-| [astro_blog](https://github.com/light-cms/astro_blog)   | [Astro](https://astro.build) mit Starlight | [Demo](https://blogs.lightcms.me/astro_blog/)    | `npm installieren && npm run dev` |
-| [elf Blog](https://github.com/light-cms/eleventy_blog)  | [Groß](https://www.11ty.dev)               | [Demo](https://blogs.lightcms.me/eleventy_blog/) | `npm installieren && npm run dev` |
-| [hugo_blog](https://github.com/light-cms/hugo_blog)     | [Henning](https://gohugo.io)               | [Demo](https://blogs.lightcms.me/hugo_blog/)     | `hugo Server`                             |
-| [jekyll_blog](https://github.com/light-cms/jekyll_blog) | [Jekyll](https://jekyllrb.com)             | [Demo](https://blogs.lightcms.me/jekyll_blog/)   | `bündelle exec jekyll dienen`             |
-| [zola_blog](https://github.com/light-cms/zola_blog)     | [Tila](https://www.getzola.org)            | [Demo](https://blogs.lightcms.me/zola_blog/)     | `zola servieren`                          |
-| [zine Blog](https://github.com/light-cms/zine_blog)     | [Zine](https://zine-ssg.io)                | [Demo](https://blogs.lightcms.me/zine_blog/)     | `zine`                                    |
->>>>>>> refs/remotes/upstream/main
 
 Alle Vorlagen beinhalten:
 
