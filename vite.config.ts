@@ -18,6 +18,24 @@ export default defineConfig({
   },
   server: {
     allowedHosts: true,
+    // Mirrors the PostHog rewrites in vercel.json so `api_host: "/ingest"` works in dev.
+    proxy: {
+      "/ingest/static": {
+        target: "https://us-assets.i.posthog.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/ingest/, ""),
+      },
+      "/ingest/array": {
+        target: "https://us-assets.i.posthog.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/ingest/, ""),
+      },
+      "/ingest": {
+        target: "https://us.i.posthog.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/ingest/, ""),
+      },
+    },
   },
   resolve: {
     dedupe: [

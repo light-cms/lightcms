@@ -10,7 +10,7 @@ export function isPostHogInitialized() {
 
 export function init() {
   const key = "phc_AS2JXQsqEwNNreH5kra5Eefd5TijExE5eiLfwdzXLhPg";
-  const host = "https://us.i.posthog.com";
+  const host = "/ingest";
 
   if (!key || !host) {
     if (dev) {
@@ -23,6 +23,7 @@ export function init() {
 
   posthog.init(key, {
     api_host: host,
+    ui_host: "https://us.posthog.com",
     defaults: "2026-08-30",
     capture_pageview: "history_change",
     capture_exceptions: {
