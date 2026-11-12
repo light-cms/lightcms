@@ -4,6 +4,8 @@ import tailwindcss from "@tailwindcss/vite";
 import { mdsvex } from "mdsvex";
 import { defineConfig } from "vite-plus";
 
+const stripIngestPrefix = (path: string) => path.replace(/^\/ingest/, "");
+
 export default defineConfig({
   test: {
     // Vitest v4 compatibility: preserve mock call history.
@@ -23,17 +25,17 @@ export default defineConfig({
       "/ingest/static": {
         target: "https://us-assets.i.posthog.com",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/ingest/, ""),
+        rewrite: stripIngestPrefix,
       },
       "/ingest/array": {
         target: "https://us-assets.i.posthog.com",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/ingest/, ""),
+        rewrite: stripIngestPrefix,
       },
       "/ingest": {
         target: "https://us.i.posthog.com",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/ingest/, ""),
+        rewrite: stripIngestPrefix,
       },
     },
   },
