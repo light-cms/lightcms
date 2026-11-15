@@ -74,6 +74,12 @@ export default defineConfig({
       paths: {
         relative: true,
       },
+      prerender: {
+        handleMissingId: "warn",
+        handleHttpError: ({ path, referrer, message }) => {
+          console.warn(`[prerender] ${message} at ${path} (linked from ${referrer})`);
+        },
+      },
       experimental: {
         remoteFunctions: true,
         forkPreloads: true,

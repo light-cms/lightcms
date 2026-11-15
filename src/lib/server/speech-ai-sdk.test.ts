@@ -17,6 +17,10 @@ vi.mock("ai", () => {
   };
 });
 
+vi.mock("$lib/server/ai-observability", () => ({
+  flushAiObservability: vi.fn(async () => undefined),
+}));
+
 describe("Vendor-neutral Speech AI SDK", () => {
   const originalEnv = { ...process.env };
 

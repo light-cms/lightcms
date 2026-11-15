@@ -1,4 +1,5 @@
 import matter from "gray-matter";
+import { baseLocale } from "$lib/i18n";
 import { DEFAULT_OG_IMAGE } from "$lib/seo";
 
 export interface DocEntry {
@@ -138,7 +139,13 @@ function toBadge(frontmatter: Record<string, unknown>): string | null {
   return null;
 }
 
-export async function loadDocEntries(): Promise<DocEntry[]> {
+const DOC_LOCALE_DIR = /\/docs\/src\/([A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})?)\//;
+
+function toDocLocale(path: string): string | undefined {
+  return DOC_LOCALE_DIR.exec(path.replaceAll("\\", "/"))?.[1];
+}
+
+export async function loadDocEntries(locale: string = baseLocale): Promise<DocEntry[]> {
   const modules = import.meta.glob(
     [
       "../../routes/docs/src/**/*.md",
@@ -152,19 +159,35 @@ export async function loadDocEntries(): Promise<DocEntry[]> {
     },
   );
 
-  const entries: DocEntry[] = [];
+  const baseEntries = new Map<string, DocEntry>();
+  const baseFilenameToSlug = new Map<string, string>();
+  const localizedEntries = new Map<string, DocEntry>();
 
+  // Pass 1: Parse base English source docs
   for (const [path, file] of Object.entries(modules)) {
+    const fileLocale = toDocLocale(path);
+    if (fileLocale !== undefined) {
+      continue;
+    }
+
     const raw = typeof file === "string" ? file : "";
-    const { data: frontmatter } = matter(raw);
+    let frontmatter: Record<string, unknown> = {};
+    try {
+      const parsed = matter(raw);
+      frontmatter = parsed.data;
+    } catch {
+      // In case of corrupt or non-standard translation frontmatter, fallback safely
+    }
 
     if (frontmatter.draft === true) {
       continue;
     }
 
+    const filename = path.split("/").pop() ?? path;
     const slug = toSlug(path, frontmatter);
+    baseFilenameToSlug.set(filename, slug);
 
-    entries.push({
+    baseEntries.set(slug, {
       slug,
       title: toTitle(frontmatter, slug),
       description: toDescription(frontmatter, raw),
@@ -178,14 +201,71 @@ export async function loadDocEntries(): Promise<DocEntry[]> {
     });
   }
 
-  entries.sort((a, b) => {
+  // Pass 2: If a localized locale is requested, overlay translated docs
+  if (locale !== baseLocale) {
+    for (const [path, file] of Object.entries(modules)) {
+      const fileLocale = toDocLocale(path);
+      if (fileLocale !== locale) {
+        continue;
+      }
+
+      const raw = typeof file === "string" ? file : "";
+      let frontmatter: Record<string, unknown> = {};
+      try {
+        const parsed = matter(raw);
+        frontmatter = parsed.data;
+      } catch {
+        // In case of corrupt or non-standard translation frontmatter, fallback safely
+      }
+
+      if (frontmatter.draft === true) {
+        continue;
+      }
+
+      const filename = path.split("/").pop() ?? path;
+      // Inherit the canonical slug from the corresponding base doc if matched by filename
+      const slug = baseFilenameToSlug.get(filename) ?? toSlug(path, frontmatter);
+      const baseEntry = baseEntries.get(slug);
+
+      const parsedSerial = toSerial(frontmatter);
+      const serial = parsedSerial !== 0 ? parsedSerial : (baseEntry?.serial ?? 0);
+
+      const parsedPreview = toPreview(frontmatter);
+      const preview =
+        parsedPreview !== DEFAULT_OG_IMAGE
+          ? parsedPreview
+          : (baseEntry?.preview ?? DEFAULT_OG_IMAGE);
+
+      localizedEntries.set(slug, {
+        slug,
+        title: toTitle(frontmatter, slug),
+        description: toDescription(frontmatter, raw),
+        keywords: toKeywords(frontmatter),
+        serial,
+        date: toIsoDate(frontmatter.date) ?? baseEntry?.date ?? null,
+        preview,
+        raw,
+        section: toSection(frontmatter, slug),
+        badge: toBadge(frontmatter) ?? baseEntry?.badge ?? null,
+      });
+    }
+  }
+
+  const entries = new Map(baseEntries);
+  for (const [slug, entry] of localizedEntries) {
+    entries.set(slug, entry);
+  }
+
+  const result = [...entries.values()];
+
+  result.sort((a, b) => {
     if (a.serial !== b.serial) {
       return a.serial - b.serial;
     }
     return a.slug.localeCompare(b.slug);
   });
 
-  return entries;
+  return result;
 }
 
 export function groupDocsBySection(entries: DocEntry[]): DocNavSection[] {

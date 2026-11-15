@@ -25,14 +25,42 @@ export interface ResolvedSpeechConfig {
   model: string;
 }
 
-export function resolveSpeechConfig(_options?: TranscribeAiSdkOptions): ResolvedSpeechConfig {
-  const apiKey = process.env.SPEECH_API_KEY!;
-  const model = process.env.SPEECH_MODEL!;
+function firstNonEmptyValue(...values: Array<string | undefined>): string | undefined {
+  for (const value of values) {
+    const trimmed = value?.trim();
+    if (trimmed) {
+      return trimmed;
+    }
+  }
 
-  let baseURL = process.env.SPEECH_ENDPOINT?.trim() || undefined;
+  return undefined;
+}
+
+export function resolveSpeechConfig(options?: TranscribeAiSdkOptions): ResolvedSpeechConfig | null {
+  const apiKey = firstNonEmptyValue(
+    options?.apiKey,
+    process.env.SPEECH_API_KEY,
+    process.env.OPEN_AI_APIKEY,
+  );
+  if (!apiKey) {
+    return null;
+  }
+
+  const model = firstNonEmptyValue(options?.model, process.env.SPEECH_MODEL);
+  if (!model) {
+    return null;
+  }
+
+  let baseURL = firstNonEmptyValue(
+    options?.endpoint,
+    process.env.SPEECH_ENDPOINT,
+    process.env.OPEN_AI_ENDPOINT,
+  );
   if (baseURL) {
     baseURL = baseURL.replace(/\/audio\/transcriptions\/?$/i, "").replace(/\/+$/, "");
-    if (baseURL === "") baseURL = undefined;
+    if (baseURL.length === 0) {
+      baseURL = undefined;
+    }
   }
 
   return {
@@ -42,8 +70,8 @@ export function resolveSpeechConfig(_options?: TranscribeAiSdkOptions): Resolved
   };
 }
 
-export function isAiSdkSpeechConfigured(): boolean {
-  return resolveSpeechConfig() !== null;
+export function isAiSdkSpeechConfigured(options?: TranscribeAiSdkOptions): boolean {
+  return resolveSpeechConfig(options) !== null;
 }
 
 export async function transcribeWithAiSdk(

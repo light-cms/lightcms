@@ -66,6 +66,12 @@ export function createSpeechRecognition(
   const maxDuration = options.maxDurationSeconds ?? 15;
   const maxSamples = targetSampleRate * maxDuration;
 
+  function reportNoAudioCaptured(): void {
+    options.onError?.({
+      message: "No audio was captured. Check your microphone and try again.",
+    });
+  }
+
   function cleanupAudioNodes(): void {
     if (audioWorkletNode) {
       try {
@@ -141,6 +147,7 @@ export function createSpeechRecognition(
       .filter((line) => line.length > 0);
 
     let latestText = "";
+    let finalText = "";
     for (const line of lines) {
       try {
         const parsed = JSON.parse(line) as {
@@ -150,7 +157,7 @@ export function createSpeechRecognition(
         if (typeof parsed.text === "string" && parsed.text.length > 0) {
           latestText = parsed.text;
           if (parsed.is_final) {
-            options.onTranscript(parsed.text, true);
+            finalText = parsed.text;
           } else {
             options.onInterim?.(parsed.text);
           }
@@ -160,9 +167,11 @@ export function createSpeechRecognition(
       }
     }
 
-    if (latestText.length > 0) {
-      options.onTranscript(latestText, true);
+    const transcript = finalText.length > 0 ? finalText : latestText;
+    if (transcript.length === 0) {
+      throw new Error("No speech was detected. Try speaking closer to your microphone.");
     }
+    options.onTranscript(transcript, true, SPEECH_PROVIDERS.wit);
   }
 
   async function transcribeWithOrpcBackend(wavBuffer: ArrayBuffer): Promise<void> {
@@ -181,9 +190,10 @@ export function createSpeechRecognition(
     });
 
     const cleanText = result.text.trim();
-    if (cleanText.length > 0) {
-      options.onTranscript(cleanText, true, result.provider);
+    if (cleanText.length === 0) {
+      throw new Error("No speech was detected. Try speaking closer to your microphone.");
     }
+    options.onTranscript(cleanText, true, result.provider);
   }
 
   async function processAndSendAudio(wavBuffer: ArrayBuffer): Promise<void> {
@@ -315,6 +325,7 @@ export function createSpeechRecognition(
             }
           };
           audioWorkletNode.port.addEventListener("message", audioWorkletHandler);
+          audioWorkletNode.port.start();
 
           isListening = true;
           return;
@@ -345,6 +356,7 @@ export function createSpeechRecognition(
         fallbackAudioChunks = [];
 
         if (recordedBlob.size === 0) {
+          reportNoAudioCaptured();
           isTranscribing = false;
           return;
         }
@@ -388,6 +400,7 @@ export function createSpeechRecognition(
       audioBuffers = [];
 
       if (combinedSamples.length === 0) {
+        reportNoAudioCaptured();
         isTranscribing = false;
         return;
       }

@@ -4,13 +4,14 @@ import ArrowRight from "@lucide/svelte/icons/arrow-right";
 import Layers from "@lucide/svelte/icons/layers";
 import LayoutTemplate from "@lucide/svelte/icons/layout-template";
 import Pencil from "@lucide/svelte/icons/pencil";
+import { localizeHref } from "$lib/i18n";
+import * as m from "$lib/i18n/messages";
 </script>
-
 
 <section id="features" class="space-y-8 border-t border-border pt-12 sm:pt-16">
   <div class="max-w-3xl space-y-3">
     <h2 class="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-      A friendly, open source Git based CMS for static sites.
+      {m.features_headline()}
     </h2>
   </div>
 
@@ -29,15 +30,15 @@ import Pencil from "@lucide/svelte/icons/pencil";
             class="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-semibold text-foreground"
           >
             <Pencil size={13} class="text-primary" />
-            <span>Content Creation</span>
+            <span>{m.feature_content_creation_tag()}</span>
           </div>
 
           <h3 class="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Awesome editor & natural language writing
+            {m.feature_content_creation_title()}
           </h3>
 
           <p class="text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Craft and edit posts with an intuitive, distraction free Markdown editor equipped with rich formatting and live syntax highlighting. Write at the speed of thought using natural language solutions powered by <a href="https://wit.ai" target="_blank" rel="noreferrer" class="font-semibold text-primary underline">Wit.ai</a> or OpenAI Whisper-compatible models.
+            {m.feature_content_creation_desc()}
           </p>
         </div>
       </div>
@@ -49,16 +50,15 @@ import Pencil from "@lucide/svelte/icons/pencil";
             class="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-semibold text-foreground"
           >
             <Layers size={13} class="text-primary" />
-            <span>Architecture & Git</span>
+            <span>{m.feature_git_tag()}</span>
           </div>
 
           <h3 class="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Jamstack simplicity & Git-backed collaboration
+            {m.feature_git_title()}
           </h3>
 
           <p class="text-sm leading-relaxed text-muted-foreground sm:text-base">
-            LightCMS embraces the modern Jamstack workflow by keeping all content in standard frontmatter schema based Markdown files.
-            Leverage Git's versioning and pull requests to collaborate transparently with complete history, zero vendor lock-in, and no database maintenance.
+            {m.feature_git_desc()}
           </p>
         </div>
 
@@ -79,47 +79,46 @@ import Pencil from "@lucide/svelte/icons/pencil";
 
         <div class="flex flex-col justify-center space-y-4">
           <h3 class="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Eco friendly delivery for blogs & documentation
+            {m.feature_eco_title()}
           </h3>
 
           <p class="text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Pre rendered static sites consume significantly less energy than database driven apps which fetch data from a server every time a page is loaded. Whether you are publishing an engineering blog or maintaining enterprise project documentation, deploy across edge CDNs with unmatched speed and a minimal carbon footprint.
+            {m.feature_eco_desc()}
           </p>
 
           <div>
             <a
-              href="/docs"
+              href={localizeHref("/docs")}
               class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:underline"
             >
-              Explore documentation
+              {m.feature_eco_cta()}
               <ArrowRight size={14} />
             </a>
           </div>
         </div>
       </div>
+
+      <!-- Row 4: Text Left, Box Right -->
       <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
         <div class="order-2 flex flex-col justify-center space-y-4 lg:order-1">
           <div
             class="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-semibold text-foreground"
           >
             <LayoutTemplate size={13} class="text-primary" />
-            <span>Template workflow</span>
+            <span>{m.feature_templates_tag()}</span>
           </div>
 
           <h3 class="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Multiple templates for static site generators
+            {m.feature_templates_title()}
           </h3>
 
           <p class="text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Get started quickly with ready made,
-            handcrafted templates for popular Static Site Generators (SSGs) like Hugo, Astro, and Zola. You can save time using these pre built configurations or use the LLM to customize any template to perfectly fit your static site needs.
-
-
-            <a href="https://github.com/light-cms" class="text-foreground">Learn more</a>
-            or you can ask a LLM to help you get started. <a href="/llms.txt" class="text-foreground">Ask a question</a>
+            {m.feature_templates_desc()}
+            {" "}
+            <a href="https://github.com/light-cms" class="text-foreground underline">{m.feature_templates_learn_more()}</a>
+            {" "}
+            <a href="/llms.txt" class="text-foreground underline">{m.feature_templates_ask_question()}</a>
           </p>
-
-
         </div>
 
         <div
@@ -130,7 +129,8 @@ import Pencil from "@lucide/svelte/icons/pencil";
       </div>
     </div>
 
-    <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
+    <!-- Row 5: Copilot -->
+    <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12 pt-12 sm:pt-16 lg:pt-20">
       <div
         class="flex h-64 sm:h-72 lg:h-80 w-full items-center justify-center overflow-hidden rounded-xl border border-border bg-muted/30 p-4 shadow-xs"
       >
@@ -138,18 +138,13 @@ import Pencil from "@lucide/svelte/icons/pencil";
       </div>
 
       <div class="order-1 flex flex-col justify-center space-y-4 lg:order-2">
-
-
         <h3 class="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          Built in copilot
+          {m.feature_copilot_title()}
         </h3>
 
         <p class="text-sm leading-relaxed text-muted-foreground sm:text-base">
-          Leverage AI copilot to aid your content writing experience.
-
+          {m.feature_copilot_desc()}
         </p>
-
-
       </div>
     </div>
   </div>

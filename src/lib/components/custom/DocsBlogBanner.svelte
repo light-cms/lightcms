@@ -2,6 +2,7 @@
 import ExternalLink from "@lucide/svelte/icons/external-link";
 import Newspaper from "@lucide/svelte/icons/newspaper";
 import { Button } from "$lib/components/ui/button";
+import * as m from "$lib/i18n/messages";
 import { SITE } from "$lib/seo";
 import { cn } from "$lib/utils";
 
@@ -23,10 +24,10 @@ let { class: className = "" }: { class?: string } = $props();
 		</span>
 		<div class="space-y-1">
 			<h2 class="text-base font-bold text-foreground">
-				Looking for tutorials, updates &amp; insights?
+				{m.blog_banner_title()}
 			</h2>
 			<p class="text-xs leading-relaxed text-muted-foreground sm:text-sm">
-				Explore stories, guides, and tips for building sustainable static websites on the LightCMS blog.
+				{m.blog_banner_desc()}
 			</p>
 		</div>
 	</div>
@@ -37,7 +38,7 @@ let { class: className = "" }: { class?: string } = $props();
 		rel="noopener noreferrer"
 		class="shrink-0 gap-2 font-semibold shadow-xs"
 	>
-		<span>Read our Blog</span>
+		<span>{m.blog_banner_cta()}</span>
 		<ExternalLink size={15} />
 	</Button>
 </aside>

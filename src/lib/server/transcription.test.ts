@@ -18,6 +18,10 @@ vi.mock("ai", () => {
   };
 });
 
+vi.mock("$lib/server/ai-observability", () => ({
+  flushAiObservability: vi.fn(async () => undefined),
+}));
+
 vi.mock("./wit-ai.js", () => {
   return {
     getWitAiToken: () => process.env.WIT_AI_TOKEN,
@@ -57,6 +61,13 @@ describe("Unified Speech Transcription Dispatcher", () => {
       expect(status.openaiCompatible).toBe(false);
       expect(status.wit).toBe(false);
       expect(status.defaultProvider).toBeNull();
+    });
+
+    it("does not enable OpenAI-compatible transcription without a speech model", () => {
+      process.env.SPEECH_API_KEY = "speech-key";
+
+      expect(getDefaultSpeechProvider()).toBeNull();
+      expect(isSpeechTranscriptionConfigured().openaiCompatible).toBe(false);
     });
 
     it("prefers OpenAI-compatible when it is fully configured", () => {

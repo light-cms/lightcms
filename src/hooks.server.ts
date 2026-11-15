@@ -1,8 +1,11 @@
-import { type Handle, redirect } from "@sveltejs/kit";
+import { building } from "$app/environment";
+import { getTextDirection, resolveLocaleFromPathname } from "$lib/i18n";
+import { runWithLocale } from "$lib/server/i18n";
+import { getAuth } from "$lib/server/auth";
+import { captureServerError } from "$lib/server/posthog";
+import { type Handle, type HandleServerError, redirect } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 import { svelteKitHandler } from "better-auth/svelte-kit";
-import { building } from "$app/environment";
-import { getAuth } from "$lib/server/auth";
 
 const handleSecurityHeaders: Handle = async ({ event, resolve }) => {
   const response = await resolve(event);
@@ -48,4 +51,28 @@ const handleBetterAuth: Handle = async ({ event, resolve }) => {
   return resolve(event);
 };
 
-export const handle: Handle = sequence(handleSecurityHeaders, handleBetterAuth);
+const handleI18n: Handle = ({ event, resolve }) => {
+  const locale = resolveLocaleFromPathname(event.url.pathname);
+  return runWithLocale(locale, () =>
+    resolve(event, {
+      transformPageChunk: ({ html }) =>
+        html
+          .replace("%app.lang%", locale)
+          .replace("%app.dir%", getTextDirection(locale))
+          .replace("%paraglide.lang%", locale)
+          .replace("%paraglide.dir%", getTextDirection(locale)),
+    }),
+  );
+};
+
+export const handle: Handle = sequence(handleSecurityHeaders, handleBetterAuth, handleI18n);
+
+export const handleError: HandleServerError = async ({ error, status }) => {
+  if (status !== 404 && !building) {
+    try {
+      await captureServerError(error);
+    } catch {
+      // PostHog capture is non-blocking and should not mask or crash server error reporting
+    }
+  }
+};

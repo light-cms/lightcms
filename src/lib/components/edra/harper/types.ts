@@ -23,7 +23,7 @@ export interface HarperLinter {
 }
 
 export interface HarperWorkerLinterConstructor {
-  new(options: { binary: unknown }): HarperLinter;
+  new (options: { binary: unknown }): HarperLinter;
 }
 
 export interface HarperIssue {

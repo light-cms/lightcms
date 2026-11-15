@@ -11,6 +11,7 @@ import { page } from "$app/state";
 import { authClient, signIn, signOut } from "$lib/auth-client";
 import { Button } from "$lib/components/ui/button";
 import { Input } from "$lib/components/ui/input";
+import * as m from "$lib/i18n/messages";
 import type { PageData } from "./$types";
 
 let { data }: { data: PageData } = $props();
@@ -26,8 +27,30 @@ const {
 
 let isUsingPasskey = $state(false);
 let isAddingPasskey = $state(false);
-
 let isSigningInWithGitHub = $state(false);
+
+const headingTitle = $derived(
+	data.session ? m.auth_account_title() : m.auth_sign_in_title(),
+);
+const headingDesc = $derived(
+	data.session ? m.auth_account_desc() : m.auth_sign_in_desc(),
+);
+const githubButtonText = $derived(
+	isSigningInWithGitHub
+		? m.auth_redirecting_github()
+		: m.auth_continue_github(),
+);
+const passkeyButtonText = $derived(
+	isUsingPasskey
+		? m.auth_authenticating_passkey()
+		: m.auth_use_passkey(),
+);
+const submitButtonText = $derived(
+	$authSubmitting ? m.auth_email_submitting() : m.auth_email_submit(),
+);
+const addPasskeyText = $derived(
+	isAddingPasskey ? m.auth_adding_passkey() : m.auth_add_passkey(),
+);
 async function signInWithGitHub() {
 	if (isSigningInWithGitHub) return;
 	isSigningInWithGitHub = true;
@@ -96,7 +119,7 @@ async function _addPasskey() {
 </script>
 
 <svelte:head>
-  <title>Account | LightCMS</title>
+  <title>{m.auth_title()} | LightCMS</title>
 </svelte:head>
 
 <section
@@ -112,12 +135,10 @@ async function _addPasskey() {
         <ShieldCheck size={24} />
       </span>
       <h1 class="mt-4 text-2xl font-bold tracking-tight text-foreground">
-        {data.session ? "Your Account" : "Sign in to LightCMS"}
+        {headingTitle}
       </h1>
       <p class="mt-1.5 text-xs text-muted-foreground">
-        {data.session
-          ? "Manage your session and access details"
-          : "Connect your GitHub account or request a magic link"}
+        {headingDesc}
       </p>
     </div>
 
@@ -148,7 +169,7 @@ async function _addPasskey() {
           <p
             class="text-[11px] font-semibold tracking-wide text-muted-foreground uppercase"
           >
-            Signed in as
+            {m.auth_signed_in_as()}
           </p>
           <p class="truncate text-sm font-bold text-foreground">
             {data.user.email ?? data.user.name ?? "LightCMS user"}
@@ -161,7 +182,7 @@ async function _addPasskey() {
           href="/cms"
           class="inline-flex w-full items-center justify-center rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs gap-2"
         >
-          <GitBranch size={16} /> Go to CMS Workspace
+          <GitBranch size={16} /> {m.auth_go_to_cms()}
         </a>
         <div class="grid grid-cols-2 gap-2">
           <Button
@@ -172,7 +193,7 @@ async function _addPasskey() {
             onclick={_addPasskey}
           >
             <FingerprintPattern size={15} />
-            {isAddingPasskey ? "Adding..." : "Add passkey"}
+            {addPasskeyText}
           </Button>
           <Button
             variant="destructive"
@@ -180,7 +201,7 @@ async function _addPasskey() {
             class="gap-2 text-xs font-semibold"
             onclick={_signOutUser}
           >
-            <LogOut size={15} /> Sign out
+            <LogOut size={15} /> {m.auth_sign_out()}
           </Button>
         </div>
       </div>
@@ -192,7 +213,7 @@ async function _addPasskey() {
           disabled={isSigningInWithGitHub}
           onclick={signInWithGitHub}
         >
-          <GitBranch size={18} /> {isSigningInWithGitHub ? "Redirecting to GitHub..." : "Continue with GitHub"}
+          <GitBranch size={18} /> {githubButtonText}
         </Button>
         <Button
           variant="outline"
@@ -202,7 +223,7 @@ async function _addPasskey() {
           onclick={_signInWithPasskey}
         >
           <FingerprintPattern size={18} />
-          {isUsingPasskey ? "Authenticating..." : "Use Passkey"}
+          {passkeyButtonText}
         </Button>
       </div>
 
@@ -213,7 +234,7 @@ async function _addPasskey() {
         <span
           class="relative bg-card px-3 text-[11px] font-semibold tracking-wider text-muted-foreground uppercase"
         >
-          or continue with magic link
+          {m.auth_magic_link_separator()}
         </span>
       </div>
 
@@ -226,7 +247,7 @@ async function _addPasskey() {
         <div class="grid gap-2">
           <label
             class="text-xs font-semibold text-foreground"
-            for="magic-link-email">Email address</label
+            for="magic-link-email">{m.auth_email_label()}</label
           >
           <div class="flex items-center gap-2">
             <div
@@ -260,9 +281,7 @@ async function _addPasskey() {
           type="submit"
           disabled={$authSubmitting}
         >
-          {$authSubmitting
-            ? "Sending secure link..."
-            : "Emailing a sign-in link"}
+          {submitButtonText}
         </Button>
       </form>
     {/if}

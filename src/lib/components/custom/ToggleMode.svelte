@@ -13,6 +13,7 @@ import {
 } from "mode-watcher";
 import { buttonVariants } from "$lib/components/ui/button/button.js";
 import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+import * as m from "$lib/i18n/messages";
 import type { ModePreference } from "$lib/themes.js";
 import {
 	APP_THEMES,
@@ -78,32 +79,32 @@ const triggerLabel = $derived(
 		<span class="max-w-24 truncate capitalize">{activeTheme.label}</span>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content align="end" class="max-h-96 w-60 overflow-y-auto">
-		<DropdownMenu.Label>Mode</DropdownMenu.Label>
+		<DropdownMenu.Label>{m.mode_label()}</DropdownMenu.Label>
 		<DropdownMenu.Group>
 			<DropdownMenu.Item onclick={() => selectModePreference('light')}>
 				<Sun size={14} aria-hidden="true" />
-				<span class="flex-1">Light</span>
+				<span class="flex-1">{m.mode_light()}</span>
 				{#if isPreferred('light')}
 					<Check size={14} aria-hidden="true" />
 				{/if}
 			</DropdownMenu.Item>
 			<DropdownMenu.Item onclick={() => selectModePreference('dark')}>
 				<Moon size={14} aria-hidden="true" />
-				<span class="flex-1">Dark</span>
+				<span class="flex-1">{m.mode_dark()}</span>
 				{#if isPreferred('dark')}
 					<Check size={14} aria-hidden="true" />
 				{/if}
 			</DropdownMenu.Item>
 			<DropdownMenu.Item onclick={() => selectModePreference('system')}>
 				<Monitor size={14} aria-hidden="true" />
-				<span class="flex-1">System</span>
+				<span class="flex-1">{m.mode_system()}</span>
 				{#if isPreferred('system')}
 					<Check size={14} aria-hidden="true" />
 				{/if}
 			</DropdownMenu.Item>
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Label>Theme</DropdownMenu.Label>
+		<DropdownMenu.Label>{m.theme_label()}</DropdownMenu.Label>
 		<DropdownMenu.Group>
 			{#each APP_THEMES as item (item.id)}
 				<DropdownMenu.Item onclick={() => selectTheme(item.id)} title={item.description}>

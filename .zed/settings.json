@@ -1,4 +1,9 @@
 {
+  "context_servers": {
+    "posthog": {
+      "url": "https://mcp.posthog.com/mcp"
+    }
+  },
   "lsp": {
     "oxlint": {
       "initialization_options": {
