@@ -18,13 +18,22 @@ function describeError(error: unknown): string {
 }
 
 export function init() {
-  const key = "phc_AS2JXQsqEwNNreH5kra5Eefd5TijExEe5eiLfwdzXLhPg";
-  const host = "https://us.i.posthog.com";
+  const key = import.meta.env.VITE_POSTHOG_PROJECT_TOKEN;
+  const host = import.meta.env.VITE_POSTHOG_HOST;
 
-  if (!key || !host) {
+  if (!key) {
     if (dev) {
-      console.warn(
-        "PostHog is not configured (VITE_POSTHOG_PROJECT_TOKEN / VITE_POSTHOG_HOST). Client analytics and error capture are disabled.",
+      throw new Error(
+        "VITE_POSTHOG_PROJECT_TOKEN variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once VITE_POSTHOG_PROJECT_TOKEN is configured",
+      );
+    }
+    return;
+  }
+
+  if (!host) {
+    if (dev) {
+      throw new Error(
+        "VITE_POSTHOG_HOST variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once VITE_POSTHOG_HOST is configured",
       );
     }
     return;
@@ -32,7 +41,7 @@ export function init() {
 
   posthog.init(key, {
     api_host: host,
-    ui_host: "https://us.posthog.com",
+    tracing_headers: [window.location.hostname],
     defaults: "2026-08-30",
     capture_pageview: "history_change",
     capture_exceptions: {

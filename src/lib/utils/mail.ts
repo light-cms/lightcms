@@ -16,7 +16,7 @@ export async function sendMail({
   const mailUser = process.env.MAIL_USER;
   const mailPass = process.env.MAIL_PASS;
   const mailFrom = process.env.MAIL_FROM;
-  const rawSecure = (process.env.MAIL_SECURE ?? "").trim().toLowerCase();
+  const rawSecure = process.env.MAIL_SECURE!;
 
   if (!mailHost) {
     throw new Error("MAIL_HOST is not configured");

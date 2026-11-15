@@ -1,8 +1,7 @@
 import { OpenTelemetry } from "@ai-sdk/otel";
-import { logs } from "@opentelemetry/api-logs";
 import { OTLPLogExporter } from "@opentelemetry/exporter-logs-otlp-http";
 import { resourceFromAttributes } from "@opentelemetry/resources";
-import { BatchLogRecordProcessor } from "@opentelemetry/sdk-logs";
+import { BatchLogRecordProcessor, LoggerProvider } from "@opentelemetry/sdk-logs";
 import { NodeSDK } from "@opentelemetry/sdk-node";
 import { PostHogSpanProcessor } from "@posthog/ai/otel";
 import { registerTelemetry } from "ai";
@@ -12,7 +11,8 @@ const host = process.env.VITE_POSTHOG_HOST;
 
 let posthogSpanProcessor: PostHogSpanProcessor | undefined;
 let posthogLogProcessor: BatchLogRecordProcessor | undefined;
-let posthogLogger: ReturnType<typeof logs.getLogger> | undefined;
+let posthogLogProvider: LoggerProvider | undefined;
+let posthogLogger: ReturnType<LoggerProvider["getLogger"]> | undefined;
 
 if (!key || !host) {
   if (process.env.NODE_ENV !== "production") {
@@ -24,6 +24,7 @@ if (!key || !host) {
   posthogSpanProcessor = new PostHogSpanProcessor({
     projectToken: key,
     host,
+    privacyMode: false,
   });
   posthogLogProcessor = new BatchLogRecordProcessor({
     exporter: new OTLPLogExporter({
@@ -34,15 +35,21 @@ if (!key || !host) {
     }),
   });
 
+  const resource = resourceFromAttributes({
+    "service.name": "lightcms",
+  });
   const sdk = new NodeSDK({
-    resource: resourceFromAttributes({
-      "service.name": "lightcms",
-    }),
+    resource,
     spanProcessors: [posthogSpanProcessor],
-    logRecordProcessors: [posthogLogProcessor],
   });
 
-  posthogLogger = logs.getLogger("lightcms.posthog");
+  // Keep this provider dedicated to the purpose-written PostHog logs below.
+  // Do not attach the exporter to the global provider or existing application loggers.
+  posthogLogProvider = new LoggerProvider({
+    resource,
+    processors: [posthogLogProcessor],
+  });
+  posthogLogger = posthogLogProvider.getLogger("lightcms.posthog");
 
   sdk.start();
 
@@ -72,6 +79,20 @@ export function emitPostHogLog(
 }
 
 export async function flushAiObservability() {
-  await posthogSpanProcessor?.forceFlush();
-  await posthogLogProcessor?.forceFlush();
+  let timeout: ReturnType<typeof setTimeout> | undefined;
+
+  try {
+    await Promise.race([
+      Promise.all([posthogSpanProcessor?.forceFlush(), posthogLogProvider?.forceFlush()]).catch(
+        () => {},
+      ),
+      new Promise<void>((resolve) => {
+        timeout = setTimeout(resolve, 2000);
+      }),
+    ]);
+  } finally {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+  }
 }

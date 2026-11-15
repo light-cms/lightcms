@@ -1,3 +1,5 @@
+import { captureServerEvent } from "$lib/server/posthog";
+
 export interface WitAiTranscriptionResult {
   text: string;
   isFinal: boolean;
@@ -8,6 +10,11 @@ export interface TranscribeAudioOptions {
   language?: string;
   prompt?: string;
   temperature?: number;
+  observability?: {
+    distinctId?: string;
+    sessionId?: string;
+    traceId?: string;
+  };
 }
 
 const WIT_AI_API_VERSION = "20240304";
@@ -191,6 +198,7 @@ export async function transcribeAudioWithWitAi(
   const uploadContentType =
     requestedContentType && requestedContentType.length > 0 ? requestedContentType : "audio/wav";
 
+  const startedAt = Date.now();
   const response = await fetch(WIT_AI_DICTATION_URL, {
     method: "POST",
     headers: {
@@ -222,6 +230,18 @@ export async function transcribeAudioWithWitAi(
 
   const responseBody = await response.text();
   const text = parseWitAiResponse(responseBody);
+
+  if (options?.observability?.distinctId && options.observability.traceId) {
+    await captureServerEvent(options.observability.distinctId, "$ai_generation", {
+      $ai_trace_id: options.observability.traceId,
+      $ai_session_id: options.observability.sessionId ?? null,
+      $ai_model: "wit.ai-dictation",
+      $ai_provider: "wit",
+      $ai_output_choices: [{ role: "assistant", content: text }],
+      $ai_latency: (Date.now() - startedAt) / 1000,
+      $ai_http_status: response.status,
+    });
+  }
 
   return { text, isFinal: true };
 }

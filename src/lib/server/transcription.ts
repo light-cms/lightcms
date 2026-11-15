@@ -13,6 +13,11 @@ export interface TranscribeSpeechOptions {
   language?: string;
   prompt?: string;
   temperature?: number;
+  observability?: {
+    distinctId?: string;
+    sessionId?: string;
+    traceId?: string;
+  };
 }
 
 export interface SpeechTranscriptionResult {
@@ -94,6 +99,7 @@ export async function transcribeAudio(
       language: options?.language,
       prompt: options?.prompt,
       temperature: options?.temperature,
+      observability: options?.observability,
     });
     return {
       text: witResult.text,

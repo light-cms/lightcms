@@ -67,10 +67,10 @@ const handleI18n: Handle = ({ event, resolve }) => {
 
 export const handle: Handle = sequence(handleSecurityHeaders, handleBetterAuth, handleI18n);
 
-export const handleError: HandleServerError = async ({ error, status }) => {
+export const handleError: HandleServerError = async ({ error, event, status }) => {
   if (status !== 404 && !building) {
     try {
-      await captureServerError(error);
+      await captureServerError(error, event.locals.user?.id);
     } catch {
       // PostHog capture is non-blocking and should not mask or crash server error reporting
     }

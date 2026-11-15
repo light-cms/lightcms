@@ -173,6 +173,10 @@ export const actions: Actions = {
       });
     }
 
+    await captureServerEvent(locals.session.userId, "repository_file_moved", {
+      surface: "repository_editor",
+    });
+
     throw redirect(303, `/cms/edit/${destinationPath}?${_query}`);
   },
 };

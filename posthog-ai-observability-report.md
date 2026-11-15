@@ -2,7 +2,8 @@
 
 ## Status
 
-**Wired and configured for local use.** This SvelteKit app has client analytics (`posthog-js`), server event capture (`posthog-node`), and Vercel AI SDK OpenTelemetry observability (`@posthog/ai`) in place.
+**Wired and configured for local use.** This SvelteKit app has client analytics (`posthog-js`),
+server event capture (`posthog-node`), and Vercel AI SDK OpenTelemetry observability (`@posthog/ai`) in place.
 
 ## Configuration
 

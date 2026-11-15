@@ -437,6 +437,10 @@ export const actions: Actions = {
       });
     }
 
+    await captureServerEvent(locals.session.userId, "collection_entry_moved", {
+      surface: "collection_editor",
+    });
+
     const entryUrl = `/cms/${encodeURIComponent(collection.name)}/${encodeURIComponent(newSlug)}?${appendFolder(query, toFolder)}`;
     throw redirect(303, entryUrl);
   },

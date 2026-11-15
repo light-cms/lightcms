@@ -179,6 +179,10 @@ export const actions: Actions = {
       });
     }
 
+    await captureServerEvent(locals.session.userId, "collection_entry_moved", {
+      surface: "collection_list",
+    });
+
     const folderQuery = new URLSearchParams(query);
     if (toFolder.length > 0) {
       folderQuery.set("folder", toFolder);

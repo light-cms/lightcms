@@ -1,5 +1,6 @@
-import { PostHog } from "posthog-node";
+import { dev } from "$app/environment";
 import { env } from "$env/dynamic/private";
+import { PostHog } from "posthog-node";
 
 let posthogClient: PostHog | undefined;
 
@@ -9,7 +10,21 @@ function getPostHogClient() {
   const key = env.VITE_POSTHOG_PROJECT_TOKEN;
   const host = env.VITE_POSTHOG_HOST;
 
-  if (!key || !host) {
+  if (!key) {
+    if (dev) {
+      console.warn(
+        "VITE_POSTHOG_PROJECT_TOKEN variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once VITE_POSTHOG_PROJECT_TOKEN is configured",
+      );
+    }
+    return;
+  }
+
+  if (!host) {
+    if (dev) {
+      console.warn(
+        "VITE_POSTHOG_HOST variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once VITE_POSTHOG_HOST is configured",
+      );
+    }
     return;
   }
 
@@ -17,6 +32,8 @@ function getPostHogClient() {
     host,
     flushAt: 1,
     flushInterval: 0,
+    requestTimeout: 2000,
+    fetchRetryCount: 0,
     enableExceptionAutocapture: true,
   });
   return posthogClient;
@@ -31,13 +48,13 @@ export async function captureServerEvent(
   if (!posthog) return;
 
   posthog.capture({ distinctId, event, properties });
-  await posthog.flush();
+  await posthog.flush().catch(() => {});
 }
 
-export async function captureServerError(error: unknown) {
+export async function captureServerError(error: unknown, distinctId?: string) {
   const posthog = getPostHogClient();
   if (!posthog) return;
 
-  posthog.captureException(error);
-  await posthog.flush();
+  posthog.captureException(error, distinctId);
+  await posthog.flush().catch(() => {});
 }

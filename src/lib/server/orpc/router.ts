@@ -1,4 +1,5 @@
 import { createOpenAI } from "@ai-sdk/openai";
+import { randomUUID } from "node:crypto";
 import { ORPCError, os, type } from "@orpc/server";
 import { streamText } from "ai";
 import { emitPostHogLog, flushAiObservability } from "$lib/server/ai-observability";
@@ -86,7 +87,7 @@ const transcribeSpeech = os
       temperature?: number;
     }>(),
   )
-  .handler(async ({ input }) => {
+  .handler(async ({ input, context }) => {
     const { audio, contentType, language, prompt, provider, endpoint, apiKey, model, temperature } =
       input;
     if (!audio) {
@@ -116,6 +117,13 @@ const transcribeSpeech = os
         apiKey,
         model,
         temperature,
+        observability: context.session
+          ? {
+              distinctId: context.session.userId,
+              sessionId: context.session.id,
+              traceId: randomUUID(),
+            }
+          : undefined,
       });
       return result;
     } catch (err) {

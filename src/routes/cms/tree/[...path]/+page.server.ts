@@ -10,6 +10,7 @@ import {
 } from "$lib/server/cms";
 import { getRepoCmsContext } from "$lib/server/cms-context";
 import { normalizeContentPath } from "$lib/server/paths";
+import { captureServerEvent } from "$lib/server/posthog";
 import type { Actions, PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ locals, params, url }) => {
@@ -74,6 +75,8 @@ export const actions: Actions = {
       });
     }
 
+    await captureServerEvent(locals.session.userId, "repository_folder_created");
+
     const redirectPath = currentPath ? `/cms/tree/${currentPath}?${query}` : `/cms/tree?${query}`;
     throw redirect(303, redirectPath);
   },
@@ -107,6 +110,8 @@ export const actions: Actions = {
       });
     }
 
+    await captureServerEvent(locals.session.userId, "repository_file_created");
+
     const treeUrl = currentPath ? `/cms/tree/${currentPath}?${query}` : `/cms/tree?${query}`;
     throw redirect(303, collectionEntryUrl(fullFilePath, query) ?? treeUrl);
   },
@@ -132,6 +137,8 @@ export const actions: Actions = {
         error: cause instanceof Error ? cause.message : "Could not delete file.",
       });
     }
+
+    await captureServerEvent(locals.session.userId, "repository_file_deleted");
 
     const currentPath = normalizeContentPath(params.path ?? "");
     const redirectPath = currentPath ? `/cms/tree/${currentPath}?${query}` : `/cms/tree?${query}`;
@@ -159,6 +166,8 @@ export const actions: Actions = {
         error: cause instanceof Error ? cause.message : "Could not delete folder.",
       });
     }
+
+    await captureServerEvent(locals.session.userId, "repository_folder_deleted");
 
     const currentPath = normalizeContentPath(params.path ?? "");
     const redirectPath = currentPath ? `/cms/tree/${currentPath}?${query}` : `/cms/tree?${query}`;
@@ -218,6 +227,10 @@ export const actions: Actions = {
         error: cause instanceof Error ? cause.message : "Could not move file.",
       });
     }
+
+    await captureServerEvent(locals.session.userId, "repository_file_moved", {
+      surface: "repository_tree",
+    });
 
     const currentPath = normalizeContentPath(params.path ?? "");
     let redirectPath = `/cms/tree?${query}`;

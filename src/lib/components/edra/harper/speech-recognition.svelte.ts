@@ -1,4 +1,5 @@
 import { createLightCmsClient } from "$lib/orpc-client";
+import posthog from "posthog-js";
 import {
   arrayBufferToBase64,
   concatFloat32Arrays,
@@ -124,6 +125,8 @@ export function createSpeechRecognition(
   }
 
   async function transcribeWithDirectWitAi(wavBlob: Blob, token: string): Promise<void> {
+    const traceId = crypto.randomUUID();
+    const startedAt = performance.now();
     const url = "https://api.wit.ai/dictation?v=20240304";
     const response = await fetch(url, {
       method: "POST",
@@ -171,6 +174,21 @@ export function createSpeechRecognition(
     if (transcript.length === 0) {
       throw new Error("No speech was detected. Try speaking closer to your microphone.");
     }
+
+    try {
+      posthog.capture("$ai_generation", {
+        $ai_trace_id: traceId,
+        $ai_session_id: posthog.get_session_id() ?? null,
+        $ai_model: "wit.ai-dictation",
+        $ai_provider: "wit",
+        $ai_output_choices: [{ role: "assistant", content: transcript }],
+        $ai_latency: (performance.now() - startedAt) / 1000,
+        $ai_http_status: response.status,
+      });
+    } catch {
+      // AI observability must not affect browser transcription.
+    }
+
     options.onTranscript(transcript, true, SPEECH_PROVIDERS.wit);
   }
 
