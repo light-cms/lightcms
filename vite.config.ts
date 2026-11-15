@@ -4,6 +4,8 @@ import tailwindcss from "@tailwindcss/vite";
 import { mdsvex } from "mdsvex";
 import { defineConfig } from "vite-plus";
 
+const stripIngestPrefix = (path: string) => path.replace(/^\/ingest/, "");
+
 export default defineConfig({
   test: {
     // Vitest v4 compatibility: preserve mock call history.
@@ -18,6 +20,24 @@ export default defineConfig({
   },
   server: {
     allowedHosts: true,
+    // Mirrors the PostHog rewrites in vercel.json so `api_host: "/ingest"` works in dev.
+    proxy: {
+      "/ingest/static": {
+        target: "https://us-assets.i.posthog.com",
+        changeOrigin: true,
+        rewrite: stripIngestPrefix,
+      },
+      "/ingest/array": {
+        target: "https://us-assets.i.posthog.com",
+        changeOrigin: true,
+        rewrite: stripIngestPrefix,
+      },
+      "/ingest": {
+        target: "https://us.i.posthog.com",
+        changeOrigin: true,
+        rewrite: stripIngestPrefix,
+      },
+    },
   },
   resolve: {
     dedupe: [
