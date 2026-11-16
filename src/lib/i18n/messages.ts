@@ -171,6 +171,46 @@ export const auth_redirecting_github = (options?: { locale?: Locale }) =>
 export const auth_use_passkey = (options?: { locale?: Locale }) => t("auth_use_passkey", options);
 export const auth_authenticating_passkey = (options?: { locale?: Locale }) =>
   t("auth_authenticating_passkey", options);
+export const auth_passkey_canceled = (options?: { locale?: Locale }) =>
+  t("auth_passkey_canceled", options);
+export const auth_passkey_error = (options?: { locale?: Locale }) =>
+  t("auth_passkey_error", options);
+export const auth_passkey_added = (options?: { locale?: Locale }) =>
+  t("auth_passkey_added", options);
+export const auth_passkey_removed = (options?: { locale?: Locale }) =>
+  t("auth_passkey_removed", options);
+export const auth_passkeys_title = (options?: { locale?: Locale }) =>
+  t("auth_passkeys_title", options);
+export const auth_passkeys_empty = (options?: { locale?: Locale }) =>
+  t("auth_passkeys_empty", options);
+export const auth_passkeys_loading = (options?: { locale?: Locale }) =>
+  t("auth_passkeys_loading", options);
+export const auth_passkey_unnamed = (options?: { locale?: Locale }) =>
+  t("auth_passkey_unnamed", options);
+export const auth_passkey_created = (options?: { locale?: Locale }) =>
+  t("auth_passkey_created", options);
+export const auth_remove_passkey = (options?: { locale?: Locale }) =>
+  t("auth_remove_passkey", options);
+export const auth_passkey_name_label = (options?: { locale?: Locale }) =>
+  t("auth_passkey_name_label", options);
+export const auth_passkey_name_placeholder = (options?: { locale?: Locale }) =>
+  t("auth_passkey_name_placeholder", options);
+export const auth_passkey_name_required = (options?: { locale?: Locale }) =>
+  t("auth_passkey_name_required", options);
+export const auth_create_passkey = (options?: { locale?: Locale }) =>
+  t("auth_create_passkey", options);
+export const auth_rename_passkey = (options?: { locale?: Locale }) =>
+  t("auth_rename_passkey", options);
+export const auth_save_passkey_name = (options?: { locale?: Locale }) =>
+  t("auth_save_passkey_name", options);
+export const auth_cancel_passkey_name = (options?: { locale?: Locale }) =>
+  t("auth_cancel_passkey_name", options);
+export const auth_passkey_renamed = (options?: { locale?: Locale }) =>
+  t("auth_passkey_renamed", options);
+export const auth_passkey_synced = (options?: { locale?: Locale }) =>
+  t("auth_passkey_synced", options);
+export const auth_passkey_device_bound = (options?: { locale?: Locale }) =>
+  t("auth_passkey_device_bound", options);
 export const auth_magic_link_separator = (options?: { locale?: Locale }) =>
   t("auth_magic_link_separator", options);
 export const auth_email_label = (options?: { locale?: Locale }) => t("auth_email_label", options);

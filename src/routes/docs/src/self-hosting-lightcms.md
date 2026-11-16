@@ -124,6 +124,13 @@ Create a `.env` file in the project root. The repository does not ship a usable 
 BETTER_AUTH_SECRET="<output of: openssl rand -hex 32>"
 # Public URL of this instance. Must match the URL users visit.
 BETTER_AUTH_URL="http://localhost:5173"
+# Optional. Passkey relying party ID. Defaults to the BETTER_AUTH_URL hostname.
+# Set it to the registrable domain (for example `example.com`) when the app is
+# reachable from several hosts such as `example.com` and `www.example.com`.
+# BETTER_AUTH_RP_ID="example.com"
+# Optional. Comma-separated extra origins trusted for authentication, including
+# passkey ceremonies and OAuth callbacks.
+# BETTER_AUTH_TRUSTED_ORIGINS="https://www.example.com,https://preview.example.com"
 
 # ---------------------------------------------------------------------------
 # Database (PostgreSQL, TLS required)
@@ -339,6 +346,8 @@ WIT_AI_CLIENT_TOKEN="Client access token"
 APP_ID=
 BETTER_AUTH_SECRET=
 BETTER_AUTH_URL=
+BETTER_AUTH_RP_ID=
+BETTER_AUTH_TRUSTED_ORIGINS=
 CDN_KEY=
 CDN_URL=
 DATABASE_URL=

@@ -2,10 +2,36 @@ import { building } from "$app/environment";
 import { getTextDirection, resolveLocaleFromPathname } from "$lib/i18n";
 import { runWithLocale } from "$lib/server/i18n";
 import { getAuth } from "$lib/server/auth";
-import { captureServerError } from "$lib/server/posthog";
-import { type Handle, type HandleServerError, redirect } from "@sveltejs/kit";
+import { captureServerError, recordHttpRequestMetrics } from "$lib/server/posthog";
+import {
+  type Handle,
+  type HandleServerError,
+  isHttpError,
+  isRedirect,
+  redirect,
+} from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 import { svelteKitHandler } from "better-auth/svelte-kit";
+
+const handleMetrics: Handle = async ({ event, resolve }) => {
+  const startedAt = performance.now();
+  const method = event.request.method;
+  const route = event.route.id ?? "unmatched";
+
+  try {
+    const response = await resolve(event);
+    if (!building) {
+      recordHttpRequestMetrics(method, route, response.status, performance.now() - startedAt);
+    }
+    return response;
+  } catch (error) {
+    if (!building) {
+      const status = isRedirect(error) || isHttpError(error) ? error.status : 500;
+      recordHttpRequestMetrics(method, route, status, performance.now() - startedAt);
+    }
+    throw error;
+  }
+};
 
 const handleSecurityHeaders: Handle = async ({ event, resolve }) => {
   const response = await resolve(event);
@@ -65,7 +91,12 @@ const handleI18n: Handle = ({ event, resolve }) => {
   );
 };
 
-export const handle: Handle = sequence(handleSecurityHeaders, handleBetterAuth, handleI18n);
+export const handle: Handle = sequence(
+  handleMetrics,
+  handleSecurityHeaders,
+  handleBetterAuth,
+  handleI18n,
+);
 
 export const handleError: HandleServerError = async ({ error, event, status }) => {
   if (status !== 404 && !building) {

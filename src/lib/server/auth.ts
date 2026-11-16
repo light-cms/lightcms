@@ -4,21 +4,100 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { magicLink } from "better-auth/plugins";
 import { sveltekitCookies } from "better-auth/svelte-kit";
 import { getRequestEvent } from "$app/server";
+import { dev } from "$app/environment";
 
 import { db } from "$lib/server/db";
 import * as schema from "$lib/server/db/schema";
 import { sendMail } from "$lib/utils/mail";
 
+const DEV_ORIGIN = "http://localhost:5173";
+
+function parseList(value: string | undefined): string[] {
+  if (!value) {
+    return [];
+  }
+
+  return value
+    .split(",")
+    .map((entry) => entry.trim())
+    .filter((entry) => entry.length > 0);
+}
+
+function resolveBaseURL(): URL {
+  const configured = process.env.BETTER_AUTH_URL;
+  if (configured) {
+    return new URL(configured);
+  }
+
+  const vercelURL = process.env.VERCEL_URL;
+  if (vercelURL) {
+    return new URL(`https://${vercelURL}`);
+  }
+
+  if (dev) {
+    return new URL(DEV_ORIGIN);
+  }
+
+  throw new Error(
+    "BETTER_AUTH_URL is required outside development. Set it to the public URL users visit.",
+  );
+}
+
+function isLoopback(hostname: string): boolean {
+  return hostname === "localhost" || hostname === "127.0.0.1" || hostname === "[::1]";
+}
+
+/**
+ * WebAuthn needs a relying party ID that the page origin belongs to, and the
+ * exact origins a ceremony may run on. Both are derived from BETTER_AUTH_URL so
+ * development stays on `localhost` and production stays on the public domain.
+ * `BETTER_AUTH_RP_ID` and `BETTER_AUTH_TRUSTED_ORIGINS` widen that when the app
+ * is reachable from more than one host (for example `www.` and the apex domain).
+ */
+function resolveAuthURLs() {
+  const baseURL = resolveBaseURL();
+  const extraOrigins = parseList(process.env.BETTER_AUTH_TRUSTED_ORIGINS);
+  const rpID = process.env.BETTER_AUTH_RP_ID?.trim() || baseURL.hostname;
+
+  const rpOrigins = isLoopback(rpID)
+    ? []
+    : [
+        `${baseURL.protocol}//${rpID}`,
+        ...(rpID.startsWith("www.") ? [] : [`${baseURL.protocol}//www.${rpID}`]),
+      ];
+
+  const trustedOrigins = Array.from(
+    new Set([
+      baseURL.origin,
+      ...extraOrigins,
+      ...rpOrigins,
+      ...(dev ? [DEV_ORIGIN] : []),
+      ...(process.env.VERCEL_URL ? [`https://${process.env.VERCEL_URL}`] : []),
+    ]),
+  );
+
+  const passkeyOrigins = Array.from(new Set([baseURL.origin, ...extraOrigins, ...rpOrigins]));
+
+  return {
+    baseURL: baseURL.toString().replace(/\/+$/, ""),
+    rpID,
+    trustedOrigins,
+    passkeyOrigins,
+  };
+}
+
 function createAuth() {
+  const { baseURL, rpID, trustedOrigins, passkeyOrigins } = resolveAuthURLs();
+
   return betterAuth({
     appName: "LightCMS",
     database: drizzleAdapter(db, {
       provider: "pg",
       schema,
     }),
-    baseURL: process.env.BETTER_AUTH_URL!,
+    baseURL,
     secret: process.env.BETTER_AUTH_SECRET!,
-    trustedOrigins: ["*"],
+    trustedOrigins,
     onAPIError: {
       errorURL: "/auth",
     },
@@ -58,8 +137,15 @@ function createAuth() {
 
       passkey({
         rpName: "LightCMS",
+        rpID,
+        origin: passkeyOrigins,
+        authenticatorSelection: {
+          residentKey: "preferred",
+          userVerification: "preferred",
+        },
       }),
 
+      // Must stay last: it persists cookies set by the other plugins.
       sveltekitCookies(() => getRequestEvent()),
     ],
   });

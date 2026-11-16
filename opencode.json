@@ -1,0 +1,11 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "agent-auth": {
+      "type": "stdio",
+      "command": "bunx",
+      "args": ["-y", "@auth/agent-cli", "mcp"],
+      "enabled": true
+    }
+  }
+}

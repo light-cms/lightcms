@@ -1,4 +1,4 @@
-import { captureServerEvent } from "$lib/server/posthog";
+import { captureServerEvent, recordWitAiRequestMetrics } from "$lib/server/posthog";
 
 export interface WitAiTranscriptionResult {
   text: string;
@@ -199,14 +199,22 @@ export async function transcribeAudioWithWitAi(
     requestedContentType && requestedContentType.length > 0 ? requestedContentType : "audio/wav";
 
   const startedAt = Date.now();
-  const response = await fetch(WIT_AI_DICTATION_URL, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": uploadContentType,
-    },
-    body: new Uint8Array(buffer),
-  });
+  let response: Response;
+  try {
+    response = await fetch(WIT_AI_DICTATION_URL, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": uploadContentType,
+      },
+      body: new Uint8Array(buffer),
+    });
+  } catch (error) {
+    recordWitAiRequestMetrics("network_error", Date.now() - startedAt);
+    throw error;
+  }
+
+  recordWitAiRequestMetrics(response.ok ? "success" : "http_error", Date.now() - startedAt);
 
   if (!response.ok) {
     const errorBody = await response.text();
