@@ -115,6 +115,13 @@ export async function transcribeAudio(
     language: options?.language,
     prompt: options?.prompt,
     temperature: options?.temperature,
+    observability: options?.observability
+      ? {
+          distinctId: options.observability.distinctId,
+          sessionId: options.observability.sessionId,
+          traceName: "cms_speech_transcription",
+        }
+      : undefined,
   });
 
   return {

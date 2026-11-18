@@ -1,5 +1,5 @@
 import { dev } from "$app/environment";
-import { env } from "$env/dynamic/private";
+import { env } from "$env/dynamic/public";
 import { PostHog } from "posthog-node";
 
 let posthogClient: PostHog | undefined;
@@ -26,13 +26,13 @@ const HTTP_METHODS = new Set(["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST
 function getPostHogClient() {
   if (posthogClient) return posthogClient;
 
-  const key = env.VITE_POSTHOG_PROJECT_TOKEN;
-  const host = env.VITE_POSTHOG_HOST;
+  const key = env.PUBLIC_POSTHOG_PROJECT_TOKEN;
+  const host = env.PUBLIC_POSTHOG_HOST;
 
   if (!key) {
     if (dev) {
       console.warn(
-        "VITE_POSTHOG_PROJECT_TOKEN variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once VITE_POSTHOG_PROJECT_TOKEN is configured",
+        "PUBLIC_POSTHOG_PROJECT_TOKEN variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once PUBLIC_POSTHOG_PROJECT_TOKEN is configured",
       );
     }
     return;
@@ -41,7 +41,7 @@ function getPostHogClient() {
   if (!host) {
     if (dev) {
       console.warn(
-        "VITE_POSTHOG_HOST variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once VITE_POSTHOG_HOST is configured",
+        "PUBLIC_POSTHOG_HOST variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once PUBLIC_POSTHOG_HOST is configured",
       );
     }
     return;

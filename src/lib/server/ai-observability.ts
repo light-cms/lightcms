@@ -6,18 +6,24 @@ import { NodeSDK } from "@opentelemetry/sdk-node";
 import { PostHogSpanProcessor } from "@posthog/ai/otel";
 import { registerTelemetry } from "ai";
 
-const key = process.env.VITE_POSTHOG_PROJECT_TOKEN;
-const host = process.env.VITE_POSTHOG_HOST;
+const key = process.env.PUBLIC_POSTHOG_PROJECT_TOKEN;
+const host = process.env.PUBLIC_POSTHOG_HOST;
 
 let posthogSpanProcessor: PostHogSpanProcessor | undefined;
 let posthogLogProcessor: BatchLogRecordProcessor | undefined;
 let posthogLogProvider: LoggerProvider | undefined;
 let posthogLogger: ReturnType<LoggerProvider["getLogger"]> | undefined;
 
-if (!key || !host) {
+if (!key) {
   if (process.env.NODE_ENV !== "production") {
     console.warn(
-      "PostHog AI observability is not configured (VITE_POSTHOG_PROJECT_TOKEN / VITE_POSTHOG_HOST). Traces and logs will not be exported.",
+      "PUBLIC_POSTHOG_PROJECT_TOKEN variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once PUBLIC_POSTHOG_PROJECT_TOKEN is configured",
+    );
+  }
+} else if (!host) {
+  if (process.env.NODE_ENV !== "production") {
+    console.warn(
+      "PUBLIC_POSTHOG_HOST variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once PUBLIC_POSTHOG_HOST is configured",
     );
   }
 } else {
