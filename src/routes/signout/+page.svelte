@@ -54,10 +54,6 @@ $effect(() => {
 });
 </script>
 
-<svelte:head>
-  <title>{m.signout_title()} | LightCMS</title>
-</svelte:head>
-
 <section
   class="mx-auto flex min-h-[60vh] max-w-md flex-col items-center justify-center gap-4 text-center"
 >

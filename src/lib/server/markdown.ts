@@ -100,22 +100,23 @@ export function addHeadingIds(html: string): string {
 
 export async function renderDocMarkdown(source: string): Promise<RenderedDoc> {
   const compiled = await compile(source, {
-    highlight: {
-      highlighter: async (code, lang) => {
-        const language = lang || "text";
-        const loadedLangs = highlighter.getLoadedLanguages();
+    highlight: (code, { lang, inline }) => {
+      if (inline) {
+        return null;
+      }
+      const language = lang !== "" ? lang : "text";
+      const loadedLangs = highlighter.getLoadedLanguages();
 
-        if (loadedLangs.includes(language)) {
-          return highlighter.codeToHtml(code, {
-            lang: language,
-            themes: {
-              light: "github-light",
-              dark: "github-dark",
-            },
-          });
-        }
-        return `<pre><code class="language-${language}">${code}</code></pre>`;
-      },
+      if (loadedLangs.includes(language)) {
+        return highlighter.codeToHtml(code, {
+          lang: language,
+          themes: {
+            light: "github-light",
+            dark: "github-dark",
+          },
+        });
+      }
+      return `<pre><code class="language-${language}">${code}</code></pre>`;
     },
   });
 

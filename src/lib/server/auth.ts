@@ -4,7 +4,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { magicLink } from "better-auth/plugins";
 import { sveltekitCookies } from "better-auth/svelte-kit";
 import { getRequestEvent } from "$app/server";
-import { dev } from "$app/environment";
+import { dev } from "$app/env";
 
 import { db } from "$lib/server/db";
 import * as schema from "$lib/server/db/schema";

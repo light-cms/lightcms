@@ -1,16 +1,10 @@
-import { building } from "$app/environment";
+import { building } from "$app/env";
 import { getTextDirection, resolveLocaleFromPathname } from "$lib/i18n";
 import { runWithLocale } from "$lib/server/i18n";
 import { getAuth } from "$lib/server/auth";
 import { captureServerError, recordHttpRequestMetrics } from "$lib/server/posthog";
-import {
-  type Handle,
-  type HandleServerError,
-  isHttpError,
-  isRedirect,
-  redirect,
-} from "@sveltejs/kit";
-import { sequence } from "@sveltejs/kit/hooks";
+import { isHttpError, isRedirect, redirect } from "@sveltejs/kit";
+import { type Handle, type HandleServerError, sequence } from "@sveltejs/kit/hooks";
 import { svelteKitHandler } from "better-auth/svelte-kit";
 
 const handleMetrics: Handle = async ({ event, resolve }) => {
@@ -98,7 +92,16 @@ export const handle: Handle = sequence(
   handleI18n,
 );
 
-export const handleError: HandleServerError = async ({ error, event, status }) => {
+export const handleError: HandleServerError = async ({ error, event }) => {
+  const status = isHttpError(error)
+    ? error.status
+    : typeof error === "object" &&
+        error !== null &&
+        "status" in error &&
+        typeof (error as { status: unknown }).status === "number"
+      ? (error as { status: number }).status
+      : 500;
+
   if (status !== 404 && !building) {
     try {
       await captureServerError(error, event.locals.user?.id);

@@ -124,20 +124,8 @@ export async function transcribeWithAiSdk(
       providerOptions: {
         openai: providerOptions,
       },
-      runtimeContext: options?.observability
-        ? {
-            distinctId: options.observability.distinctId,
-            sessionId: options.observability.sessionId,
-            traceName: options.observability.traceName,
-          }
-        : undefined,
       telemetry: {
         functionId: "cms_speech_transcription",
-        includeRuntimeContext: {
-          distinctId: true,
-          sessionId: true,
-          traceName: true,
-        },
         recordInputs: true,
         recordOutputs: true,
       },

@@ -11,7 +11,7 @@ import LayoutTemplate from "@lucide/svelte/icons/layout-template";
 import Settings from "@lucide/svelte/icons/settings";
 import Sparkles from "@lucide/svelte/icons/sparkles";
 import { toast } from "svelte-sonner";
-import { goto, invalidateAll } from "$app/navigation";
+import { goto, refreshAll } from "$app/navigation";
 import {
 	CreateBranchDialog,
 	CreateFolderDialog,
@@ -77,12 +77,12 @@ function _selectBranch(event: Event) {
 		branch: targetBranch,
 	});
 	_selectingBranch = true;
-	void goto(`/cms?${query}`, { invalidateAll: true });
+	void goto(`/cms?${query}`, { refreshAll: true });
 }
 
 async function _onBranchCreated(branchName: string) {
 	toast.success(`Created branch "${branchName}"`);
-	await invalidateAll();
+	await refreshAll();
 	if (data.selection) {
 		const query = new URLSearchParams({
 			installation: String(data.selection.installationId),
@@ -90,7 +90,7 @@ async function _onBranchCreated(branchName: string) {
 			branch: branchName,
 		});
 		_selectingBranch = true;
-		await goto(`/cms?${query}`, { invalidateAll: true });
+		await goto(`/cms?${query}`, { refreshAll: true });
 	}
 	_selectingBranch = false;
 }

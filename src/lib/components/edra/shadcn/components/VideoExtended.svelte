@@ -18,5 +18,6 @@ let mediaRef = $state<HTMLElement>();
 		playsinline
 		controls
 		title={node.attrs.title}
+		class="m-0 w-full rounded-md"
 	/>
 </MediaExtended>

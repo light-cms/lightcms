@@ -10,8 +10,8 @@ interface UploadOptions {
 
 export function uploadFile(file: File, opts: UploadOptions = {}): Promise<string> {
   const {
-    maxFileSize = 10 * 1024 * 1024,
-    allowedFileTypes = ["image/*"],
+    maxFileSize = 50 * 1024 * 1024,
+    allowedFileTypes = ["image/*", "video/*", "audio/*"],
     endpoint = "/api/image-upload",
     fieldName = "source",
   } = opts;

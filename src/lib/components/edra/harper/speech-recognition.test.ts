@@ -246,7 +246,13 @@ describe("createSpeechRecognition", () => {
     }
 
     const stopTrack = vi.fn();
-    stubGlobal("window", { AudioContext: FakeAudioContext });
+    const currentWindow = typeof window !== "undefined" ? window : ({} as typeof window);
+    stubGlobal("window", {
+      ...currentWindow,
+      AudioContext: FakeAudioContext,
+      addEventListener: currentWindow.addEventListener ?? vi.fn(),
+      removeEventListener: currentWindow.removeEventListener ?? vi.fn(),
+    });
     stubGlobal("navigator", {
       mediaDevices: {
         getUserMedia: vi.fn(async () => ({

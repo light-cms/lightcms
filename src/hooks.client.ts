@@ -1,7 +1,6 @@
-import type { HandleClientError } from "@sveltejs/kit";
+import type { HandleClientError } from "@sveltejs/kit/hooks";
 import posthog from "posthog-js";
-import { dev } from "$app/environment";
-import { env } from "$env/dynamic/public";
+import { dev } from "$app/env";
 import { captureLog } from "$lib/client/logging";
 import { initBrowserTracing, startSpan } from "$lib/client/tracing";
 
@@ -19,8 +18,8 @@ function describeError(error: unknown): string {
 }
 
 export function init() {
-  const key = env.PUBLIC_POSTHOG_PROJECT_TOKEN;
-  const host = env.PUBLIC_POSTHOG_HOST;
+  const key = import.meta.env.PUBLIC_POSTHOG_PROJECT_TOKEN;
+  const host = import.meta.env.PUBLIC_POSTHOG_HOST;
 
   if (!key || !host) {
     if (dev) {

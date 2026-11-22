@@ -15,6 +15,7 @@ import Sparkles from "@lucide/svelte/icons/sparkles";
 import SquareCode from "@lucide/svelte/icons/square-code";
 import Table from "@lucide/svelte/icons/table";
 import Type from "@lucide/svelte/icons/type";
+import Video from "@lucide/svelte/icons/video";
 import type { EdraCommand } from "../../../commands/index.js";
 import type { Editor } from "../../../tiptap/index.js";
 
@@ -22,6 +23,12 @@ export interface SlashGroup {
   name: string;
   title: string;
   actions: EdraCommand[];
+}
+
+export interface FilteredSlashGroup {
+  name: string;
+  title: string;
+  commands: EdraCommand[];
 }
 
 export const SLASH_EXTENSION_NAME = "slashCommand";
@@ -137,14 +144,25 @@ export const SLASH_GROUPS: SlashGroup[] = [
         icon: Image,
         name: "image",
         tooltip: "Image",
+        description: "Upload or embed an image.",
         onClick: (editor: Editor) => {
           editor.chain().focus().insertMediaPlaceholder({ mediaType: "image" }).run();
+        },
+      },
+      {
+        icon: Video,
+        name: "video",
+        tooltip: "Video",
+        description: "Upload or embed a video.",
+        onClick: (editor: Editor) => {
+          editor.chain().focus().insertMediaPlaceholder({ mediaType: "video" }).run();
         },
       },
       {
         icon: AudioLines,
         name: "audio",
         tooltip: "Audio",
+        description: "Upload or embed an audio file.",
         onClick: (editor: Editor) => {
           editor.chain().focus().insertMediaPlaceholder({ mediaType: "audio" }).run();
         },
@@ -205,16 +223,18 @@ export const SLASH_GROUPS: SlashGroup[] = [
 ];
 
 /** Filter the catalog by a `/query`, dropping groups with no matches. */
-export function filterSlashGroups(query: string): SlashGroup[] {
+export function filterSlashGroups(query: string): FilteredSlashGroup[] {
   const normalized = query.toLowerCase().trim();
   if (!normalized) {
     return SLASH_GROUPS.map((group) => ({
-      ...group,
+      name: group.name,
+      title: group.title,
       commands: [...group.actions],
     }));
   }
   return SLASH_GROUPS.map((group) => ({
-    ...group,
+    name: group.name,
+    title: group.title,
     commands: group.actions.filter((item) => {
       const matchTooltip = item.tooltip.toLowerCase().includes(normalized);
       const matchName = item.name.toLowerCase().includes(normalized);

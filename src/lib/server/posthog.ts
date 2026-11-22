@@ -1,5 +1,4 @@
-import { dev } from "$app/environment";
-import { env } from "$env/dynamic/public";
+import { dev } from "$app/env";
 import { PostHog } from "posthog-node";
 
 let posthogClient: PostHog | undefined;
@@ -26,8 +25,8 @@ const HTTP_METHODS = new Set(["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST
 function getPostHogClient() {
   if (posthogClient) return posthogClient;
 
-  const key = env.PUBLIC_POSTHOG_PROJECT_TOKEN;
-  const host = env.PUBLIC_POSTHOG_HOST;
+  const key = import.meta.env.PUBLIC_POSTHOG_PROJECT_TOKEN;
+  const host = import.meta.env.PUBLIC_POSTHOG_HOST;
 
   if (!key) {
     if (dev) {
@@ -134,6 +133,6 @@ export async function captureServerError(error: unknown, distinctId?: string) {
   const posthog = getPostHogClient();
   if (!posthog) return;
 
-  posthog.captureException(error, distinctId);
+  posthog.captureException(error, distinctId ? { distinctId } : undefined);
   await posthog.flush().catch(() => {});
 }

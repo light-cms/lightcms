@@ -15,7 +15,7 @@ import Trash from "@lucide/svelte/icons/trash";
 import TriangleAlert from "@lucide/svelte/icons/triangle-alert";
 import { toast } from "svelte-sonner";
 import { enhance } from "$app/forms";
-import { goto, invalidateAll } from "$app/navigation";
+import { goto, refreshAll } from "$app/navigation";
 import { CreateFolderDialog } from "$lib/components/custom";
 import { Button } from "$lib/components/ui/button";
 import {
@@ -125,10 +125,10 @@ async function confirmDeleteFolder() {
 			const parent = folder.split("/").slice(0, -1).join("/");
 			const params = withFolder(query, parent);
 			await goto(`/cms/${encodeURIComponent(collection.name)}?${params}`, {
-				invalidateAll: true,
+				refreshAll: true,
 			});
 		} else {
-			await invalidateAll();
+			await refreshAll();
 		}
 	} catch (cause) {
 		deleteError = cause instanceof Error ? cause.message : String(cause);

@@ -12,7 +12,7 @@ import {
   SPEECH_PROVIDERS,
   type SpeechProvider,
   type SpeechRecognitionError,
-} from "./speech-recognition.js";
+} from "./speech-recognition";
 
 export interface SpeechRecognitionOptions {
   lang?: string;

@@ -73,7 +73,7 @@ const generateContent = publicProcedure
     })();
   });
 
-const transcribeSpeech = os
+const transcribeSpeech = publicProcedure
   .input(
     type<{
       audio: string;

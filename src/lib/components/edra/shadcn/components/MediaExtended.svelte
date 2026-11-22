@@ -1,13 +1,13 @@
 <script lang="ts">
 import type { NodeViewProps } from "@tiptap/core";
 import { onMount, type Snippet } from "svelte";
-import { Button } from "$lib/components/ui/button/index.js";
-import { cn } from "$lib/utils.js";
-import strings from "../../strings.js";
-import { NodeViewWrapper } from "../../tiptap/index.js";
-import { duplicateContent } from "../../utils.js";
+import { Button } from "$lib/components/ui/button";
+import { cn } from "$lib/utils";
+import strings from "../../strings";
+import { NodeViewWrapper } from "../../tiptap";
+import { duplicateContent } from "../../utils";
 import MediaToolbar from "./media/MediaToolbar.svelte";
-import { useMediaResize } from "./media/resize.svelte.js";
+import { useMediaResize } from "./media/resize.svelte";
 
 interface MediaExtendedProps extends NodeViewProps {
 	children: Snippet<[]>;

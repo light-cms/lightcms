@@ -30,17 +30,17 @@ default_permissions:
 name: lightcms
 
 # The homepage of your GitHub App.
-url: https://lightcms.me
+url: https://www.lightcms.me
 
 # Webhook URL — must point to the deployed SvelteKit app so probot can
 # receive push, pull_request, and installation events. Set this in the
 # GitHub App settings (app.yml is the manifest; the webhook URL is not
 # part of the manifest schema).
-#   Production: https://lightcms.me/api/github/webhook
+#   Production: https://www.lightcms.me/api/github/webhook
 
 # GitHub redirects here after installation so LightCMS can associate the
 # installation with the authenticated CMS user.
-setup_url: https://lightcms.me/github/setup
+setup_url: https://www.lightcms.me/github/setup
 setup_on_update: false
 
 description: A small bot to manage content for static sites on behalf of lightcms

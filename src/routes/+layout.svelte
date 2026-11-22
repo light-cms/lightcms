@@ -1,8 +1,8 @@
 
 <script lang="ts">
-  import type { Pathname } from '$app/types';
+  import type { Path } from '$app/types';
   import { resolve } from '$app/paths';
-  import { browser } from '$app/environment';
+  import { browser, dev } from '$app/env';
 import { locales, localizeHref, resolveLocaleFromPathname, setLocale, stripLocaleFromPathname, getTextDirection } from '$lib/i18n';
   import * as m from '$lib/i18n/messages';
   import Blocks from "@lucide/svelte/icons/blocks";
@@ -15,7 +15,6 @@ import { locales, localizeHref, resolveLocaleFromPathname, setLocale, stripLocal
   import "./layout.css";
 
   import { onMount } from "svelte";
-  import { dev } from "$app/environment";
   import { page } from "$app/state";
   import { injectAnalytics } from "$lib/client/vercel-analytics.svelte";
   import Carbonbadge from "$lib/components/custom/CarbonBadge.svelte";
@@ -219,7 +218,7 @@ const userInitial = $derived(
 <div style="display:none">
   {#each locales as locale (locale)}
     <a
-      href={resolve(localizeHref(page.url.pathname, { locale }) as Pathname)}
+      href={resolve(localizeHref(page.url.pathname, { locale }) as Path)}
     >{locale}</a>
   {/each}
 </div>

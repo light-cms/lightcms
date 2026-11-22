@@ -19,5 +19,6 @@ export {
 } from "./SelectAcrossAtoms/index.js";
 export { default as SlashCommand } from "./slash/index.js";
 export * from "./table/index.ts";
+export { type SetVideoOptions, Video, type VideoOptions } from "./video/Video.js";
 export * from "./video/VideoExtended.ts";
 export { ColorHighlighter };

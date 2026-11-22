@@ -1,4 +1,4 @@
-import { browser } from "$app/environment";
+import { browser } from "$app/env";
 import type { HarperIssue, HarperLinter, HarperWorkerLinterConstructor } from "./types.ts";
 
 export const HARPER_INDEX_CDN_URL = "https://cdn.jsdelivr.net/npm/harper.js@3.0.0/dist/index.js";

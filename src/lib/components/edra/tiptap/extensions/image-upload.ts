@@ -18,16 +18,27 @@ export const ImageUpload = Extension.create<ImageUploadOptions>({
     if (!onUpload) return [];
 
     const handleFiles = (files: File[]) => {
-      const images = files.filter((file) => file.type.startsWith("image/"));
-      if (images.length === 0) return false;
+      const mediaFiles = files.filter(
+        (file) =>
+          file.type.startsWith("image/") ||
+          file.type.startsWith("video/") ||
+          file.type.startsWith("audio/"),
+      );
+      if (mediaFiles.length === 0) return false;
 
-      for (const file of images) {
+      for (const file of mediaFiles) {
         void onUpload(file)
           .then((src) => {
-            editor.commands.setImage({ src });
+            if (file.type.startsWith("video/")) {
+              editor.commands.setVideo({ src });
+            } else if (file.type.startsWith("audio/")) {
+              editor.commands.setAudio({ src });
+            } else {
+              editor.commands.setImage({ src });
+            }
           })
           .catch((error) => {
-            console.error("Failed to upload image:", error);
+            console.error("Failed to upload media:", error);
           });
       }
       return true;

@@ -1,13 +1,13 @@
 <script lang="ts">
-import { buttonVariants } from "$lib/components/ui/button/button.js";
-import { Input } from "$lib/components/ui/input/index.js";
-import * as Popover from "$lib/components/ui/popover/index.js";
-import { cn } from "$lib/utils.js";
+import { buttonVariants } from "$lib/components/ui/button/button";
+import { Input } from "$lib/components/ui/input";
+import * as Popover from "$lib/components/ui/popover";
+import { cn } from "$lib/utils";
 import {
 	NodeViewContent,
 	type NodeViewProps,
 	NodeViewWrapper,
-} from "../../tiptap/index.js";
+} from "../../tiptap";
 
 const { node, updateAttributes }: NodeViewProps = $props();
 

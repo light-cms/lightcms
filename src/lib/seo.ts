@@ -105,7 +105,7 @@ export function absoluteUrl(pathname: string): string {
   return new URL(pathname, SITE.origin).href;
 }
 
-export function canonicalPathname(url: URL): string {
+export function canonicalPathname(url: URL | { pathname: string }): string {
   return normalizePathname(url.pathname);
 }
 

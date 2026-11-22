@@ -17,6 +17,7 @@ const SKIPPED_NODE_TYPES = new Set([
   "iframe",
   "video",
   "audio",
+  "mediaPlaceholder",
   "callout",
   "tableCell",
   "tableHeader",

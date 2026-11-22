@@ -1,6 +1,9 @@
 <script lang="ts">
+import AudioLines from "@lucide/svelte/icons/audio-lines";
 import CloudUpload from "@lucide/svelte/icons/cloud-upload";
+import Image from "@lucide/svelte/icons/image";
 import Loader2 from "@lucide/svelte/icons/loader-2";
+import Video from "@lucide/svelte/icons/video";
 import type { NodeViewProps } from "@tiptap/core";
 import { toast } from "svelte-sonner";
 import { cn } from "$lib/utils.js";
@@ -14,9 +17,47 @@ let isUploading = $state(false);
 let uploadStatus = $state("");
 let fileInputRef = $state<HTMLInputElement | null>(null);
 
+const ACCEPT_MAP: Record<string, string> = {
+	audio: "audio/*",
+	video: "video/*",
+	image: "image/*",
+};
+
+const acceptTypes = $derived(ACCEPT_MAP[mediaType] ?? "image/*");
+
+const MAX_SIZE_MAP: Record<string, { bytes: number; label: string }> = {
+	video: { bytes: 50 * 1024 * 1024, label: "50MB" },
+	audio: { bytes: 20 * 1024 * 1024, label: "20MB" },
+	image: { bytes: 10 * 1024 * 1024, label: "10MB" },
+};
+
+const mediaConstraint = $derived(
+	MAX_SIZE_MAP[mediaType] ?? { bytes: 10 * 1024 * 1024, label: "10MB" }
+);
+
 function triggerFileInput() {
 	if (isUploading) return;
 	fileInputRef?.click();
+}
+
+function isValidFileType(file: File, type: string): boolean {
+	if (type === "audio") {
+		return file.type.startsWith("audio/");
+	}
+	if (type === "video") {
+		return file.type.startsWith("video/");
+	}
+	return file.type.startsWith("image/");
+}
+
+function getTargetNodeType(type: string): string {
+	if (type === "audio") {
+		return "audio";
+	}
+	if (type === "video") {
+		return "video";
+	}
+	return "image";
 }
 
 async function handleFiles(fileList: FileList | File[] | null | undefined) {
@@ -30,13 +71,13 @@ async function handleFiles(fileList: FileList | File[] | null | undefined) {
 	}
 
 	for (const file of filesArray) {
-		if (file.size > 5 * 1024 * 1024) {
-			toast.error(`"${file.name}" exceeds 5MB size limit.`);
+		if (file.size > mediaConstraint.bytes) {
+			toast.error(`"${file.name}" exceeds ${mediaConstraint.label} size limit.`);
 			return;
 		}
 	}
 
-	const validFiles = filesArray.filter((f) => f.type.startsWith("image/"));
+	const validFiles = filesArray.filter((file) => isValidFileType(file, mediaType));
 
 	if (validFiles.length === 0) {
 		toast.error(`Please select valid ${mediaType} file(s).`);
@@ -87,8 +128,7 @@ async function handleFiles(fileList: FileList | File[] | null | undefined) {
 function insertUploadedMedia(urls: string[]) {
 	const pos = typeof getPos === "function" ? getPos() : undefined;
 	const nodeSize = node?.nodeSize ?? 1;
-
-	const targetType = mediaType === "audio" ? "audio" : "image";
+	const targetType = getTargetNodeType(mediaType);
 
 	if (typeof pos === "number") {
 		const contentNodes = urls.map((src) => ({
@@ -106,6 +146,8 @@ function insertUploadedMedia(urls: string[]) {
 		for (const src of urls) {
 			if (mediaType === "audio") {
 				editor.chain().focus().setAudio({ src }).run();
+			} else if (mediaType === "video") {
+				editor.chain().focus().setVideo({ src }).run();
 			} else {
 				editor.chain().focus().setImage({ src }).run();
 			}
@@ -150,7 +192,7 @@ function handleDragLeave(event: DragEvent) {
 		<input
 			type="file"
 			bind:this={fileInputRef}
-			accept="image/*"
+			accept={acceptTypes}
 			multiple
 			onchange={(e) => void handleFiles(e.currentTarget.files)}
 			class="hidden"
@@ -187,6 +229,17 @@ function handleDragLeave(event: DragEvent) {
 					/>
 				</svg>
 
+				<!-- Center icon inside the document graphic -->
+				<div class="absolute inset-0 flex items-center justify-center pr-1 pb-1 text-zinc-400 group-hover:text-zinc-200 transition-colors">
+					{#if mediaType === "video"}
+						<Video class="size-5" />
+					{:else if mediaType === "audio"}
+						<AudioLines class="size-5" />
+					{:else}
+						<Image class="size-5" />
+					{/if}
+				</div>
+
 				<!-- Purple circular badge overlapping bottom-right with cloud-upload icon -->
 				<div class="absolute -bottom-1 -right-2 flex size-7 items-center justify-center rounded-full bg-[#8b5cf6] text-white shadow-md ring-2 ring-background">
 					<CloudUpload class="size-4 stroke-[2.2]" />
@@ -196,13 +249,13 @@ function handleDragLeave(event: DragEvent) {
 			<!-- Main label -->
 			<div class="text-sm font-medium leading-normal">
 				<span class="text-foreground underline underline-offset-4 decoration-muted-foreground/60 group-hover:decoration-foreground cursor-pointer transition-colors">
-					Click to upload
+					Click to upload {mediaType}
 				</span>
 				<span class="text-muted-foreground font-normal"> or drag and drop</span>
 			</div>
 
 			<!-- Constraints subtext -->
-			<p class="mt-1.5 text-xs text-muted-foreground">Maximum 3 files, 5MB each.</p>
+			<p class="mt-1.5 text-xs text-muted-foreground">Maximum 3 files, {mediaConstraint.label} each.</p>
 		{/if}
 	</div>
 </NodeViewWrapper>

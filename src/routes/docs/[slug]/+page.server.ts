@@ -3,11 +3,11 @@ import { localizeHref, resolveLocaleFromPathname } from "$lib/i18n";
 import { absoluteUrl, SITE } from "$lib/seo";
 import { loadDocEntries } from "$lib/server/docs";
 import { renderDocMarkdown } from "$lib/server/markdown";
-import type { PageServerLoad } from "./$types";
+import type { EntryGenerator, PageServerLoad } from "./$types";
 
 export const prerender = true;
 
-export const entries = async () => {
+export const entries: EntryGenerator = async () => {
   const docs = await loadDocEntries();
   return docs.map((doc) => ({ slug: doc.slug }));
 };
