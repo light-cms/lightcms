@@ -10,14 +10,14 @@ import { locales, localizeHref, resolveLocaleFromPathname, setLocale, stripLocal
   import Info from "@lucide/svelte/icons/info";
   import LogIn from "@lucide/svelte/icons/log-in";
   import Sparkles from "@lucide/svelte/icons/sparkles";
-  import { injectAnalytics } from "@vercel/analytics/sveltekit";
-  import { injectSpeedInsights } from "@vercel/speed-insights/sveltekit";
+  import { injectSpeedInsights } from "@vercel/speed-insights/sveltekit-next";
   import { ModeWatcher } from "mode-watcher";
   import "./layout.css";
 
   import { onMount } from "svelte";
   import { dev } from "$app/environment";
   import { page } from "$app/state";
+  import { injectAnalytics } from "$lib/client/vercel-analytics.svelte";
   import Carbonbadge from "$lib/components/custom/CarbonBadge.svelte";
   import Featured from "$lib/components/Featured.svelte";
   import MetaTags from "$lib/components/custom/MetaTags.svelte";
