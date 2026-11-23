@@ -4,3 +4,4 @@ Allow: /
 Sitemap: https://www.lightcms.me/sitemap.xml
 Sitemap: https://blogs.lightcms.me/sitemap.xml
 Sitemap: https://blogs.lightcms.me/rss.xml
+Sitemap: https://lightcms.me/sitemap.xml
