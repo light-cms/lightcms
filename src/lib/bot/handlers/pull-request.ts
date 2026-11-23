@@ -1,7 +1,7 @@
 import type { Context } from "probot";
-import { CONTENT_LABEL, GITHUB_PAGE_SIZE, REVIEW_MARKER } from "../constants.js";
-import { isContentPath } from "../content.js";
-import { logBotError } from "./error-handler.js";
+import { CONTENT_LABEL, GITHUB_PAGE_SIZE, REVIEW_MARKER } from "../constants";
+import { isContentPath } from "../content";
+import { logBotError } from "./error-handler";
 
 type PullRequestContext = Context<"pull_request">;
 

@@ -1,9 +1,9 @@
 <script lang="ts">
 import TextAlignCenter from "@lucide/svelte/icons/text-align-center";
 import type { Node } from "@tiptap/pm/model";
-import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-import { commands } from "../../commands/index.js";
-import type { Editor } from "../../tiptap/index.js";
+import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+import { commands } from "../../commands";
+import type { Editor } from "../../tiptap";
 
 interface Props {
 	editor: Editor;
