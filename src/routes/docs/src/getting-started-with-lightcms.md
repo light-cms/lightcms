@@ -20,42 +20,44 @@ keywords:
   - git based
 ---
 
-[LightCMS](https://www.lightcms.me) is a Git-backed editor for static sites. You write in a rich editor, hit publish, and [LightCMS](https://www.lightcms.me) commits clean Markdown to your repository. Your deployment pipeline — Cloudflare Pages, Netlify, Vercel, GitHub Pages — takes it from there.
+LightCMS is a Git-backed editor for static sites. You write in a rich editor and press Publish; LightCMS commits clean Markdown into your repository. Your build and deploy pipeline — Cloudflare Pages, Netlify, Vercel, GitHub Pages, or similar — takes it from there.
 
-Your content lives in your own Git repository as plain Markdown files, readable and deployable by any static site generator you're already using.
+Your content stays in a repository you own as plain Markdown files. Any static site generator that reads Markdown can build the site.
 
 ## How it works
 
-1. Sign in with your GitHub account.
-2. Connect the repository that contains your static site. Astro, Hugo, SvelteKit, Jekyll, Next.js, Eleventy — anything that reads Markdown.
-3. Write and edit content in the built-in editor. Create posts, edit existing ones, upload images, and fill in front matter fields without touching a terminal.
-4. Hit publish. [LightCMS](https://www.lightcms.me) commits your content to the path you've configured — for example, `content/blog/my-post.md` in your repository root.
-5. Your build pipeline deploys automatically. The post is live within a minute or two, depending on your host.
+1. Sign in with GitHub or another supported provider.
+2. Connect the repository that contains your site (Astro, Hugo, SvelteKit, Jekyll, Eleventy, Next, etc.).
+3. Create or edit content in the editor: new posts, updates, image uploads, and front matter changes without using the terminal.
+4. Press Publish. LightCMS writes the Markdown to the path you configured (for example `content/blog/my-post.md`).
+5. Your CI/CD pipeline builds and deploys the site. The new page typically appears within a few minutes depending on your host.
 
-That's the full loop. [LightCMS](https://www.lightcms.me) only runs while you're writing. Readers are served by your CDN, not by [LightCMS](https://www.lightcms.me).
+LightCMS runs only while someone writes. Site visitors see the static pages served by your CDN.
 
-## What's in the editor
+## Editor highlights
 
-**TipTap-based rich editor** — writes clean Markdown with front matter. What you see is what gets committed. If you've ever opened a `.md` file and found a soup of HTML tags, this is the alternative.
+- TipTap-based editor that produces clean Markdown with front matter.
+- Optional AI helper that connects to any OpenAI-compatible API to suggest edits or continue a draft.
+- Voice dictation via OpenAI-compatible transcription or Wit.ai for quick drafts.
+- Light and dark themes so the editor is comfortable for long writing sessions.
+- Optional newsletter automation that can send posts to subscribers using Newsy (see /docs/newsletter-newsy).
 
-**AI copilot** — connected to any OpenAI-compatible API. Useful when a paragraph isn't landing: ask it to tighten the wording, expand a point, or pick up a draft you abandoned mid-thought.
+## What LightCMS does not do
 
-**Voice-to-text** — dictate directly into the editor using any Whisper-compatible transcription API or Wit.ai. Good for getting a messy first draft down quickly when typing gets in the way of thinking.
+- LightCMS does not host
+  your site or serve pages to readers. You keep control of hosting and delivery.
+- It does not replace your deployment pipeline. It integrates with the workflow you already have.
 
-**Light and dark themes** — several theme options so the editor is comfortable during longer writing sessions.
+## Why this matters
 
-**Newsletter automation** — publish a post and notify subscribers automatically via [Newsy](/docs/newsletter-newsy). No third-party newsletter service required.
-
-## What [LightCMS](https://www.lightcms.me) does not do
-
-It doesn't host your content or serve your readers, and that's by design. If you're coming from WordPress or Ghost, the CMS being the host is what you're used to. Here the relationship is different: [LightCMS](https://www.lightcms.me) is a writing tool, not infrastructure. Your static site generator builds the output, your hosting provider serves it, and you own every file. Switching editors, generators, or hosts doesn't mean migrating a database.
-
-It doesn't replace your deployment setup either. It works with whatever pipeline you already have.
+- Portability: your content is plain files in your repo. Swap tools later without migrating a database.
+- Traceability: every change is a Git commit, so you get full history and the usual Git collaboration model.
+- Performance and cost: static HTML served from a CDN loads fast and is inexpensive to deliver.
 
 ## Next steps
 
-- [Why LightCMS?](/docs/why-lightcms) — the design philosophy behind Git-backed publishing
-- [How to start a blog](/docs/how-to-start-a-blog) — pick a template and go from zero to published
-- [Self-hosting LightCMS](/docs/self-hosting-lightcms) — run your own private instance
-- [Newsletter automation](/docs/newsletter-newsy) — send posts to subscribers automatically with Newsy
-- [Building a greener web](/docs/building-a-greener-web) — why static publishing is the lower-carbon choice
+- [Why LightCMS?](/docs/why-lightcms) — the design reasons for Git-backed publishing
+- [How to start a blog](/docs/how-to-start-a-blog) — pick a template and publish your first post
+- [Self-hosting LightCMS](/docs/self-hosting-lightcms) — run your own instance
+- [Newsletter automation](/docs/newsletter-newsy) — send posts to subscribers with Newsy
+- [Building a greener web](/docs/building-a-greener-web) — how static sites reduce carbon emissions

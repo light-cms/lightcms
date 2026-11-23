@@ -1,6 +1,7 @@
 ---
 title: Newsletter
-description: "Set up automated newsletters for your static blog with Newsy: posts published straight from Git, subscriber emails sent for you, no monthly platform fee."
+description: "Set up automated newsletters for your static blog with Newsy: posts published straight from Git, subscriber emails sent for you, no monthly platform fee
+."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: false
@@ -18,17 +19,16 @@ keywords:
 preview: /og-image.png
 ---
 
-Reaching your audience directly after posting new content is among the most effective ways to
-build a loyal, dedicated reader base. Yet the conventional way of running a newsletter has grown
-unnecessarily clunky and costly.
+Sending a newsletter when you publish a post is one of the simplest ways to grow an audience. Newsy uses Git as the source of truth so you can automate that step without a separate newsletter platform.
 
-[LightCMS](https://www.lightcms.me) takes a modern, developer friendly approach instead: **Git driven newsletters** powered by [Newsy](https://newsy.lightcms.me/). for further details, check out the [repo](https://github.com/light-cms/newsy).
+## How Newsy works
 
-## The Git Driven Approach: Newsy
+- Write and publish posts as Markdown in your repository.
+- Newsy watches repository events or a configured issues feed and detects new posts.
+- Newsy builds a newsletter from the published content and sends it to your subscriber list via SMTP. You can use Resend, Postmark, or another provider.
 
-The [Newsy](https://newsy.lightcms.me) philosophy is straightforward: **Your GitHub issues serve as the single source of truth for your newsletter.**
+Key points:
 
-[Newsy](https://newsy.lightcms.me) is an open source, automated newsletter service that keeps an eye on your GitHub repository:
-
-Newsy watches repository events and smartly detects newly created content files in your configured repo. It takes care of everything else by itself.
-Find out more and explore the [Newsy Website](https://newsy.lightcms.me).
+- Content stays in your repo, not locked in a newsletter platform.
+- You control delivery settings via SMTP and your provider account.
+- Newsy is open source. See the implementation and examples at https://github.com/light-cms/newsy
