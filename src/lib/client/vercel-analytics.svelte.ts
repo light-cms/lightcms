@@ -3,9 +3,8 @@ import { page } from "$app/state";
 
 /**
  * Same behaviour as `injectAnalytics` from `@vercel/analytics/sveltekit`, but
- * reads the route from `$app/state`. The packaged version subscribes to the
- * `page` store from `$app/stores`, which SvelteKit 3 removed: the subscribe call
- * throws `app_stores_removed` and breaks hydration of the root layout.
+ * reads the route from `$app/state` so it does not subscribe to a store that
+ * SvelteKit 3 removed (which threw `app_stores_removed` and broke hydration).
  *
  * Call it during component initialisation.
  */
