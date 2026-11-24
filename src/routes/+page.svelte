@@ -1,26 +1,51 @@
 <script lang="ts">
-import Check from "@lucide/svelte/icons/check";
-import FileText from "@lucide/svelte/icons/file-text";
-import GitBranch from "@lucide/svelte/icons/git-branch";
+import ArrowRight from "@lucide/svelte/icons/arrow-right";
+import BookOpen from "@lucide/svelte/icons/book-open";
 import Sparkles from "@lucide/svelte/icons/sparkles";
+import { onMount } from "svelte";
+import DemoPreview from "$lib/components/DemoPreview.svelte";
 import Hero from "$lib/components/Hero.svelte";
-import Supademo from "$lib/components/Supademo.svelte";
+import { localizeHref } from "$lib/i18n";
 import * as m from "$lib/i18n/messages";
-import type { PageData } from "./$types";
 
-let { data }: { data: PageData } = $props();
+interface SupademoWindow {
+	Supademo?: {
+		open: (id: string) => void;
+	};
+}
 
-const workspaceHref = $derived(data.session ? "/cms" : "/auth?next=%2Fcms");
+function openTour(): void {
+	if (typeof window === "undefined") {
+		return;
+	}
+
+	const supademoWindow = window as unknown as SupademoWindow;
+	supademoWindow.Supademo?.open("cmvvdyema01exqmwtg0adiw7p");
+}
+
+onMount(() => {
+	if (typeof document !== "undefined") {
+		const existing = document.querySelector(
+			'script[src*="supademo.com/supademo.js"]',
+		);
+		if (!existing) {
+			const script = document.createElement("script");
+			script.src = "https://script.supademo.com/supademo.js";
+			script.defer = true;
+			document.head.appendChild(script);
+		}
+	}
+});
 </script>
 
 <div class="space-y-16 py-6 lg:py-12">
   <section
     id="hero"
-    class="grid min-h-[calc(100vh-16rem)] items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]"
+    class="grid min-h-[calc(100vh-16rem)] items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]"
   >
     <div class="max-w-2xl space-y-8">
       <div
-        class="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-semibold text-foreground"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-3.5 py-1 text-xs font-semibold text-foreground shadow-2xs"
       >
         <Sparkles size={13} class="animate-pulse text-primary" />
         <span>{m.hero_badge()}</span>
@@ -37,57 +62,66 @@ const workspaceHref = $derived(data.session ? "/cms" : "/auth?next=%2Fcms");
         </p>
       </div>
 
-      <div class="flex flex-wrap items-center gap-4">
-        <a
-          class="inline-flex items-center justify-center gap-2.5 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-xs transition-transform hover:scale-[1.02] active:scale-[0.98]"
-          href={workspaceHref}
-        >
-          {m.hero_cta_workspace()}
-          <GitBranch size={17} />
-        </a>
-        <a
-          class="inline-flex items-center justify-center rounded-lg border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground shadow-xs transition-transform hover:bg-accent hover:text-accent-foreground active:scale-[0.98]"
-          href="/demo"
-        >
-          {m.hero_cta_demo()}
-        </a>
-        <Supademo />
+      <div class="space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+          <a
+            class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-md transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
+            href="/demo"
+          >
+            <span>{m.hero_cta_demo()}</span>
+            <ArrowRight size={16} />
+          </a>
+          <a
+            class="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground shadow-xs transition-all duration-200 hover:bg-accent hover:text-accent-foreground active:scale-[0.98]"
+            href={localizeHref("/docs/getting-started-with-lightcms")}
+          >
+            <BookOpen size={16} />
+            <span>{m.hero_cta_docs()}</span>
+          </a>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground pt-1">
+          <span>{m.hero_cta_subtext()}</span>
+          <span class="text-border" aria-hidden="true">•</span>
+          <button
+            type="button"
+            class="inline-flex items-center gap-1 font-semibold text-primary transition-colors hover:underline cursor-pointer"
+            onclick={openTour}
+          >
+            <span>{m.hero_cta_tour()}</span>
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
       </div>
     </div>
 
+    <!-- Right Window: Real /demo editor mockup with frontmatter and live status -->
     <div class="relative lg:block">
-      <div
-        class="overflow-hidden rounded-2xl border border-border bg-card text-card-foreground shadow-2xl"
-      >
-        <div
-          class="flex items-center justify-between border-b border-border bg-muted/30 px-4 py-3"
-        >
-          <div class="flex items-center gap-1.5">
-            <span class="h-3 w-3 rounded-full bg-red-500/80"></span>
-            <span class="h-3 w-3 rounded-full bg-yellow-500/80"></span>
-            <span class="h-3 w-3 rounded-full bg-green-500/80"></span>
-          </div>
-          <div
-            class="flex items-center gap-2 rounded bg-muted/60 px-3 py-1 font-mono text-xs text-muted-foreground"
-          >
-            <GitBranch size={12} class="text-primary" />
-            <span>main: content/posts/hello-world.md</span>
-          </div>
-          <div
-            class="flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold text-primary"
-          >
-            <Check size={10} />
-            <span>{m.hero_synced()}</span>
-          </div>
-        </div>
-        <div class="grid h-100 place-items-center bg-muted/20 p-8 text-center">
-          <div class="space-y-2">
-            <FileText size={24} class="mx-auto text-muted-foreground" />
-            <p class="text-xs text-muted-foreground">{m.hero_preview_label()}</p>
-          </div>
-        </div>
-      </div>
+      <DemoPreview />
     </div>
   </section>
+
+  <!-- Feature Sections -->
   <Hero />
+
+  <!-- Closing CTA Section with Website Carbon Proof -->
+  <section class="border-t border-border pt-12 pb-6 text-center">
+    <div class="mx-auto max-w-2xl space-y-4">
+      <p class="text-sm font-semibold text-muted-foreground sm:text-base">
+        {m.footer_carbon_proof()}
+      </p>
+      <div>
+        <a
+          class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow-md transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
+          href="/demo"
+        >
+          <span>{m.footer_cta_editor()}</span>
+          <ArrowRight size={16} />
+        </a>
+      </div>
+      <p class="text-xs text-muted-foreground">
+        {m.hero_cta_subtext()}
+      </p>
+    </div>
+  </section>
 </div>

@@ -65,9 +65,13 @@ export const hero_description = (options?: { locale?: Locale }) => t("hero_descr
 export const hero_cta_workspace = (options?: { locale?: Locale }) =>
   t("hero_cta_workspace", options);
 export const hero_cta_demo = (options?: { locale?: Locale }) => t("hero_cta_demo", options);
+export const hero_cta_docs = (options?: { locale?: Locale }) => t("hero_cta_docs", options);
+export const hero_cta_subtext = (options?: { locale?: Locale }) => t("hero_cta_subtext", options);
+export const hero_cta_tour = (options?: { locale?: Locale }) => t("hero_cta_tour", options);
 export const hero_preview_label = (options?: { locale?: Locale }) =>
   t("hero_preview_label", options);
 export const hero_synced = (options?: { locale?: Locale }) => t("hero_synced", options);
+export const hero_saving = (options?: { locale?: Locale }) => t("hero_saving", options);
 
 // Features
 export const features_headline = (options?: { locale?: Locale }) => t("features_headline", options);
@@ -97,6 +101,9 @@ export const feature_copilot_title = (options?: { locale?: Locale }) =>
   t("feature_copilot_title", options);
 export const feature_copilot_desc = (options?: { locale?: Locale }) =>
   t("feature_copilot_desc", options);
+export const footer_carbon_proof = (options?: { locale?: Locale }) =>
+  t("footer_carbon_proof", options);
+export const footer_cta_editor = (options?: { locale?: Locale }) => t("footer_cta_editor", options);
 
 // About
 export const about_eyebrow = (options?: { locale?: Locale }) => t("about_eyebrow", options);

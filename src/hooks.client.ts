@@ -23,9 +23,12 @@ export function init() {
 
   if (!key || !host) {
     if (dev) {
-      const variable = !key ? "PUBLIC_POSTHOG_PROJECT_TOKEN" : "PUBLIC_POSTHOG_HOST";
-      throw new Error(
-        `${variable} variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once ${variable} is configured`,
+      let missingVariable = "PUBLIC_POSTHOG_PROJECT_TOKEN";
+      if (key) {
+        missingVariable = "PUBLIC_POSTHOG_HOST";
+      }
+      console.warn(
+        `${missingVariable} variable required by PostHog is missing or un-configured, this causes events to be silently missed. This warning stops appearing once ${missingVariable} is configured`,
       );
     }
     return;

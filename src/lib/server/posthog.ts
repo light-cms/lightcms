@@ -2,6 +2,8 @@ import { dev } from "$app/env";
 import { PostHog } from "posthog-node";
 
 let posthogClient: PostHog | undefined;
+let hasWarnedMissingKey = false;
+let hasWarnedMissingHost = false;
 
 const CMS_COMMIT_OPERATIONS = new Set([
   "collection_created",
@@ -29,18 +31,20 @@ function getPostHogClient() {
   const host = import.meta.env.PUBLIC_POSTHOG_HOST;
 
   if (!key) {
-    if (dev) {
+    if (dev && !hasWarnedMissingKey) {
+      hasWarnedMissingKey = true;
       console.warn(
-        "PUBLIC_POSTHOG_PROJECT_TOKEN variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once PUBLIC_POSTHOG_PROJECT_TOKEN is configured",
+        "PUBLIC_POSTHOG_PROJECT_TOKEN variable required by PostHog is missing or un-configured, this causes events to be silently missed. This warning stops appearing once PUBLIC_POSTHOG_PROJECT_TOKEN is configured",
       );
     }
     return;
   }
 
   if (!host) {
-    if (dev) {
+    if (dev && !hasWarnedMissingHost) {
+      hasWarnedMissingHost = true;
       console.warn(
-        "PUBLIC_POSTHOG_HOST variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once PUBLIC_POSTHOG_HOST is configured",
+        "PUBLIC_POSTHOG_HOST variable required by PostHog is missing or un-configured, this causes events to be silently missed. This warning stops appearing once PUBLIC_POSTHOG_HOST is configured",
       );
     }
     return;

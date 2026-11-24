@@ -6,9 +6,10 @@ import Copy from "@lucide/svelte/icons/copy";
 import FileCode from "@lucide/svelte/icons/file-code";
 import Link from "@lucide/svelte/icons/link";
 import { toast } from "svelte-sonner";
-import { Button } from "$lib/components/ui/button";
+import { buttonVariants } from "$lib/components/ui/button";
 import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
 import * as m from "$lib/i18n/messages";
+import { cn } from "$lib/utils";
 
 let {
 	section = "Get Started",
@@ -63,16 +64,15 @@ async function copyPageLink(): Promise<void> {
 	</nav>
 
 	<DropdownMenu.Root>
-		<DropdownMenu.Trigger>
-			<Button
-				variant="outline"
-				size="sm"
-				class="h-7 gap-1.5 border-border/80 bg-card/60 px-2.5 font-mono text-xs font-semibold shadow-xs hover:border-primary/50 hover:bg-muted/60"
-			>
-				<FileCode size={13} class="text-primary" />
-				<span>LLM</span>
-				<ChevronDown size={12} class="text-muted-foreground" />
-			</Button>
+		<DropdownMenu.Trigger
+			class={cn(
+				buttonVariants({ variant: "outline", size: "sm" }),
+				"h-7 gap-1.5 border-border/80 bg-card/60 px-2.5 font-mono text-xs font-semibold shadow-xs hover:border-primary/50 hover:bg-muted/60",
+			)}
+		>
+			<FileCode size={13} class="text-primary" />
+			<span>LLM</span>
+			<ChevronDown size={12} class="text-muted-foreground" />
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content align="end" class="w-56 font-sans">
 			<DropdownMenu.Label class="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">

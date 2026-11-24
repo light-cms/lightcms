@@ -7,9 +7,12 @@ import { locales, localizeHref, resolveLocaleFromPathname, setLocale, stripLocal
   import * as m from '$lib/i18n/messages';
   import Blocks from "@lucide/svelte/icons/blocks";
   import BookOpen from "@lucide/svelte/icons/book-open";
+  import GitBranch from "@lucide/svelte/icons/git-branch";
   import Info from "@lucide/svelte/icons/info";
   import LogIn from "@lucide/svelte/icons/log-in";
+  import Menu from "@lucide/svelte/icons/menu";
   import Sparkles from "@lucide/svelte/icons/sparkles";
+  import X from "@lucide/svelte/icons/x";
   import { injectSpeedInsights } from "@vercel/speed-insights/sveltekit-next";
   import { ModeWatcher } from "mode-watcher";
   import "./layout.css";
@@ -38,13 +41,31 @@ import {
   }
 let { children, data } = $props();
 
-  const session = $derived(data.session);
-  const user = $derived(data.user);
+const session = $derived(data.session);
+const user = $derived(data.user);
 const userInitial = $derived(
 	(user?.name ?? user?.email ?? "U").charAt(0).toUpperCase(),
 );
-  const currentPath = $derived(stripLocaleFromPathname(page.url.pathname));
-  const isDocs = $derived(currentPath.startsWith("/docs"));
+const currentPath = $derived(stripLocaleFromPathname(page.url.pathname));
+const isDocs = $derived(currentPath.startsWith("/docs"));
+const isCmsActive = $derived(currentPath.startsWith("/cms"));
+const isAboutActive = $derived(currentPath === "/about");
+const workspaceHref = $derived(session ? "/cms" : "/auth?next=%2Fcms");
+const containerMaxWidthClass = $derived(isDocs ? "max-w-[1536px]" : "max-w-7xl");
+const mainContainerClass = $derived(
+	isDocs
+		? "max-w-[1536px] px-4 sm:px-6 lg:px-8 py-4 sm:py-6"
+		: "max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8",
+);
+
+function getNavLinkClass(isActive: boolean): string {
+	const base =
+		"inline-flex items-center gap-2 px-3 py-1.5 text-xs font-bold rounded-xl transition-all duration-200";
+	if (isActive) {
+		return `${base} bg-primary/10 text-primary`;
+	}
+	return `${base} hover:bg-accent hover:text-accent-foreground text-muted-foreground`;
+}
 
   $effect(() => {
     const locale = resolveLocaleFromPathname(page.url.pathname);
@@ -58,6 +79,13 @@ const userInitial = $derived(
   let posthogClient: typeof import("posthog-js").default | undefined;
   let identifiedUserId: string | undefined;
   let starDialogOpen = $state(false);
+  let mobileMenuOpen = $state(false);
+
+  $effect(() => {
+    if (page.url.pathname) {
+      mobileMenuOpen = false;
+    }
+  });
 
   function identifyCurrentUser() {
     if (!user) {
@@ -117,7 +145,7 @@ const userInitial = $derived(
     class="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md transition-colors"
   >
     <div
-      class="mx-auto flex h-16 {isDocs ? 'max-w-[1536px]' : 'max-w-7xl'} items-center justify-between gap-4 px-4 sm:px-6 lg:px-8"
+      class="mx-auto flex h-16 {containerMaxWidthClass} items-center justify-between gap-3 px-4 sm:px-6 lg:px-8"
     >
       <a
         class="group flex items-center gap-2.5 rounded-lg p-1.5 focus-visible:outline-2 focus-visible:outline-primary"
@@ -125,12 +153,12 @@ const userInitial = $derived(
         aria-label={m.nav_home_label()}
       >
         <span
-          class="grid size-9 place-items-center overflow-hidden rounded-xl bg-primary text-primary-foreground shadow-md transition-transform group-hover:scale-105 group-hover:rotate-3"
+          class="grid size-9 place-items-center overflow-hidden rounded-xl border border-border/50 bg-card p-1 shadow-xs transition-transform group-hover:scale-105 group-hover:rotate-3"
         >
           <img
-            src="/logo.png"
+            src="/logo-mark.png"
             alt="LightCMS logo"
-            class="size-full object-cover"
+            class="size-full object-contain"
             width="36"
             height="36"
           />
@@ -140,33 +168,60 @@ const userInitial = $derived(
           >LightCMS</span
         >
       </a>
-      <nav class="flex items-center gap-2" aria-label={m.nav_primary_label()}>
+
+      <!-- Mobile actions (< 640px): Logo, Open workspace button, and mobile menu toggle -->
+      <div class="flex items-center gap-2 sm:hidden">
         <a
-          class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-bold rounded-xl transition-all duration-200 {page.url.pathname.startsWith('/cms') ? 'bg-primary/10 text-primary' : 'hover:bg-accent hover:text-accent-foreground text-muted-foreground'}"
-          href={session ? '/cms' : '/auth?next=%2Fcms'}
+          class="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground shadow-xs transition-transform active:scale-[0.98]"
+          href={workspaceHref}
+        >
+          <span>{m.hero_cta_workspace()}</span>
+          <GitBranch size={13} />
+        </a>
+
+        <button
+          type="button"
+          class="grid size-9 place-items-center rounded-lg border border-border bg-card text-foreground transition-colors hover:bg-accent"
+          onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={mobileMenuOpen}
+        >
+          {#if mobileMenuOpen}
+            <X size={18} />
+          {:else}
+            <Menu size={18} />
+          {/if}
+        </button>
+      </div>
+
+      <!-- Desktop nav (>= 640px) -->
+      <nav class="hidden sm:flex items-center gap-2" aria-label={m.nav_primary_label()}>
+        <a
+          class={getNavLinkClass(isCmsActive)}
+          href={workspaceHref}
           aria-label={m.nav_cms_label()}
-          aria-current={currentPath.startsWith("/cms")}
+          aria-current={isCmsActive ? "page" : undefined}
         >
           <Blocks size={15} />
-          <span class="hidden sm:inline">{m.nav_cms()}</span>
+          <span>{m.nav_cms()}</span>
         </a>
         <a
-          class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-bold rounded-xl transition-all duration-200 {isDocs ? 'bg-primary/10 text-primary' : 'hover:bg-accent hover:text-accent-foreground text-muted-foreground'}"
+          class={getNavLinkClass(isDocs)}
           href={localizeHref("/docs/getting-started-with-lightcms")}
           aria-label={m.nav_docs_label()}
           aria-current={isDocs ? "page" : undefined}
         >
           <BookOpen size={15} />
-          <span class="hidden sm:inline">{m.nav_docs()}</span>
+          <span>{m.nav_docs()}</span>
         </a>
         <a
-          class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-bold rounded-xl transition-all duration-200 {page.url.pathname === '/about' ? 'bg-primary/10 text-primary' : 'hover:bg-accent hover:text-accent-foreground text-muted-foreground'}"
+          class={getNavLinkClass(isAboutActive)}
           href={localizeHref("/about")}
           aria-label={m.nav_about_label()}
-          aria-current={currentPath === "/about"}
+          aria-current={isAboutActive ? "page" : undefined}
         >
           <Info size={15} />
-          <span class="hidden sm:inline">{m.nav_about()}</span>
+          <span>{m.nav_about()}</span>
         </a>
 
         <span class="mx-1 h-5 w-px bg-border/60" aria-hidden="true"></span>
@@ -191,26 +246,79 @@ const userInitial = $derived(
         <ToggleMode />
       </nav>
     </div>
+
+    <!-- Mobile dropdown panel -->
+    {#if mobileMenuOpen}
+      <div class="border-t border-border/60 bg-background/95 backdrop-blur-md px-4 py-4 sm:hidden">
+        <div class="flex flex-col space-y-3">
+          <a
+            class="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:bg-accent"
+            href={workspaceHref}
+          >
+            <Blocks size={16} class="text-primary" />
+            <span>{m.nav_cms()}</span>
+          </a>
+          <a
+            class="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:bg-accent"
+            href={localizeHref("/docs/getting-started-with-lightcms")}
+          >
+            <BookOpen size={16} class="text-primary" />
+            <span>{m.nav_docs()}</span>
+          </a>
+          <a
+            class="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:bg-accent"
+            href={localizeHref("/about")}
+          >
+            <Info size={16} class="text-primary" />
+            <span>{m.nav_about()}</span>
+          </a>
+          <div class="flex items-center justify-between border-t border-border/40 pt-3">
+            <div class="flex items-center gap-2">
+              <LanguageSwitcher />
+              <ToggleMode />
+            </div>
+            <a
+              class="inline-flex items-center gap-2 rounded-lg border border-border px-3 py-1.5 text-xs font-semibold hover:bg-accent"
+              href="/auth"
+            >
+              {#if session}
+                <span>{m.auth_title()}</span>
+              {:else}
+                <LogIn size={14} />
+                <span>{m.error_sign_in()}</span>
+              {/if}
+            </a>
+          </div>
+        </div>
+      </div>
+    {/if}
   </header>
   <div class="relative overflow-hidden">
     <main
       id="main-content"
-      class="{isDocs ? 'mx-auto w-full max-w-[1536px] px-4 sm:px-6 lg:px-8 py-4 sm:py-6' : 'mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8'} relative z-10"
+      class="mx-auto w-full {mainContainerClass} relative z-10"
     >
       {@render children()}
     </main>
   </div>
   <footer class="border-t border-border/50 py-8 text-center text-xs text-muted-foreground bg-muted/20">
-  <div class="mx-auto {isDocs ? 'max-w-[1536px]' : 'max-w-7xl'} px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-    <div class="flex items-center gap-1.5 font-bold text-foreground">
+    <div class="mx-auto {containerMaxWidthClass} px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-1.5 font-bold text-foreground">
         <Sparkles size={14} class="text-primary" />
         <span>LightCMS</span>
       </div>
 
-    <Button href="https://app.youform.com/forms/smwrhikc" target="_blank" rel="noopener noreferrer">{m.footer_contact()}</Button>
+      <div class="flex flex-wrap items-center justify-center gap-4 text-xs font-medium">
+        <a href={localizeHref("/docs/getting-started-with-lightcms")} class="hover:text-foreground transition-colors">{m.nav_docs()}</a>
+        <a href={localizeHref("/about")} class="hover:text-foreground transition-colors">{m.nav_about()}</a>
+        <a href="https://github.com/light-cms" target="_blank" rel="noopener noreferrer" class="hover:text-foreground transition-colors">GitHub</a>
+        <a href="https://app.youform.com/forms/smwrhikc" target="_blank" rel="noopener noreferrer" class="hover:text-foreground transition-colors">{m.footer_contact()}</a>
+      </div>
 
-      <Featured />
-      <Carbonbadge />
+      <div class="flex items-center gap-3">
+        <Featured />
+        <Carbonbadge />
+      </div>
     </div>
   </footer>
 </div>
