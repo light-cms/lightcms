@@ -5,11 +5,11 @@ import {
   initializeCollection,
   listCollectionEntries,
   moveCollectionEntry,
-} from "$lib/server/cms";
+} from "#lib/server/cms";
 
-import { getConfiguredCollection } from "$lib/server/cms-context";
-import { joinPath, normalizeContentPath, normalizeFolder } from "$lib/server/paths";
-import { captureServerEvent } from "$lib/server/posthog";
+import { getConfiguredCollection } from "#lib/server/cms-context";
+import { joinPath, normalizeContentPath, normalizeFolder } from "#lib/server/paths";
+import { captureServerEvent } from "#lib/server/posthog";
 import type { Actions, PageServerLoad } from "./$types";
 
 function getInitializeErrorMessage(error: unknown): string {

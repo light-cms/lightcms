@@ -2,7 +2,7 @@ import { fail } from "@sveltejs/kit";
 import { message, superValidate } from "sveltekit-superforms";
 import { zod4 } from "sveltekit-superforms/adapters";
 import { z } from "zod";
-import { getAuth } from "$lib/server/auth";
+import { getAuth } from "#lib/server/auth";
 
 import type { PageServerLoad } from "./$types";
 

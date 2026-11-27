@@ -1,4 +1,4 @@
-import type { BlockTrigger, InlinePair } from "./types.js";
+import type { BlockTrigger, InlinePair } from "./types";
 
 /**
  * Block-level markdown shortcuts. Each `match` is anchored and exact so a

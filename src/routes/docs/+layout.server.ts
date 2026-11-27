@@ -1,5 +1,5 @@
-import { groupDocsBySection, loadDocEntries } from "$lib/server/docs";
-import { resolveLocaleFromPathname } from "$lib/i18n";
+import { resolveLocaleFromPathname } from "#lib/i18n";
+import { groupDocsBySection, loadDocEntries } from "#lib/server/docs";
 import type { LayoutServerLoad } from "./$types";
 
 export const prerender = true;

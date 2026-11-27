@@ -15,7 +15,7 @@ declare module "@tiptap/core" {
        * Inserts a media placeholder
        */
       insertMediaPlaceholder: (options: {
-        mediaType: "image" | "audio" | "video" | "iframe";
+        mediaType: "image" | "audio" | "video" | "iframe" | "youtube";
       }) => ReturnType;
 
       /**

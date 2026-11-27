@@ -1,17 +1,17 @@
-import type { LightCmsCollection } from "$lib/server/config";
+import type { LightCmsCollection } from "#lib/server/config";
 import {
   createFile,
   deleteFile,
   isGitHubStatus,
   listAllFilesRecursive,
   listDir,
-} from "$lib/server/github";
+} from "#lib/server/github";
 import {
   assertFolderName,
   joinPath,
   normalizeContentPath,
   normalizeFolder,
-} from "$lib/server/paths";
+} from "#lib/server/paths";
 import { type CmsContext, resolveRepository } from "./types";
 
 export class FolderNotFoundError extends Error {

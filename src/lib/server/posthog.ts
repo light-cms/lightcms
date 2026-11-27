@@ -1,5 +1,5 @@
-import { dev } from "$app/env";
 import { PostHog } from "posthog-node";
+import { dev } from "$app/env";
 
 let posthogClient: PostHog | undefined;
 let hasWarnedMissingKey = false;
@@ -74,7 +74,9 @@ export async function captureServerEvent(
 
   try {
     if (CMS_COMMIT_OPERATIONS.has(event)) {
-      posthog.metrics.count("cms.commits", 1, { attributes: { operation: event } });
+      posthog.metrics.count("cms.commits", 1, {
+        attributes: { operation: event },
+      });
     } else if (event === "github_installation_completed") {
       posthog.metrics.count("github.installations", 1, {
         attributes: { outcome: "completed" },
@@ -120,7 +122,11 @@ export function recordWitAiRequestMetrics(
   const posthog = getPostHogClient();
   if (!posthog) return;
 
-  const attributes = { dependency: "wit_ai", operation: "transcription", outcome };
+  const attributes = {
+    dependency: "wit_ai",
+    operation: "transcription",
+    outcome,
+  };
 
   try {
     posthog.metrics.count("external.requests", 1, { attributes });

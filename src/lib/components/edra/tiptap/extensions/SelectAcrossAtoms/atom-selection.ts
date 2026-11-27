@@ -2,7 +2,7 @@ import type { Node as ProseMirrorNode } from "@tiptap/pm/model";
 import { NodeSelection, Selection, TextSelection } from "@tiptap/pm/state";
 import type { EditorView } from "@tiptap/pm/view";
 
-import { ATOM_SLIGHT_PENETRATION_PX, type AtomVerticalSide } from "./types.js";
+import { ATOM_SLIGHT_PENETRATION_PX, type AtomVerticalSide } from "./types";
 
 export type { AtomVerticalSide };
 

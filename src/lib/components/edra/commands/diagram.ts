@@ -1,5 +1,5 @@
 import Workflow from "@lucide/svelte/icons/workflow";
-import type { EdraCommand } from "./types.js";
+import type { EdraCommand } from "./types";
 
 export const diagramCommands: EdraCommand[] = [
   {

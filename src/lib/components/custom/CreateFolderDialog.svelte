@@ -1,8 +1,7 @@
 <script lang="ts">
 import FolderPlus from "@lucide/svelte/icons/folder-plus";
 import Sparkles from "@lucide/svelte/icons/sparkles";
-import { enhance } from "$app/forms";
-import { Button } from "$lib/components/ui/button";
+import { Button } from "#lib/components/ui/button";
 import {
 	Dialog,
 	DialogContent,
@@ -10,10 +9,11 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-} from "$lib/components/ui/dialog";
-import { Input } from "$lib/components/ui/input";
-import { Label } from "$lib/components/ui/label";
-import * as m from "$lib/i18n/messages";
+} from "#lib/components/ui/dialog";
+import { Input } from "#lib/components/ui/input";
+import { Label } from "#lib/components/ui/label";
+import * as m from "#lib/i18n/messages";
+import { enhance } from "$app/forms";
 
 interface Props {
 	open?: boolean;

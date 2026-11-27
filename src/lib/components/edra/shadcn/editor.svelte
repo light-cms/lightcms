@@ -3,14 +3,14 @@ import TiptapContent from "../tiptap/components/TiptapContent.svelte";
 import "./editor.css";
 import mermaid from "mermaid";
 import { mode } from "mode-watcher";
-import { cn } from "$lib/utils.js";
+import { cn } from "#lib/utils";
 import {
 	Link,
 	MathBlock,
 	MathInline,
 	TableColMenu,
 	TableRowMenu,
-} from "./components/menu/index.js";
+} from "./components/menu/index";
 
 interface Props {
 	class?: string;

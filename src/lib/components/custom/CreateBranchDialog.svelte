@@ -3,7 +3,7 @@ import GitFork from "@lucide/svelte/icons/git-fork";
 import LoaderCircle from "@lucide/svelte/icons/loader-circle";
 import Plus from "@lucide/svelte/icons/plus";
 import { untrack } from "svelte";
-import { Button } from "$lib/components/ui/button";
+import { Button } from "#lib/components/ui/button";
 import {
 	Dialog,
 	DialogContent,
@@ -11,11 +11,11 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-} from "$lib/components/ui/dialog";
-import { Input } from "$lib/components/ui/input";
-import { Label } from "$lib/components/ui/label";
-import * as m from "$lib/i18n/messages";
-import { createLightCmsClient } from "$lib/orpc-client";
+} from "#lib/components/ui/dialog";
+import { Input } from "#lib/components/ui/input";
+import { Label } from "#lib/components/ui/label";
+import * as m from "#lib/i18n/messages";
+import { createLightCmsClient } from "#lib/orpc-client";
 
 interface BranchOption {
 	name: string;

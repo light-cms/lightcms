@@ -1,5 +1,5 @@
 import { redirect } from "@sveltejs/kit";
-import { localizeHref, resolveLocaleFromPathname } from "$lib/i18n";
+import { localizeHref, resolveLocaleFromPathname } from "#lib/i18n";
 import type { PageServerLoad } from "./$types";
 
 export const prerender = true;

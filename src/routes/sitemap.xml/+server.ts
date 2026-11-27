@@ -1,5 +1,5 @@
-import { SITE } from "$lib/seo";
-import { loadDocEntries } from "$lib/server/docs";
+import { SITE } from "#lib/seo";
+import { loadDocEntries } from "#lib/server/docs";
 import type { RequestHandler } from "./$types";
 
 type SitemapEntry = {

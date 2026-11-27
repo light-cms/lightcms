@@ -294,7 +294,7 @@ export const handleError: HandleClientError = async ({ error, status, message })
 
 ```ts
 import type { Handle, HandleServerError } from "@sveltejs/kit";
-import { getPostHogClient } from "$lib/server/posthog";
+import { getPostHogClient } from "#lib/server/posthog";
 
 // Handle requests - includes reverse proxy for PostHog
 export const handle: Handle = async ({ event, resolve }) => {
@@ -451,7 +451,7 @@ export function getAuthContext(): AuthState {
 
 ```svelte
 <script lang="ts">
-	import { getAuthContext } from '$lib/auth.svelte';
+	import { getAuthContext } from '#lib/auth.svelte';
 
 	const auth = getAuthContext();
 </script>
@@ -481,7 +481,7 @@ export function getAuthContext(): AuthState {
 ## src/lib/index.ts
 
 ```ts
-// place files you want to import through the `$lib` alias in this folder.
+// place files you want to import through the `#lib` alias in this folder.
 ```
 
 ---
@@ -517,8 +517,8 @@ export async function shutdownPostHog() {
 
 ```svelte
 <script lang="ts">
-	import { AuthState, setAuthContext } from '$lib/auth.svelte';
-	import Header from '$lib/components/Header.svelte';
+	import { AuthState, setAuthContext } from '#lib/auth.svelte';
+	import Header from '#lib/components/Header.svelte';
 	import '../app.css';
 
 	let { children } = $props();
@@ -546,7 +546,7 @@ export async function shutdownPostHog() {
 
 ```svelte
 <script lang="ts">
-	import { getAuthContext } from '$lib/auth.svelte';
+	import { getAuthContext } from '#lib/auth.svelte';
 
 	const auth = getAuthContext();
 
@@ -618,7 +618,7 @@ export async function shutdownPostHog() {
 ```ts
 import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
-import { getPostHogClient } from "$lib/server/posthog";
+import { getPostHogClient } from "#lib/server/posthog";
 
 const users = new Map<string, { username: string; burritoConsiderations: number }>();
 
@@ -674,7 +674,7 @@ export const POST: RequestHandler = async ({ request }) => {
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
 	import posthog from 'posthog-js';
-	import { getAuthContext } from '$lib/auth.svelte';
+	import { getAuthContext } from '#lib/auth.svelte';
 
 	const auth = getAuthContext();
 
@@ -737,7 +737,7 @@ export const POST: RequestHandler = async ({ request }) => {
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
 	import posthog from 'posthog-js';
-	import { getAuthContext } from '$lib/auth.svelte';
+	import { getAuthContext } from '#lib/auth.svelte';
 
 	const auth = getAuthContext();
 

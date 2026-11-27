@@ -1,44 +1,51 @@
 
 <script lang="ts">
-  import type { Path } from '$app/types';
-  import { resolve } from '$app/paths';
-  import { browser, dev } from '$app/env';
-import { locales, localizeHref, resolveLocaleFromPathname, setLocale, stripLocaleFromPathname, getTextDirection } from '$lib/i18n';
-  import * as m from '$lib/i18n/messages';
-  import Blocks from "@lucide/svelte/icons/blocks";
-  import BookOpen from "@lucide/svelte/icons/book-open";
-  import GitBranch from "@lucide/svelte/icons/git-branch";
-  import Info from "@lucide/svelte/icons/info";
-  import LogIn from "@lucide/svelte/icons/log-in";
-  import Menu from "@lucide/svelte/icons/menu";
-  import Sparkles from "@lucide/svelte/icons/sparkles";
-  import X from "@lucide/svelte/icons/x";
-  import { injectSpeedInsights } from "@vercel/speed-insights/sveltekit-next";
-  import { ModeWatcher } from "mode-watcher";
-  import "./layout.css";
+import Blocks from "@lucide/svelte/icons/blocks";
+import BookOpen from "@lucide/svelte/icons/book-open";
+import GitBranch from "@lucide/svelte/icons/git-branch";
+import Info from "@lucide/svelte/icons/info";
+import LogIn from "@lucide/svelte/icons/log-in";
+import Menu from "@lucide/svelte/icons/menu";
+import Sparkles from "@lucide/svelte/icons/sparkles";
+import X from "@lucide/svelte/icons/x";
+import { injectSpeedInsights } from "@vercel/speed-insights/sveltekit-next";
+import { ModeWatcher } from "mode-watcher";
+import {
+	getTextDirection,
+	locales,
+	localizeHref,
+	resolveLocaleFromPathname,
+	setLocale,
+	stripLocaleFromPathname,
+} from "#lib/i18n";
+import * as m from "#lib/i18n/messages";
+import { browser, dev } from "$app/env";
+import { resolve } from "$app/paths";
+import type { Path } from "$app/types";
+import "./layout.css";
 
-  import { onMount } from "svelte";
-  import { page } from "$app/state";
-  import { injectAnalytics } from "$lib/client/vercel-analytics.svelte";
-  import Carbonbadge from "$lib/components/custom/CarbonBadge.svelte";
-  import Featured from "$lib/components/Featured.svelte";
-  import MetaTags from "$lib/components/custom/MetaTags.svelte";
-  import StarRepoDialog from "$lib/components/custom/StarRepoDialog.svelte";
-  import LanguageSwitcher from "$lib/components/custom/LanguageSwitcher.svelte";
-  import ToggleMode from "$lib/components/custom/ToggleMode.svelte";
-  import { Avatar } from "$lib/components/ui/avatar";
-  import { Button } from "$lib/components/ui/button";
-  import { Toaster } from "$lib/components/ui/sonner";
+import { onMount } from "svelte";
+import { injectAnalytics } from "#lib/client/vercel-analytics.svelte";
+import Carbonbadge from "#lib/components/custom/CarbonBadge.svelte";
+import LanguageSwitcher from "#lib/components/custom/LanguageSwitcher.svelte";
+import MetaTags from "#lib/components/custom/MetaTags.svelte";
+import StarRepoDialog from "#lib/components/custom/StarRepoDialog.svelte";
+import ToggleMode from "#lib/components/custom/ToggleMode.svelte";
+import Featured from "#lib/components/Featured.svelte";
+import { Avatar } from "#lib/components/ui/avatar";
+import { Button } from "#lib/components/ui/button";
+import { Toaster } from "#lib/components/ui/sonner";
 import {
 	DEFAULT_THEME_ID,
 	MODE_STORAGE_KEY,
 	THEME_STORAGE_KEY,
-} from "$lib/themes.js";
+} from "#lib/themes";
+import { page } from "$app/state";
 
-  if (!dev) {
-    injectAnalytics({ mode: "production" });
-    injectSpeedInsights();
-  }
+if (!dev) {
+	injectAnalytics({ mode: "production" });
+	injectSpeedInsights();
+}
 let { children, data } = $props();
 
 const session = $derived(data.session);
@@ -51,7 +58,9 @@ const isDocs = $derived(currentPath.startsWith("/docs"));
 const isCmsActive = $derived(currentPath.startsWith("/cms"));
 const isAboutActive = $derived(currentPath === "/about");
 const workspaceHref = $derived(session ? "/cms" : "/auth?next=%2Fcms");
-const containerMaxWidthClass = $derived(isDocs ? "max-w-[1536px]" : "max-w-7xl");
+const containerMaxWidthClass = $derived(
+	isDocs ? "max-w-[1536px]" : "max-w-7xl",
+);
 const mainContainerClass = $derived(
 	isDocs
 		? "max-w-[1536px] px-4 sm:px-6 lg:px-8 py-4 sm:py-6"
@@ -67,32 +76,32 @@ function getNavLinkClass(isActive: boolean): string {
 	return `${base} hover:bg-accent hover:text-accent-foreground text-muted-foreground`;
 }
 
-  $effect(() => {
-    const locale = resolveLocaleFromPathname(page.url.pathname);
-    setLocale(locale);
-    if (browser) {
-      document.documentElement.lang = locale;
-      document.documentElement.dir = getTextDirection(locale);
-    }
-  });
+$effect(() => {
+	const locale = resolveLocaleFromPathname(page.url.pathname);
+	setLocale(locale);
+	if (browser) {
+		document.documentElement.lang = locale;
+		document.documentElement.dir = getTextDirection(locale);
+	}
+});
 
-  let posthogClient: typeof import("posthog-js").default | undefined;
-  let identifiedUserId: string | undefined;
-  let starDialogOpen = $state(false);
-  let mobileMenuOpen = $state(false);
+let posthogClient: typeof import("posthog-js").default | undefined;
+let identifiedUserId: string | undefined;
+let starDialogOpen = $state(false);
+let mobileMenuOpen = $state(false);
 
-  $effect(() => {
-    if (page.url.pathname) {
-      mobileMenuOpen = false;
-    }
-  });
+$effect(() => {
+	if (page.url.pathname) {
+		mobileMenuOpen = false;
+	}
+});
 
-  function identifyCurrentUser() {
-    if (!user) {
-      identifiedUserId = undefined;
-      return;
-    }
-    if (!posthogClient || user.id === identifiedUserId) return;
+function identifyCurrentUser() {
+	if (!user) {
+		identifiedUserId = undefined;
+		return;
+	}
+	if (!posthogClient || user.id === identifiedUserId) return;
 
 	if (identifiedUserId) {
 		posthogClient.reset();
@@ -105,29 +114,29 @@ function getNavLinkClass(isActive: boolean): string {
 	identifiedUserId = user.id;
 }
 
-  onMount(async () => {
-    const { isPostHogInitialized } = await import("../hooks.client");
-    if (!isPostHogInitialized()) return;
+onMount(async () => {
+	const { isPostHogInitialized } = await import("../hooks.client");
+	if (!isPostHogInitialized()) return;
 
-    posthogClient = (await import("posthog-js")).default;
-    identifyCurrentUser();
+	posthogClient = (await import("posthog-js")).default;
+	identifyCurrentUser();
 
-    const dismissed = localStorage.getItem("lightcms-star-dialog-dismissed");
-    if (!dismissed) {
+	const dismissed = localStorage.getItem("lightcms-star-dialog-dismissed");
+	if (!dismissed) {
 		setTimeout(() => {
-          starDialogOpen = true;
+			starDialogOpen = true;
 		}, 3000);
-    }
-  });
+	}
+});
 
-  $effect(() => {
-    identifyCurrentUser();
-  });
+$effect(() => {
+	identifyCurrentUser();
+});
 
-  function dismissStarDialog() {
-    localStorage.setItem("lightcms-star-dialog-dismissed", "true");
-    starDialogOpen = false;
-  }
+function dismissStarDialog() {
+	localStorage.setItem("lightcms-star-dialog-dismissed", "true");
+	starDialogOpen = false;
+}
 </script>
 
 <ModeWatcher defaultTheme={DEFAULT_THEME_ID} modeStorageKey={MODE_STORAGE_KEY} themeStorageKey={THEME_STORAGE_KEY} />

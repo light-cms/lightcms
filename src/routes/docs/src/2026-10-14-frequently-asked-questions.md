@@ -11,9 +11,6 @@ tags:
   - lightcms
   - static-sites
   - green-web
-keywords: cms
-weight: 1
-isCJKLanguage: false
 ---
 
 ## Frequently Asked Questions

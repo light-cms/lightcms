@@ -3,10 +3,10 @@ import {
   isNotFoundError,
   RepositoryFileExistsError,
   wrapGitHubError,
-} from "./errors.js";
-import { assertRepositoryPath, encodeContent, parseRepository } from "./helpers.js";
-import { getFileContent } from "./read.js";
-import type { GitHubClient, Repository } from "./types.js";
+} from "./errors";
+import { assertRepositoryPath, encodeContent, parseRepository } from "./helpers";
+import { getFileContent } from "./read";
+import type { GitHubClient, Repository } from "./types";
 
 async function createOrUpdateContents(
   path: string,

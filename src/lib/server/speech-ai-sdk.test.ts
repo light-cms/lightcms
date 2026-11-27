@@ -1,9 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vite-plus/test";
-import {
-  isAiSdkSpeechConfigured,
-  resolveSpeechConfig,
-  transcribeWithAiSdk,
-} from "./speech-ai-sdk.js";
+import { isAiSdkSpeechConfigured, resolveSpeechConfig, transcribeWithAiSdk } from "./speech-ai-sdk";
 
 vi.mock("ai", () => {
   return {
@@ -17,7 +13,7 @@ vi.mock("ai", () => {
   };
 });
 
-vi.mock("$lib/server/ai-observability", () => ({
+vi.mock("#lib/server/ai-observability", () => ({
   flushAiObservability: vi.fn(async () => undefined),
 }));
 

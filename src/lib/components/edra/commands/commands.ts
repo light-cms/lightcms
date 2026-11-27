@@ -1,16 +1,16 @@
-import type { EdraCommand } from "./types.js";
+import type { EdraCommand } from "./types";
 
-export type { EdraCommand } from "./types.js";
+export type { EdraCommand } from "./types";
 
-import { alignmentCommands } from "./alignment.js";
-import { diagramCommands } from "./diagram.js";
-import { headingCommands } from "./headings.js";
-import { historyCommands } from "./history.js";
-import { listCommands } from "./lists.js";
-import { mathCommands } from "./math.js";
-import { mediaCommands } from "./media.js";
-import { tableCommands } from "./table.js";
-import { textFormattingCommands } from "./text-formatting.js";
+import { alignmentCommands } from "./alignment";
+import { diagramCommands } from "./diagram";
+import { headingCommands } from "./headings";
+import { historyCommands } from "./history";
+import { listCommands } from "./lists";
+import { mathCommands } from "./math";
+import { mediaCommands } from "./media";
+import { tableCommands } from "./table";
+import { textFormattingCommands } from "./text-formatting";
 
 export const commands: Record<string, EdraCommand[]> = {
   "undo-redo": historyCommands,

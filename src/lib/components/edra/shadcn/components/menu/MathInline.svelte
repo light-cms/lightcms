@@ -1,13 +1,9 @@
 <script lang="ts">
 import CornerDownLeft from "@lucide/svelte/icons/corner-down-left";
-import { Button } from "$lib/components/ui/button/index.js";
-import { Input } from "$lib/components/ui/input/index.js";
-import strings from "../../../strings.js";
-import {
-	BubbleMenu,
-	getEditor,
-	useEditorState,
-} from "../../../tiptap/index.js";
+import { Button } from "#lib/components/ui/button/index";
+import { Input } from "#lib/components/ui/input/index";
+import strings from "../../../strings";
+import { BubbleMenu, getEditor, useEditorState } from "../../../tiptap/index";
 
 const editor = getEditor();
 const editorState = useEditorState({

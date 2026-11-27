@@ -1,10 +1,10 @@
 <script lang="ts">
 import ArrowLeft from "@lucide/svelte/icons/arrow-left";
 import CircleAlert from "@lucide/svelte/icons/circle-alert";
+import { localizeHref } from "#lib/i18n";
+import * as m from "#lib/i18n/messages";
+import { SITE } from "#lib/seo";
 import { page } from "$app/state";
-import { localizeHref } from "$lib/i18n";
-import * as m from "$lib/i18n/messages";
-import { SITE } from "$lib/seo";
 
 const status = $derived(page.status);
 const message = $derived(page.error?.message);

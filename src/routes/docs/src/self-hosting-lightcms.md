@@ -8,17 +8,18 @@ date: 2026-09-18T01:45:00Z
 draft: false
 tags:
   - selfhost
-  - lightcms
+  - lightcms  
   - postgresql
-  - deployment
-keywords:
-  - lightcms
-  - probot
-  - self-hosting
-  - github_app
-  - vercel
-  - sveltekit
-preview: /og-image.png
+- deployment
+  keywords:
+- lightcms
+- probot
+- self-hosting
+- github_app
+- vercel
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 If you want full control, you can run LightCMS yourself. LightCMS is a SvelteKit app that needs a PostgreSQL database and a GitHub App. This guide shows the pieces, local setup, and deployment notes.

@@ -1,11 +1,11 @@
 import { ORPCError } from "@orpc/server";
 import { redirect } from "@sveltejs/kit";
-import { db } from "$lib/server/db";
-import { githubInstallation } from "$lib/server/db/auth.schema";
-import { getGitHubApp } from "$lib/server/github-app";
-import { verifyGitHubInstallState } from "$lib/server/github-install-state";
-import { canUserAdministerInstallation, getAccountLogin } from "$lib/server/github-user-access";
-import { captureServerEvent } from "$lib/server/posthog";
+import { db } from "#lib/server/db";
+import { githubInstallation } from "#lib/server/db/auth.schema";
+import { getGitHubApp } from "#lib/server/github-app";
+import { verifyGitHubInstallState } from "#lib/server/github-install-state";
+import { canUserAdministerInstallation, getAccountLogin } from "#lib/server/github-user-access";
+import { captureServerEvent } from "#lib/server/posthog";
 import type { RequestHandler } from "./$types";
 
 export const GET: RequestHandler = async ({ cookies, locals, url }) => {

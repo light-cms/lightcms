@@ -1,10 +1,10 @@
 import { error, fail, redirect } from "@sveltejs/kit";
 import matter from "gray-matter";
-import { deleteRepoFile, getRepoFile, moveRepoFile, saveRepoFile } from "$lib/server/cms";
+import { deleteRepoFile, getRepoFile, moveRepoFile, saveRepoFile } from "#lib/server/cms";
 
-import { getRepoCmsContext } from "$lib/server/cms-context";
-import { normalizeContentPath } from "$lib/server/paths";
-import { captureServerEvent } from "$lib/server/posthog";
+import { getRepoCmsContext } from "#lib/server/cms-context";
+import { normalizeContentPath } from "#lib/server/paths";
+import { captureServerEvent } from "#lib/server/posthog";
 import type { Actions, PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ locals, params, url }) => {

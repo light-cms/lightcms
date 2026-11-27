@@ -1,9 +1,9 @@
 <script lang="ts">
-  import XIcon from "@lucide/svelte/icons/x";
-  import { Dialog, Portal } from "@skeletonlabs/skeleton-svelte";
-  import FeaturedPop from "$lib/components/FeaturedPop.svelte";
+import XIcon from "@lucide/svelte/icons/x";
+import { Dialog, Portal } from "@skeletonlabs/skeleton-svelte";
+import FeaturedPop from "#lib/components/FeaturedPop.svelte";
 
-  let open = $state(false);
+let open = $state(false);
 </script>
 
 <button

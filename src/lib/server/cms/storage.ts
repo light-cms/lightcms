@@ -1,6 +1,6 @@
-import type { LightCmsCollection } from "$lib/server/config";
-import { createFile, createOrUpdateFile, listDir } from "$lib/server/github";
-import { normalizeContentPath, resolveCollectionPath } from "$lib/server/paths";
+import type { LightCmsCollection } from "#lib/server/config";
+import { createFile, createOrUpdateFile, listDir } from "#lib/server/github";
+import { normalizeContentPath, resolveCollectionPath } from "#lib/server/paths";
 import { type CmsContext, resolveRepository } from "./types";
 
 function ensureGitKeepPath(targetPath: string): string {

@@ -8,37 +8,37 @@ import ShieldCheck from "@lucide/svelte/icons/shield-check";
 import Trash2 from "@lucide/svelte/icons/trash-2";
 import { untrack } from "svelte";
 import { superForm } from "sveltekit-superforms";
+import { authClient, signIn, signOut } from "#lib/auth-client";
+import { Button } from "#lib/components/ui/button";
+import { Input } from "#lib/components/ui/input";
+import * as m from "#lib/i18n/messages";
+import { getAuthenticatorName } from "#lib/passkey";
 import { goto } from "$app/navigation";
 import { page } from "$app/state";
-import { authClient, signIn, signOut } from "$lib/auth-client";
-import { Button } from "$lib/components/ui/button";
-import { Input } from "$lib/components/ui/input";
-import * as m from "$lib/i18n/messages";
-import { getAuthenticatorName } from "$lib/passkey";
 import type { PageData } from "./$types";
 
 type PasskeySummary = {
-  id: string;
-  name?: string | null;
-  aaguid?: string | null;
-  backedUp?: boolean | null;
-  createdAt?: Date | string | null;
+	id: string;
+	name?: string | null;
+	aaguid?: string | null;
+	backedUp?: boolean | null;
+	createdAt?: Date | string | null;
 };
 
 type PasskeyError = {
-  code?: string;
-  message?: string;
+	code?: string;
+	message?: string;
 };
 
 let { data }: { data: PageData } = $props();
 const nextPath = $derived(data.next ?? "/cms");
 const authForm = untrack(() => superForm(data.form));
 const {
-  form: authValues,
-  errors: authErrors,
-  enhance: authEnhance,
-  message: authMessage,
-  submitting: authSubmitting,
+	form: authValues,
+	errors: authErrors,
+	enhance: authEnhance,
+	message: authMessage,
+	submitting: authSubmitting,
 } = authForm;
 
 let isUsingPasskey = $state(false);
@@ -59,337 +59,343 @@ let passkeyNotice = $state<string | null>(null);
 let conditionalPasskeyStarted = false;
 
 const headingTitle = $derived(
-  data.session ? m.auth_account_title() : m.auth_sign_in_title(),
+	data.session ? m.auth_account_title() : m.auth_sign_in_title(),
 );
 const headingDesc = $derived(
-  data.session ? m.auth_account_desc() : m.auth_sign_in_desc(),
+	data.session ? m.auth_account_desc() : m.auth_sign_in_desc(),
 );
 const githubButtonText = $derived(
-  isSigningInWithGitHub
-    ? m.auth_redirecting_github()
-    : m.auth_continue_github(),
+	isSigningInWithGitHub
+		? m.auth_redirecting_github()
+		: m.auth_continue_github(),
 );
 const passkeyButtonText = $derived(
-  isUsingPasskey
-    ? m.auth_authenticating_passkey()
-    : m.auth_use_passkey(),
+	isUsingPasskey ? m.auth_authenticating_passkey() : m.auth_use_passkey(),
 );
 const submitButtonText = $derived(
-  $authSubmitting ? m.auth_email_submitting() : m.auth_email_submit(),
+	$authSubmitting ? m.auth_email_submitting() : m.auth_email_submit(),
 );
 
 const passkeyDateFormatter = new Intl.DateTimeFormat(undefined, {
-  dateStyle: "medium",
+	dateStyle: "medium",
 });
 
 function describePasskeyError(error: PasskeyError | null | undefined): string {
-  if (!error) {
-    return m.auth_passkey_error();
-  }
+	if (!error) {
+		return m.auth_passkey_error();
+	}
 
-  if (error.code === "AUTH_CANCELLED" || error.code === "REGISTRATION_CANCELLED") {
-    return m.auth_passkey_canceled();
-  }
+	if (
+		error.code === "AUTH_CANCELLED" ||
+		error.code === "REGISTRATION_CANCELLED"
+	) {
+		return m.auth_passkey_canceled();
+	}
 
-  return error.message || m.auth_passkey_error();
+	return error.message || m.auth_passkey_error();
 }
 
 function getPasskeyLabel(passkey: PasskeySummary): string {
-  return (
-    passkey.name?.trim() ||
-    getAuthenticatorName(passkey.aaguid) ||
-    m.auth_passkey_unnamed()
-  );
+	return (
+		passkey.name?.trim() ||
+		getAuthenticatorName(passkey.aaguid) ||
+		m.auth_passkey_unnamed()
+	);
 }
 
-function formatPasskeyDate(createdAt: Date | string | null | undefined): string {
-  if (!createdAt) {
-    return "";
-  }
+function formatPasskeyDate(
+	createdAt: Date | string | null | undefined,
+): string {
+	if (!createdAt) {
+		return "";
+	}
 
-  const date = createdAt instanceof Date ? createdAt : new Date(createdAt);
-  if (Number.isNaN(date.getTime())) {
-    return "";
-  }
+	const date = createdAt instanceof Date ? createdAt : new Date(createdAt);
+	if (Number.isNaN(date.getTime())) {
+		return "";
+	}
 
-  return `${m.auth_passkey_created()} ${passkeyDateFormatter.format(date)}`;
+	return `${m.auth_passkey_created()} ${passkeyDateFormatter.format(date)}`;
 }
 
 function describePasskeyMeta(passkey: PasskeySummary): string {
-  const parts: string[] = [];
-  const authenticatorName = getAuthenticatorName(passkey.aaguid);
+	const parts: string[] = [];
+	const authenticatorName = getAuthenticatorName(passkey.aaguid);
 
-  if (passkey.name?.trim() && authenticatorName) {
-    parts.push(authenticatorName);
-  }
+	if (passkey.name?.trim() && authenticatorName) {
+		parts.push(authenticatorName);
+	}
 
-  parts.push(
-    passkey.backedUp ? m.auth_passkey_synced() : m.auth_passkey_device_bound(),
-  );
+	parts.push(
+		passkey.backedUp ? m.auth_passkey_synced() : m.auth_passkey_device_bound(),
+	);
 
-  const created = formatPasskeyDate(passkey.createdAt);
-  if (created) {
-    parts.push(created);
-  }
+	const created = formatPasskeyDate(passkey.createdAt);
+	if (created) {
+		parts.push(created);
+	}
 
-  return parts.join(" · ");
+	return parts.join(" · ");
 }
 
 async function refreshPasskeys() {
-  isLoadingPasskeys = true;
-  try {
-    const result = await authClient.passkey.listUserPasskeys();
-    if (result.error) {
-      passkeyError = describePasskeyError(result.error);
-      return;
-    }
-    passkeys = result.data ?? [];
-  } catch (cause) {
-    passkeyError =
-      cause instanceof Error ? cause.message : m.auth_passkey_error();
-  } finally {
-    isLoadingPasskeys = false;
-  }
+	isLoadingPasskeys = true;
+	try {
+		const result = await authClient.passkey.listUserPasskeys();
+		if (result.error) {
+			passkeyError = describePasskeyError(result.error);
+			return;
+		}
+		passkeys = result.data ?? [];
+	} catch (cause) {
+		passkeyError =
+			cause instanceof Error ? cause.message : m.auth_passkey_error();
+	} finally {
+		isLoadingPasskeys = false;
+	}
 }
 
 async function startConditionalPasskey() {
-  try {
-    const conditionalSupported =
-      typeof PublicKeyCredential !== "undefined" &&
-      typeof PublicKeyCredential.isConditionalMediationAvailable === "function" &&
-      (await PublicKeyCredential.isConditionalMediationAvailable());
+	try {
+		const conditionalSupported =
+			typeof PublicKeyCredential !== "undefined" &&
+			typeof PublicKeyCredential.isConditionalMediationAvailable ===
+				"function" &&
+			(await PublicKeyCredential.isConditionalMediationAvailable());
 
-    if (!conditionalSupported) {
-      return;
-    }
+		if (!conditionalSupported) {
+			return;
+		}
 
-    const result = await signIn.passkey({ autoFill: true });
-    if (result.error) {
-      return;
-    }
+		const result = await signIn.passkey({ autoFill: true });
+		if (result.error) {
+			return;
+		}
 
-    window.location.assign(nextPath);
-  } catch {
-    // Conditional UI is best-effort; the passkey button surfaces real errors.
-  }
+		window.location.assign(nextPath);
+	} catch {
+		// Conditional UI is best-effort; the passkey button surfaces real errors.
+	}
 }
 
 async function signInWithGitHub() {
-  if (isSigningInWithGitHub) return;
-  isSigningInWithGitHub = true;
-  try {
-    await signIn.social({
-      provider: "github",
-      callbackURL: nextPath,
-      errorCallbackURL: "/auth",
-    });
-  } finally {
-    isSigningInWithGitHub = false;
-  }
+	if (isSigningInWithGitHub) return;
+	isSigningInWithGitHub = true;
+	try {
+		await signIn.social({
+			provider: "github",
+			callbackURL: nextPath,
+			errorCallbackURL: "/auth",
+		});
+	} finally {
+		isSigningInWithGitHub = false;
+	}
 }
 
 let _isLinkingGitHub = $state(false);
 async function _linkGitHub() {
-  _isLinkingGitHub = true;
-  try {
-    await authClient.linkSocial({
-      provider: "github",
-      callbackURL: "/cms",
-      errorCallbackURL: "/auth",
-    });
-  } finally {
-    _isLinkingGitHub = false;
-  }
+	_isLinkingGitHub = true;
+	try {
+		await authClient.linkSocial({
+			provider: "github",
+			callbackURL: "/cms",
+			errorCallbackURL: "/auth",
+		});
+	} finally {
+		_isLinkingGitHub = false;
+	}
 }
 
 async function _signOutUser() {
-  try {
-    await signOut();
-  } finally {
-    await goto("/signout", { invalidateAll: true });
-  }
+	try {
+		await signOut();
+	} finally {
+		await goto("/signout", { invalidateAll: true });
+	}
 }
 
 async function signInWithPasskey() {
-  if (isUsingPasskey) return;
-  isUsingPasskey = true;
-  passkeyError = null;
-  passkeyNotice = null;
+	if (isUsingPasskey) return;
+	isUsingPasskey = true;
+	passkeyError = null;
+	passkeyNotice = null;
 
-  try {
-    const result = await signIn.passkey({ autoFill: false });
-    if (result.error) {
-      passkeyError = describePasskeyError(result.error);
-      return;
-    }
+	try {
+		const result = await signIn.passkey({ autoFill: false });
+		if (result.error) {
+			passkeyError = describePasskeyError(result.error);
+			return;
+		}
 
-    window.location.assign(nextPath);
-  } catch (cause) {
-    passkeyError =
-      cause instanceof Error ? cause.message : m.auth_passkey_error();
-  } finally {
-    isUsingPasskey = false;
-  }
+		window.location.assign(nextPath);
+	} catch (cause) {
+		passkeyError =
+			cause instanceof Error ? cause.message : m.auth_passkey_error();
+	} finally {
+		isUsingPasskey = false;
+	}
 }
 
 function openPasskeyForm() {
-  if (isAddingPasskey) {
-    return;
-  }
+	if (isAddingPasskey) {
+		return;
+	}
 
-  passkeyError = null;
-  passkeyNotice = null;
-  editingPasskeyId = null;
-  editingPasskeyName = "";
-  newPasskeyName = "";
-  isNamingPasskey = true;
+	passkeyError = null;
+	passkeyNotice = null;
+	editingPasskeyId = null;
+	editingPasskeyName = "";
+	newPasskeyName = "";
+	isNamingPasskey = true;
 }
 
 function closePasskeyForm() {
-  if (isAddingPasskey) {
-    return;
-  }
+	if (isAddingPasskey) {
+		return;
+	}
 
-  isNamingPasskey = false;
-  newPasskeyName = "";
+	isNamingPasskey = false;
+	newPasskeyName = "";
 }
 
 async function createPasskey() {
-  if (isAddingPasskey) return;
-  isAddingPasskey = true;
-  passkeyError = null;
-  passkeyNotice = null;
+	if (isAddingPasskey) return;
+	isAddingPasskey = true;
+	passkeyError = null;
+	passkeyNotice = null;
 
-  try {
-    const name = newPasskeyName.trim();
-    const result = await authClient.passkey.addPasskey(name ? { name } : undefined);
-    if (result.error) {
-      passkeyError = describePasskeyError(result.error);
-      return;
-    }
+	try {
+		const name = newPasskeyName.trim();
+		const result = await authClient.passkey.addPasskey(
+			name ? { name } : undefined,
+		);
+		if (result.error) {
+			passkeyError = describePasskeyError(result.error);
+			return;
+		}
 
-    isNamingPasskey = false;
-    newPasskeyName = "";
-    await refreshPasskeys();
-    passkeyNotice = m.auth_passkey_added();
-  } catch (cause) {
-    passkeyError =
-      cause instanceof Error ? cause.message : m.auth_passkey_error();
-  } finally {
-    isAddingPasskey = false;
-  }
+		isNamingPasskey = false;
+		newPasskeyName = "";
+		await refreshPasskeys();
+		passkeyNotice = m.auth_passkey_added();
+	} catch (cause) {
+		passkeyError =
+			cause instanceof Error ? cause.message : m.auth_passkey_error();
+	} finally {
+		isAddingPasskey = false;
+	}
 }
 
 function startRenamingPasskey(passkey: PasskeySummary) {
-  if (savingPasskeyId) {
-    return;
-  }
+	if (savingPasskeyId) {
+		return;
+	}
 
-  passkeyError = null;
-  passkeyNotice = null;
-  isNamingPasskey = false;
-  newPasskeyName = "";
-  editingPasskeyId = passkey.id;
-  editingPasskeyName = passkey.name?.trim() ?? "";
+	passkeyError = null;
+	passkeyNotice = null;
+	isNamingPasskey = false;
+	newPasskeyName = "";
+	editingPasskeyId = passkey.id;
+	editingPasskeyName = passkey.name?.trim() ?? "";
 }
 
 function cancelRenamingPasskey() {
-  if (savingPasskeyId) {
-    return;
-  }
+	if (savingPasskeyId) {
+		return;
+	}
 
-  editingPasskeyId = null;
-  editingPasskeyName = "";
+	editingPasskeyId = null;
+	editingPasskeyName = "";
 }
 
 async function renamePasskey(id: string) {
-  if (savingPasskeyId) return;
+	if (savingPasskeyId) return;
 
-  const name = editingPasskeyName.trim();
-  if (!name) {
-    passkeyError = m.auth_passkey_name_required();
-    return;
-  }
+	const name = editingPasskeyName.trim();
+	if (!name) {
+		passkeyError = m.auth_passkey_name_required();
+		return;
+	}
 
-  savingPasskeyId = id;
-  passkeyError = null;
-  passkeyNotice = null;
+	savingPasskeyId = id;
+	passkeyError = null;
+	passkeyNotice = null;
 
-  try {
-    const result = await authClient.passkey.updatePasskey({ id, name });
-    if (result.error) {
-      passkeyError = describePasskeyError(result.error);
-      return;
-    }
+	try {
+		const result = await authClient.passkey.updatePasskey({ id, name });
+		if (result.error) {
+			passkeyError = describePasskeyError(result.error);
+			return;
+		}
 
-    editingPasskeyId = null;
-    editingPasskeyName = "";
-    await refreshPasskeys();
-    passkeyNotice = m.auth_passkey_renamed();
-  } catch (cause) {
-    passkeyError =
-      cause instanceof Error ? cause.message : m.auth_passkey_error();
-  } finally {
-    savingPasskeyId = null;
-  }
+		editingPasskeyId = null;
+		editingPasskeyName = "";
+		await refreshPasskeys();
+		passkeyNotice = m.auth_passkey_renamed();
+	} catch (cause) {
+		passkeyError =
+			cause instanceof Error ? cause.message : m.auth_passkey_error();
+	} finally {
+		savingPasskeyId = null;
+	}
 }
 
 async function removePasskey(id: string) {
-  if (removingPasskeyId) return;
-  removingPasskeyId = id;
-  passkeyError = null;
-  passkeyNotice = null;
+	if (removingPasskeyId) return;
+	removingPasskeyId = id;
+	passkeyError = null;
+	passkeyNotice = null;
 
-  try {
-    const result = await authClient.passkey.deletePasskey({ id });
-    if (result.error) {
-      passkeyError = describePasskeyError(result.error);
-      return;
-    }
+	try {
+		const result = await authClient.passkey.deletePasskey({ id });
+		if (result.error) {
+			passkeyError = describePasskeyError(result.error);
+			return;
+		}
 
-    if (editingPasskeyId === id) {
-      editingPasskeyId = null;
-      editingPasskeyName = "";
-    }
+		if (editingPasskeyId === id) {
+			editingPasskeyId = null;
+			editingPasskeyName = "";
+		}
 
-    await refreshPasskeys();
-    passkeyNotice = m.auth_passkey_removed();
-  } catch (cause) {
-    passkeyError =
-      cause instanceof Error ? cause.message : m.auth_passkey_error();
-  } finally {
-    removingPasskeyId = null;
-  }
+		await refreshPasskeys();
+		passkeyNotice = m.auth_passkey_removed();
+	} catch (cause) {
+		passkeyError =
+			cause instanceof Error ? cause.message : m.auth_passkey_error();
+	} finally {
+		removingPasskeyId = null;
+	}
 }
 
 $effect(() => {
-  if (!data.session) {
-    passkeys = [];
-    return;
-  }
+	if (!data.session) {
+		passkeys = [];
+		return;
+	}
 
-  void refreshPasskeys();
+	void refreshPasskeys();
 });
 
 $effect(() => {
-  if (data.session || conditionalPasskeyStarted) {
-    return;
-  }
+	if (data.session || conditionalPasskeyStarted) {
+		return;
+	}
 
-  conditionalPasskeyStarted = true;
-  void startConditionalPasskey();
+	conditionalPasskeyStarted = true;
+	void startConditionalPasskey();
 });
 
 $effect(() => {
-  if (isNamingPasskey) {
-    passkeyNameInput?.focus();
-  }
+	if (isNamingPasskey) {
+		passkeyNameInput?.focus();
+	}
 });
 
 $effect(() => {
-  if (editingPasskeyId) {
-    renamePasskeyInput?.focus();
-  }
+	if (editingPasskeyId) {
+		renamePasskeyInput?.focus();
+	}
 });
 </script>
 

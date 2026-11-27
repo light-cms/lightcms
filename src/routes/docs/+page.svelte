@@ -2,17 +2,17 @@
 import ArrowRight from "@lucide/svelte/icons/arrow-right";
 import BookOpen from "@lucide/svelte/icons/book-open";
 import FileText from "@lucide/svelte/icons/file-text";
-import { DocsBlogBanner } from "$lib/components/custom";
-import { Badge } from "$lib/components/ui/badge";
+import { DocsBlogBanner } from "#lib/components/custom";
+import { Badge } from "#lib/components/ui/badge";
 import {
 	Card,
 	CardDescription,
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "$lib/components/ui/card";
-import { localizeHref } from "$lib/i18n";
-import * as m from "$lib/i18n/messages";
+} from "#lib/components/ui/card";
+import { localizeHref } from "#lib/i18n";
+import * as m from "#lib/i18n/messages";
 
 interface DocPost {
 	slug: string;

@@ -2,7 +2,7 @@ import type { Node } from "@tiptap/pm/model";
 import type { Transaction } from "@tiptap/pm/state";
 import { type CellSelection, TableMap } from "@tiptap/pm/tables";
 
-import { findTable, getCellsInColumn, getCellsInRow, isCellSelection } from "./selection-utils.js";
+import { findTable, getCellsInColumn, getCellsInRow, isCellSelection } from "./selection-utils";
 
 type CellInfo = { pos: number; start: number; node: Node | null | undefined };
 

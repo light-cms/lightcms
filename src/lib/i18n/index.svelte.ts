@@ -64,7 +64,11 @@ export const localeMetadata: Record<Locale, LocaleMeta> = {
   no: { code: "no", label: "Norwegian", nativeLabel: "Norsk" },
   pl: { code: "pl", label: "Polish", nativeLabel: "Polski" },
   pt: { code: "pt", label: "Portuguese", nativeLabel: "Português" },
-  "pt-BR": { code: "pt-BR", label: "Portuguese (Brazil)", nativeLabel: "Português (Brasil)" },
+  "pt-BR": {
+    code: "pt-BR",
+    label: "Portuguese (Brazil)",
+    nativeLabel: "Português (Brasil)",
+  },
   ro: { code: "ro", label: "Romanian", nativeLabel: "Română" },
   ru: { code: "ru", label: "Russian", nativeLabel: "Русский" },
   sr: { code: "sr", label: "Serbian", nativeLabel: "Српски" },
@@ -72,8 +76,16 @@ export const localeMetadata: Record<Locale, LocaleMeta> = {
   tr: { code: "tr", label: "Turkish", nativeLabel: "Türkçe" },
   uk: { code: "uk", label: "Ukrainian", nativeLabel: "Українська" },
   vi: { code: "vi", label: "Vietnamese", nativeLabel: "Tiếng Việt" },
-  "zh-CN": { code: "zh-CN", label: "Chinese (Simplified)", nativeLabel: "简体中文" },
-  "zh-TW": { code: "zh-TW", label: "Chinese (Traditional)", nativeLabel: "繁體中文" },
+  "zh-CN": {
+    code: "zh-CN",
+    label: "Chinese (Simplified)",
+    nativeLabel: "简体中文",
+  },
+  "zh-TW": {
+    code: "zh-TW",
+    label: "Chinese (Traditional)",
+    nativeLabel: "繁體中文",
+  },
 };
 
 const localeSet = new Set<string>(locales);

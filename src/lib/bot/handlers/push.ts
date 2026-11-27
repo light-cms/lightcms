@@ -1,7 +1,7 @@
 import type { Context } from "probot";
-import { COMMIT_STATUS_CONTEXT } from "../constants.js";
-import { isContentPath } from "../content.js";
-import { logBotError } from "./error-handler.js";
+import { COMMIT_STATUS_CONTEXT } from "../constants";
+import { isContentPath } from "../content";
+import { logBotError } from "./error-handler";
 
 type PushContext = Context<"push">;
 

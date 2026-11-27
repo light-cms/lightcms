@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vite-plus/test";
-import type { WidgetPointerEvent } from "./draggable-widget.svelte.js";
+import type { WidgetPointerEvent } from "./draggable-widget.svelte";
 
 /**
  * Floating UI is a third-party dependency, so it is stubbed out here: these tests
@@ -20,7 +20,7 @@ vi.mock("@floating-ui/dom", () => ({
   shift: () => ({ name: "shift", options: {}, fn: () => ({}) }),
 }));
 
-const { createDraggableWidget } = await import("./draggable-widget.svelte.js");
+const { createDraggableWidget } = await import("./draggable-widget.svelte");
 
 class FakeElement {
   readonly listeners = new Map<string, Set<(event: Event) => void>>();

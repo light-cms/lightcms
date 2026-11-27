@@ -11,8 +11,8 @@
     "strict": true,
     "verbatimModuleSyntax": true,
     "paths": {
-      "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"]
+      "#lib": ["./src/lib"],
+      "#lib/*": ["./src/lib/*"]
     }
   },
   "include": ["src", "test", "*"]

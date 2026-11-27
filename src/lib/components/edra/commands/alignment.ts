@@ -3,8 +3,8 @@ import AlighJustify from "@lucide/svelte/icons/align-justify";
 import AlignLeft from "@lucide/svelte/icons/align-left";
 import AlignRight from "@lucide/svelte/icons/align-right";
 import strings from "../strings";
-import { ISMAC } from "../utils.js";
-import type { EdraCommand } from "./types.js";
+import { ISMAC } from "../utils";
+import type { EdraCommand } from "./types";
 
 export const alignmentCommands: EdraCommand[] = [
   {

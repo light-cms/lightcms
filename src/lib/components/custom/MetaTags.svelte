@@ -1,6 +1,5 @@
 <script lang="ts">
-import { page } from "$app/state";
-import type { PageSeoOverride } from "$lib/seo";
+import type { PageSeoOverride } from "#lib/seo";
 import {
 	absoluteUrl,
 	buildBreadcrumbsSchema,
@@ -9,7 +8,8 @@ import {
 	ORGANIZATION_SCHEMA,
 	resolvePageSeo,
 	SITE,
-} from "$lib/seo";
+} from "#lib/seo";
+import { page } from "$app/state";
 
 // `page.data` merges the active route's load output, so a page contributes SEO
 // by returning `{ seo }` from its `load` rather than by rendering its own head.

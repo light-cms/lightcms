@@ -23,7 +23,9 @@ async function instantiateWorkerLinter(): Promise<HarperLinter> {
     import(/* @vite-ignore */ HARPER_INDEX_CDN_URL) as Promise<{
       WorkerLinter: HarperWorkerLinterConstructor;
     }>,
-    import(/* @vite-ignore */ HARPER_BINARY_CDN_URL) as Promise<{ binaryInlined: unknown }>,
+    import(/* @vite-ignore */ HARPER_BINARY_CDN_URL) as Promise<{
+      binaryInlined: unknown;
+    }>,
   ]);
 
   const WorkerLinter = indexModule.WorkerLinter;

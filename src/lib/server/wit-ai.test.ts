@@ -6,7 +6,7 @@ import {
   normalizeLanguageCode,
   parseWitAiResponse,
   transcribeAudioWithWitAi,
-} from "./wit-ai.js";
+} from "./wit-ai";
 
 describe("Wit.ai server module", () => {
   const originalEnv = { ...process.env };

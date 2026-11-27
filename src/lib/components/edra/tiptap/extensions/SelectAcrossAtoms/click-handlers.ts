@@ -1,9 +1,9 @@
 import { NodeSelection, TextSelection } from "@tiptap/pm/state";
 import type { EditorView } from "@tiptap/pm/view";
-import { selectionCoveringNode } from "./atom-selection.js";
-import { hitAtomAtCoords, pointInRect } from "./hit-testing.js";
-import { isAcrossSelectableNode } from "./node-classification.js";
-import type { PreservedRange } from "./types.js";
+import { selectionCoveringNode } from "./atom-selection";
+import { hitAtomAtCoords, pointInRect } from "./hit-testing";
+import { isAcrossSelectableNode } from "./node-classification";
+import type { PreservedRange } from "./types";
 
 /** Check if right-click falls within the current non-empty selection (including atoms fully covered by TextSelection) */
 export function shouldPreserveSelectionOnRightClick(view: EditorView, event: MouseEvent): boolean {

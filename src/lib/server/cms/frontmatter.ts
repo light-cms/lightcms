@@ -1,6 +1,6 @@
 import matter from "gray-matter";
-import type { LightCmsCollection } from "$lib/server/config";
-import { generateDefaultSlug } from "$lib/server/paths";
+import type { LightCmsCollection } from "#lib/server/config";
+import { generateDefaultSlug } from "#lib/server/paths";
 import type { FrontMatter } from "./types";
 
 const FRONTMATTER_ALIASES: Record<string, string> = {

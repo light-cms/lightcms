@@ -5,9 +5,9 @@ import ArrowUp from "@lucide/svelte/icons/arrow-up";
 import ArrowUpFromLine from "@lucide/svelte/icons/arrow-up-from-line";
 import Sheet from "@lucide/svelte/icons/sheet";
 import Trash from "@lucide/svelte/icons/trash";
-import { Button } from "$lib/components/ui/button";
+import { Button } from "#lib/components/ui/button";
 
-import { Separator } from "$lib/components/ui/separator";
+import { Separator } from "#lib/components/ui/separator";
 import strings from "../../../strings";
 import { BubbleMenu, getEditor } from "../../../tiptap";
 import {

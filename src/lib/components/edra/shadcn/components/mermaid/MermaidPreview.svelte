@@ -5,7 +5,7 @@ import Download from "@lucide/svelte/icons/download";
 import Pencil from "@lucide/svelte/icons/pencil";
 import TriangleAlert from "@lucide/svelte/icons/triangle-alert";
 import Workflow from "@lucide/svelte/icons/workflow";
-import { Button } from "$lib/components/ui/button/index.js";
+import { Button } from "#lib/components/ui/button/index";
 import Tooltip from "../Tooltip.svelte";
 
 interface Props {

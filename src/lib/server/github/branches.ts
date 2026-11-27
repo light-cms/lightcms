@@ -4,9 +4,9 @@ import {
   getErrorStatus,
   isGitHubStatus,
   wrapGitHubError,
-} from "./errors.js";
-import { parseRepository } from "./helpers.js";
-import type { GitHubClient, Repository } from "./types.js";
+} from "./errors";
+import { parseRepository } from "./helpers";
+import type { GitHubClient, Repository } from "./types";
 
 export type RepositoryBranch = {
   name: string;

@@ -2,8 +2,8 @@
 name: audit
 description: Audit an existing PostHog integration for correctness and best practices
 metadata:
-  author: PostHog
-  version: 1.59.0
+author: PostHog
+version: 1.59.0
 ---
 
 # PostHog Audit

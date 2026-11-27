@@ -1,4 +1,4 @@
-import { type Editor, useEditorTransaction } from "../../tiptap/index.js";
+import { type Editor, useEditorTransaction } from "../../tiptap/index";
 
 /**
  * Reactive check for whether an AI-capable editor is active. Reads the

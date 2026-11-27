@@ -5,9 +5,9 @@ import type { Snippet } from "svelte";
 import { setContext } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
 
-import { cn, type WithElementRef } from "$lib/utils";
+import { cn, type WithElementRef } from "#lib/utils";
 
-import { AVATAR_CONTEXT_KEY } from "./context.ts";
+import { AVATAR_CONTEXT_KEY } from "./context";
 
 type Props = ComponentProps<AvatarProps> & {
 	children?: Snippet;

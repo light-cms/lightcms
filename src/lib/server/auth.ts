@@ -3,12 +3,11 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { magicLink } from "better-auth/plugins";
 import { sveltekitCookies } from "better-auth/svelte-kit";
-import { getRequestEvent } from "$app/server";
+import { db } from "#lib/server/db";
+import * as schema from "#lib/server/db/schema";
+import { sendMail } from "#lib/utils/mail";
 import { dev } from "$app/env";
-
-import { db } from "$lib/server/db";
-import * as schema from "$lib/server/db/schema";
-import { sendMail } from "$lib/utils/mail";
+import { getRequestEvent } from "$app/server";
 
 const DEV_ORIGIN = "http://localhost:5173";
 

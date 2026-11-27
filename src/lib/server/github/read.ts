@@ -1,11 +1,6 @@
-import { isNotFoundError, wrapGitHubError } from "./errors.js";
-import { assertRepositoryPath, decodeContent, parseRepository } from "./helpers.js";
-import type {
-  GitHubClient,
-  Repository,
-  RepositoryDirectoryEntry,
-  RepositoryFile,
-} from "./types.js";
+import { isNotFoundError, wrapGitHubError } from "./errors";
+import { assertRepositoryPath, decodeContent, parseRepository } from "./helpers";
+import type { GitHubClient, Repository, RepositoryDirectoryEntry, RepositoryFile } from "./types";
 
 export async function listRepositories(client: GitHubClient) {
   try {

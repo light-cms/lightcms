@@ -1,6 +1,6 @@
 import { error, redirect } from "@sveltejs/kit";
-import { getCollection, type LightCmsCollection } from "$lib/server/config";
-import { getCmsContext } from "$lib/server/session";
+import { getCollection, type LightCmsCollection } from "#lib/server/config";
+import { getCmsContext } from "#lib/server/session";
 
 export type CmsSelection = {
   installationId: number;

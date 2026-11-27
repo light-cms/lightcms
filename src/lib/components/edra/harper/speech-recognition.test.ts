@@ -3,7 +3,7 @@ import {
   getSupportedAudioMimeType,
   isSpeechRecognitionSupported,
   normalizeLanguageCode,
-} from "./speech-recognition.js";
+} from "./speech-recognition";
 
 const originalWindow = (globalThis as Record<string, unknown>).window;
 const originalNavigator = (globalThis as Record<string, unknown>).navigator;
@@ -93,7 +93,7 @@ describe("speech-recognition utilities", () => {
 
   describe("encodeFloat32ToWav and encodeWAV", () => {
     it("encodes Float32Array to 16-bit mono PCM WAV format", async () => {
-      const { encodeFloat32ToWav, encodeWAV } = await import("./speech-recognition.js");
+      const { encodeFloat32ToWav, encodeWAV } = await import("./speech-recognition");
       const samples = new Float32Array([0, 0.5, -0.5, 1, -1]);
       const wavBuffer = encodeFloat32ToWav(samples, 16000);
 
@@ -121,7 +121,7 @@ describe("speech-recognition utilities", () => {
     });
 
     it("respects maxSamples clamp", async () => {
-      const { encodeFloat32ToWav } = await import("./speech-recognition.js");
+      const { encodeFloat32ToWav } = await import("./speech-recognition");
       const samples = new Float32Array(100);
       const wavBuffer = encodeFloat32ToWav(samples, 16000, 20);
 
@@ -133,7 +133,7 @@ describe("speech-recognition utilities", () => {
 
   describe("concatFloat32Arrays", () => {
     it("concatenates multiple Float32Arrays", async () => {
-      const { concatFloat32Arrays } = await import("./speech-recognition.js");
+      const { concatFloat32Arrays } = await import("./speech-recognition");
       const chunk1 = new Float32Array([1, 2]);
       const chunk2 = new Float32Array([3, 4, 5]);
       const result = concatFloat32Arrays([chunk1, chunk2]);
@@ -143,7 +143,7 @@ describe("speech-recognition utilities", () => {
     });
 
     it("clamps output to maxSamples", async () => {
-      const { concatFloat32Arrays } = await import("./speech-recognition.js");
+      const { concatFloat32Arrays } = await import("./speech-recognition");
       const chunk1 = new Float32Array([1, 2, 3]);
       const chunk2 = new Float32Array([4, 5, 6]);
       const result = concatFloat32Arrays([chunk1, chunk2], 4);
@@ -155,14 +155,14 @@ describe("speech-recognition utilities", () => {
 
   describe("downsampleFloat32", () => {
     it("returns same array if rates match", async () => {
-      const { downsampleFloat32 } = await import("./speech-recognition.js");
+      const { downsampleFloat32 } = await import("./speech-recognition");
       const input = new Float32Array([0.1, 0.2]);
       const output = downsampleFloat32(input, 16000, 16000);
       expect(output).toBe(input);
     });
 
     it("downsamples from 32000 to 16000", async () => {
-      const { downsampleFloat32 } = await import("./speech-recognition.js");
+      const { downsampleFloat32 } = await import("./speech-recognition");
       const input = new Float32Array([0, 0.5, 1, 0.5]);
       const output = downsampleFloat32(input, 32000, 16000);
       expect(output.length).toBe(2);
@@ -171,7 +171,7 @@ describe("speech-recognition utilities", () => {
 
   describe("arrayBufferToBase64", () => {
     it("encodes buffer to base64 correctly", async () => {
-      const { arrayBufferToBase64 } = await import("./speech-recognition.js");
+      const { arrayBufferToBase64 } = await import("./speech-recognition");
       const buffer = new Uint8Array([72, 101, 108, 108, 111]).buffer; // "Hello"
       expect(arrayBufferToBase64(buffer)).toBe("SGVsbG8=");
     });
@@ -179,7 +179,7 @@ describe("speech-recognition utilities", () => {
 
   describe("audioBufferToWav", () => {
     it("converts audio buffer to standard WAV format", async () => {
-      const { audioBufferToWav } = await import("./speech-recognition.js");
+      const { audioBufferToWav } = await import("./speech-recognition");
       const fakeAudioBuffer = {
         sampleRate: 16000,
         numberOfChannels: 1,
@@ -263,7 +263,7 @@ describe("createSpeechRecognition", () => {
     stubGlobal("AudioWorkletNode", FakeAudioWorkletNode);
     stubGlobal("MediaRecorder", undefined);
 
-    const { createSpeechRecognition } = await import("./speech-recognition.svelte.js");
+    const { createSpeechRecognition } = await import("./speech-recognition.svelte");
     const speech = createSpeechRecognition({
       onTranscript: vi.fn(),
     });

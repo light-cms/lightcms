@@ -11,7 +11,7 @@ import type { Component } from "svelte";
 
 import NodeViewFrame from "../components/NodeViewFrame.svelte";
 import type { Editor } from "../Editor.ts";
-import { SvelteRenderer } from "./SvelteRenderer.svelte.js";
+import { SvelteRenderer } from "./SvelteRenderer.svelte";
 
 export interface SvelteNodeViewRendererOptions extends NodeViewRendererOptions {
   update: (props: {

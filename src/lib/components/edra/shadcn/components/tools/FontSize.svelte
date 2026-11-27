@@ -1,8 +1,8 @@
 <script lang="ts">
 import ChevronDown from "@lucide/svelte/icons/chevron-down";
-import { buttonVariants } from "$lib/components/ui/button/index.js";
-import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-import { getEditor, useEditorTransaction } from "../../../tiptap/index.js";
+import { buttonVariants } from "#lib/components/ui/button/index";
+import * as DropdownMenu from "#lib/components/ui/dropdown-menu/index";
+import { getEditor, useEditorTransaction } from "../../../tiptap/index";
 import Tooltip from "../Tooltip.svelte";
 
 const editor = getEditor();

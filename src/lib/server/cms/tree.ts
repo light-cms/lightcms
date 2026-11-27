@@ -6,9 +6,9 @@ import {
   getFileContent,
   listDir,
   moveFile,
-} from "$lib/server/github";
+} from "#lib/server/github";
 
-import { normalizeContentPath } from "$lib/server/paths";
+import { normalizeContentPath } from "#lib/server/paths";
 import { type CmsContext, resolveRepository } from "./types";
 
 export type RepoTreeItem = {

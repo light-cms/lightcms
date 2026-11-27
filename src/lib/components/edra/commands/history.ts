@@ -1,8 +1,8 @@
 import Redo from "@lucide/svelte/icons/redo-2";
 import Undo from "@lucide/svelte/icons/undo-2";
-import strings from "../strings.js";
-import { ISMAC } from "../utils.js";
-import type { EdraCommand } from "./types.js";
+import strings from "../strings";
+import { ISMAC } from "../utils";
+import type { EdraCommand } from "./types";
 
 export const historyCommands: EdraCommand[] = [
   {

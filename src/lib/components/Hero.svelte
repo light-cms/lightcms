@@ -13,8 +13,8 @@ import LayoutTemplate from "@lucide/svelte/icons/layout-template";
 import Leaf from "@lucide/svelte/icons/leaf";
 import Mic from "@lucide/svelte/icons/mic";
 import Sparkles from "@lucide/svelte/icons/sparkles";
-import { localizeHref } from "$lib/i18n";
-import * as m from "$lib/i18n/messages";
+import { localizeHref } from "#lib/i18n";
+import * as m from "#lib/i18n/messages";
 </script>
 
 <section id="features" class="space-y-8 border-t border-border pt-12 sm:pt-16">

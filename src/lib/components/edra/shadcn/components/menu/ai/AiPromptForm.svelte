@@ -1,7 +1,7 @@
 <script lang="ts">
 import ArrowUp from "@lucide/svelte/icons/arrow-up";
 import Sparkles from "@lucide/svelte/icons/sparkles";
-import { Button } from "$lib/components/ui/button/index.js";
+import { Button } from "#lib/components/ui/button/index";
 import MicButton from "../../../../harper/MicButton.svelte";
 
 interface Props {

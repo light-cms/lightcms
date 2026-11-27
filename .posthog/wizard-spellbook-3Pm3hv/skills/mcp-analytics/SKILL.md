@@ -1,15 +1,16 @@
 ---
+
 name: mcp-analytics
 description: >-
-  Add PostHog MCP analytics to a TypeScript, JavaScript, or Python MCP server.
-  Captures tool calls, agent intent, failures, and protocol revision, plus
-  self-reported model identity on supported TypeScript paths. Both SDKs support
-  legacy sessions and the handshake-free 2026-07-28 revision. Detects the server
-  style and wires in compatible instrumentation, credentials, conversation
-  correlation, and graceful shutdown.
+Add PostHog MCP analytics to a TypeScript, JavaScript, or Python MCP server.
+Captures tool calls, agent intent, failures, and protocol revision, plus
+self-reported model identity on supported TypeScript paths. Both SDKs support
+legacy sessions and the handshake-free 2026-07-28 revision. Detects the server
+style and wires in compatible instrumentation, credentials, conversation
+correlation, and graceful shutdown.
 metadata:
-  author: PostHog
-  version: 1.59.0
+author: PostHog
+version: 1.59.0
 ---
 
 # Add PostHog MCP analytics
@@ -204,7 +205,12 @@ const serverTools = getServerTools();
 const advertisedTools = posthog.prepareToolList(serverTools);
 
 // only on a 2025-11-25 initialize handshake:
-posthog.captureInitialize({ clientName, clientVersion, distinctId, protocolVersion: "2025-11-25" });
+posthog.captureInitialize({
+  clientName,
+  clientVersion,
+  distinctId,
+  protocolVersion: "2025-11-25",
+});
 
 // after each tools/call resolves (wrap the existing handler, time it):
 const start = Date.now();
@@ -212,7 +218,9 @@ const originalTool = serverTools.find((tool) => tool.name === request.params.nam
 const { args, intent, intentSource, llmModel, llmModelSource } = posthog.prepareToolCall(
   request.params.name,
   request.params.arguments,
-  { originalTool },
+  {
+    originalTool,
+  },
 );
 const result = await runTool(request.params.name, args);
 posthog.captureToolCall({

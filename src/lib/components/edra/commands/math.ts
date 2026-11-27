@@ -1,8 +1,8 @@
 import Radical from "@lucide/svelte/icons/radical";
 import SquareRadical from "@lucide/svelte/icons/square-radical";
 import { isTextSelection } from "@tiptap/core";
-import strings from "../strings.js";
-import type { EdraCommand } from "./types.js";
+import strings from "../strings";
+import type { EdraCommand } from "./types";
 
 export const mathCommands: EdraCommand[] = [
   {

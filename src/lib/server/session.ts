@@ -1,8 +1,8 @@
 import { and, eq } from "drizzle-orm";
-import type { CmsContext } from "$lib/server/cms";
-import { db } from "$lib/server/db";
-import { githubInstallation } from "$lib/server/db/auth.schema";
-import { getGitHubApp } from "$lib/server/github-app";
+import type { CmsContext } from "#lib/server/cms";
+import { db } from "#lib/server/db";
+import { githubInstallation } from "#lib/server/db/auth.schema";
+import { getGitHubApp } from "#lib/server/github-app";
 
 export async function listGitHubInstallations(userId: string) {
   return db.query.githubInstallation.findMany({

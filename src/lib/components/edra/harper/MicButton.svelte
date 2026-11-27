@@ -4,23 +4,23 @@ import Mic from "@lucide/svelte/icons/mic";
 import MicAudioLines from "@lucide/svelte/icons/mic-audio-lines";
 import MicOff from "@lucide/svelte/icons/mic-off";
 import { Portal } from "bits-ui";
+import { untrack } from "svelte";
 import { toast } from "svelte-sonner";
 import {
 	type ButtonSize,
 	type ButtonVariant,
 	buttonVariants,
-} from "$lib/components/ui/button";
-import { cn } from "$lib/utils.js";
+} from "#lib/components/ui/button";
+import { cn } from "#lib/utils";
 import Tooltip from "../shadcn/components/Tooltip.svelte";
 import {
 	DICTATION_SHORTCUT_LABEL,
 	isDictationShortcut,
 	isEditableTarget,
-} from "./dictation-shortcut.js";
-import { createDraggableWidget } from "./draggable-widget.svelte.js";
+} from "./dictation-shortcut";
+import { createDraggableWidget } from "./draggable-widget.svelte";
 import MicWidgetPanel from "./MicWidgetPanel.svelte";
-import { SPEECH_PROVIDERS, type SpeechProvider } from "./speech-recognition.js";
-import { untrack } from "svelte";
+import { SPEECH_PROVIDERS, type SpeechProvider } from "./speech-recognition";
 import { createSpeechRecognition } from "./speech-recognition.svelte";
 
 interface Props {

@@ -1,6 +1,6 @@
-import { BLOCK_TRIGGERS, INLINE_PAIRS } from "./catalog.js";
-import { lookupEmoji } from "./emoji.js";
-import type { AutocompleteOptions, BlockTrigger, InlinePair, TextMatch } from "./types.js";
+import { BLOCK_TRIGGERS, INLINE_PAIRS } from "./catalog";
+import { lookupEmoji } from "./emoji";
+import type { AutocompleteOptions, BlockTrigger, InlinePair, TextMatch } from "./types";
 
 const EMOJI_PATTERN = /:([a-z0-9_+-]{2,})$/;
 

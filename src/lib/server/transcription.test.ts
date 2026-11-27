@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vite-plus/test";
-import { SPEECH_PROVIDERS } from "$lib/speech-providers";
+import { SPEECH_PROVIDERS } from "#lib/speech-providers";
 import {
   getDefaultSpeechProvider,
   isSpeechTranscriptionConfigured,
   transcribeAudio,
-} from "./transcription.js";
+} from "./transcription";
 
 vi.mock("ai", () => {
   return {
@@ -18,11 +18,11 @@ vi.mock("ai", () => {
   };
 });
 
-vi.mock("$lib/server/ai-observability", () => ({
+vi.mock("#lib/server/ai-observability", () => ({
   flushAiObservability: vi.fn(async () => undefined),
 }));
 
-vi.mock("./wit-ai.js", () => {
+vi.mock("./wit-ai", () => {
   return {
     getWitAiToken: () => process.env.WIT_AI_TOKEN,
     isWitAiConfigured: () => Boolean(process.env.WIT_AI_TOKEN),
@@ -33,7 +33,7 @@ vi.mock("./wit-ai.js", () => {
   };
 });
 
-import * as witModule from "./wit-ai.js";
+import * as witModule from "./wit-ai";
 
 describe("Unified Speech Transcription Dispatcher", () => {
   const originalEnv = { ...process.env };

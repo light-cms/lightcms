@@ -1,4 +1,4 @@
-import type { GitHubClient, Repository } from "$lib/server/github";
+import type { GitHubClient, Repository } from "#lib/server/github";
 
 export type FrontMatter = Record<string, unknown>;
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { onMount } from "svelte";
 import type { SVGAttributes } from "svelte/elements";
-import { cn } from "$lib/utils";
+import { cn } from "#lib/utils";
 
 interface DotPatternProps extends SVGAttributes<SVGSVGElement> {
 	width?: number;

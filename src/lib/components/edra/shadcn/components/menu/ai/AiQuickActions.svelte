@@ -1,8 +1,8 @@
 <script lang="ts">
 import { slide } from "svelte/transition";
-import { Button } from "$lib/components/ui/button/index.js";
-import { cn } from "$lib/utils.js";
-import type { QuickAction } from "./quick-actions.js";
+import { Button } from "#lib/components/ui/button/index";
+import { cn } from "#lib/utils";
+import type { QuickAction } from "./quick-actions";
 
 interface Props {
 	actions: readonly QuickAction[];

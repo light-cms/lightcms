@@ -27,6 +27,7 @@ export const commandStrings = {
   videoPlaceholder: "Video Placeholder",
   audioPlaceholder: "Audio Placeholder",
   iframePlaceholder: "Iframe Placeholder",
+  youtubePlaceholder: "YouTube Video",
   table: "Table",
   inlineExpression: "Inline Expression",
   blockExpression: "Block Expression",

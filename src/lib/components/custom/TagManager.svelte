@@ -1,10 +1,10 @@
 <script lang="ts">
 import X from "@lucide/svelte/icons/x";
-import { Badge } from "$lib/components/ui/badge";
-import { Button } from "$lib/components/ui/button";
-import { Card, CardContent } from "$lib/components/ui/card";
-import { Input } from "$lib/components/ui/input";
-import { Label } from "$lib/components/ui/label";
+import { Badge } from "#lib/components/ui/badge";
+import { Button } from "#lib/components/ui/button";
+import { Card, CardContent } from "#lib/components/ui/card";
+import { Input } from "#lib/components/ui/input";
+import { Label } from "#lib/components/ui/label";
 
 interface Props {
 	tags: string[];

@@ -1,19 +1,19 @@
 import { fail, redirect } from "@sveltejs/kit";
-import { createFolderAtPath, listDirectory, resolveRepository } from "$lib/server/cms";
-import { getCmsQuery, getCmsSelection, tryGetCmsSelection } from "$lib/server/cms-context";
-import { assertCollectionName, getCollection, type LightCmsCollection } from "$lib/server/config";
+import { createFolderAtPath, listDirectory, resolveRepository } from "#lib/server/cms";
+import { getCmsQuery, getCmsSelection, tryGetCmsSelection } from "#lib/server/cms-context";
+import { assertCollectionName, getCollection, type LightCmsCollection } from "#lib/server/config";
 import {
   isGitHubStatus,
   listBranches as listRepoBranches,
   listRepositories,
-} from "$lib/server/github";
-import { captureServerEvent } from "$lib/server/posthog";
+} from "#lib/server/github";
+import { captureServerEvent } from "#lib/server/posthog";
 import {
   getCmsContext,
   listGitHubInstallations,
   removeStaleInstallation,
-} from "$lib/server/session";
-import { fetchTemplates, type TemplatesResult } from "$lib/templates";
+} from "#lib/server/session";
+import { fetchTemplates, type TemplatesResult } from "#lib/templates";
 import type { Actions, PageServerLoad } from "./$types";
 
 const TEMPLATE_OWNER = "light-cms";

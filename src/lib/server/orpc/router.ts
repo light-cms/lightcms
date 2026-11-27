@@ -1,13 +1,13 @@
-import { createOpenAI } from "@ai-sdk/openai";
 import { randomUUID } from "node:crypto";
+import { createOpenAI } from "@ai-sdk/openai";
 import { ORPCError, os, type } from "@orpc/server";
 import { streamText } from "ai";
-import { emitPostHogLog, flushAiObservability } from "$lib/server/ai-observability";
+import { emitPostHogLog, flushAiObservability } from "#lib/server/ai-observability";
 import {
   isSpeechTranscriptionConfigured,
   type SpeechProvider,
   transcribeAudio,
-} from "$lib/server/transcription";
+} from "#lib/server/transcription";
 import { cmsRouter } from "./cms-router";
 import { publicProcedure } from "./context";
 

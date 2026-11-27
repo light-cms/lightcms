@@ -9,9 +9,6 @@ tags:
   - green-web
   - co2
   - ssg
-keywords: lightcms
-preview: /og-image.png
-serial: 3
 ---
 
 Pages use energy. Dynamic pages often consume CPU and database resources on every request. Static sites are built once and served from CDN caches. That design reduces energy per visit.

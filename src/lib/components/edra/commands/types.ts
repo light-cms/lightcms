@@ -1,6 +1,6 @@
-import type { Component } from "svelte";
 import type { LucideProps } from "@lucide/svelte";
 import type { Node } from "@tiptap/pm/model";
+import type { Component } from "svelte";
 import type { Editor } from "../tiptap/index.ts";
 
 export interface EdraCommand {

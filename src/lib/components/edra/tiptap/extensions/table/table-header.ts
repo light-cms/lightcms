@@ -1,10 +1,10 @@
 import { TableHeader as TiptapTableHeader } from "@tiptap/extension-table";
 import { Plugin, PluginKey } from "@tiptap/pm/state";
 import { Decoration, DecorationSet } from "@tiptap/pm/view";
-import strings from "../../../strings.js";
+import strings from "../../../strings";
 
-import { createGripInteractionPlugin } from "./grip-interaction.js";
-import { getCellsInRow, isColumnSelected, selectColumn } from "./utils.js";
+import { createGripInteractionPlugin } from "./grip-interaction";
+import { getCellsInRow, isColumnSelected, selectColumn } from "./utils";
 
 const tableHeaderPluginKey = new PluginKey("table-header-decorations");
 

@@ -9,9 +9,9 @@ import StrikeThrough from "@lucide/svelte/icons/strikethrough";
 import Subscript from "@lucide/svelte/icons/subscript";
 import Superscript from "@lucide/svelte/icons/superscript";
 import Underline from "@lucide/svelte/icons/underline";
-import strings from "../strings.js";
-import { ISMAC } from "../utils.js";
-import type { EdraCommand } from "./types.js";
+import strings from "../strings";
+import { ISMAC } from "../utils";
+import type { EdraCommand } from "./types";
 
 export const textFormattingCommands: EdraCommand[] = [
   {

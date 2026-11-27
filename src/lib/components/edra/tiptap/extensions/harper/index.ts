@@ -170,7 +170,7 @@ export const decodeHarperPayload = (raw: string | null): HarperIssue | null => {
       message = json.message;
     }
 
-    let problem: string | undefined = undefined;
+    let problem: string | undefined;
     if (typeof json.problem === "string") {
       problem = json.problem;
     }

@@ -3,8 +3,8 @@ export {
   isColumnGripSelected,
   isRowActiveFromSelection,
   isRowGripSelected,
-} from "./dom-utils.js";
-export { moveColumnLeft, moveColumnRight, moveRowDown, moveRowUp } from "./move-utils.js";
+} from "./dom-utils";
+export { moveColumnLeft, moveColumnRight, moveRowDown, moveRowUp } from "./move-utils";
 export {
   findCellClosestToPos,
   findTable,
@@ -19,4 +19,4 @@ export {
   selectColumn,
   selectRow,
   selectTable,
-} from "./selection-utils.js";
+} from "./selection-utils";

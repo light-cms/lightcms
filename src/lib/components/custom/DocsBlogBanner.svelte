@@ -1,10 +1,10 @@
 <script lang="ts">
 import ExternalLink from "@lucide/svelte/icons/external-link";
 import Newspaper from "@lucide/svelte/icons/newspaper";
-import { Button } from "$lib/components/ui/button";
-import * as m from "$lib/i18n/messages";
-import { SITE } from "$lib/seo";
-import { cn } from "$lib/utils";
+import { Button } from "#lib/components/ui/button";
+import * as m from "#lib/i18n/messages";
+import { SITE } from "#lib/seo";
+import { cn } from "#lib/utils";
 
 let { class: className = "" }: { class?: string } = $props();
 </script>

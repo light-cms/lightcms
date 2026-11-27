@@ -7,14 +7,6 @@ tags:
   - cms
   - lightcms
   - green-web
-isCJKLanguage: false
-headless: false
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
 ---
 
 Documentation matters, but teams use different systems and those systems shape what gets updated. Below are common approaches and what tends to work over time.

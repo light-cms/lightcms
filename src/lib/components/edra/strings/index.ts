@@ -1,5 +1,5 @@
-import { commandStrings } from "./commands.js";
-import { dragHandleStrings, editorStrings } from "./editor.js";
+import { commandStrings } from "./commands";
+import { dragHandleStrings, editorStrings } from "./editor";
 import {
   audioStrings,
   codeStrings,
@@ -8,8 +8,8 @@ import {
   mediaStrings,
   tableStrings,
   videoStrings,
-} from "./extensions.js";
-import { menuStrings, toolbarStrings } from "./menu-toolbar.js";
+} from "./extensions";
+import { menuStrings, toolbarStrings } from "./menu-toolbar";
 
 const strings = {
   command: commandStrings,

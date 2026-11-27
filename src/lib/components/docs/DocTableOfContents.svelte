@@ -2,9 +2,9 @@
 import ArrowUp from "@lucide/svelte/icons/arrow-up";
 import ExternalLink from "@lucide/svelte/icons/external-link";
 import { onDestroy, onMount } from "svelte";
-import * as m from "$lib/i18n/messages";
-import type { DocHeading } from "$lib/server/markdown";
-import { cn } from "$lib/utils";
+import * as m from "#lib/i18n/messages";
+import type { DocHeading } from "#lib/server/markdown";
+import { cn } from "#lib/utils";
 
 let {
 	headings = [],

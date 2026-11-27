@@ -1,9 +1,10 @@
 import Audio from "@lucide/svelte/icons/audio-lines";
 import IFrame from "@lucide/svelte/icons/code-xml";
 import Image from "@lucide/svelte/icons/image";
+import Play from "@lucide/svelte/icons/play";
 import Video from "@lucide/svelte/icons/video";
-import strings from "../strings.js";
-import type { EdraCommand } from "./types.js";
+import strings from "../strings";
+import type { EdraCommand } from "./types";
 
 export const mediaCommands: EdraCommand[] = [
   {
@@ -41,5 +42,14 @@ export const mediaCommands: EdraCommand[] = [
       editor.chain().focus().insertMediaPlaceholder({ mediaType: "iframe" }).run();
     },
     isActive: (editor) => editor.isActive("mediaPlaceholder", { mediaType: "iframe" }),
+  },
+  {
+    icon: Play,
+    name: "youtube-placeholder",
+    tooltip: strings.command.youtubePlaceholder,
+    onClick: (editor) => {
+      editor.chain().focus().insertMediaPlaceholder({ mediaType: "youtube" }).run();
+    },
+    isActive: (editor) => editor.isActive("mediaPlaceholder", { mediaType: "youtube" }),
   },
 ];

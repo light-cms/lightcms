@@ -1,7 +1,7 @@
 <script lang="ts">
-import * as Tooltip from "$lib/components/ui/tooltip/index.js";
-import { cn } from "$lib/utils.js";
-import { getTocItems } from "./toc.state.svelte.js";
+import * as Tooltip from "#lib/components/ui/tooltip/index";
+import { cn } from "#lib/utils";
+import { getTocItems } from "./toc.state.svelte";
 
 const tocItems = $derived(getTocItems());
 </script>

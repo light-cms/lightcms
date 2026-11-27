@@ -9,6 +9,7 @@ import ListOrdered from "@lucide/svelte/icons/list-ordered";
 import ListTodo from "@lucide/svelte/icons/list-todo";
 import Minus from "@lucide/svelte/icons/minus";
 import Network from "@lucide/svelte/icons/network";
+import Play from "@lucide/svelte/icons/play";
 import Quote from "@lucide/svelte/icons/quote";
 import Sigma from "@lucide/svelte/icons/sigma";
 import Sparkles from "@lucide/svelte/icons/sparkles";
@@ -16,8 +17,8 @@ import SquareCode from "@lucide/svelte/icons/square-code";
 import Table from "@lucide/svelte/icons/table";
 import Type from "@lucide/svelte/icons/type";
 import Video from "@lucide/svelte/icons/video";
-import type { EdraCommand } from "../../../commands/index.js";
-import type { Editor } from "../../../tiptap/index.js";
+import type { EdraCommand } from "../../../commands/index";
+import type { Editor } from "../../../tiptap/index";
 
 export interface SlashGroup {
   name: string;
@@ -165,6 +166,15 @@ export const SLASH_GROUPS: SlashGroup[] = [
         description: "Upload or embed an audio file.",
         onClick: (editor: Editor) => {
           editor.chain().focus().insertMediaPlaceholder({ mediaType: "audio" }).run();
+        },
+      },
+      {
+        icon: Play,
+        name: "youtube",
+        tooltip: "YouTube Video",
+        description: "Embed YouTube video via CDN thumbnail.",
+        onClick: (editor: Editor) => {
+          editor.chain().focus().insertMediaPlaceholder({ mediaType: "youtube" }).run();
         },
       },
     ],

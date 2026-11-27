@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Button, buttonVariants } from "$lib/components/ui/button";
+import { Button, buttonVariants } from "#lib/components/ui/button";
 import {
 	NodeViewContent,
 	type NodeViewProps,
@@ -12,9 +12,9 @@ const { editor, node, updateAttributes, extension, getPos }: NodeViewProps =
 import Check from "@lucide/svelte/icons/check";
 import Copy from "@lucide/svelte/icons/copy";
 import Sparkle from "@lucide/svelte/icons/sparkle";
-import * as Command from "$lib/components/ui/command";
-import * as Popover from "$lib/components/ui/popover";
-import { cn } from "$lib/utils";
+import * as Command from "#lib/components/ui/command";
+import * as Popover from "#lib/components/ui/popover";
+import { cn } from "#lib/utils";
 import strings from "../../strings";
 import Tooltip from "./Tooltip.svelte";
 

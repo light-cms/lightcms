@@ -1,10 +1,10 @@
 <script lang="ts">
 import Check from "@lucide/svelte/icons/check";
 import ChevronDown from "@lucide/svelte/icons/chevron-down";
-import { buttonVariants } from "$lib/components/ui/button/index.js";
-import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-import { cn } from "$lib/utils.js";
-import { getEditor, useEditorState } from "../../../tiptap/index.js";
+import { buttonVariants } from "#lib/components/ui/button/index";
+import * as DropdownMenu from "#lib/components/ui/dropdown-menu/index";
+import { cn } from "#lib/utils";
+import { getEditor, useEditorState } from "../../../tiptap/index";
 import { quickcolors } from "../../../utils.ts";
 import Tooltip from "../Tooltip.svelte";
 

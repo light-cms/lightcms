@@ -1,4 +1,4 @@
-import { resolveCollectionPath, sanitizeCollectionName } from "$lib/server/paths";
+import { resolveCollectionPath, sanitizeCollectionName } from "#lib/server/paths";
 
 export type LightCmsField = {
   name: string;

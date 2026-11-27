@@ -1,13 +1,13 @@
 <script lang="ts">
 import WandSparkles from "@lucide/svelte/icons/wand-sparkles";
-import { Button } from "$lib/components/ui/button/index.js";
-import { Separator } from "$lib/components/ui/separator/index.js";
-import { cn } from "$lib/utils.js";
-import { commands } from "../../commands/index.js";
+import { Button } from "#lib/components/ui/button/index";
+import { Separator } from "#lib/components/ui/separator/index";
+import { cn } from "#lib/utils";
+import { commands } from "../../commands/index";
 import MicButton from "../../harper/MicButton.svelte";
-import { addAIHighlight, getEditor } from "../../tiptap/index.js";
-import { useAiEnabled } from "../hooks/useAiEnabled.svelte.js";
-import { useCommandState } from "../hooks/useCommandState.svelte.js";
+import { addAIHighlight, getEditor } from "../../tiptap/index";
+import { useAiEnabled } from "../hooks/useAiEnabled.svelte";
+import { useCommandState } from "../hooks/useCommandState.svelte";
 import Tooltip from "./Tooltip.svelte";
 import Colors from "./tools/Colors.svelte";
 import Export from "./tools/Export.svelte";

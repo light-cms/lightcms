@@ -1,1 +1,1 @@
-export { getTocItems, setTocItems } from "./toc.state.svelte.js";
+export { getTocItems, setTocItems } from "./toc.state.svelte";

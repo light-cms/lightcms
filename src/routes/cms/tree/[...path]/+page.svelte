@@ -11,8 +11,8 @@ import GitBranch from "@lucide/svelte/icons/git-branch";
 import Home from "@lucide/svelte/icons/home";
 import Plus from "@lucide/svelte/icons/plus";
 import Trash2 from "@lucide/svelte/icons/trash-2";
-import { collectionEntryUrl } from "$lib/cms-urls";
-import { Button } from "$lib/components/ui/button";
+import { collectionEntryUrl } from "#lib/cms-urls";
+import { Button } from "#lib/components/ui/button";
 import {
 	Dialog,
 	DialogClose,
@@ -21,9 +21,9 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-} from "$lib/components/ui/dialog";
-import { Input } from "$lib/components/ui/input";
-import { Label } from "$lib/components/ui/label";
+} from "#lib/components/ui/dialog";
+import { Input } from "#lib/components/ui/input";
+import { Label } from "#lib/components/ui/label";
 import type { PageData } from "./$types";
 
 let { data, form }: { data: PageData; form?: { error?: string } | null } =
@@ -55,7 +55,10 @@ let newFilenameInput = $state("");
 let draggedFilePath = $state<string | null>(null);
 let dropTargetFolder = $state<string | null>(null);
 
-function getFileEditUrl(fileItem: { path: string; extension?: string }): string | undefined {
+function getFileEditUrl(fileItem: {
+	path: string;
+	extension?: string;
+}): string | undefined {
 	const collectionUrl = collectionEntryUrl(fileItem.path, query);
 	if (collectionUrl) {
 		return collectionUrl;

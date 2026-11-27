@@ -1,6 +1,6 @@
-import { SPEECH_PROVIDERS, type SpeechProvider } from "$lib/speech-providers";
-import { isAiSdkSpeechConfigured, transcribeWithAiSdk } from "./speech-ai-sdk.js";
-import { isWitAiConfigured, transcribeAudioWithWitAi } from "./wit-ai.js";
+import { SPEECH_PROVIDERS, type SpeechProvider } from "#lib/speech-providers";
+import { isAiSdkSpeechConfigured, transcribeWithAiSdk } from "./speech-ai-sdk";
+import { isWitAiConfigured, transcribeAudioWithWitAi } from "./wit-ai";
 
 export type { SpeechProvider };
 

@@ -1,4 +1,5 @@
 ---
+
 title: Newsletter
 description: "Set up automated newsletters for your static blog with Newsy: posts published straight from Git, subscriber emails sent for you, no monthly platform fee
 ."
@@ -10,13 +11,8 @@ tags:
   - email
   - newsy
   - smtp
-keywords:
-  - newsletter
-  - email automation
-  - newsy
-  - smtp
-  - lightcms
-preview: /og-image.png
+ 
+
 ---
 
 Sending a newsletter when you publish a post is one of the simplest ways to grow an audience. Newsy uses Git as the source of truth so you can automate that step without a separate newsletter platform.

@@ -2,7 +2,8 @@ import { error, fail, redirect } from "@sveltejs/kit";
 import { message, setError, superValidate } from "sveltekit-superforms";
 import { zod4 } from "sveltekit-superforms/adapters";
 import { z } from "zod";
-import { buildEntrySchema } from "$lib/schemas/entry";
+import { createDefaultFrontMatter } from "#lib/components/cms/frontmatter.types";
+import { buildEntrySchema } from "#lib/schemas/entry";
 import {
   buildFrontMatter,
   createCollectionEntry,
@@ -11,13 +12,11 @@ import {
   getCollectionEntry,
   moveCollectionEntry,
   updateCollectionEntry,
-} from "$lib/server/cms";
-
-import { createDefaultFrontMatter } from "$lib/components/cms/frontmatter.types";
-import { getConfiguredCollection } from "$lib/server/cms-context";
-import { isGitHubStatus } from "$lib/server/github";
-import { normalizeFolder, resolveEntryPath } from "$lib/server/paths";
-import { captureServerEvent } from "$lib/server/posthog";
+} from "#lib/server/cms";
+import { getConfiguredCollection } from "#lib/server/cms-context";
+import { isGitHubStatus } from "#lib/server/github";
+import { normalizeFolder, resolveEntryPath } from "#lib/server/paths";
+import { captureServerEvent } from "#lib/server/posthog";
 import type { Actions, PageServerLoad } from "./$types";
 
 const INLINE_FRONTMATTER_KEYS = new Set(["title", "slug", "description", "date", "draft", "tags"]);
@@ -237,10 +236,14 @@ export const actions: Actions = {
             val === null ||
             (typeof val === "string" && val.trim().length === 0)
           ) {
-            return fail(400, { error: `${field.label ?? field.name} is required.` });
+            return fail(400, {
+              error: `${field.label ?? field.name} is required.`,
+            });
           }
           if (field.list && Array.isArray(val) && val.length === 0) {
-            return fail(400, { error: `${field.label ?? field.name} is required.` });
+            return fail(400, {
+              error: `${field.label ?? field.name} is required.`,
+            });
           }
         }
       }
@@ -268,7 +271,9 @@ export const actions: Actions = {
         try {
           await createCollectionEntry(collection, _slug, parsedFrontMatter, body, ctx, folder);
         } catch (cause) {
-          return fail(500, { error: cause instanceof Error ? cause.message : String(cause) });
+          return fail(500, {
+            error: cause instanceof Error ? cause.message : String(cause),
+          });
         }
         await captureServerEvent(locals.session.userId, "collection_entry_created");
         throw redirect(303, collectionUrl);

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vite-plus/test";
-import { isDictationShortcut, isEditableTarget } from "./dictation-shortcut.js";
+import { isDictationShortcut, isEditableTarget } from "./dictation-shortcut";
 
 /** `KeyboardEvent` is not a Node global, so the fields the matcher reads are assigned directly. */
 function keyEvent(init: Partial<KeyboardEventInit>): KeyboardEvent {

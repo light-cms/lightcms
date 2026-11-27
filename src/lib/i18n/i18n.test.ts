@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vite-plus/test";
+import { runWithLocale } from "../server/i18n";
 import {
   baseLocale,
   deLocalizeUrl,
@@ -12,7 +13,6 @@ import {
   stripLocaleFromPathname,
 } from "./index";
 import * as m from "./messages";
-import { runWithLocale } from "../server/i18n";
 
 describe("native i18n runtime", () => {
   it("defines baseLocale as en and lists all 30 supported locales", () => {

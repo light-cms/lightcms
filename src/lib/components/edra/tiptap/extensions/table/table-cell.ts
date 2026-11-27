@@ -1,10 +1,10 @@
 import { TableCell as TiptapTableCell } from "@tiptap/extension-table";
 import { Plugin, PluginKey } from "@tiptap/pm/state";
 import { Decoration, DecorationSet } from "@tiptap/pm/view";
-import strings from "../../../strings.js";
+import strings from "../../../strings";
 
-import { createGripInteractionPlugin } from "./grip-interaction.js";
-import { getCellsInColumn, isRowSelected, selectRow } from "./utils.js";
+import { createGripInteractionPlugin } from "./grip-interaction";
+import { getCellsInColumn, isRowSelected, selectRow } from "./utils";
 
 const tableCellPluginKey = new PluginKey("table-cell-decorations");
 

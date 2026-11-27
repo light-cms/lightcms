@@ -1,6 +1,6 @@
 import { ORPCError } from "@orpc/server";
 import { z } from "zod";
-import { buildEntrySchema, slugSchema } from "$lib/schemas/entry";
+import { buildEntrySchema, slugSchema } from "#lib/schemas/entry";
 import {
   createCollectionEntry,
   createFileAtPath,
@@ -19,14 +19,14 @@ import {
   resolveRepository,
   saveRepoFile,
   updateCollectionEntry,
-} from "$lib/server/cms";
+} from "#lib/server/cms";
 
-import { getCollection } from "$lib/server/config";
+import { getCollection } from "#lib/server/config";
 import {
   createBranch as createRepoBranch,
   listBranches as listRepoBranches,
-} from "$lib/server/github";
-import { getCmsContext } from "$lib/server/session";
+} from "#lib/server/github";
+import { getCmsContext } from "#lib/server/session";
 import { authedProcedure } from "./context";
 
 const repoInput = z.object({
@@ -261,7 +261,9 @@ const deleteFolder = authedProcedure.input(dirInput).handler(async ({ input, con
       throw new ORPCError("NOT_FOUND", { message: cause.message });
     }
     console.error(cause);
-    throw new ORPCError("BAD_REQUEST", { message: "Could not delete folder." });
+    throw new ORPCError("BAD_REQUEST", {
+      message: "Could not delete folder.",
+    });
   }
 });
 

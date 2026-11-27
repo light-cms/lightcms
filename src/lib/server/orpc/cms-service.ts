@@ -1,4 +1,4 @@
-// @deprecated — use "$lib/server/cms" directly. This shim will be removed.
+// @deprecated — use "#lib/server/cms" directly. This shim will be removed.
 
 export type {
   CmsContext,
@@ -7,7 +7,7 @@ export type {
   EntrySummary,
   FolderSummary,
   FrontMatter,
-} from "$lib/server/cms";
+} from "#lib/server/cms";
 export {
   buildFrontMatter,
   createCollectionAtPath,
@@ -26,4 +26,4 @@ export {
   parseFrontMatter,
   serializeEntry,
   updateCollectionEntry,
-} from "$lib/server/cms";
+} from "#lib/server/cms";

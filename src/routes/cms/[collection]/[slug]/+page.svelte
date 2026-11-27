@@ -1,9 +1,9 @@
 <script lang="ts">
 import { onMount } from "svelte";
-import EditorWorkspace from "$lib/components/cms/EditorWorkspace.svelte";
-import { createLightCmsClient } from "$lib/orpc-client";
-import { buildPayloadQuery } from "$lib/utils/cms-url";
-import { uploadFile } from "$lib/utils/upload-file";
+import EditorWorkspace from "#lib/components/cms/EditorWorkspace.svelte";
+import { createLightCmsClient } from "#lib/orpc-client";
+import { buildPayloadQuery } from "#lib/utils/cms-url";
+import { uploadFile } from "#lib/utils/upload-file";
 import type { PageData } from "./$types";
 
 let { data }: { data: PageData } = $props();

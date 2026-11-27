@@ -12,25 +12,25 @@ import {
 	SIMPLIFY_LANGUAGE_PROMPT,
 	SOLVE_PROBLEM_PROMPT,
 	SUMMARIZE_PROMPT,
-} from "../../../commands/index.js";
+} from "../../../commands/index";
 import {
 	BubbleMenu,
 	getEditor,
 	removeAIHighlight,
 	useEditorTransaction,
-} from "../../../tiptap/index.js";
+} from "../../../tiptap/index";
 import AiActionBar from "./ai/AiActionBar.svelte";
 import AiPromptForm from "./ai/AiPromptForm.svelte";
 import AiQuickActions from "./ai/AiQuickActions.svelte";
 import AiStreamingIndicator from "./ai/AiStreamingIndicator.svelte";
-import { resolveAiKeydown } from "./ai/keyboard.js";
+import { resolveAiKeydown } from "./ai/keyboard";
 import {
 	type AiActionId,
 	EMPTY_QUICK_ACTIONS,
 	type QuickAction,
 	SELECTION_QUICK_ACTIONS,
-} from "./ai/quick-actions.js";
-import { createAIContentManager } from "./ai-content-manager.js";
+} from "./ai/quick-actions";
+import { createAIContentManager } from "./ai-content-manager";
 
 const editor = getEditor();
 const manager = createAIContentManager(editor);
@@ -161,22 +161,28 @@ async function processAction(action: AiActionId) {
 
 		if (action === "continue") {
 			const { from } = editor.state.selection;
-			const preText = editor.state.doc.textBetween(Math.max(0, from - 1000), from);
+			const preText = editor.state.doc.textBetween(
+				Math.max(0, from - 1000),
+				from,
+			);
 			await generateAIContent(CONTINUE_WRITING_PROMPT(preText));
 			return;
 		}
 
 		if (action === "explain") {
 			const selected = getAIHighlightedText() ?? "";
-			await generateAIContent(EXPLAIN_PROMPT(selected.trim() ? selected : "Explain this"));
+			await generateAIContent(
+				EXPLAIN_PROMPT(selected.trim() ? selected : "Explain this"),
+			);
 			return;
 		}
 
 		if (action === "summarize") {
 			const selected = getAIHighlightedText();
-			const text = selected && selected.trim()
-				? selected
-				: editor.state.doc.textBetween(0, editor.state.doc.content.size);
+			const text =
+				selected && selected.trim()
+					? selected
+					: editor.state.doc.textBetween(0, editor.state.doc.content.size);
 			await generateAIContent(SUMMARIZE_PROMPT(text));
 			return;
 		}
@@ -206,9 +212,10 @@ async function handleSubmit() {
 	aiState = AIState.Confirmation;
 
 	const selected = getAIHighlightedText();
-	const fullPrompt = selected && selected.trim()
-		? `Context:\n${selected}\n\nInstruction:\n${prompt}\n\nOutput:`
-		: prompt;
+	const fullPrompt =
+		selected && selected.trim()
+			? `Context:\n${selected}\n\nInstruction:\n${prompt}\n\nOutput:`
+			: prompt;
 
 	try {
 		await generateAIContent(fullPrompt);

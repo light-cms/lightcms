@@ -1,4 +1,4 @@
-import { renderMarkdown } from "$lib/server/markdown";
+import { renderMarkdown } from "#lib/server/markdown";
 import type { PageServerLoad } from "./$types";
 import policy from "./policy.md?raw";
 

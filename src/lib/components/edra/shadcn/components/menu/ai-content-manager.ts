@@ -1,5 +1,5 @@
 import type { Editor } from "@tiptap/core";
-import { removeAIHighlight } from "../../../tiptap/index.js";
+import { removeAIHighlight } from "../../../tiptap/index";
 
 export interface AIContentManagerState {
   aiContentFrom: number;

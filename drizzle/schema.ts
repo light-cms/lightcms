@@ -1,14 +1,14 @@
 import {
-  pgTable,
-  index,
+  bigint,
+  boolean,
   foreignKey,
+  index,
+  integer,
+  pgTable,
+  primaryKey,
   text,
   timestamp,
   unique,
-  boolean,
-  integer,
-  primaryKey,
-  bigint,
 } from "drizzle-orm/pg-core";
 
 export const account = pgTable(
@@ -21,8 +21,12 @@ export const account = pgTable(
     accessToken: text("access_token"),
     refreshToken: text("refresh_token"),
     idToken: text("id_token"),
-    accessTokenExpiresAt: timestamp("access_token_expires_at", { mode: "string" }),
-    refreshTokenExpiresAt: timestamp("refresh_token_expires_at", { mode: "string" }),
+    accessTokenExpiresAt: timestamp("access_token_expires_at", {
+      mode: "string",
+    }),
+    refreshTokenExpiresAt: timestamp("refresh_token_expires_at", {
+      mode: "string",
+    }),
     scope: text(),
     password: text(),
     createdAt: timestamp("created_at", { mode: "string" }).defaultNow().notNull(),

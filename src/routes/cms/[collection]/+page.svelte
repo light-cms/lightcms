@@ -14,10 +14,8 @@ import Sparkles from "@lucide/svelte/icons/sparkles";
 import Trash from "@lucide/svelte/icons/trash";
 import TriangleAlert from "@lucide/svelte/icons/triangle-alert";
 import { toast } from "svelte-sonner";
-import { enhance } from "$app/forms";
-import { goto, refreshAll } from "$app/navigation";
-import { CreateFolderDialog } from "$lib/components/custom";
-import { Button } from "$lib/components/ui/button";
+import { CreateFolderDialog } from "#lib/components/custom";
+import { Button } from "#lib/components/ui/button";
 import {
 	Dialog,
 	DialogContent,
@@ -25,15 +23,16 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-} from "$lib/components/ui/dialog";
-
-import { createLightCmsClient } from "$lib/orpc-client";
+} from "#lib/components/ui/dialog";
+import { createLightCmsClient } from "#lib/orpc-client";
 import {
 	buildEntryUrl,
 	buildFolderUrl,
 	buildPayloadQuery,
 	withFolder,
-} from "$lib/utils/cms-url";
+} from "#lib/utils/cms-url";
+import { enhance } from "$app/forms";
+import { goto, refreshAll } from "$app/navigation";
 import type { PageData } from "./$types";
 
 let { data, form }: { data: PageData; form?: { folderError?: string } | null } =

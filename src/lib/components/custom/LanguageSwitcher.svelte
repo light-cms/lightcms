@@ -1,20 +1,20 @@
 <script lang="ts">
 import Check from "@lucide/svelte/icons/check";
 import Languages from "@lucide/svelte/icons/languages";
-import { goto } from "$app/navigation";
-import { page } from "$app/state";
-import { buttonVariants } from "$lib/components/ui/button/button.js";
-import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+import { buttonVariants } from "#lib/components/ui/button/button";
+import * as DropdownMenu from "#lib/components/ui/dropdown-menu/index";
 import {
 	getLocale,
+	type Locale,
 	localeMetadata,
 	locales,
 	localizeHref,
 	setLocale,
-	type Locale,
-} from "$lib/i18n";
-import * as m from "$lib/i18n/messages";
-import { cn } from "$lib/utils.js";
+} from "#lib/i18n";
+import * as m from "#lib/i18n/messages";
+import { cn } from "#lib/utils";
+import { goto } from "$app/navigation";
+import { page } from "$app/state";
 
 const currentLocale = $derived(getLocale());
 const currentMeta = $derived(localeMetadata[currentLocale]);

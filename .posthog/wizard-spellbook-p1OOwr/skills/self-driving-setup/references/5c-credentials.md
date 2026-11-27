@@ -47,7 +47,6 @@ The connect page renders the right credential form for that kind on its own.
 - **skip** → record "picked but not connected" and return to step 5 (enable the dormant responder + follow-up — harmless, since it only emits once a warehouse source syncs).
 
 3. **On done, fetch the stored credential once.** Call `data-warehouse-stored-credentials-list` with `{ "source_type": "<Type>" }` and take the **newest** `credential_id`. Stored credentials are single-use and expire after 24 hours, so read it right after the user confirms.
-
    - **Credential present** → create the source (below).
    - **None present** (the user didn't actually store anything, or it expired) → **don't re-ask or wait** — record "picked but not connected" and return to step 5 (the dormant responder + follow-up cover it; the user can finish the connect page later). This run never nudges.
 

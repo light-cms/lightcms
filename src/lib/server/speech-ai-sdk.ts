@@ -1,6 +1,6 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { transcribe } from "ai";
-import { flushAiObservability } from "$lib/server/ai-observability";
+import { flushAiObservability } from "#lib/server/ai-observability";
 
 export interface TranscribeAiSdkOptions {
   endpoint?: string;

@@ -3,8 +3,8 @@ import { type EditorState, PluginKey } from "@tiptap/pm/state";
 import Suggestion, { type SuggestionKeyDownProps, type SuggestionProps } from "@tiptap/suggestion";
 import type { Component } from "svelte";
 import { SvelteRenderer } from "../../index.ts";
-import { filterSlashGroups, SLASH_EXTENSION_NAME } from "./catalog.js";
-import type { SlashPopup } from "./popup.js";
+import { filterSlashGroups, SLASH_EXTENSION_NAME } from "./catalog";
+import type { SlashPopup } from "./popup";
 
 interface SlashMenuHandle {
   handleKeyDown?: (event: KeyboardEvent) => boolean;

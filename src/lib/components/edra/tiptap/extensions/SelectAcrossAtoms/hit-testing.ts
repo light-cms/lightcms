@@ -1,7 +1,7 @@
 import type { Node as ProseMirrorNode, ResolvedPos } from "@tiptap/pm/model";
 import type { EditorView } from "@tiptap/pm/view";
 
-import { isAcrossSelectableNode } from "./node-classification.js";
+import { isAcrossSelectableNode } from "./node-classification";
 
 type AtomHit = { nodeStart: number; nodeEnd: number; dom: Element };
 

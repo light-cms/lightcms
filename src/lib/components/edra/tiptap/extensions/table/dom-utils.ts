@@ -1,8 +1,8 @@
 import type { Editor } from "@tiptap/core";
 import type { EditorState } from "@tiptap/pm/state";
 import type { EditorView } from "@tiptap/pm/view";
-import { isCellSelection, isTableSelected } from "./selection-utils.js";
-import Table from "./table.js";
+import { isCellSelection, isTableSelected } from "./selection-utils";
+import Table from "./table";
 
 type GripCheckArgs = {
   editor: Editor;

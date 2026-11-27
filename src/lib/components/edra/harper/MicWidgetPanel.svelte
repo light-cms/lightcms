@@ -2,9 +2,9 @@
 import GripHorizontal from "@lucide/svelte/icons/grip-horizontal";
 import Loader2Icon from "@lucide/svelte/icons/loader-2";
 import MicAudioLines from "@lucide/svelte/icons/mic-audio-lines";
-import type { DraggableWidget } from "./draggable-widget.svelte.js";
-import { SPEECH_PROVIDERS, type SpeechProvider } from "./speech-recognition.js";
-import type { SpeechRecognitionInstance } from "./speech-recognition.svelte.js";
+import type { DraggableWidget } from "./draggable-widget.svelte";
+import { SPEECH_PROVIDERS, type SpeechProvider } from "./speech-recognition";
+import type { SpeechRecognitionInstance } from "./speech-recognition.svelte";
 
 interface Props {
 	/** The positioned root element, handed back so the parent can measure and clamp it. */

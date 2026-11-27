@@ -1,6 +1,6 @@
 import Table from "@lucide/svelte/icons/table";
-import strings from "../strings.js";
-import type { EdraCommand } from "./types.js";
+import strings from "../strings";
+import type { EdraCommand } from "./types";
 
 export const tableCommands: EdraCommand[] = [
   {

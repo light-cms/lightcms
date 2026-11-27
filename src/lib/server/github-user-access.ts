@@ -1,7 +1,7 @@
 import { and, eq } from "drizzle-orm";
 import { Octokit } from "octokit";
-import { db } from "$lib/server/db";
-import { account } from "$lib/server/db/auth.schema";
+import { db } from "#lib/server/db";
+import { account } from "#lib/server/db/auth.schema";
 
 type GitHubAccountRef = { login?: string; slug?: string } | null | undefined;
 

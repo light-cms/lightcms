@@ -1,7 +1,7 @@
-import type { LightCmsCollection } from "$lib/server/config";
-import { normalizeFolder, resolveEntryPath } from "$lib/server/paths";
-import { assertSlug, ensureSlug } from "./frontmatter.js";
-import { type CmsContext, resolveRepository } from "./types.js";
+import type { LightCmsCollection } from "#lib/server/config";
+import { normalizeFolder, resolveEntryPath } from "#lib/server/paths";
+import { assertSlug, ensureSlug } from "./frontmatter";
+import { type CmsContext, resolveRepository } from "./types";
 
 /**
  * Normalize a slug (ensure non-empty, default to timestamp) and validate it.
@@ -55,4 +55,4 @@ export function getEntryCommitMessage(
   }
 }
 
-export { normalizeFolder } from "$lib/server/paths";
+export { normalizeFolder } from "#lib/server/paths";

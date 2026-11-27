@@ -13,10 +13,10 @@ import Trash2 from "@lucide/svelte/icons/trash-2";
 import X from "@lucide/svelte/icons/x";
 import { Dialog as DialogPrimitive } from "bits-ui";
 import { toast } from "svelte-sonner";
-import { Badge } from "$lib/components/ui/badge";
-import { Button } from "$lib/components/ui/button";
-import { Input } from "$lib/components/ui/input";
-import { Textarea } from "$lib/components/ui/textarea";
+import { Badge } from "#lib/components/ui/badge";
+import { Button } from "#lib/components/ui/button";
+import { Input } from "#lib/components/ui/input";
+import { Textarea } from "#lib/components/ui/textarea";
 import type { FrontmatterEntry } from "./frontmatter-drawer.types.ts";
 
 interface Props {

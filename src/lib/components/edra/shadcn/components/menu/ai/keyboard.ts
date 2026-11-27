@@ -1,4 +1,4 @@
-import { AIState } from "../../../../commands/index.js";
+import { AIState } from "../../../../commands/index";
 
 export interface AiKeydownContext {
   aiActive: boolean;

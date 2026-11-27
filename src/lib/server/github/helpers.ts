@@ -1,4 +1,4 @@
-import type { Repository } from "./types.js";
+import type { Repository } from "./types";
 
 export function parseRepository(repository: Repository): {
   owner: string;

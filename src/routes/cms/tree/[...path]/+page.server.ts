@@ -1,5 +1,5 @@
 import { fail, redirect } from "@sveltejs/kit";
-import { collectionEntryUrl } from "$lib/cms-urls";
+import { collectionEntryUrl } from "#lib/cms-urls";
 import {
   createFolderAtPath,
   createRepoFile,
@@ -7,10 +7,10 @@ import {
   deleteRepoFile,
   listRepoTree,
   moveRepoFile,
-} from "$lib/server/cms";
-import { getRepoCmsContext } from "$lib/server/cms-context";
-import { normalizeContentPath } from "$lib/server/paths";
-import { captureServerEvent } from "$lib/server/posthog";
+} from "#lib/server/cms";
+import { getRepoCmsContext } from "#lib/server/cms-context";
+import { normalizeContentPath } from "#lib/server/paths";
+import { captureServerEvent } from "#lib/server/posthog";
 import type { Actions, PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ locals, params, url }) => {

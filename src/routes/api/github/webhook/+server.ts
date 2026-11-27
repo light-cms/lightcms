@@ -1,6 +1,6 @@
 import type { EmitterWebhookEventName } from "@octokit/webhooks";
-import { getProbot } from "$lib/server/probot.js";
-import type { RequestHandler } from "./$types.js";
+import { getProbot } from "#lib/server/probot";
+import type { RequestHandler } from "./$types";
 
 function missingHeadersResponse(): Response {
   return Response.json({ error: "Missing required GitHub webhook headers" }, { status: 400 });

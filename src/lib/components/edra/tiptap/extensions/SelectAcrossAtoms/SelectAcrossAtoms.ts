@@ -8,24 +8,24 @@ import {
   entrySideFromSelection,
   includeAtomInDragSelection,
   resolveAtomLeave,
-} from "./atom-selection.js";
+} from "./atom-selection";
 import {
   restorePreservedSelection,
   selectAtomOnClick,
   shouldPreserveSelectionOnRightClick,
-} from "./click-handlers.js";
-import { hitAtomAtCoords, pointInRect } from "./hit-testing.js";
-import { isAcrossSelectableNode } from "./node-classification.js";
-import type { AtomVisit, PreservedRange } from "./types.js";
+} from "./click-handlers";
+import { hitAtomAtCoords, pointInRect } from "./hit-testing";
+import { isAcrossSelectableNode } from "./node-classification";
+import type { AtomVisit, PreservedRange } from "./types";
 
 export {
   excludeAtomFromDragSelection,
   includeAtomInDragSelection,
   resolveAtomLeave,
   selectionCoveringNode,
-} from "./atom-selection.js";
+} from "./atom-selection";
 // Re-export public API from sub-modules
-export { ATOM_SLIGHT_PENETRATION_PX } from "./types.js";
+export { ATOM_SLIGHT_PENETRATION_PX } from "./types";
 
 const selectAcrossAtomsKey = new PluginKey("selectAcrossAtoms");
 

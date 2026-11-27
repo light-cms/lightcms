@@ -11,13 +11,6 @@ tags:
   - static
   - site
   - generator
-keywords:
-  - lightcms
-  - getting started
-  - introduction
-  - wysiwyg
-  - markdown
-  - git based
 ---
 
 LightCMS is a Git-backed editor for static sites. You write in a rich editor and press Publish; LightCMS commits clean Markdown into your repository. Your build and deploy pipeline — Cloudflare Pages, Netlify, Vercel, GitHub Pages, or similar — takes it from there.

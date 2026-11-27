@@ -1,10 +1,7 @@
-import type { PageSeoOverride } from "$lib/seo";
-import { HOME_DESCRIPTION, SITE } from "$lib/seo";
+import type { PageSeoOverride } from "#lib/seo";
+import { HOME_DESCRIPTION, SITE } from "#lib/seo";
 
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
 export const prerender = true;
-
 export const load = (): { seo: PageSeoOverride } => ({
   seo: {
     jsonLd: [
@@ -41,7 +38,7 @@ export const load = (): { seo: PageSeoOverride } => ({
             name: "Does LightCMS require an external database?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "No. LightCMS is completely database-free for content storage. All posts and assets live directly inside your Git repository as flat files.",
+              text: "No. LightCMS is 100% database free for content storage. All posts and assets live directly inside your Git repository as flat files.",
             },
           },
         ],

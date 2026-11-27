@@ -2,9 +2,9 @@
 import { getContext } from "svelte";
 import type { HTMLAttributes } from "svelte/elements";
 
-import { cn, type WithElementRef } from "$lib/utils";
+import { cn, type WithElementRef } from "#lib/utils";
 
-import { AVATAR_CONTEXT_KEY, type MeltAvatar } from "./context.ts";
+import { AVATAR_CONTEXT_KEY, type MeltAvatar } from "./context";
 
 type Props = WithElementRef<
 	HTMLAttributes<HTMLImageElement>,

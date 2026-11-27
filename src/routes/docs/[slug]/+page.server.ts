@@ -1,8 +1,8 @@
 import { error } from "@sveltejs/kit";
-import { localizeHref, resolveLocaleFromPathname } from "$lib/i18n";
-import { absoluteUrl, SITE } from "$lib/seo";
-import { loadDocEntries } from "$lib/server/docs";
-import { renderDocMarkdown } from "$lib/server/markdown";
+import { localizeHref, resolveLocaleFromPathname } from "#lib/i18n";
+import { absoluteUrl, SITE } from "#lib/seo";
+import { loadDocEntries } from "#lib/server/docs";
+import { renderDocMarkdown } from "#lib/server/markdown";
 import type { EntryGenerator, PageServerLoad } from "./$types";
 
 export const prerender = true;

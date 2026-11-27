@@ -1,8 +1,8 @@
 <script lang="ts">
-import { buttonVariants } from "$lib/components/ui/button/button";
-import { Input } from "$lib/components/ui/input";
-import * as Popover from "$lib/components/ui/popover";
-import { cn } from "$lib/utils";
+import { buttonVariants } from "#lib/components/ui/button/button";
+import { Input } from "#lib/components/ui/input";
+import * as Popover from "#lib/components/ui/popover";
+import { cn } from "#lib/utils";
 import {
 	NodeViewContent,
 	type NodeViewProps,

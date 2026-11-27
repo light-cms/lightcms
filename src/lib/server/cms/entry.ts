@@ -1,5 +1,5 @@
 import matter from "gray-matter";
-import type { LightCmsCollection } from "$lib/server/config";
+import type { LightCmsCollection } from "#lib/server/config";
 import {
   createFile,
   createOrUpdateFile,
@@ -7,7 +7,7 @@ import {
   getFileContent,
   listDir,
   moveFile,
-} from "$lib/server/github";
+} from "#lib/server/github";
 
 import {
   getSlug,
@@ -15,9 +15,9 @@ import {
   normalizeContentPath,
   normalizeFolder,
   resolveEntryPath,
-} from "$lib/server/paths";
+} from "#lib/server/paths";
 import { assertSlug, buildFrontMatter, parseFrontMatter, serializeEntry } from "./frontmatter";
-import { getEntryCommitMessage, resolveEntryContext } from "./slug-helpers.js";
+import { getEntryCommitMessage, resolveEntryContext } from "./slug-helpers";
 import {
   type CmsContext,
   type DirectoryListing,

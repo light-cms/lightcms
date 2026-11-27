@@ -1,6 +1,6 @@
 import matter from "gray-matter";
-import { baseLocale } from "$lib/i18n";
-import { DEFAULT_OG_IMAGE } from "$lib/seo";
+import { baseLocale } from "#lib/i18n";
+import { DEFAULT_OG_IMAGE } from "#lib/seo";
 
 export interface DocEntry {
   /** Path segment under `/docs`, e.g. `selfhost` or `comparison/top-git-cms`. */

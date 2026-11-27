@@ -1,19 +1,19 @@
 <script lang="ts">
 import WandSparkles from "@lucide/svelte/icons/wand-sparkles";
 import type { BubbleMenuPluginProps } from "@tiptap/extension-bubble-menu";
-import { Button } from "$lib/components/ui/button/index.js";
-import { Separator } from "$lib/components/ui/separator/index.js";
-import { cn } from "$lib/utils.js";
-import { commands } from "../../../commands/index.js";
-import { isTableGripSelected } from "../../../tiptap/extensions/table/dom-utils.js";
+import { Button } from "#lib/components/ui/button/index";
+import { Separator } from "#lib/components/ui/separator/index";
+import { cn } from "#lib/utils";
+import { commands } from "../../../commands/index";
+import { isTableGripSelected } from "../../../tiptap/extensions/table/dom-utils";
 import {
 	addAIHighlight,
 	BubbleMenu,
 	getEditor,
 	isTextSelection,
-} from "../../../tiptap/index.js";
-import { useAiEnabled } from "../../hooks/useAiEnabled.svelte.js";
-import { useCommandState } from "../../hooks/useCommandState.svelte.js";
+} from "../../../tiptap/index";
+import { useAiEnabled } from "../../hooks/useAiEnabled.svelte";
+import { useCommandState } from "../../hooks/useCommandState.svelte";
 import Tooltip from "../Tooltip.svelte";
 import AlignMent from "../tools/AlignMent.svelte";
 import Colors from "../tools/Colors.svelte";

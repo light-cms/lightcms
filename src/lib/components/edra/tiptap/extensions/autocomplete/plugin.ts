@@ -1,9 +1,9 @@
 import type { Editor } from "@tiptap/core";
 import { type EditorState, Plugin, PluginKey } from "@tiptap/pm/state";
 import type { DecorationSet } from "@tiptap/pm/view";
-import { buildGhostDecoration, EMPTY_DECORATIONS } from "./decorations.js";
-import { matchCompletion } from "./matchers.js";
-import type { AutocompleteOptions, TextMatch } from "./types.js";
+import { buildGhostDecoration, EMPTY_DECORATIONS } from "./decorations";
+import { matchCompletion } from "./matchers";
+import type { AutocompleteOptions, TextMatch } from "./types";
 
 interface AutocompletePluginState {
   decoration: DecorationSet;

@@ -1,8 +1,8 @@
 import type { ApplicationFunction, Probot } from "probot";
-import { handleInstallation } from "./handlers/installation.js";
-import { handlePing } from "./handlers/ping.js";
-import { handlePullRequest } from "./handlers/pull-request.js";
-import { handlePush } from "./handlers/push.js";
+import { handleInstallation } from "./handlers/installation";
+import { handlePing } from "./handlers/ping";
+import { handlePullRequest } from "./handlers/pull-request";
+import { handlePush } from "./handlers/push";
 
 const app: ApplicationFunction = (probotApp: Probot): void => {
   probotApp.onError(async (error: Error) => {

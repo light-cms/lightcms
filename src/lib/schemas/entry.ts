@@ -1,6 +1,6 @@
 import { z } from "zod";
-import type { LightCmsCollection, LightCmsField } from "$lib/server/config";
-import { generateDefaultSlug } from "$lib/server/paths";
+import type { LightCmsCollection, LightCmsField } from "#lib/server/config";
+import { generateDefaultSlug } from "#lib/server/paths";
 
 function buildFieldSchema(field: LightCmsField): z.ZodTypeAny {
   let base: z.ZodTypeAny;

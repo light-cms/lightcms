@@ -1,7 +1,7 @@
 import { redirect } from "@sveltejs/kit";
-import { getGitHubApp } from "$lib/server/github-app";
-import { createGitHubInstallState } from "$lib/server/github-install-state";
-import { captureServerEvent } from "$lib/server/posthog";
+import { getGitHubApp } from "#lib/server/github-app";
+import { createGitHubInstallState } from "#lib/server/github-install-state";
+import { captureServerEvent } from "#lib/server/posthog";
 import type { RequestHandler } from "./$types";
 
 export const GET: RequestHandler = async ({ cookies, locals }) => {

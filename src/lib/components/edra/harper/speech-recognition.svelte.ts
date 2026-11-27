@@ -1,5 +1,5 @@
-import { createLightCmsClient } from "$lib/orpc-client";
 import posthog from "posthog-js";
+import { createLightCmsClient } from "#lib/orpc-client";
 import {
   arrayBufferToBase64,
   concatFloat32Arrays,

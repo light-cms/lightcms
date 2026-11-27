@@ -1,4 +1,4 @@
-import { SPEECH_PROVIDERS, type SpeechProvider } from "$lib/speech-providers";
+import { SPEECH_PROVIDERS, type SpeechProvider } from "#lib/speech-providers";
 
 export type { SpeechProvider };
 export { SPEECH_PROVIDERS };
@@ -26,7 +26,9 @@ export function isMicrophoneAllowed(): boolean {
     return true;
   }
   const policy = (
-    document as Document & { permissionsPolicy?: { allowsFeature: (f: string) => boolean } }
+    document as Document & {
+      permissionsPolicy?: { allowsFeature: (f: string) => boolean };
+    }
   ).permissionsPolicy;
   if (!policy) {
     return true;

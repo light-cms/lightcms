@@ -2,9 +2,9 @@ import Heading1 from "@lucide/svelte/icons/heading-1";
 import Heading2 from "@lucide/svelte/icons/heading-2";
 import Heading3 from "@lucide/svelte/icons/heading-3";
 import Heading4 from "@lucide/svelte/icons/heading-4";
-import strings from "../strings.js";
-import { ISMAC } from "../utils.js";
-import type { EdraCommand } from "./types.js";
+import strings from "../strings";
+import { ISMAC } from "../utils";
+import type { EdraCommand } from "./types";
 
 export const headingCommands: EdraCommand[] = [
   {

@@ -3,7 +3,7 @@ import { MarkView } from "@tiptap/core";
 import type { Component } from "svelte";
 
 import MarkViewFrame from "../components/MarkViewFrame.svelte";
-import { SvelteRenderer } from "./SvelteRenderer.svelte.js";
+import { SvelteRenderer } from "./SvelteRenderer.svelte";
 
 export interface SvelteMarkViewRendererOptions extends MarkViewRendererOptions {
   as?: string;

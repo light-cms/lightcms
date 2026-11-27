@@ -1,7 +1,7 @@
 import type { NodeViewProps } from "@tiptap/core";
 import type { Component } from "svelte";
 import { SvelteNodeViewRenderer } from "../../index.ts";
-import { Video } from "./Video.js";
+import { Video } from "./Video";
 
 export const VideoExtended = (component: Component<NodeViewProps>) =>
   Video.extend({

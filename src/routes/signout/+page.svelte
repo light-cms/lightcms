@@ -1,9 +1,9 @@
 <script lang="ts">
 import ArrowLeft from "@lucide/svelte/icons/arrow-left";
+import { authClient, signOut } from "#lib/auth-client";
+import { localizeHref } from "#lib/i18n";
+import * as m from "#lib/i18n/messages";
 import { goto } from "$app/navigation";
-import { authClient, signOut } from "$lib/auth-client";
-import { localizeHref } from "$lib/i18n";
-import * as m from "$lib/i18n/messages";
 
 let _isSigningOut = $state(true);
 let _errorMessage = $state<string>("");

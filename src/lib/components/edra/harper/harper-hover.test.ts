@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vite-plus/test";
 import type { Editor } from "../tiptap/Editor.ts";
 import {
+  createHarperHoverController,
   DEFAULT_CLOSE_DELAY_MS,
   DEFAULT_OPEN_DELAY_MS,
   DEFAULT_SWITCH_DELAY_MS,
-  createHarperHoverController,
 } from "./harper-hover.svelte.ts";
 
 const computePositionMock = vi.fn(
@@ -500,7 +500,7 @@ describe("harper-hover controller", () => {
 
   it("gracefully ignores position if anchor or popover is null", async () => {
     const { editor } = createMockEditor();
-    let popover: FakeNode | null = null;
+    const popover: FakeNode | null = null;
     const controller = createHarperHoverController({
       editor,
       getPopoverElement: () => popover as unknown as HTMLElement,

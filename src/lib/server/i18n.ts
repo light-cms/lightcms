@@ -1,5 +1,5 @@
 import { AsyncLocalStorage } from "node:async_hooks";
-import { baseLocale, type Locale, setServerLocaleGetter, setServerRunWithLocale } from "$lib/i18n";
+import { baseLocale, type Locale, setServerLocaleGetter, setServerRunWithLocale } from "#lib/i18n";
 
 const serverLocaleStorage = new AsyncLocalStorage<Locale>();
 

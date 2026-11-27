@@ -1,4 +1,4 @@
-import { captureServerEvent, recordWitAiRequestMetrics } from "$lib/server/posthog";
+import { captureServerEvent, recordWitAiRequestMetrics } from "#lib/server/posthog";
 
 export interface WitAiTranscriptionResult {
   text: string;

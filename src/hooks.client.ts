@@ -1,8 +1,8 @@
 import type { HandleClientError } from "@sveltejs/kit/hooks";
 import posthog from "posthog-js";
+import { captureLog } from "#lib/client/logging";
+import { initBrowserTracing, startSpan } from "#lib/client/tracing";
 import { dev } from "$app/env";
-import { captureLog } from "$lib/client/logging";
-import { initBrowserTracing, startSpan } from "$lib/client/tracing";
 
 let posthogInitialized = false;
 
