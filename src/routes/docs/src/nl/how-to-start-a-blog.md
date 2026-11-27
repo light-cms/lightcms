@@ -1,22 +1,25 @@
 ---
+
 title: "Hoe een blog starten in 2026: Statische sites & Markdown"
 description: "Gids voor het starten van een snelle, goedkope, duurzame blog met Markdown, een statische site generator en een Git ondersteund CMS — geen hosting facturen, geen vergrendeling in."
 serial: 12
 date: 2026-10-14T12:50:00Z
 draft: Onjuist
 tags:
-  - bloggen
-  - statisch
-  - Sites
-  - markdown
-  - getting-startte
-keywords:
-  - hoe een blog te starten
-  - begin gratis een blog
-  - markdown blog
-  - Statische website blog
-  - beste manier om een blog 2026 te starten
-preview: /og-image.png
+
+- bloggen
+- statisch
+- Sites
+- markdown
+- getting-startte
+  keywords:
+- hoe een blog te starten
+- begin gratis een blog
+- markdown blog
+- Statische website blog
+- beste manier om een blog 2026 te starten
+  preview: /og-image.png
+
 ---
 
 In 2026 is het eenvoudiger dan ooit om een blog te beginnen dan ooit tevoren. U heeft geen WordPress-host meer, een pagina-bouwer, of een maandelijkse platformvergoeding nodig. U kunt een blog bouwen met Markdown bestanden, een statische site generator, gratis hosting, en een CMS gebaseerd op git. Zonder kosten. En uw blog zal sneller dan 99% van de blogs over bloggen laden.

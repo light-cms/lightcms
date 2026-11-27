@@ -1,4 +1,5 @@
 ---
+
 title: Self Hosting LightCMS
 description: Guida all'autohost LightCMS, che copre l'app GitHub, PostgreSQL, le variabili d'ambiente, l'API opzionale, il CDN e l'e-mail e la distribuzione sul bordo.
 serial: 4
@@ -7,18 +8,20 @@ badge: Dispiega
 date: 2026-09-18T01:45:00Z
 draft: falso
 tags:
-  - selfhost
-  - lightcms
-  - postgresql
-  - distribuzione
-keywords:
-  - lightcms
-  - probot
-  - auto-hosting
-  - github_app
-  - vercel
-  - sveltekit
-preview: /og-image.png
+
+- selfhost
+- lightcms
+- postgresql
+- distribuzione
+  keywords:
+- lightcms
+- probot
+- auto-hosting
+- github_app
+- vercel
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 Vuoi LightCMS completamente sotto il tuo controllo? LightCMS è un'applicazione [SvelteKit](https://svelte.dev) , quindi può essere distribuita ovunque, supportata da un database PostgreSQL e da un'App GitHub (Octokit). Il tuo contenuto non lascia mai i tuoi repository GitHub.
@@ -101,7 +104,7 @@ Crea l'app in **Impostazioni GitHub → Impostazioni sviluppatore → App GitHub
 
 **Iscriviti agli eventi:** `Push` e `Pull request`. Gli eventi di installazione vengono consegnati automaticamente alle app GitHub.
 
-Dopo aver creato l'app, nota l' **App ID**, genera un **client secret**, e genera e scarica una chiave privata **** (`. em`).
+Dopo aver creato l'app, nota l' **App ID**, genera un **client secret**, e genera e scarica una chiave privata \*\*\*\* (`. em`).
 
 ## 3. Configura le variabili d'ambiente
 

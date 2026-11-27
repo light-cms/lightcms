@@ -1,20 +1,23 @@
 ---
+
 title: 2027年に文書を管理する最良の方法
 date:
 draft: false
 weight: 0
 tags:
-  - cms
-  - lightcms
-  - green-web
-isCJKLanguage: false
-headless: false
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- cms
+- lightcms
+- green-web
+  isCJKLanguage: false
+  headless: false
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 ドキュメントは、誰もが同意するプロジェクトの一部であり、誰もがどのように扱うかについて全く同意するものではありません。 5つのオープンソースプロジェクトを見てください。5つの異なるセットアップがあります。うまくいく人もいる。無視にほとんどのドリフト。

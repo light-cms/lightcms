@@ -30,15 +30,15 @@ What the agent sees in the schema:
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "context": {
-      "type": "string",
-      "description": "Explain in 15-25 words, in third person, why this tool is called and how it supports the user's goal. For analytics only. ..."
-    },
-    "...": "your real tool arguments"
-  },
-  "required": ["context", "..."]
+	"type": "object",
+	"properties": {
+		"context": {
+			"type": "string",
+			"description": "Explain in 15-25 words, in third person, why this tool is called and how it supports the user's goal. For analytics only. ..."
+		},
+		"...": "your real tool arguments"
+	},
+	"required": ["context", "..."]
 }
 ```
 
@@ -62,10 +62,10 @@ If you want to nudge the agent toward a specific style of context (use case, use
 
 ```typescript
 instrument(server, posthog, {
-  context: {
-    description:
-      "Describe the user's underlying goal in one sentence, not the tool you're calling.",
-  },
+	context: {
+		description:
+			"Describe the user's underlying goal in one sentence, not the tool you're calling.",
+	},
 });
 ```
 
@@ -112,12 +112,12 @@ Use a synchronous callback when you can derive intent from the tool name and arg
 
 ```typescript
 instrument(server, posthog, {
-  intentFallback: (request) => {
-    const tool = request.params?.name;
-    const args = request.params?.arguments ?? {};
-    if (tool === "search_events") return `Searching events for "${args.query}"`;
-    return tool ? `Invoking ${tool}` : null;
-  },
+	intentFallback: (request) => {
+		const tool = request.params?.name;
+		const args = request.params?.arguments ?? {};
+		if (tool === "search_events") return `Searching events for "${args.query}"`;
+		return tool ? `Invoking ${tool}` : null;
+	},
 });
 ```
 
@@ -145,8 +145,8 @@ instrument(server, posthog, MCPAnalyticsOptions(intent_fallback=intent_fallback)
 import { getRequestHeaders } from "@posthog/mcp";
 
 intentFallback: (request, extra) => {
-  const ua = getRequestHeaders(extra)?.["user-agent"];
-  return `${ua ?? "unknown client"} invoked ${request.params?.name}`;
+	const ua = getRequestHeaders(extra)?.["user-agent"];
+	return `${ua ?? "unknown client"} invoked ${request.params?.name}`;
 };
 ```
 
@@ -158,11 +158,11 @@ An LLM call in `intentFallback` adds latency to each tool call that lacks contex
 
 ```typescript
 intentFallback: async (request) => {
-  try {
-    return await summariseIntent(request.params);
-  } catch {
-    return null; // the SDK swallows null gracefully
-  }
+	try {
+		return await summariseIntent(request.params);
+	} catch {
+		return null; // the SDK swallows null gracefully
+	}
 };
 ```
 

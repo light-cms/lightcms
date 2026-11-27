@@ -1,21 +1,24 @@
 ---
+
 title: Nyhedsbrev
 description: "Opsæt automatiserede nyhedsbreve til din statiske blog med Newsy: indlæg offentliggjort direkte fra Git, abonnent e-mails sendt til dig, ingen månedlige platform gebyr."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: falsk
 tags:
-  - nyhedsbrev
-  - e-mail
-  - nyhed
-  - smtp
-keywords:
-  - nyhedsbrev
-  - email automation
-  - nyhed
-  - smtp
-  - lyspunkter
-preview: /og-image.png
+
+- nyhedsbrev
+- e-mail
+- nyhed
+- smtp
+  keywords:
+- nyhedsbrev
+- email automation
+- nyhed
+- smtp
+- lyspunkter
+  preview: /og-image.png
+
 ---
 
 Nå dit publikum direkte efter udstationering af nyt indhold er blandt de mest effektive måder at opbygge en loyal, dedikeret læserbase. Alligevel er den konventionelle måde at køre et nyhedsbrev på vokset unødigt klodset og dyrt.

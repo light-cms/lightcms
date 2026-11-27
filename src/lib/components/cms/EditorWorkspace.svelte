@@ -14,19 +14,17 @@ import Type from "@lucide/svelte/icons/type";
 import X from "@lucide/svelte/icons/x";
 import { onMount, untrack } from "svelte";
 import { toast } from "svelte-sonner";
-import { enhance } from "$app/forms";
-import { goto } from "$app/navigation";
-import FrontmatterEditor from "$lib/components/cms/FrontmatterEditor.svelte";
+import FrontmatterEditor from "#lib/components/cms/FrontmatterEditor.svelte";
 import {
 	DEFAULT_FRONTMATTER_FIELD_LABELS,
+	type FrontmatterRow,
 	frontmatterRecordToRows,
 	frontmatterRowsToRecord,
-	type FrontmatterRow,
-} from "$lib/components/cms/frontmatter.types";
-import SaveStatus from "$lib/components/cms/SaveStatus.svelte";
-import { createEditor, Edra } from "$lib/components/edra/shadcn";
-import type { EdraEditorProps } from "$lib/components/edra/shadcn/editor";
-import { Button } from "$lib/components/ui/button";
+} from "#lib/components/cms/frontmatter.types";
+import SaveStatus from "#lib/components/cms/SaveStatus.svelte";
+import { createEditor, Edra } from "#lib/components/edra/shadcn";
+import type { EdraEditorProps } from "#lib/components/edra/shadcn/editor";
+import { Button } from "#lib/components/ui/button";
 import {
 	Dialog,
 	DialogClose,
@@ -35,11 +33,13 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-} from "$lib/components/ui/dialog";
-import { Input } from "$lib/components/ui/input";
-import { Label } from "$lib/components/ui/label";
-import { Separator } from "$lib/components/ui/separator";
-import { Textarea } from "$lib/components/ui/textarea";
+} from "#lib/components/ui/dialog";
+import { Input } from "#lib/components/ui/input";
+import { Label } from "#lib/components/ui/label";
+import { Separator } from "#lib/components/ui/separator";
+import { Textarea } from "#lib/components/ui/textarea";
+import { enhance } from "$app/forms";
+import { goto } from "$app/navigation";
 
 interface EditorFile {
 	path: string;

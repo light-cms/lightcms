@@ -1,17 +1,20 @@
 ---
+
 title: "Statické weby a CO2: Budování Greener Web"
 description: Proč statické stránky vypouštějí méně uhlíku, jak CDN snižuje spotřebu energie a jak vypadá zelenější web.
 date: 2026-10-14T13:30:00Z
 draft: nepravda
 tags:
-  - Udržitelnost
-  - statická místa
-  - zelený web
-  - co2
-  - ssg
-keywords: světlomety
-preview: /og-image.png
-serial: 3
+
+- Udržitelnost
+- statická místa
+- zelený web
+- co2
+- ssg
+  keywords: světlomety
+  preview: /og-image.png
+  serial: 3
+
 ---
 
 Načítání stránky stojí hodně. Stránka se někdy nepodařilo načíst z mezipaměti, databáze je stisknuta vícekrát a každý dotaz používá množství energie emitující kilogramy CO2. Říká se, že 2 až 4 % emisí z ko2 pochází z internetu.

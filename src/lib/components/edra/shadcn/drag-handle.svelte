@@ -10,9 +10,9 @@ import type { Editor } from "@tiptap/core";
 import { DragHandlePlugin } from "@tiptap/extension-drag-handle";
 import type { Node } from "@tiptap/pm/model";
 import { onMount } from "svelte";
-import { Button } from "$lib/components/ui/button/index.js";
-import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-import { cn } from "$lib/utils.js";
+import { Button } from "#lib/components/ui/button/index";
+import * as DropdownMenu from "#lib/components/ui/dropdown-menu/index";
+import { cn } from "#lib/utils";
 import { commands, type EdraCommand } from "../commands/index.ts";
 import { getEditor } from "../tiptap/index.ts";
 import AlignmentSubmenu from "./drag-handle/AlignmentSubmenu.svelte";
@@ -25,8 +25,8 @@ import {
 	handleDuplicate,
 	handleRemoveFormatting,
 	insertNode,
-} from "./drag-handle-actions.js";
-import { useAiEnabled } from "./hooks/useAiEnabled.svelte.js";
+} from "./drag-handle-actions";
+import { useAiEnabled } from "./hooks/useAiEnabled.svelte";
 
 interface Props {
 	type?: "simple" | "extended";
@@ -103,7 +103,12 @@ function handlePlusClick() {
 	if (currentNodePos >= 0) {
 		const isEmpty = (currentNode?.textContent?.length ?? 0) === 0;
 		if (isEmpty) {
-			editor.chain().focus().setTextSelection(currentNodePos + 1).insertContent("/").run();
+			editor
+				.chain()
+				.focus()
+				.setTextSelection(currentNodePos + 1)
+				.insertContent("/")
+				.run();
 		} else {
 			const endPos = currentNodePos + (currentNode?.nodeSize ?? 0);
 			editor

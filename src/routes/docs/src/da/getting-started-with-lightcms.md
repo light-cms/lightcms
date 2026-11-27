@@ -1,23 +1,26 @@
 ---
+
 title: Indledning
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: false
 tags:
-  - lyspunkter
-  - cms
-  - git
-  - ssg
-  - statisk
-  - site
-  - generator
-keywords:
-  - lyspunkter
-  - komme i gang
-  - introduktion
-  - wysiwyg
-  - markdown
-  - git baseret
+
+- lyspunkter
+- cms
+- git
+- ssg
+- statisk
+- site
+- generator
+  keywords:
+- lyspunkter
+- komme i gang
+- introduktion
+- wysiwyg
+- markdown
+- git baseret
+
 ---
 
 [LightCMS](https://www.lightcms.me) er en Git-backed editor til statiske websteder. Du skriver i en rig editor, hit publish, og [LightCMS](https://www.lightcms.me) forpligter ren Markdown til dit arkiv. Din implementering pipeline - Cloudflare Sider, Netlify, Vercel, GitHub Sider - tager det derfra.

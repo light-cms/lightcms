@@ -1,4 +1,5 @@
 ---
+
 slug: faq
 title: "FAQ LightCMS: site-uri statice, Git & Markdown"
 description: "Răspunde la întrebările comune despre LightCMS cum funcționează editarea pe bază de Git, ce generatoare statice de site-uri se potrivesc, auto-găzduire, preț și proprietate de conținut."
@@ -7,13 +8,15 @@ badge: Întrebări
 date: 2026-10-14T13:30:00Z
 draft: fals
 tags:
-  - faq
-  - beculețe
-  - situri statice
-  - web verde
-keywords: cmp
-weight: 1
-isCJKLanguage: fals
+
+- faq
+- beculețe
+- situri statice
+- web verde
+  keywords: cmp
+  weight: 1
+  isCJKLanguage: fals
+
 ---
 
 ## Întrebări frecvente

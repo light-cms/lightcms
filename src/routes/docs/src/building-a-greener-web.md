@@ -1,17 +1,20 @@
 ---
+
 title: "Static Sites and CO2: Building a Greener Web"
 description: Why static sites emit less carbon, how CDN caching cuts energy use, and what a greener web looks like.
 date: 2026-10-14T13:30:00Z
 draft: false
 tags:
-  - sustainability
-  - static-sites
-  - green-web
-  - co2
-  - ssg
-keywords: lightcms
-preview: /og-image.png
-serial: 3
+
+- sustainability
+- static-sites
+- green-web
+- co2
+- ssg
+  keywords: lightcms
+  preview: /og-image.png
+  serial: 3
+
 ---
 
 Pages use energy. Dynamic pages often consume CPU and database resources on every request. Static sites are built once and served from CDN caches. That design reduces energy per visit.

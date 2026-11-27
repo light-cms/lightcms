@@ -29,9 +29,9 @@ Track your signup event explicitly from both frontend and backend:
 
 ```javascript
 posthog.capture("user_signed_up", {
-  signup_method: "email",
-  referral_source: "google",
-  plan: "free",
+	signup_method: "email",
+	referral_source: "google",
+	plan: "free",
 });
 ```
 
@@ -81,7 +81,6 @@ All these differences make it more likely that you'll misinterpret your data. Im
 ```
 
 - For event names, use the **category:object\_action** framework to make it easier to find a specific event within a long list:
-
   - **category** describes the context the event took place in – e.g., `account_settings` or `signup_flow`.
 
   - **object** is a noun that refers to the component or location the event took place in – e.g., `forgot_password_button` or `pricing_page`.
@@ -91,7 +90,6 @@ All these differences make it more likely that you'll misinterpret your data. Im
   - Putting all of these together, you get `account_settings:forgot_password_button_click` or `signup_flow:pricing_page_view`.
 
 - For property names:
-
   - Use the **object\_adjective** pattern – e.g., `user_id`, `item_price`, or `member_count`.
 
   - Use **is/has** prefixes for boolean properties – e.g., `is_subscribed`, `has_seen_upsell`.
@@ -143,13 +141,11 @@ Backend analytics are more reliable than frontend analytics. There are 3 reasons
 Where possible, it's a good idea to log events on your server instead of your client. Here's a guide to help you decide when to rely on frontend or backend analytics:
 
 - Use frontend analytics where getting partial data is acceptable, for example:
-
   - Understanding user journeys, such as the sequence of pages a user visits.
   - Tracking user interactions like clicks, scrolls, or form submissions.
   - Gathering data on client-side performance, like page load times and responsiveness.
 
 - Use backend analytics (or query your database) if:
-
   - You need accurate data – e.g., the number of users that signed up in the last week.
   - You want to analyze data alongside other business metrics.
 

@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { HTMLAttributes } from "svelte/elements";
-import { cn, type WithElementRef } from "$lib/utils.js";
+import { cn, type WithElementRef } from "#lib/utils";
 
 let {
 	ref = $bindable(null),
@@ -17,7 +17,7 @@ let {
 	bind:this={ref}
 	data-slot="dropdown-menu-label"
 	data-inset={inset}
-	class={cn("px-1.5 py-1 text-xs font-medium text-muted-foreground data-inset:pl-7 data-[inset]:pl-8", className)}
+	class={cn("px-1.5 py-1 text-xs font-medium text-muted-foreground data-inset:pl-7 data-inset:pl-8", className)}
 	{...restProps}
 >
 	{@render children?.()}

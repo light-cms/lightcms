@@ -1,4 +1,5 @@
 ---
+
 slug: 常见问题
 title: "LightCMS 常见问题：静态站点，Git & Markdown"
 description: "常见问题解答的 LightCMS 基于Git 的编辑工作。静态网站生成器适合、自托、定价和内容所有权。"
@@ -7,13 +8,15 @@ badge: 常见问题
 date: 2026-10-14T13:30Z
 draft: false
 tags:
-  - 常见问题
-  - 闪光
-  - 静态站点
-  - 绿色网络
-keywords: 厘米
-weight: 1
-isCJKLanguage: false
+
+- 常见问题
+- 闪光
+- 静态站点
+- 绿色网络
+  keywords: 厘米
+  weight: 1
+  isCJKLanguage: false
+
 ---
 
 ## 常见问题

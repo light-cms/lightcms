@@ -1,23 +1,26 @@
 ---
+
 title: Úvod
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: nepravda
 tags:
-  - světlomety
-  - cms
-  - git
-  - ssg
-  - statické
-  - web
-  - generátor
-keywords:
-  - světlomety
-  - začínají
-  - úvod
-  - wysiwyg
-  - markdown
-  - na základě gitu
+
+- světlomety
+- cms
+- git
+- ssg
+- statické
+- web
+- generátor
+  keywords:
+- světlomety
+- začínají
+- úvod
+- wysiwyg
+- markdown
+- na základě gitu
+
 ---
 
 [LightCMS](https://www.lightcms.me) je Git-backed editor pro statické stránky. Psáte do bohatého editoru, zmáčkněte publikovat a [LightCMS](https://www.lightcms.me) provede čisté Markdown do vašeho repozitáře. Vaše zaváděcí plynovod – Cloudflare Pages, Netlify, Vercel, GitHub stránky – odtamtud odtam.

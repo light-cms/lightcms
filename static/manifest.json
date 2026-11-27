@@ -1,21 +1,21 @@
 {
-  "name": "LightCMS",
-  "short_name": "LightCMS",
-  "description": "Git-backed content workspace for editing and publishing markdown.",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#1e1e2e",
-  "theme_color": "#1e1e2e",
-  "icons": [
-    {
-      "src": "/favicon.ico",
-      "sizes": "64x64",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    }
-  ]
+	"name": "LightCMS",
+	"short_name": "LightCMS",
+	"description": "Git-backed content workspace for editing and publishing markdown.",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#1e1e2e",
+	"theme_color": "#1e1e2e",
+	"icons": [
+		{
+			"src": "/favicon.ico",
+			"sizes": "64x64",
+			"type": "image/x-icon"
+		},
+		{
+			"src": "/apple-touch-icon.png",
+			"sizes": "180x180",
+			"type": "image/png"
+		}
+	]
 }

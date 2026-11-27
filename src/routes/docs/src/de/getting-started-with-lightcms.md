@@ -1,23 +1,26 @@
 ---
+
 title: Einführung
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: falsch
 tags:
-  - hellcms
-  - cms
-  - git
-  - ssg
-  - statisch
-  - site
-  - generator
-keywords:
-  - hellcms
-  - loslegen
-  - einführen
-  - wysiwyg
-  - markdown
-  - git basiert
+
+- hellcms
+- cms
+- git
+- ssg
+- statisch
+- site
+- generator
+  keywords:
+- hellcms
+- loslegen
+- einführen
+- wysiwyg
+- markdown
+- git basiert
+
 ---
 
 [LightCMS](https://www.lightcms.me) ist ein Git-unterstützter Editor für statische Seiten. Sie schreiben in einem Rich-Editor, drücken Veröffentlichungen und [LightCMS](https://www.lightcms.me) überträgt Markdown in Ihr Repository. Ihre Bereitstellungs-Pipeline – Cloudflare Pages, Netlify, Vercel, GitHub Pages – bringt sie von dort.

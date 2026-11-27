@@ -61,14 +61,14 @@ import posthog from "posthog-js";
 import { browser } from "$app/environment";
 
 export const load = async () => {
-  if (browser) {
-    posthog.init("<ph_project_token>", {
-      api_host: "https://us.i.posthog.com",
-      defaults: "2026-05-30",
-    });
-  }
+	if (browser) {
+		posthog.init("<ph_project_token>", {
+			api_host: "https://us.i.posthog.com",
+			defaults: "2026-05-30",
+		});
+	}
 
-  return;
+	return;
 };
 ```
 
@@ -88,9 +88,9 @@ JavaScript
 
 ```javascript
 posthog.init("<ph_project_token>", {
-  api_host: "https://us.i.posthog.com",
-  // Optional: send PostHog session/user context to your backend
-  tracing_headers: ["api.example.com"],
+	api_host: "https://us.i.posthog.com",
+	// Optional: send PostHog session/user context to your backend
+	tracing_headers: ["api.example.com"],
 });
 ```
 
@@ -164,16 +164,16 @@ routes/+page.server.js
 import { PostHog } from "posthog-node";
 
 export async function load() {
-  const posthog = new PostHog("<ph_project_token>", {
-    host: "https://us.i.posthog.com",
-  });
+	const posthog = new PostHog("<ph_project_token>", {
+		host: "https://us.i.posthog.com",
+	});
 
-  posthog.capture({
-    distinctId: "distinct_id_of_the_user",
-    event: "event_name",
-  });
+	posthog.capture({
+		distinctId: "distinct_id_of_the_user",
+		event: "event_name",
+	});
 
-  await posthog.shutdown();
+	await posthog.shutdown();
 }
 ```
 
@@ -213,17 +213,17 @@ routes/+page.server.js
 import { PostHog } from "posthog-node";
 
 const client = new PostHog("<ph_project_token>", {
-  host: "https://us.i.posthog.com",
+	host: "https://us.i.posthog.com",
 });
 
 export async function load() {
-  const distinctId = "distinct_id_of_the_user";
+	const distinctId = "distinct_id_of_the_user";
 
-  const megaFeature = await client.isFeatureEnabled("mega-feature", distinctId);
+	const megaFeature = await client.isFeatureEnabled("mega-feature", distinctId);
 
-  return {
-    megaFeature,
-  };
+	return {
+		megaFeature,
+	};
 }
 ```
 

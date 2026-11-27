@@ -1,13 +1,13 @@
 <script lang="ts">
+import { Search } from "@lucide/svelte";
 import Menu from "@lucide/svelte/icons/menu";
 import X from "@lucide/svelte/icons/x";
+import { DocSearchModal, DocSidebar } from "#lib/components/docs";
+import DocTableOfContents from "#lib/components/docs/DocTableOfContents.svelte";
+import { Button } from "#lib/components/ui/button";
+import * as m from "#lib/i18n/messages";
 import { page } from "$app/state";
-import { Button } from "$lib/components/ui/button";
 import type { LayoutData } from "./$types";
-import { DocSearchModal, DocSidebar } from "$lib/components/docs";
-import DocTableOfContents from "$lib/components/docs/DocTableOfContents.svelte";
-import { Search } from "@lucide/svelte";
-import * as m from "$lib/i18n/messages";
 
 let { data, children }: { data: LayoutData; children: any } = $props();
 

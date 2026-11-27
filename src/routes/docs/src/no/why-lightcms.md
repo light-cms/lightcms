@@ -1,23 +1,26 @@
 ---
+
 title: "Hvorfor LightCMS: Git-backed CMS for static sites"
 description: De fleste CMS-plattformer eier ditt innhold. LightCMS holder den i din Git repo, i ren Markdown distribuert av din egen rørledning.
 serial: 2
 date: 2026-10-14T14:00:00Z
 draft: usann
 tags:
-  - lysdioder
-  - git
-  - cm
-  - statisk
-  - markdown
-  - publiser
-keywords:
-  - hvorfor lysmenn
-  - git basert cms
-  - hodeløse cms
-  - markdown cms
-  - statisk byggeplass cms
-preview: /og-image.png
+
+- lysdioder
+- git
+- cm
+- statisk
+- markdown
+- publiser
+  keywords:
+- hvorfor lysmenn
+- git basert cms
+- hodeløse cms
+- markdown cms
+- statisk byggeplass cms
+  preview: /og-image.png
+
 ---
 
 De fleste innholdsplattformer lagrer skriving i databasen, gjør det på sine servere og lad deg til å fortsette å få tilgang til den. Når plattformen stenges ned, øker prisene, eller endrer vilkårene sine, går innholdet med det.

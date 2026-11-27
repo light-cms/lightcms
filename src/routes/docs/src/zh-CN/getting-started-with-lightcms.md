@@ -1,23 +1,26 @@
 ---
+
 title: 一. 导言
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: false
 tags:
-  - 闪光
-  - 厘米
-  - git
-  - ssg
-  - 静态的
-  - 站点
-  - 生成器
-keywords:
-  - 闪光
-  - 开始使用
-  - 一. 导言
-  - wysiwyg
-  - markdown
-  - 基于 git
+
+- 闪光
+- 厘米
+- git
+- ssg
+- 静态的
+- 站点
+- 生成器
+  keywords:
+- 闪光
+- 开始使用
+- 一. 导言
+- wysiwyg
+- markdown
+- 基于 git
+
 ---
 
 [LightCMS](https://www.lightcms.me) 是一个用于静态站点的Git支持编辑器。您写入了一个丰富的编辑器，点击发布和 [LightCMS](https://www.lightcms.me) 将干净的Markdown 提交给您的资源库。你的部署管道——Cloudflare页面、Netlify、Vercel、GitHub 页面——取自那里。

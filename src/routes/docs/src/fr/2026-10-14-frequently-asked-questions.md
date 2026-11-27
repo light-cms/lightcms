@@ -1,4 +1,5 @@
 ---
+
 slug: faq
 title: "FAQ LightCMS : sites statiques, Git & Markdown"
 description: "Réponses à des questions courantes sur LightCMS comment fonctionne l'édition basée sur Git, quels générateurs statiques de site conviennent, auto-hébergement, tarification et propriété de contenu."
@@ -7,13 +8,15 @@ badge: Foire Aux Questions
 date: 2026-10-14T13:30:00Z
 draft: Faux
 tags:
-  - faq
-  - lightcms
-  - sites statiques
-  - Toile verte
-keywords: cms
-weight: 1
-isCJKLanguage: Faux
+
+- faq
+- lightcms
+- sites statiques
+- Toile verte
+  keywords: cms
+  weight: 1
+  isCJKLanguage: Faux
+
 ---
 
 ## Foire aux questions

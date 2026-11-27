@@ -1,20 +1,23 @@
 ---
+
 title: أفضل طريقة لإدارة الوثائق في عام 2027
 date:
 draft: خاطئ
 weight: 0
 tags:
-  - سم
-  - ضوضاء
-  - أخضر
-isCJKLanguage: خاطئ
-headless: خاطئ
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- سم
+- ضوضاء
+- أخضر
+  isCJKLanguage: خاطئ
+  headless: خاطئ
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 فالوثائق هي جزء من مشروع يوافق الجميع على الأمور ولا أحد يتفق تماما على كيفية تناوله. انظر إلى خمسة مشاريع مفتوحة المصدر وستجد خمسة اعدادات مختلفة. بعضها يعمل بشكل جيد. تنزلق أكثر من غيرها إلى الإهمال.

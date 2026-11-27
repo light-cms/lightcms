@@ -1,17 +1,20 @@
 ---
+
 title: "Statiske steder og CO2: Opbygning af et Greener Web"
 description: Hvorfor statiske steder udleder mindre kulstof, hvordan CDN caching skærer energiforbrug, og hvordan en grønnere web ser ud.
 date: 2026-10-14T13:30:00Z
 draft: falsk
 tags:
-  - bæredygtighed
-  - statiske-sites
-  - grøn-web
-  - co2
-  - ssg
-keywords: lyspunkter
-preview: /og-image.png
-serial: 3
+
+- bæredygtighed
+- statiske-sites
+- grøn-web
+- co2
+- ssg
+  keywords: lyspunkter
+  preview: /og-image.png
+  serial: 3
+
 ---
 
 Det koster meget at indlæse en side. Nogle gange kan en side ikke indlæses fra cache, databasen er ramt flere gange, og hver forespørgsel bruger en masse strøm udsender kilogram CO2. Det siges, at 2-4 % af co2-emissionerne kommer fra nettet.

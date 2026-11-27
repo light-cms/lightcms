@@ -1,21 +1,24 @@
 ---
+
 title: Newsletter
 description: "Set up automated newsletters for your static blog with Newsy: posts published straight from Git, subscriber emails sent for you, no monthly platform fee."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: false
 tags:
-  - newsletter
-  - email
-  - newsy
-  - smtp
-keywords:
-  - newsletter
-  - email automation
-  - newsy
-  - smtp
-  - lightcms
-preview: /og-image.png
+
+- newsletter
+- email
+- newsy
+- smtp
+  keywords:
+- newsletter
+- email automation
+- newsy
+- smtp
+- lightcms
+  preview: /og-image.png
+
 ---
 
 Reaching your audience directly after posting new content is among the most effective ways to build a loyal, dedicated reader base. Yet the conventional way of running a newsletter has grown unnecessarily clunky and costly.

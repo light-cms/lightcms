@@ -4,22 +4,22 @@ import { browser } from "$app/env";
 import { Editor } from "../Editor.ts";
 
 export const useEditor = (options: Partial<EditorOptions> = {}) => {
-  let editor: Editor | undefined;
+	let editor: Editor | undefined;
 
-  if (browser) {
-    editor = new Editor(options);
-  }
+	if (browser) {
+		editor = new Editor(options);
+	}
 
-  $effect(() => {
-    return () => {
-      if (editor) {
-        const nodes = editor.view.dom?.parentNode;
-        const newEl = nodes?.cloneNode(true) as HTMLElement;
-        nodes?.parentNode?.replaceChild(newEl, nodes);
-        editor.destroy();
-      }
-    };
-  });
+	$effect(() => {
+		return () => {
+			if (editor) {
+				const nodes = editor.view.dom?.parentNode;
+				const newEl = nodes?.cloneNode(true) as HTMLElement;
+				nodes?.parentNode?.replaceChild(newEl, nodes);
+				editor.destroy();
+			}
+		};
+	});
 
-  return editor;
+	return editor;
 };

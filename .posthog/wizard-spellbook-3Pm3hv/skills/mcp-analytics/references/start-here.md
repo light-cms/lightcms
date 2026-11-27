@@ -68,14 +68,14 @@ import { PostHog } from "posthog-node";
 import { instrument } from "@posthog/mcp";
 
 const posthog = new PostHog(process.env.POSTHOG_PROJECT_TOKEN, {
-  host: "https://us.i.posthog.com", // or https://eu.i.posthog.com
+	host: "https://us.i.posthog.com", // or https://eu.i.posthog.com
 });
 
 instrument(server, posthog);
 
 process.on("SIGTERM", async () => {
-  await posthog.shutdown();
-  process.exit(0);
+	await posthog.shutdown();
+	process.exit(0);
 });
 ```
 
@@ -157,10 +157,10 @@ To inspect, change, or drop events before they're sent, add a before-send hook. 
 
 ```typescript
 instrument(server, posthog, {
-  beforeSend: (event) => {
-    delete event.properties.$mcp_response; // keep tool results out of PostHog
-    return event;
-  },
+	beforeSend: (event) => {
+		delete event.properties.$mcp_response; // keep tool results out of PostHog
+		return event;
+	},
 });
 ```
 
@@ -250,10 +250,12 @@ By default, each event uses an SDK-generated session ID. Add an identify callbac
 import { instrument, getRequestHeaders } from "@posthog/mcp";
 
 instrument(server, posthog, {
-  identify: async (request, extra) => {
-    const user = await resolveUser(getRequestHeaders(extra)?.["authorization"]);
-    return user ? { distinctId: user.id, properties: { plan: user.plan } } : null;
-  },
+	identify: async (request, extra) => {
+		const user = await resolveUser(getRequestHeaders(extra)?.["authorization"]);
+		return user
+			? { distinctId: user.id, properties: { plan: user.plan } }
+			: null;
+	},
 });
 ```
 

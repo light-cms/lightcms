@@ -1,23 +1,26 @@
 ---
+
 title: "Waarom LightCMS: Git-ondersteund CMS voor statische websites"
 description: De meeste CMS-platformen bezitten uw inhoud. LightCMS houdt het in uw Git repo, in platte Markdown, geïmplementeerd door uw eigen pipeline.
 serial: 2
 date: 2026-10-14T14:00:00Z
 draft: Onjuist
 tags:
-  - lightcms
-  - git
-  - cms
-  - statisch
-  - markdown
-  - publiceren
-keywords:
-  - waarom lightcms
-  - Git gebaseerde cms
-  - hoofdloze cms
-  - markdown cms
-  - Statische site cms
-preview: /og-image.png
+
+- lightcms
+- git
+- cms
+- statisch
+- markdown
+- publiceren
+  keywords:
+- waarom lightcms
+- Git gebaseerde cms
+- hoofdloze cms
+- markdown cms
+- Statische site cms
+  preview: /og-image.png
+
 ---
 
 De meeste inhoudsplatforms slaan uw schrijven in hun database op, renderen het op hun servers en vragen u om toegang te blijven krijgen. Wanneer het platform afsluit, de prijzen doet stijgen of de voorwaarden verandert, gaat uw inhoud ermee akkoord.

@@ -1,20 +1,23 @@
 ---
+
 title: Cel mai bun mod de a gestiona documentația în 2027
 date:
 draft: fals
 weight: 0
 tags:
-  - cmp
-  - beculețe
-  - web verde
-isCJKLanguage: fals
-headless: fals
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- cmp
+- beculețe
+- web verde
+  isCJKLanguage: fals
+  headless: fals
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 Documentația este partea unui proiect pe care toată lumea îl consideră de acord și nimeni nu este de acord cu modul de gestionare. Priviți cinci proiecte open source și veți găsi cinci configurări diferite. Unii funcţionează bine. Majoritatea alunecă spre neglijare.

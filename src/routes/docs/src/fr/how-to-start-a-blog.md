@@ -1,22 +1,25 @@
 ---
+
 title: "Comment démarrer un blog en 2026: Sites statiques & Markdown"
 description: "Guide pour démarrer un blog rapide, bon marché et durable avec Markdown un générateur de site statique et un CMS soutenu par Git — pas de facture d'hébergement, pas de verrou."
 serial: 12
 date: 2026-10-14T12:50:00Z
 draft: Faux
 tags:
-  - blogging
-  - statique
-  - sites
-  - markdown
-  - débutant
-keywords:
-  - comment démarrer un blog
-  - démarrer un blog gratuitement
-  - Blogue markdown
-  - blog du site statique
-  - la meilleure façon de commencer un blog 2026
-preview: /og-image.png
+
+- blogging
+- statique
+- sites
+- markdown
+- débutant
+  keywords:
+- comment démarrer un blog
+- démarrer un blog gratuitement
+- Blogue markdown
+- blog du site statique
+- la meilleure façon de commencer un blog 2026
+  preview: /og-image.png
+
 ---
 
 En 2026, démarrer un blog est plus facile et moins cher que jamais. Vous n'avez plus besoin d'un hébergeur WordPress, d'un constructeur de pages ou de frais mensuels de plateforme. Vous pouvez construire un blog avec des fichiers Markdown, un générateur de site statique, un hébergement gratuit et un CMS basé sur git. Sans frais. Et votre blog va charger plus rapidement que 99% des blogs à propos de blogging.

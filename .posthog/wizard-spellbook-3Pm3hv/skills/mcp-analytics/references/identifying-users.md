@@ -41,17 +41,17 @@ Events for sessions with **no** resolved identity are sent with `$process_person
 import { instrument, getRequestHeaders } from "@posthog/mcp";
 
 instrument(server, posthog, {
-  identify: async (request, extra) => {
-    const token = getRequestHeaders(extra)?.["authorization"];
-    if (!token) return null;
-    const user = await resolveUserFromToken(token);
-    if (!user) return null;
-    return {
-      distinctId: user.id, // becomes distinct_id
-      properties: { name: user.name, plan: user.plan }, // written to $set
-      groups: { organization: user.orgId }, // becomes $groups on every event
-    };
-  },
+	identify: async (request, extra) => {
+		const token = getRequestHeaders(extra)?.["authorization"];
+		if (!token) return null;
+		const user = await resolveUserFromToken(token);
+		if (!user) return null;
+		return {
+			distinctId: user.id, // becomes distinct_id
+			properties: { name: user.name, plan: user.plan }, // written to $set
+			groups: { organization: user.orgId }, // becomes $groups on every event
+		};
+	},
 });
 ```
 

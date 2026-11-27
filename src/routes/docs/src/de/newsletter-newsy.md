@@ -1,21 +1,24 @@
 ---
+
 title: Newsletter
 description: "Richten Sie automatisierte Newsletter für Ihren statischen Blog mit Newsy: direkt von Git veröffentlichte Beiträge, Abonnenten-E-Mails für Sie, keine monatliche Plattformgebühr."
 serial: 5
 date: 18.09.20T01:50:00Z
 draft: falsch
 tags:
-  - Newsletter
-  - email
-  - neugierig
-  - smtp
-keywords:
-  - Newsletter
-  - email automation
-  - neugierig
-  - smtp
-  - hellcms
-preview: /og-image.png
+
+- Newsletter
+- email
+- neugierig
+- smtp
+  keywords:
+- Newsletter
+- email automation
+- neugierig
+- smtp
+- hellcms
+  preview: /og-image.png
+
 ---
 
 Ihr Publikum direkt nach dem Posten neuer Inhalte zu erreichen ist eine der effektivsten Möglichkeiten, um eine treue Leserbasis aufzubauen. Yet the conventional way of running a newsletter has grown unnecessarily clunky and costly.

@@ -5,9 +5,9 @@ import ArrowRight from "@lucide/svelte/icons/arrow-right";
 import ArrowRightFromLine from "@lucide/svelte/icons/arrow-right-from-line";
 import Sheet from "@lucide/svelte/icons/sheet";
 import Trash from "@lucide/svelte/icons/trash";
-import { Button } from "$lib/components/ui/button/index.js";
-import { Separator } from "$lib/components/ui/separator/index.js";
-import strings from "../../../strings.js";
+import { Button } from "#lib/components/ui/button/index";
+import { Separator } from "#lib/components/ui/separator/index";
+import strings from "../../../strings";
 import { BubbleMenu, getEditor } from "../../../tiptap";
 import {
 	isColumnGripSelected,

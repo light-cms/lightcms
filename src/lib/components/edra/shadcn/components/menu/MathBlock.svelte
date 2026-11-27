@@ -1,11 +1,7 @@
 <script lang="ts">
-import { Textarea } from "$lib/components/ui/textarea/index.js";
-import strings from "../../../strings.js";
-import {
-	BubbleMenu,
-	getEditor,
-	useEditorState,
-} from "../../../tiptap/index.js";
+import { Textarea } from "#lib/components/ui/textarea";
+import strings from "../../../strings";
+import { BubbleMenu, getEditor, useEditorState } from "../../../tiptap/index";
 
 const editor = getEditor();
 const editorState = useEditorState({

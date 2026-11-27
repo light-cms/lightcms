@@ -1,4 +1,5 @@
 ---
+
 slug: faq
 title: "LightCMS FAQ: staattiset sivustot, Git & Markdown"
 description: "Vastaa yleisiin kysymyksiin LightCMS:stä, miten Gitin muokkaus toimii, mitkä staattiset laitosgeneraattorit sopivat omatoimiseen, hinnoitteluun ja sisällön omistukseen."
@@ -7,13 +8,15 @@ badge: UKK
 date: 2026-10-14T13:30:00Z
 draft: epätosi
 tags:
-  - faq
-  - lightcms
-  - staattiset sivustot
-  - vihreä-verkko
-keywords: cms
-weight: 1
-isCJKLanguage: epätosi
+
+- faq
+- lightcms
+- staattiset sivustot
+- vihreä-verkko
+  keywords: cms
+  weight: 1
+  isCJKLanguage: epätosi
+
 ---
 
 ## Usein Kysytyt Kysymykset

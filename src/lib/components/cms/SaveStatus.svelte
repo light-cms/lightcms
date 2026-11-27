@@ -1,9 +1,9 @@
 <script lang="ts">
 import Check from "@lucide/svelte/icons/check";
 import TriangleAlert from "@lucide/svelte/icons/triangle-alert";
-import { Spinner } from "$lib/components/ui/spinner";
-import * as m from "$lib/i18n/messages";
-import { timeAgo } from "$lib/utils/time-ago";
+import { Spinner } from "#lib/components/ui/spinner";
+import * as m from "#lib/i18n/messages";
+import { timeAgo } from "#lib/utils/time-ago";
 
 let {
 	saving,

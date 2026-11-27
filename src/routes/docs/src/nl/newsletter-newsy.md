@@ -1,21 +1,24 @@
 ---
+
 title: Nieuwsbrief
 description: "Stel automatische nieuwsbrieven in voor uw statische blog met Newsy: berichten direct vanuit Git gepubliceerd, abonner-e-mails die voor u worden verzonden, zonder maandelijkse platformkosten."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: Onjuist
 tags:
-  - Nieuwsbrief
-  - E-mail
-  - Nieuwste
-  - smtp
-keywords:
-  - Nieuwsbrief
-  - email automation
-  - Nieuwste
-  - smtp
-  - lightcms
-preview: /og-image.png
+
+- Nieuwsbrief
+- E-mail
+- Nieuwste
+- smtp
+  keywords:
+- Nieuwsbrief
+- email automation
+- Nieuwste
+- smtp
+- lightcms
+  preview: /og-image.png
+
 ---
 
 Het bereiken van uw publiek direct na het plaatsen van nieuwe inhoud is een van de meest effectieve manieren om een loyale, dedicated reader base te bouwen. Toch is de conventionele manier om een nieuwsbrief uit te voeren gegroeid onnodig onhandig en duur.

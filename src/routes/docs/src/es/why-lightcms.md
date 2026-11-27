@@ -1,23 +1,26 @@
 ---
+
 title: "Por qué LightCMS: CMS respaldado por Git para sitios estáticos"
 description: La mayoría de las plataformas CMS poseen su contenido. LightCMS lo mantiene en su repositorio de Git, en Markdown plano, desplegado por su propio pipeline.
 serial: 2
 date: 2026-10-14T14:00:00Z
 draft: falso
 tags:
-  - luces
-  - git
-  - cms
-  - estático
-  - markdown
-  - publicando
-keywords:
-  - por qué faros
-  - git basado en cms
-  - cms sin cabeza
-  - markdown cms
-  - sitio estático cms
-preview: /og-image.png
+
+- luces
+- git
+- cms
+- estático
+- markdown
+- publicando
+  keywords:
+- por qué faros
+- git basado en cms
+- cms sin cabeza
+- markdown cms
+- sitio estático cms
+  preview: /og-image.png
+
 ---
 
 La mayoría de las plataformas de contenido almacenan su escritura en su base de datos, lo hacen en sus servidores y le cobran por seguir accediendo a ella. Cuando la plataforma se cierra, aumenta los precios o cambia sus términos, su contenido va consigo.

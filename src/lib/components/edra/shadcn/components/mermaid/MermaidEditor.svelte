@@ -6,9 +6,9 @@ import Copy from "@lucide/svelte/icons/copy";
 import Eye from "@lucide/svelte/icons/eye";
 import TriangleAlert from "@lucide/svelte/icons/triangle-alert";
 import Workflow from "@lucide/svelte/icons/workflow";
-import { Button } from "$lib/components/ui/button/index.js";
-import * as Tabs from "$lib/components/ui/tabs/index.js";
-import { cn } from "$lib/utils.js";
+import { Button } from "#lib/components/ui/button/index";
+import * as Tabs from "#lib/components/ui/tabs/index";
+import { cn } from "#lib/utils";
 
 interface Props {
 	mode: "both" | "code" | "preview";

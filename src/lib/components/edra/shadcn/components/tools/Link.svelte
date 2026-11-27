@@ -2,11 +2,11 @@
 import Check from "@lucide/svelte/icons/check";
 import ChevronDown from "@lucide/svelte/icons/chevron-down";
 import Link from "@lucide/svelte/icons/link-2";
-import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
-import { Input } from "$lib/components/ui/input/index.js";
-import * as Popover from "$lib/components/ui/popover/index.js";
-import { cn } from "$lib/utils.js";
-import { getEditor, useEditorTransaction } from "../../../tiptap/index.js";
+import { Button, buttonVariants } from "#lib/components/ui/button/index";
+import { Input } from "#lib/components/ui/input/index";
+import * as Popover from "#lib/components/ui/popover/index";
+import { cn } from "#lib/utils";
+import { getEditor, useEditorTransaction } from "../../../tiptap/index";
 import Tooltip from "../Tooltip.svelte";
 
 let open = $state(false);

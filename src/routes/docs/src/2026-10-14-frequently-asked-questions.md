@@ -1,4 +1,5 @@
 ---
+
 slug: faq
 title: "LightCMS FAQ: static sites, Git & Markdown"
 description: "Answers to common questions about LightCMS, Git‑backed editing, static site generators, self‑hosting, pricing, and content ownership."
@@ -7,13 +8,15 @@ badge: FAQ
 date: 2026-10-14T13:30:00Z
 draft: false
 tags:
-  - faq
-  - lightcms
-  - static-sites
-  - green-web
-keywords: cms
-weight: 1
-isCJKLanguage: false
+
+- faq
+- lightcms
+- static-sites
+- green-web
+  keywords: cms
+  weight: 1
+  isCJKLanguage: false
+
 ---
 
 ## Frequently Asked Questions

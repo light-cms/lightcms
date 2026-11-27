@@ -1,4 +1,5 @@
 ---
+
 title: Eigen Hosting LightCMS
 description: Handleiding voor zelf-host LightCMS, het omvat de GitHub App, PostgreSQL, omgevingsvariabelen, optionele AI, CDN en e-mail en het implementeren naar randen.
 serial: 4
@@ -7,18 +8,20 @@ badge: Implementeren
 date: 2026-09-18T01:45:00Z
 draft: Onjuist
 tags:
-  - selfhost
-  - lightcms
-  - postgresql
-  - implementatie
-keywords:
-  - lightcms
-  - probot
-  - eigen hosting
-  - github_app
-  - vercel
-  - sveltekit
-preview: /og-image.png
+
+- selfhost
+- lightcms
+- postgresql
+- implementatie
+  keywords:
+- lightcms
+- probot
+- eigen hosting
+- github_app
+- vercel
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 Wilt u LightCMS volledig onder uw controle? LightCMS is een [SvelteKit](https://svelte.dev) applicatie, zodat het overal kan worden geïmplementeerd, ondersteund door een PostgreSQL database en een GitHub App (oktober. Uw inhoud laat nooit uw eigen GitHub repositories over.

@@ -1,4 +1,5 @@
 ---
+
 title: Αυτοεξυπηρετούμενο LightCMS
 description: Οδηγός για την αυτο-φιλοξενία LightCMS, που καλύπτει το GitHub App, PostgreSQL, μεταβλητές περιβάλλοντος, προαιρετικά AI, CDN και ηλεκτρονικού ταχυδρομείου, και την ανάπτυξη στην άκρη.
 serial: 4
@@ -7,18 +8,20 @@ badge: Ανάπτυξη
 date: 2026-09-18T01:45:00Z
 draft: ψευδές
 tags:
-  - selfhost
-  - ελαφριά
-  - postgresql
-  - εγκατάσταση
-keywords:
-  - ελαφριά
-  - probot
-  - αυτο-φιλοξενία
-  - github_app
-  - vercel
-  - sveltekit
-preview: /og-image.png
+
+- selfhost
+- ελαφριά
+- postgresql
+- εγκατάσταση
+  keywords:
+- ελαφριά
+- probot
+- αυτο-φιλοξενία
+- github_app
+- vercel
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 Θέλετε LightCMS πλήρως υπό τον έλεγχό σας? Το LightCMS είναι μια εφαρμογή [SvelteKit](https://svelte.dev) , ώστε να μπορεί να αναπτυχθεί οπουδήποτε, υποστηριζόμενη από μια βάση δεδομένων PostgreSQL και μια εφαρμογή GitHub (Octokit). Το περιεχόμενό σας δεν αφήνει ποτέ τα δικά σας αποθετήρια GitHub.

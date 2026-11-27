@@ -1,22 +1,25 @@
 ---
+
 title: "Jak začít blog v roce 2026: Statické stránky & Markdown"
 description: "Průvodce spuštěním rychlého, levného, trvanlivého blogu s Markdown, statický generátor stránek a CMS podporovaný Git – bez účtů za hosting, bez zámku."
 serial: 12
 date: 2026-10-14T12:50:00Z
 draft: nepravda
 tags:
-  - blogování
-  - statické
-  - weby
-  - markdown
-  - getting-start
-keywords:
-  - jak spustit blog
-  - spustit blog zdarma
-  - markdown blog
-  - statický blog stránek
-  - Nejlepší způsob, jak spustit blog 2026
-preview: /og-image.png
+
+- blogování
+- statické
+- weby
+- markdown
+- getting-start
+  keywords:
+- jak spustit blog
+- spustit blog zdarma
+- markdown blog
+- statický blog stránek
+- Nejlepší způsob, jak spustit blog 2026
+  preview: /og-image.png
+
 ---
 
 V roce 2026 je založení blogu jednodušší a levnější než kdykoliv předtím. Již nepotřebujete WordPress hostitele, tvůrce stránek nebo měsíční poplatek za platformu. Můžete vytvořit blog s Markdown soubory, statickým generátorem webu, bezplatným hostingem a git-based CMS. Bez nákladů. A váš blog bude načítat rychleji než 99 % blogů o blogování.

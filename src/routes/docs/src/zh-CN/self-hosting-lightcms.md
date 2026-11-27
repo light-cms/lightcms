@@ -1,4 +1,5 @@
 ---
+
 title: 自我托管的 LightCMS
 description: 自我主机 LightCMS指南，涵盖GitHub App，PostgreSQL，环境变量，可选的 AI，CDN 和电子邮件，并部署到边缘。
 serial: 4
@@ -7,18 +8,20 @@ badge: 部署
 date: 2026-09-18T01:45:00Z
 draft: false
 tags:
-  - selfhost
-  - 闪光
-  - postgresql
-  - 部署
-keywords:
-  - 闪光
-  - probot
-  - 自主机
-  - github_app
-  - 脊椎骨
-  - sveltekit
-preview: /og-image.png
+
+- selfhost
+- 闪光
+- postgresql
+- 部署
+  keywords:
+- 闪光
+- probot
+- 自主机
+- github_app
+- 脊椎骨
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 希望LightCMS完全在您的控制下？ LightCMS 是 [SwelteKit](https://svelte.dev) 应用程序，因此它可以部署在任何地方，由 PostgreSQL 数据库和 GitHub App (OctorKit 支持)。您的内容永远不会离开您自己的 GitHub 仓库。

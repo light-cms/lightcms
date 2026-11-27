@@ -48,7 +48,8 @@ function loadBadgeScript(): void {
 	}
 
 	const script = document.createElement("script");
-	script.src = "https://unpkg.com/website-carbon-badges@1.1.3/b.min.js";
+	script.src =
+		"https://cdn.jsdelivr.net/npm/website-carbon-badges@1.1.3/b.min.js";
 	script.defer = true;
 	script.onload = () => {
 		scriptLoaded = true;

@@ -1,23 +1,26 @@
 ---
+
 title: Introduktion
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: falskt
 tags:
-  - ljusslingor
-  - cm
-  - git
-  - ssg
-  - statisk
-  - webbplats
-  - generator
-keywords:
-  - ljusslingor
-  - komma igång
-  - introduktion
-  - wysiwyg
-  - markdown
-  - git baserad
+
+- ljusslingor
+- cm
+- git
+- ssg
+- statisk
+- webbplats
+- generator
+  keywords:
+- ljusslingor
+- komma igång
+- introduktion
+- wysiwyg
+- markdown
+- git baserad
+
 ---
 
 [LightCMS](https://www.lightcms.me) är en Git-backad redigerare för statiska platser. Du skriver i en rik redaktör, tryck publicera, och [LightCMS](https://www.lightcms.me) förbinder ren Markdown till ditt förråd. Din distribution pipeline — Cloudflare sidor, Netlify, Vercel, GitHub sidor — tar det därifrån.

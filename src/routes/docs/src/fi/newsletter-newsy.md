@@ -1,21 +1,24 @@
 ---
+
 title: Uutiskirje
 description: "Määritä automaattisia uutiskirjeitä staattisen blogin Newsy: viestejä julkaistu suoraan Git, tilaaja sähköpostit lähetetään sinulle, ei kuukausittaista alustamaksua."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: epätosi
 tags:
-  - uutiskirje
-  - sähköposti
-  - uutinen
-  - smtp
-keywords:
-  - uutiskirje
-  - email automation
-  - uutinen
-  - smtp
-  - lightcms
-preview: /og-image.png
+
+- uutiskirje
+- sähköposti
+- uutinen
+- smtp
+  keywords:
+- uutiskirje
+- email automation
+- uutinen
+- smtp
+- lightcms
+  preview: /og-image.png
+
 ---
 
 Yleisön tavoittaminen heti uuden sisällön lähettämisen jälkeen on yksi tehokkaimmista tavoista rakentaa uskollinen, omistettu lukijapohja. Kuitenkin perinteinen tapa käynnissä uutiskirje on kasvanut tarpeettoman kömpelö ja kallista.

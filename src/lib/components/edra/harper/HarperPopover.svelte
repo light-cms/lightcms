@@ -3,8 +3,8 @@ import { autoUpdate } from "@floating-ui/dom";
 import Sparkles from "@lucide/svelte/icons/sparkles";
 import X from "@lucide/svelte/icons/x";
 import { onMount } from "svelte";
-import { cn } from "$lib/utils.js";
-import { getEditor } from "../tiptap/components/editorContext.js";
+import { cn } from "#lib/utils";
+import { getEditor } from "../tiptap/components/editorContext";
 import { createHarperHoverController } from "./harper-hover.svelte.ts";
 
 const editor = getEditor();

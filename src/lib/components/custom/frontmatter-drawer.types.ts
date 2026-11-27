@@ -1,4 +1,4 @@
 export interface FrontmatterEntry {
-  key: string;
-  value: string;
+	key: string;
+	value: string;
 }

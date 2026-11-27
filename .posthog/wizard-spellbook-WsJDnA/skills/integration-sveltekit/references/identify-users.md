@@ -14,8 +14,8 @@ To link events to specific users, call `identify`:
 
 ```javascript
 posthog.identify(
-  "distinct_id", // Replace 'distinct_id' with your user's unique identifier
-  { email: "max@hedgehogmail.com", name: "Max Hedgehog" }, // optional: set additional person properties
+	"distinct_id", // Replace 'distinct_id' with your user's unique identifier
+	{ email: "max@hedgehogmail.com", name: "Max Hedgehog" }, // optional: set additional person properties
 );
 ```
 
@@ -43,9 +43,9 @@ PostHogSDK.shared.identify("distinct_id", // Replace "distinct_id" with your use
 
 ```jsx
 posthog.identify("distinct_id", {
-  // Replace "distinct_id" with your user's unique identifier
-  email: "max@hedgehogmail.com", // optional: set additional person properties
-  name: "Max Hedgehog",
+	// Replace "distinct_id" with your user's unique identifier
+	email: "max@hedgehogmail.com", // optional: set additional person properties
+	name: "Max Hedgehog",
 });
 ```
 
@@ -103,16 +103,16 @@ Web
 
 ```javascript
 posthog.init("<ph_project_token>", {
-  api_host: "https://us.i.posthog.com",
-  defaults: "2026-05-30",
-  loaded: (posthog) => {
-    if (currentUser?.id) {
-      posthog.identify(currentUser.id, {
-        email: currentUser.email,
-        name: currentUser.name,
-      });
-    }
-  },
+	api_host: "https://us.i.posthog.com",
+	defaults: "2026-05-30",
+	loaded: (posthog) => {
+		if (currentUser?.id) {
+			posthog.identify(currentUser.id, {
+				email: currentUser.email,
+				name: currentUser.name,
+			});
+		}
+	},
 });
 ```
 

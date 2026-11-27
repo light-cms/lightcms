@@ -1,21 +1,24 @@
 ---
+
 title: Nyhetsbrev
 description: "Ställ in automatiska nyhetsbrev för din statiska blogg med Newsy: inlägg publicerade direkt från Git, prenumerant e-post skickas för dig, ingen månatlig plattformsavgift."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: falskt
 tags:
-  - nyhetsbrev
-  - e-post
-  - nyfiken
-  - smtp
-keywords:
-  - nyhetsbrev
-  - email automation
-  - nyfiken
-  - smtp
-  - ljusslingor
-preview: /og-image.png
+
+- nyhetsbrev
+- e-post
+- nyfiken
+- smtp
+  keywords:
+- nyhetsbrev
+- email automation
+- nyfiken
+- smtp
+- ljusslingor
+  preview: /og-image.png
+
 ---
 
 Att nå din publik direkt efter att publicera nytt innehåll är bland de mest effektiva sätten att bygga en lojal, dedikerad läsarbas. Ändå har det konventionella sättet att driva ett nyhetsbrev vuxit i onödan klumpigt och kostsamt.

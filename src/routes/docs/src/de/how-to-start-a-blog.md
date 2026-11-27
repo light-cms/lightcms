@@ -1,22 +1,25 @@
 ---
+
 title: "Wie man 2026 einen Blog startet: Statische Seiten & Markdown"
 description: "Leitfaden zum Start eines schnellen, billigen, langlebigen Blogs mit Markdown, ein statischer Site-Generator, und ein Git unterstützte CMS — keine Hosting-Rechnungen, keine Sperre."
 serial: 12
 date: 2026-10-14T12:50:00Z
 draft: falsch
 tags:
-  - blogging
-  - statisch
-  - webseiten
-  - markdown
-  - beginnend
-keywords:
-  - wie man einen Blog startet
-  - ein Blog kostenlos starten
-  - markdown Blog
-  - statische Website Blog
-  - beste Möglichkeit, einen Blog 2026 zu starten
-preview: /og-image.png
+
+- blogging
+- statisch
+- webseiten
+- markdown
+- beginnend
+  keywords:
+- wie man einen Blog startet
+- ein Blog kostenlos starten
+- markdown Blog
+- statische Website Blog
+- beste Möglichkeit, einen Blog 2026 zu starten
+  preview: /og-image.png
+
 ---
 
 2026 ist das Starten eines Blogs einfacher und billiger als je zuvor. Sie brauchen keinen WordPress-Host, einen Page Builder oder eine monatliche Plattformgebühr. Sie können ein Blog mit Markdown-Dateien, einem statischen Site-Generator, kostenlosem Hosting und einem Git-basierten CMS erstellen. Kostenlos! Und Ihr Blog wird schneller als 99% der Blogs über Blogging laden.

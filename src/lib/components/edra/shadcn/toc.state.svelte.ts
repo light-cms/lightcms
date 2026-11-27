@@ -5,5 +5,5 @@ let tocItems = $state<TableOfContentData>([]);
 export const getTocItems = () => tocItems;
 
 export const setTocItems = (items: TableOfContentData) => {
-  tocItems = items;
+	tocItems = items;
 };

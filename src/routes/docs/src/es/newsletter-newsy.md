@@ -1,21 +1,24 @@
 ---
+
 title: Boletín
 description: "Configura boletines automáticos para tu blog estático con Newsy: mensajes publicados directamente desde Git, correos electrónicos de suscriptores enviados para ti, sin comisión mensual de la plataforma."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: falso
 tags:
-  - boletín de noticias
-  - email
-  - nuevo
-  - smtp
-keywords:
-  - boletín de noticias
-  - email automation
-  - nuevo
-  - smtp
-  - luces
-preview: /og-image.png
+
+- boletín de noticias
+- email
+- nuevo
+- smtp
+  keywords:
+- boletín de noticias
+- email automation
+- nuevo
+- smtp
+- luces
+  preview: /og-image.png
+
 ---
 
 Llegar a tu audiencia directamente después de publicar nuevo contenido es una de las maneras más efectivas de construir una base de lectores leales y dedicados. Sin embargo, la forma convencional de ejecutar un boletín ha crecido innecesariamente torpe y costoso.

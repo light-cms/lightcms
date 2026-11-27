@@ -11,13 +11,13 @@ import LayoutTemplate from "@lucide/svelte/icons/layout-template";
 import Settings from "@lucide/svelte/icons/settings";
 import Sparkles from "@lucide/svelte/icons/sparkles";
 import { toast } from "svelte-sonner";
-import { goto, refreshAll } from "$app/navigation";
 import {
 	CreateBranchDialog,
 	CreateFolderDialog,
 	TemplateDrawer,
-} from "$lib/components/custom";
-import { Button } from "$lib/components/ui/button";
+} from "#lib/components/custom";
+import { Button } from "#lib/components/ui/button";
+import { goto, refreshAll } from "$app/navigation";
 import type { PageData } from "./$types";
 
 let { data, form }: { data: PageData; form?: { error?: string } | null } =

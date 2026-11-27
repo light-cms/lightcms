@@ -1,4 +1,5 @@
 ---
+
 title: Auto găzduire LightCMS
 description: Ghid pentru LightCMS, care acoperă aplicația GitHub, PostgreSQL, variabilele de mediu, AI, CDN și e-mail opțional, și implementarea la muchii.
 serial: 4
@@ -7,18 +8,20 @@ badge: Desfășurare
 date: 2026-09-18T01:45:00Z
 draft: fals
 tags:
-  - selfhost
-  - beculețe
-  - postgresql
-  - implementare
-keywords:
-  - beculețe
-  - probot
-  - auto-găzduire
-  - github_app
-  - verc
-  - sveltekit
-preview: /og-image.png
+
+- selfhost
+- beculețe
+- postgresql
+- implementare
+  keywords:
+- beculețe
+- probot
+- auto-găzduire
+- github_app
+- verc
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 Vrei LightCMS complet sub controlul tău? LightCMS este o aplicație [SvelteKit](https://svelte.dev) , deci poate fi implementată oriunde, susținută de o bază de date PostgreSQL și un GitHub App (Octokit). Conținutul dvs. nu părăsește niciodată propriile depozite GitHub.

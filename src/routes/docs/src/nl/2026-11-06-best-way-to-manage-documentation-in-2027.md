@@ -1,20 +1,23 @@
 ---
+
 title: Beste manier om documentatie te beheren in 2027
 date:
 draft: Onjuist
 weight: 0
 tags:
-  - cms
-  - lightcms
-  - groen-web
-isCJKLanguage: Onjuist
-headless: Onjuist
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- cms
+- lightcms
+- groen-web
+  isCJKLanguage: Onjuist
+  headless: Onjuist
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 Documentatie is het onderdeel van een project waar iedereen het mee eens is en niemand is het helemaal met elkaar eens over hoe moet worden omgegaan. Kijk naar vijf open source projecten en je vindt vijf verschillende opties. Sommige werken goed. De meeste stort in verwaarlozing.

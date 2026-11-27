@@ -1,21 +1,24 @@
 ---
+
 title: Newsletter
 description: "Imposta le newsletter automatiche per il tuo blog statico con Newsy: messaggi pubblicati direttamente da Git, email di abbonati inviate per te, senza commissioni mensili sulla piattaforma."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: falso
 tags:
-  - newsletter
-  - email
-  - newsy
-  - smtp
-keywords:
-  - newsletter
-  - email automation
-  - newsy
-  - smtp
-  - lightcms
-preview: /og-image.png
+
+- newsletter
+- email
+- newsy
+- smtp
+  keywords:
+- newsletter
+- email automation
+- newsy
+- smtp
+- lightcms
+  preview: /og-image.png
+
 ---
 
 Reaching your audience directly after posting new content is among the most effective ways to build a loyal, dedicated reader base. Eppure il modo convenzionale di gestire una newsletter è cresciuto inutilmente clunky e costoso.

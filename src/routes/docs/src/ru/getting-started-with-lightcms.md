@@ -1,23 +1,26 @@
 ---
+
 title: Введение
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: ложь
 tags:
-  - молнии
-  - смс
-  - git
-  - ssg
-  - статический
-  - сайт
-  - генератор
-keywords:
-  - молнии
-  - начало работы
-  - Введение
-  - wysiwyg
-  - markdown
-  - На основе git
+
+- молнии
+- смс
+- git
+- ssg
+- статический
+- сайт
+- генератор
+  keywords:
+- молнии
+- начало работы
+- Введение
+- wysiwyg
+- markdown
+- На основе git
+
 ---
 
 [LightCMS](https://www.lightcms.me) — редактор, поддерживаемый Git для статических сайтов. You write in a rich editor, hit publish, and [LightCMS](https://www.lightcms.me) commits clean Markdown to your repository. Ваша проектная конвейер — порталы с Cloudflare, Netlify, Vercel, GitHub — берет оттуда.

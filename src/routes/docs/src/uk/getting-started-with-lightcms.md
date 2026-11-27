@@ -1,23 +1,26 @@
 ---
+
 title: Вступ
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: хибність
 tags:
-  - лампочки
-  - смс
-  - git
-  - ssg
-  - статична
-  - портал
-  - генератор
-keywords:
-  - лампочки
-  - розпочато
-  - введення
-  - wysiwyg
-  - markdown
-  - git заснований
+
+- лампочки
+- смс
+- git
+- ssg
+- статична
+- портал
+- генератор
+  keywords:
+- лампочки
+- розпочато
+- введення
+- wysiwyg
+- markdown
+- git заснований
+
 ---
 
 [LightCMS](https://www.lightcms.me) - це редактор для статичних сайтів. Ви пишете у багатому редакторі, натисніть на публікацію і [LightCMS](https://www.lightcms.me) комітує чистий Markdown у ваш репозиторій. Ваш конвеєр розгортання — Cloudflare Pages, Netlify, Vercel, GitHub Pages - забирає його звідти.

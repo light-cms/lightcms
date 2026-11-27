@@ -1,9 +1,9 @@
 <script lang="ts">
 import Command from "@lucide/svelte/icons/command";
 import type { Node } from "@tiptap/pm/model";
-import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-import type { EdraCommand } from "../../commands/index.js";
-import type { Editor } from "../../tiptap/index.js";
+import * as DropdownMenu from "#lib/components/ui/dropdown-menu/index";
+import type { EdraCommand } from "../../commands/index";
+import type { Editor } from "../../tiptap/index";
 
 interface Props {
 	editor: Editor;

@@ -1,23 +1,26 @@
 ---
+
 title: "Proč LightCMS: Git-backed CMS pro statické stránky"
 description: Většina platforem CMS vlastní váš obsah. LightCMS ji udržuje ve vašem Gitu v prostém Markdown a je nasazena svým vlastním potrubím.
 serial: 2
 date: 2026-10-14T14:00:00Z
 draft: nepravda
 tags:
-  - světlomety
-  - git
-  - cms
-  - statické
-  - markdown
-  - publikování
-keywords:
-  - proč světla
-  - gitové cms
-  - bezhlavé cms
-  - markdown cms
-  - statické stránky cms
-preview: /og-image.png
+
+- světlomety
+- git
+- cms
+- statické
+- markdown
+- publikování
+  keywords:
+- proč světla
+- gitové cms
+- bezhlavé cms
+- markdown cms
+- statické stránky cms
+  preview: /og-image.png
+
 ---
 
 Většina platforem obsahu ukládá vaše psaní do své databáze, vykresluje je na svých serverech a účtuje vám za zachování přístupu. Když se platforma zastaví, zvýší ceny nebo změní podmínky, váš obsah s tím souvisí.

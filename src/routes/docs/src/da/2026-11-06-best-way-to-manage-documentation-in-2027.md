@@ -1,20 +1,23 @@
 ---
+
 title: Bedste måde at håndtere dokumentation på i 2027
 date:
 draft: falsk
 weight: 0
 tags:
-  - cms
-  - lyspunkter
-  - grøn-web
-isCJKLanguage: falsk
-headless: falsk
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- cms
+- lyspunkter
+- grøn-web
+  isCJKLanguage: falsk
+  headless: falsk
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 Dokumentation er den del af et projekt, som alle er enige om, og ingen er helt enige om, hvordan man skal håndtere. Kig på fem open source-projekter, og du vil finde fem forskellige opsætninger. Nogle fungerer godt. De fleste afdrift i forsømmelighed.

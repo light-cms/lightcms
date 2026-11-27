@@ -1,17 +1,20 @@
 ---
+
 title: "Statische sites en CO2: Een Groener web bouwen"
 description: Waarom statische sites minder koolstof uitstoten, hoe CDN caching energie verbruikt en hoe een groener web eruitziet.
 date: 2026-10-14T13:30:00Z
 draft: Onjuist
 tags:
-  - duurzaamheid
-  - statisch-sites
-  - groen-web
-  - co2
-  - ssg
-keywords: lightcms
-preview: /og-image.png
-serial: 3
+
+- duurzaamheid
+- statisch-sites
+- groen-web
+- co2
+- ssg
+  keywords: lightcms
+  preview: /og-image.png
+  serial: 3
+
 ---
 
 Het kost veel om een pagina te laden. Soms is een pagina niet in staat om vanuit de cache de database meerdere keren te laden en elke query gebruikt veel stroom uitstoot kilogram CO2. Er wordt gezegd dat 2 tot 4 procent van de CO2-emissies van het web komt.

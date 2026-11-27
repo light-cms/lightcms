@@ -1,23 +1,26 @@
 ---
+
 title: "LightCMS の理由: 静的サイト用の Git-backst CMS"
 description: ほとんどのCMSプラットフォームはあなたのコンテンツを所有しています。 LightCMSはあなたのGitリポジトリ、プレーンMarkdown、パイプラインによって展開されます。
 serial: 2
 date: 2026-10-14T14:00Z
 draft: false
 tags:
-  - lightcms
-  - git
-  - cms
-  - static
-  - markdown
-  - 公開中
-keywords:
-  - なぜライトcmsが
-  - git based cms
-  - ヘッドレスcms
-  - markdown cms
-  - 静的サイト cms
-preview: /og-image.png
+
+- lightcms
+- git
+- cms
+- static
+- markdown
+- 公開中
+  keywords:
+- なぜライトcmsが
+- git based cms
+- ヘッドレスcms
+- markdown cms
+- 静的サイト cms
+  preview: /og-image.png
+
 ---
 
 ほとんどのコンテンツプラットフォームは、書き込みをデータベースに格納し、それをサーバーにレンダリングし、アクセスを維持するために課金します。プラットフォームがシャットダウンしたり、価格を上げたり、用語を変更したりすると、コンテンツはそれに伴います。

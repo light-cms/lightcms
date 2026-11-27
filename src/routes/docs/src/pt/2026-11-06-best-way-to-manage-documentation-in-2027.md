@@ -1,20 +1,23 @@
 ---
+
 title: Melhor forma de gerenciar a documentação em 2027
 date:
 draft: Falso
 weight: 0
 tags:
-  - SMS
-  - luzes
-  - web-verde
-isCJKLanguage: Falso
-headless: Falso
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- SMS
+- luzes
+- web-verde
+  isCJKLanguage: Falso
+  headless: Falso
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 A documentação é parte de um projeto em que todos concordam com as questões e ninguém está inteiramente de acordo sobre como tratar. Veja cinco projetos de código aberto e você encontrará cinco configurações diferentes. Alguns funcionam bem. Maior desvio em negligência.

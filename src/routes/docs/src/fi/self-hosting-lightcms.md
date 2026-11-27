@@ -1,4 +1,5 @@
 ---
+
 title: Self Hosting LightCMS
 description: Opas itse isäntä LightCMS, kattaa GitHub App, PostgreSQL, ympäristömuuttujat, valinnainen AI, CDN ja sähköposti, ja ottaa käyttöön edge.
 serial: 4
@@ -7,18 +8,20 @@ badge: Julkaise
 date: 2026-09-18T01:45:00Z
 draft: epätosi
 tags:
-  - selfhost
-  - lightcms
-  - postgresql
-  - käyttöönotto
-keywords:
-  - lightcms
-  - anturi
-  - itsepalvelin
-  - github_app
-  - vercel
-  - sveltekit
-preview: /og-image.png
+
+- selfhost
+- lightcms
+- postgresql
+- käyttöönotto
+  keywords:
+- lightcms
+- anturi
+- itsepalvelin
+- github_app
+- vercel
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 Haluatko LightCMS täysin sinun hallinnassasi? LightCMS on [SvelteKit](https://svelte.dev) -sovellus, joten se voidaan ottaa käyttöön missä tahansa, jota tukee PostgreSQL tietokanta ja GitHub -sovellus (lokakit). Sisältö ei koskaan jätä omia GitHub-repojasi.

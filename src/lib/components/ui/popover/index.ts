@@ -8,21 +8,21 @@ import Title from "./popover-title.svelte";
 import Trigger from "./popover-trigger.svelte";
 
 export {
-  Close,
-  Close as PopoverClose,
-  Content,
-  Content as PopoverContent,
-  Description,
-  Description as PopoverDescription,
-  Header,
-  Header as PopoverHeader,
-  Portal,
-  Portal as PopoverPortal,
-  Root,
-  //
-  Root as Popover,
-  Title,
-  Title as PopoverTitle,
-  Trigger,
-  Trigger as PopoverTrigger,
+	Close,
+	Close as PopoverClose,
+	Content,
+	Content as PopoverContent,
+	Description,
+	Description as PopoverDescription,
+	Header,
+	Header as PopoverHeader,
+	Portal,
+	Portal as PopoverPortal,
+	Root,
+	//
+	Root as Popover,
+	Title,
+	Title as PopoverTitle,
+	Trigger,
+	Trigger as PopoverTrigger,
 };

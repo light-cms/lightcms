@@ -1,21 +1,24 @@
 ---
+
 title: Boletim
 description: "Configure newsletters automatizadas para o seu blog estático com Newsy: postagens publicadas diretamente do Git, e-mails de assinante enviados para você, sem taxa mensal de plataforma."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: Falso
 tags:
-  - boletim
-  - E-mail
-  - noticiário
-  - SMTP
-keywords:
-  - boletim
-  - email automation
-  - noticiário
-  - SMTP
-  - luzes
-preview: /og-image.png
+
+- boletim
+- E-mail
+- noticiário
+- SMTP
+  keywords:
+- boletim
+- email automation
+- noticiário
+- SMTP
+- luzes
+  preview: /og-image.png
+
 ---
 
 Reaching your audience directly after posting new content is among the most effective ways to build a loyal, dedicated reader base. No entanto, a maneira convencional de rodar uma newsletter cresceu desnecessariamente desajeitada e cara.

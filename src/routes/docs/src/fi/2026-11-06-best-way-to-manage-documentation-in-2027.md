@@ -1,20 +1,23 @@
 ---
+
 title: Paras tapa hallita dokumentaatiota vuonna 2027
 date:
 draft: epätosi
 weight: 0
 tags:
-  - cms
-  - lightcms
-  - vihreä-verkko
-isCJKLanguage: epätosi
-headless: epätosi
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- cms
+- lightcms
+- vihreä-verkko
+  isCJKLanguage: epätosi
+  headless: epätosi
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 Dokumentaatio on osa hanketta, josta kaikki ovat yhtä mieltä ja josta kukaan ei ole samaa mieltä. Katsokaa viittä avoimen lähdekoodin projektia ja löydätte viisi eri asetusta. Jotkut toimivat hyvin. Useimmat ajautuvat laiminlyönteihin.

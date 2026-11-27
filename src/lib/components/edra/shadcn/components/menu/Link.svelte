@@ -5,14 +5,10 @@ import Link from "@lucide/svelte/icons/link";
 import Edit from "@lucide/svelte/icons/pen";
 import Trash2 from "@lucide/svelte/icons/trash-2";
 import { slide } from "svelte/transition";
-import { Button } from "$lib/components/ui/button/index.js";
-import { Input } from "$lib/components/ui/input/index.js";
-import strings from "../../../strings.js";
-import {
-	BubbleMenu,
-	getEditor,
-	useEditorState,
-} from "../../../tiptap/index.js";
+import { Button } from "#lib/components/ui/button/index";
+import { Input } from "#lib/components/ui/input/index";
+import strings from "../../../strings";
+import { BubbleMenu, getEditor, useEditorState } from "../../../tiptap/index";
 import Tooltip from "../Tooltip.svelte";
 
 const editor = getEditor();

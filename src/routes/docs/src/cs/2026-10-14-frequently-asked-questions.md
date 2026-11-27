@@ -1,4 +1,5 @@
 ---
+
 slug: faq
 title: "LightCMS FAQ: statické stránky, Git & Markdown"
 description: "Odpovědi na běžné dotazy ohledně LightCMS, jak funguje editace založené na Gitu, které statické generátory vyhovují, samovýkono, ceny a vlastnictví obsahu."
@@ -7,13 +8,15 @@ badge: Nejčastější dotazy
 date: 2026-10-14T13:30:00Z
 draft: nepravda
 tags:
-  - faq
-  - světlomety
-  - statická místa
-  - zelený web
-keywords: cms
-weight: 1
-isCJKLanguage: nepravda
+
+- faq
+- světlomety
+- statická místa
+- zelený web
+  keywords: cms
+  weight: 1
+  isCJKLanguage: nepravda
+
 ---
 
 ## Často kladené otázky

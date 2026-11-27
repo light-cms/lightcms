@@ -1,22 +1,25 @@
 ---
+
 title: "Cum să începi un Blog în 2026: Site-uri statice & Markdown"
 description: "Ghid pentru a porni un blog rapid, ieftin, durabil cu Markdown, un generator static al site-ului și un CMS Git sprijinit — fără facturi de găzduire, fără blocare."
 serial: 12
 date: 2026-10-14T12:50:00Z
 draft: fals
 tags:
-  - blogging
-  - static
-  - site-uri
-  - markdown
-  - începe-ți
-keywords:
-  - cum să pornești un blog
-  - pornește un blog gratuit
-  - blog markdown
-  - blog static site
-  - cel mai bun mod de a porni un blog 2026
-preview: /og-image.png
+
+- blogging
+- static
+- site-uri
+- markdown
+- începe-ți
+  keywords:
+- cum să pornești un blog
+- pornește un blog gratuit
+- blog markdown
+- blog static site
+- cel mai bun mod de a porni un blog 2026
+  preview: /og-image.png
+
 ---
 
 În 2026, pornirea unui blog este mai ușoară și mai ieftină ca niciodată. Nu mai aveţi nevoie de o gazdă WordPress, un constructor de pagină sau o taxă lunară de platformă. Puteţi construi un blog cu fişiere Markdown, un generator de site-uri statice, găzduire gratuită, şi un CMS bazat pe git. Fără costuri. Iar blog-ul tău va încărca mai repede decât 99% bloguri despre blogging.

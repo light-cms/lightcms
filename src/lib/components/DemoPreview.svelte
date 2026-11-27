@@ -11,7 +11,7 @@ import Mic from "@lucide/svelte/icons/mic";
 import Sparkles from "@lucide/svelte/icons/sparkles";
 import TextQuote from "@lucide/svelte/icons/text-quote";
 import { onMount } from "svelte";
-import * as m from "$lib/i18n/messages";
+import * as m from "#lib/i18n/messages";
 
 let isSynced = $state(false);
 

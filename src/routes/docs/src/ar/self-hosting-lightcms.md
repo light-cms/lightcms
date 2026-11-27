@@ -1,4 +1,5 @@
 ---
+
 title: الإضاءة الذاتية للضوء
 description: دليل الاستضافة الذاتية لـ LightCMS ، الذي يغطي تطبيق GitHub ، و PostgreSQL ، متغيرات البيئة و AI و CDN و البريد الإلكتروني الاختياري، والنشر إلى الحافة.
 serial: 4
@@ -7,18 +8,20 @@ badge: نشر
 date: 2026-09-18T01:45:00Z
 draft: خاطئ
 tags:
-  - selfhost
-  - ضوضاء
-  - postgresql
-  - النشر
-keywords:
-  - ضوضاء
-  - بروبوت
-  - الاستضافة الذاتية
-  - github_app
-  - فيرسيل
-  - sveltekit
-preview: /og-image.png
+
+- selfhost
+- ضوضاء
+- postgresql
+- النشر
+  keywords:
+- ضوضاء
+- بروبوت
+- الاستضافة الذاتية
+- github_app
+- فيرسيل
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 هل تريد أن يكون LightCMS تحت سيطرتك؟ LightCMS هو تطبيق [SvelteKit](https://svelte.dev) بحيث يمكن نشره في أي مكان، مدعوم بقاعدة بيانات PostgreSQL وتطبيق GitHub (October kit). المحتوى الخاص بك لا يترك مستودعات GitHub الخاصة بك.

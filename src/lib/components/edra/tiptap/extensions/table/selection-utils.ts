@@ -4,244 +4,257 @@ import type { Selection, Transaction } from "@tiptap/pm/state";
 import { CellSelection, type Rect, TableMap } from "@tiptap/pm/tables";
 
 export const isRectSelected = (rect: Rect) => (selection: CellSelection) => {
-  const map = TableMap.get(selection.$anchorCell.node(-1));
-  const start = selection.$anchorCell.start(-1);
-  const cells = map.cellsInRect(rect);
-  const selectedCells = map.cellsInRect(
-    map.rectBetween(selection.$anchorCell.pos - start, selection.$headCell.pos - start),
-  );
+	const map = TableMap.get(selection.$anchorCell.node(-1));
+	const start = selection.$anchorCell.start(-1);
+	const cells = map.cellsInRect(rect);
+	const selectedCells = map.cellsInRect(
+		map.rectBetween(
+			selection.$anchorCell.pos - start,
+			selection.$headCell.pos - start,
+		),
+	);
 
-  for (let i = 0, count = cells.length; i < count; i += 1) {
-    if (selectedCells.indexOf(cells[i]) === -1) {
-      return false;
-    }
-  }
+	for (let i = 0, count = cells.length; i < count; i += 1) {
+		if (selectedCells.indexOf(cells[i]) === -1) {
+			return false;
+		}
+	}
 
-  return true;
+	return true;
 };
 
 export const findTable = (selection: Selection) =>
-  findParentNode((node) => node.type.spec.tableRole && node.type.spec.tableRole === "table")(
-    selection,
-  );
+	findParentNode(
+		(node) => node.type.spec.tableRole && node.type.spec.tableRole === "table",
+	)(selection);
 
-export const isCellSelection = (selection: Selection): selection is CellSelection => {
-  if (selection instanceof CellSelection) {
-    return true;
-  }
-  return Boolean(
-    selection &&
-    typeof selection === "object" &&
-    "$anchorCell" in selection &&
-    "$headCell" in selection,
-  );
+export const isCellSelection = (
+	selection: Selection,
+): selection is CellSelection => {
+	if (selection instanceof CellSelection) {
+		return true;
+	}
+	return Boolean(
+		selection &&
+			typeof selection === "object" &&
+			"$anchorCell" in selection &&
+			"$headCell" in selection,
+	);
 };
 
-export const isColumnSelected = (columnIndex: number) => (selection: Selection) => {
-  if (isCellSelection(selection)) {
-    const map = TableMap.get(selection.$anchorCell.node(-1));
+export const isColumnSelected =
+	(columnIndex: number) => (selection: Selection) => {
+		if (isCellSelection(selection)) {
+			const map = TableMap.get(selection.$anchorCell.node(-1));
 
-    return isRectSelected({
-      left: columnIndex,
-      right: columnIndex + 1,
-      top: 0,
-      bottom: map.height,
-    })(selection);
-  }
+			return isRectSelected({
+				left: columnIndex,
+				right: columnIndex + 1,
+				top: 0,
+				bottom: map.height,
+			})(selection);
+		}
 
-  return false;
-};
+		return false;
+	};
 
 export const isRowSelected = (rowIndex: number) => (selection: Selection) => {
-  if (isCellSelection(selection)) {
-    const map = TableMap.get(selection.$anchorCell.node(-1));
+	if (isCellSelection(selection)) {
+		const map = TableMap.get(selection.$anchorCell.node(-1));
 
-    return isRectSelected({
-      left: 0,
-      right: map.width,
-      top: rowIndex,
-      bottom: rowIndex + 1,
-    })(selection);
-  }
+		return isRectSelected({
+			left: 0,
+			right: map.width,
+			top: rowIndex,
+			bottom: rowIndex + 1,
+		})(selection);
+	}
 
-  return false;
+	return false;
 };
 
 export const isTableSelected = (selection: Selection) => {
-  if (isCellSelection(selection)) {
-    const map = TableMap.get(selection.$anchorCell.node(-1));
+	if (isCellSelection(selection)) {
+		const map = TableMap.get(selection.$anchorCell.node(-1));
 
-    return isRectSelected({
-      left: 0,
-      right: map.width,
-      top: 0,
-      bottom: map.height,
-    })(selection);
-  }
+		return isRectSelected({
+			left: 0,
+			right: map.width,
+			top: 0,
+			bottom: map.height,
+		})(selection);
+	}
 
-  return false;
+	return false;
 };
 
-export const getCellsInColumn = (columnIndex: number | number[]) => (selection: Selection) => {
-  const table = findTable(selection);
-  if (table) {
-    const map = TableMap.get(table.node);
-    const indexes = Array.isArray(columnIndex) ? columnIndex : Array.from([columnIndex]);
+export const getCellsInColumn =
+	(columnIndex: number | number[]) => (selection: Selection) => {
+		const table = findTable(selection);
+		if (table) {
+			const map = TableMap.get(table.node);
+			const indexes = Array.isArray(columnIndex)
+				? columnIndex
+				: Array.from([columnIndex]);
 
-    return indexes.reduce(
-      (acc, index) => {
-        if (index >= 0 && index <= map.width - 1) {
-          const cells = map.cellsInRect({
-            left: index,
-            right: index + 1,
-            top: 0,
-            bottom: map.height,
-          });
+			return indexes.reduce(
+				(acc, index) => {
+					if (index >= 0 && index <= map.width - 1) {
+						const cells = map.cellsInRect({
+							left: index,
+							right: index + 1,
+							top: 0,
+							bottom: map.height,
+						});
 
-          return acc.concat(
-            cells.map((nodePos) => {
-              const node = table.node.nodeAt(nodePos);
-              const pos = nodePos + table.start;
+						return acc.concat(
+							cells.map((nodePos) => {
+								const node = table.node.nodeAt(nodePos);
+								const pos = nodePos + table.start;
 
-              return { pos, start: pos + 1, node };
-            }),
-          );
-        }
+								return { pos, start: pos + 1, node };
+							}),
+						);
+					}
 
-        return acc;
-      },
-      [] as { pos: number; start: number; node: Node | null | undefined }[],
-    );
-  }
-  return null;
-};
+					return acc;
+				},
+				[] as { pos: number; start: number; node: Node | null | undefined }[],
+			);
+		}
+		return null;
+	};
 
-export const getCellsInRow = (rowIndex: number | number[]) => (selection: Selection) => {
-  const table = findTable(selection);
+export const getCellsInRow =
+	(rowIndex: number | number[]) => (selection: Selection) => {
+		const table = findTable(selection);
 
-  if (table) {
-    const map = TableMap.get(table.node);
-    const indexes = Array.isArray(rowIndex) ? rowIndex : Array.from([rowIndex]);
+		if (table) {
+			const map = TableMap.get(table.node);
+			const indexes = Array.isArray(rowIndex)
+				? rowIndex
+				: Array.from([rowIndex]);
 
-    return indexes.reduce(
-      (acc, index) => {
-        if (index >= 0 && index <= map.height - 1) {
-          const cells = map.cellsInRect({
-            left: 0,
-            right: map.width,
-            top: index,
-            bottom: index + 1,
-          });
+			return indexes.reduce(
+				(acc, index) => {
+					if (index >= 0 && index <= map.height - 1) {
+						const cells = map.cellsInRect({
+							left: 0,
+							right: map.width,
+							top: index,
+							bottom: index + 1,
+						});
 
-          return acc.concat(
-            cells.map((nodePos) => {
-              const node = table.node.nodeAt(nodePos);
-              const pos = nodePos + table.start;
-              return { pos, start: pos + 1, node };
-            }),
-          );
-        }
+						return acc.concat(
+							cells.map((nodePos) => {
+								const node = table.node.nodeAt(nodePos);
+								const pos = nodePos + table.start;
+								return { pos, start: pos + 1, node };
+							}),
+						);
+					}
 
-        return acc;
-      },
-      [] as { pos: number; start: number; node: Node | null | undefined }[],
-    );
-  }
+					return acc;
+				},
+				[] as { pos: number; start: number; node: Node | null | undefined }[],
+			);
+		}
 
-  return null;
-};
+		return null;
+	};
 
 export const getCellsInTable = (selection: Selection) => {
-  const table = findTable(selection);
+	const table = findTable(selection);
 
-  if (table) {
-    const map = TableMap.get(table.node);
-    const cells = map.cellsInRect({
-      left: 0,
-      right: map.width,
-      top: 0,
-      bottom: map.height,
-    });
+	if (table) {
+		const map = TableMap.get(table.node);
+		const cells = map.cellsInRect({
+			left: 0,
+			right: map.width,
+			top: 0,
+			bottom: map.height,
+		});
 
-    return cells.map((nodePos) => {
-      const node = table.node.nodeAt(nodePos);
-      const pos = nodePos + table.start;
+		return cells.map((nodePos) => {
+			const node = table.node.nodeAt(nodePos);
+			const pos = nodePos + table.start;
 
-      return { pos, start: pos + 1, node };
-    });
-  }
+			return { pos, start: pos + 1, node };
+		});
+	}
 
-  return null;
+	return null;
 };
 
 export const findCellClosestToPos = ($pos: ResolvedPos) => {
-  const predicate = (node: Node) =>
-    node.type.spec.tableRole && /cell/i.test(node.type.spec.tableRole);
+	const predicate = (node: Node) =>
+		node.type.spec.tableRole && /cell/i.test(node.type.spec.tableRole);
 
-  return findParentNodeClosestToPos($pos, predicate);
+	return findParentNodeClosestToPos($pos, predicate);
 };
 
-const select = (type: "row" | "column") => (index: number) => (tr: Transaction) => {
-  const table = findTable(tr.selection);
-  const isRowSelection = type === "row";
+const select =
+	(type: "row" | "column") => (index: number) => (tr: Transaction) => {
+		const table = findTable(tr.selection);
+		const isRowSelection = type === "row";
 
-  if (table) {
-    const map = TableMap.get(table.node);
+		if (table) {
+			const map = TableMap.get(table.node);
 
-    // Check if the index is valid
-    if (index >= 0 && index < (isRowSelection ? map.height : map.width)) {
-      const left = isRowSelection ? 0 : index;
-      const top = isRowSelection ? index : 0;
-      const right = isRowSelection ? map.width : index + 1;
-      const bottom = isRowSelection ? index + 1 : map.height;
+			// Check if the index is valid
+			if (index >= 0 && index < (isRowSelection ? map.height : map.width)) {
+				const left = isRowSelection ? 0 : index;
+				const top = isRowSelection ? index : 0;
+				const right = isRowSelection ? map.width : index + 1;
+				const bottom = isRowSelection ? index + 1 : map.height;
 
-      const cellsInFirstRow = map.cellsInRect({
-        left,
-        top,
-        right: isRowSelection ? right : left + 1,
-        bottom: isRowSelection ? top + 1 : bottom,
-      });
+				const cellsInFirstRow = map.cellsInRect({
+					left,
+					top,
+					right: isRowSelection ? right : left + 1,
+					bottom: isRowSelection ? top + 1 : bottom,
+				});
 
-      const cellsInLastRow =
-        bottom - top === 1
-          ? cellsInFirstRow
-          : map.cellsInRect({
-              left: isRowSelection ? left : right - 1,
-              top: isRowSelection ? bottom - 1 : top,
-              right,
-              bottom,
-            });
+				const cellsInLastRow =
+					bottom - top === 1
+						? cellsInFirstRow
+						: map.cellsInRect({
+								left: isRowSelection ? left : right - 1,
+								top: isRowSelection ? bottom - 1 : top,
+								right,
+								bottom,
+							});
 
-      const head = table.start + cellsInFirstRow[0];
-      const anchor = table.start + cellsInLastRow[cellsInLastRow.length - 1];
-      const $head = tr.doc.resolve(head);
-      const $anchor = tr.doc.resolve(anchor);
+				const head = table.start + cellsInFirstRow[0];
+				const anchor = table.start + cellsInLastRow[cellsInLastRow.length - 1];
+				const $head = tr.doc.resolve(head);
+				const $anchor = tr.doc.resolve(anchor);
 
-      return tr.setSelection(new CellSelection($anchor, $head));
-    }
-  }
-  return tr;
-};
+				return tr.setSelection(new CellSelection($anchor, $head));
+			}
+		}
+		return tr;
+	};
 
 export const selectColumn = select("column");
 
 export const selectRow = select("row");
 
 export const selectTable = (tr: Transaction) => {
-  const table = findTable(tr.selection);
+	const table = findTable(tr.selection);
 
-  if (table) {
-    const { map } = TableMap.get(table.node);
+	if (table) {
+		const { map } = TableMap.get(table.node);
 
-    if (map?.length) {
-      const head = table.start + map[0];
-      const anchor = table.start + map[map.length - 1];
-      const $head = tr.doc.resolve(head);
-      const $anchor = tr.doc.resolve(anchor);
+		if (map?.length) {
+			const head = table.start + map[0];
+			const anchor = table.start + map[map.length - 1];
+			const $head = tr.doc.resolve(head);
+			const $anchor = tr.doc.resolve(anchor);
 
-      return tr.setSelection(new CellSelection($anchor, $head));
-    }
-  }
+			return tr.setSelection(new CellSelection($anchor, $head));
+		}
+	}
 
-  return tr;
+	return tr;
 };

@@ -1,21 +1,24 @@
 ---
+
 title: Newsletter
 description: "Configurați buletine de știri automate pentru blogul dvs. static cu newsy: postări publicate direct din Git, e-mailuri de abonat trimise pentru dvs., fără taxă lunară de platformă."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: fals
 tags:
-  - newsletter
-  - email
-  - nou
-  - smtp
-keywords:
-  - newsletter
-  - email automation
-  - nou
-  - smtp
-  - beculețe
-preview: /og-image.png
+
+- newsletter
+- email
+- nou
+- smtp
+  keywords:
+- newsletter
+- email automation
+- nou
+- smtp
+- beculețe
+  preview: /og-image.png
+
 ---
 
 Reaching your audience directly after posting new content is among the most effective ways to build a loyal, dedicated reader base. Cu toate acestea, modul convenţional de a administra buletinul informativ a crescut inutil de greoi şi costisitor.

@@ -1,21 +1,24 @@
 ---
+
 title: Newsletter
 description: "Skonfiguruj automatyczne biuletyny dla swojego bloga statycznego z Newsy: posty opublikowane bezpośrednio z Git, wysyłane dla Ciebie e-maile subskrypcyjne, bez miesięcznych opłat platformowych."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: fałszywy
 tags:
-  - biuletyn
-  - e-mail
-  - nowość
-  - Mtp
-keywords:
-  - biuletyn
-  - email automation
-  - nowość
-  - Mtp
-  - Światła
-preview: /og-image.png
+
+- biuletyn
+- e-mail
+- nowość
+- Mtp
+  keywords:
+- biuletyn
+- email automation
+- nowość
+- Mtp
+- Światła
+  preview: /og-image.png
+
 ---
 
 Docieranie do swoich odbiorców bezpośrednio po dodaniu nowych treści jest jednym z najskuteczniejszych sposobów budowania lojalnej, dedykowanej bazy czytników. Jednak tradycyjny sposób korzystania z newslettera zwiększył się niepotrzebnie i kosztownie.

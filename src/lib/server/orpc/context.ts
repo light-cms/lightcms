@@ -2,7 +2,7 @@ import { ORPCError, os } from "@orpc/server";
 import type { Session } from "better-auth";
 
 export type RpcContext = {
-  session: Session | null;
+	session: Session | null;
 };
 
 const base = os.$context<RpcContext>();
@@ -13,15 +13,15 @@ const base = os.$context<RpcContext>();
 export const publicProcedure = base;
 
 export const authedProcedure = base.use(({ context, next }) => {
-  if (!context.session) {
-    throw new ORPCError("UNAUTHORIZED", {
-      message: "Authentication required.",
-    });
-  }
+	if (!context.session) {
+		throw new ORPCError("UNAUTHORIZED", {
+			message: "Authentication required.",
+		});
+	}
 
-  return next({
-    context: {
-      session: context.session,
-    },
-  });
+	return next({
+		context: {
+			session: context.session,
+		},
+	});
 });

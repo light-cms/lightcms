@@ -1,4 +1,5 @@
 ---
+
 slug: faq
 title: "LightCMS FAQ: statyczne strony, Git & Markdown"
 description: "Odpowiedzi na powszechne pytania dotyczące LightCMS, jak działa edycja oparta na Git, które statyczne generatory stron pasują, samohosting, ceny i własność treści."
@@ -7,13 +8,15 @@ badge: Często zadawane pytania
 date: 2026-10-14T13:30:00Z
 draft: fałszywy
 tags:
-  - faq
-  - Światła
-  - lokalizacje statyczne
-  - zielona strona
-keywords: cms
-weight: 1
-isCJKLanguage: fałszywy
+
+- faq
+- Światła
+- lokalizacje statyczne
+- zielona strona
+  keywords: cms
+  weight: 1
+  isCJKLanguage: fałszywy
+
 ---
 
 ## Często zadawane pytania

@@ -1,4 +1,5 @@
 ---
+
 title: Self Hosting LightCMS
 description: セルフホスト LightCMS に関するガイドでは、GitHub App、PostgreSQL、環境変数、オプションのAI、CDN、メール、エッジへのデプロイについて説明します。
 serial: 4
@@ -7,18 +8,20 @@ badge: デプロイ
 date: 2026-09-18T01:45:00Z
 draft: false
 tags:
-  - selfhost
-  - lightcms
-  - postgresql
-  - デプロイメント
-keywords:
-  - lightcms
-  - probot
-  - 自己ホスティング
-  - github_app
-  - vercel
-  - sveltekit
-preview: /og-image.png
+
+- selfhost
+- lightcms
+- postgresql
+- デプロイメント
+  keywords:
+- lightcms
+- probot
+- 自己ホスティング
+- github_app
+- vercel
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 LightCMSを完全にコントロールしたいですか？ LightCMSは [SvelteKit](https://svelte.dev) アプリケーションで、PostgreSQLデータベースとGitHubアプリ(Octkit)によってバックアップされたどこでもデプロイできます。コンテンツがあなた自身のGitHubリポジトリから離れることはありません。

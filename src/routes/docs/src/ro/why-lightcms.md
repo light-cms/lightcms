@@ -1,23 +1,26 @@
 ---
+
 title: "De ce LightCMS: CMS sprijinit de Git-uri pentru site-uri statice"
 description: Majoritatea platformelor CMS dețin conținutul tău. LightCMS îl păstrează în repozitoriul tău Git, în marcaje simple, implementat de propria ta conductă.
 serial: 2
 date: 2026-10-14T14:00:00Z
 draft: fals
 tags:
-  - beculețe
-  - git
-  - cmp
-  - static
-  - markdown
-  - publicare
-keywords:
-  - de ce lightcms
-  - cm-uri bazate pe git
-  - Cms fără cap
-  - markdown cms
-  - cm-uri statice ale site-ului
-preview: /og-image.png
+
+- beculețe
+- git
+- cmp
+- static
+- markdown
+- publicare
+  keywords:
+- de ce lightcms
+- cm-uri bazate pe git
+- Cms fără cap
+- markdown cms
+- cm-uri statice ale site-ului
+  preview: /og-image.png
+
 ---
 
 Majoritatea platformelor stochează scrisul în baza lor de date, îl afișează pe serverele lor și te însărcinează să îl accesezi în continuare. Atunci când platforma se închide, crește prețurile sau îi modifică termenii, conținutul merge cu el.

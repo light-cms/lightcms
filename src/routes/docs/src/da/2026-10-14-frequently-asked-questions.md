@@ -1,4 +1,5 @@
 ---
+
 slug: faq
 title: "LightCMS FAQ: statiske websteder, Git & Markdown"
 description: "Svar på almindelige spørgsmål om LightCMS, hvordan Git baseret redigering værker, som statiske site generatorer passerer, selv-hosting, priser og indhold ejerskab."
@@ -7,13 +8,15 @@ badge: OSS
 date: 2026-10-14T13:30:00Z
 draft: falsk
 tags:
-  - faq
-  - lyspunkter
-  - statiske-sites
-  - grøn-web
-keywords: cms
-weight: 1
-isCJKLanguage: falsk
+
+- faq
+- lyspunkter
+- statiske-sites
+- grøn-web
+  keywords: cms
+  weight: 1
+  isCJKLanguage: falsk
+
 ---
 
 ## Ofte Stillede Spørgsmål

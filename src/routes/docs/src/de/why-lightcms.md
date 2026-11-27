@@ -1,23 +1,26 @@
 ---
+
 title: "Warum LightCMS: Git-unterstütztes CMS für statische Seiten"
 description: Die meisten CMS-Plattformen besitzen Ihre Inhalte. LightCMS hält es in deinem Git Repo, in plain Markdown, installiert von deiner eigenen Pipeline.
 serial: 2
 date: 2026-10-14T14:00:00Z
 draft: falsch
 tags:
-  - hellcms
-  - git
-  - cms
-  - statisch
-  - markdown
-  - publizieren
-keywords:
-  - warum Lightcms
-  - git basierte cms
-  - kopflose cms
-  - markdown cms
-  - statische Site-cms
-preview: /og-image.png
+
+- hellcms
+- git
+- cms
+- statisch
+- markdown
+- publizieren
+  keywords:
+- warum Lightcms
+- git basierte cms
+- kopflose cms
+- markdown cms
+- statische Site-cms
+  preview: /og-image.png
+
 ---
 
 Die meisten Inhaltsplattformen speichern Ihr Schreiben in ihrer Datenbank, stellen es auf ihren Servern dar und berechnen Ihnen den weiteren Zugriff. Wenn die Plattform herunterfährt, die Preise erhöht oder die Bedingungen ändert, dann passt Ihr Inhalt dazu.

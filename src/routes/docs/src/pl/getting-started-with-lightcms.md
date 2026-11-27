@@ -1,23 +1,26 @@
 ---
+
 title: Wprowadzanie
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: fałszywy
 tags:
-  - Światła
-  - cms
-  - git
-  - ssg
-  - statyczne
-  - strona
-  - Generator
-keywords:
-  - Światła
-  - zaczyna się
-  - wprowadzenie
-  - wysiwyg
-  - markdown
-  - Na podstawie git
+
+- Światła
+- cms
+- git
+- ssg
+- statyczne
+- strona
+- Generator
+  keywords:
+- Światła
+- zaczyna się
+- wprowadzenie
+- wysiwyg
+- markdown
+- Na podstawie git
+
 ---
 
 [LightCMS](https://www.lightcms.me) jest edytorem obsługiwanym przez Git-a dla witryn statycznych. Napisz w bogatym edytorze, wciśnij publikację i [LightCMS](https://www.lightcms.me) commits clean Markdown to your repository. Twój rurociąg wdrażania – strony Cloudflare, Netlify, Vercel, GitHub - zabierają go stąd.

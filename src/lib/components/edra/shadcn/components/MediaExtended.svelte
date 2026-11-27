@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { NodeViewProps } from "@tiptap/core";
 import { onMount, type Snippet } from "svelte";
-import { Button } from "$lib/components/ui/button";
-import { cn } from "$lib/utils";
+import { Button } from "#lib/components/ui/button";
+import { cn } from "#lib/utils";
 import strings from "../../strings";
 import { NodeViewWrapper } from "../../tiptap";
 import { duplicateContent } from "../../utils";

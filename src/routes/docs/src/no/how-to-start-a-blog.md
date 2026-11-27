@@ -1,22 +1,25 @@
 ---
+
 title: "Slik lager du en blogg i 2026: Vanlige nettsteder & Markdown"
 description: "TIl til å starte en hurtig, billig, slitesterk med Markdown, en statisk nettstedsgenerator, og et Git backed CMS - ingen hoste-regninger, ingen lås i."
 serial: 12
 date: 2026-10-14T12:50:00Z
 draft: usann
 tags:
-  - blogger
-  - statisk
-  - nettsteder
-  - markdown
-  - starter
-keywords:
-  - hvordan man kan starte en blogg
-  - start en blogg gratis
-  - markdown blogg
-  - statisk byggeplass blogg
-  - best mulig å starte en blogg 2026
-preview: /og-image.png
+
+- blogger
+- statisk
+- nettsteder
+- markdown
+- starter
+  keywords:
+- hvordan man kan starte en blogg
+- start en blogg gratis
+- markdown blogg
+- statisk byggeplass blogg
+- best mulig å starte en blogg 2026
+  preview: /og-image.png
+
 ---
 
 I 2026 er start av en blogg enklere og billigere enn noensinne. Du trenger ikke lenger en WordPress vert, en sidebygger, eller en månedlig plattformavgift. Du kan bygge en blogg med Markdown filer, en statisk nettstedskaper, fri vertshandling og et git-based CMS. Ingen kostnader. Og bloggen din vil bli lastet raskere enn 99% av bloggene om blogging.

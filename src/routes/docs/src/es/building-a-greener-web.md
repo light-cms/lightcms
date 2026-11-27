@@ -1,17 +1,20 @@
 ---
+
 title: "Sitios estáticos y CO2: Construir una Web Greener"
 description: "¿Por qué los sitios estáticos emiten menos carbono, cómo el almacenamiento en caché de CDN reduce el uso de energía y qué aspecto tiene una web más verde."
 date: 2026-10-14T13:30:00Z
 draft: falso
 tags:
-  - sostenibilidad
-  - sitios estáticos
-  - verde-web
-  - con2
-  - ssg
-keywords: luces
-preview: /og-image.png
-serial: 3
+
+- sostenibilidad
+- sitios estáticos
+- verde-web
+- con2
+- ssg
+  keywords: luces
+  preview: /og-image.png
+  serial: 3
+
 ---
 
 Cuesta mucho cargar una página. A veces una página falla al cargar de la memoria caché la base de datos se golpea varias veces y cada consulta utiliza una gran cantidad de energía que emite kilogramos de CO2. Se dice que entre el 2% y el 4% de las emisiones de CO2 proceden de la red.

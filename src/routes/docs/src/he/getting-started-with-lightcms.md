@@ -1,23 +1,26 @@
 ---
+
 title: Introduction
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: false
 tags:
-  - lightcms
-  - cms
-  - git
-  - ssg
-  - static
-  - site
-  - generator
-keywords:
-  - lightcms
-  - getting started
-  - introduction
-  - wysiwyg
-  - markdown
-  - git based
+
+- lightcms
+- cms
+- git
+- ssg
+- static
+- site
+- generator
+  keywords:
+- lightcms
+- getting started
+- introduction
+- wysiwyg
+- markdown
+- git based
+
 ---
 
 [LightCMS](https://www.lightcms.me) is a Git-backed editor for static sites. You write in a rich editor, hit publish, and [LightCMS](https://www.lightcms.me) commits clean Markdown to your repository. Your deployment pipeline — Cloudflare Pages, Netlify, Vercel, GitHub Pages — takes it from there.

@@ -4,10 +4,10 @@ import Heart from "@lucide/svelte/icons/heart";
 import Mail from "@lucide/svelte/icons/mail";
 import MessageCircle from "@lucide/svelte/icons/message-circle";
 import ShieldCheck from "@lucide/svelte/icons/shield-check";
-import { Button } from "$lib/components/ui/button";
-import { localizeHref } from "$lib/i18n";
-import * as m from "$lib/i18n/messages";
-import { SITE } from "$lib/seo";
+import { Button } from "#lib/components/ui/button";
+import { localizeHref } from "#lib/i18n";
+import * as m from "#lib/i18n/messages";
+import { SITE } from "#lib/seo";
 
 type FooterAction = {
 	href: string;

@@ -1,21 +1,24 @@
 ---
+
 title: Nyhetsbrev
 description: "Sett opp automatiske nyhetsbrev for statisk blogg med Newsy: Innlegg publisert rett fra Git, abonnent e-post sendt for deg, ingen månedlige plattformgebyr."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: usann
 tags:
-  - nyhetsbrev
-  - e-post
-  - ny
-  - smtp
-keywords:
-  - nyhetsbrev
-  - email automation
-  - ny
-  - smtp
-  - lysdioder
-preview: /og-image.png
+
+- nyhetsbrev
+- e-post
+- ny
+- smtp
+  keywords:
+- nyhetsbrev
+- email automation
+- ny
+- smtp
+- lysdioder
+  preview: /og-image.png
+
 ---
 
 Å nå publikum direkte etter å ha lagt ut nytt innhold er en av de mest effektive måtene bygger en lojal, dedikert leserbase. Men konvensjonell måte å kjøre et nyhetsbrev på har økt er unødig klartekst og kostbart.

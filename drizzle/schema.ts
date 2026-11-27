@@ -1,149 +1,176 @@
 import {
-  pgTable,
-  index,
-  foreignKey,
-  text,
-  timestamp,
-  unique,
-  boolean,
-  integer,
-  primaryKey,
-  bigint,
+	bigint,
+	boolean,
+	foreignKey,
+	index,
+	integer,
+	pgTable,
+	primaryKey,
+	text,
+	timestamp,
+	unique,
 } from "drizzle-orm/pg-core";
 
 export const account = pgTable(
-  "account",
-  {
-    id: text().primaryKey().notNull(),
-    accountId: text("account_id").notNull(),
-    providerId: text("provider_id").notNull(),
-    userId: text("user_id").notNull(),
-    accessToken: text("access_token"),
-    refreshToken: text("refresh_token"),
-    idToken: text("id_token"),
-    accessTokenExpiresAt: timestamp("access_token_expires_at", { mode: "string" }),
-    refreshTokenExpiresAt: timestamp("refresh_token_expires_at", { mode: "string" }),
-    scope: text(),
-    password: text(),
-    createdAt: timestamp("created_at", { mode: "string" }).defaultNow().notNull(),
-    updatedAt: timestamp("updated_at", { mode: "string" }).notNull(),
-  },
-  (table) => [
-    index("account_userId_idx").using("btree", table.userId.asc().nullsLast().op("text_ops")),
-    foreignKey({
-      columns: [table.userId],
-      foreignColumns: [user.id],
-      name: "account_user_id_user_id_fk",
-    }).onDelete("cascade"),
-  ],
+	"account",
+	{
+		id: text().primaryKey().notNull(),
+		accountId: text("account_id").notNull(),
+		providerId: text("provider_id").notNull(),
+		userId: text("user_id").notNull(),
+		accessToken: text("access_token"),
+		refreshToken: text("refresh_token"),
+		idToken: text("id_token"),
+		accessTokenExpiresAt: timestamp("access_token_expires_at", {
+			mode: "string",
+		}),
+		refreshTokenExpiresAt: timestamp("refresh_token_expires_at", {
+			mode: "string",
+		}),
+		scope: text(),
+		password: text(),
+		createdAt: timestamp("created_at", { mode: "string" })
+			.defaultNow()
+			.notNull(),
+		updatedAt: timestamp("updated_at", { mode: "string" }).notNull(),
+	},
+	(table) => [
+		index("account_userId_idx").using(
+			"btree",
+			table.userId.asc().nullsLast().op("text_ops"),
+		),
+		foreignKey({
+			columns: [table.userId],
+			foreignColumns: [user.id],
+			name: "account_user_id_user_id_fk",
+		}).onDelete("cascade"),
+	],
 );
 
 export const verification = pgTable(
-  "verification",
-  {
-    id: text().primaryKey().notNull(),
-    identifier: text().notNull(),
-    value: text().notNull(),
-    expiresAt: timestamp("expires_at", { mode: "string" }).notNull(),
-    createdAt: timestamp("created_at", { mode: "string" }).defaultNow().notNull(),
-    updatedAt: timestamp("updated_at", { mode: "string" }).defaultNow().notNull(),
-  },
-  (table) => [
-    index("verification_identifier_idx").using(
-      "btree",
-      table.identifier.asc().nullsLast().op("text_ops"),
-    ),
-  ],
+	"verification",
+	{
+		id: text().primaryKey().notNull(),
+		identifier: text().notNull(),
+		value: text().notNull(),
+		expiresAt: timestamp("expires_at", { mode: "string" }).notNull(),
+		createdAt: timestamp("created_at", { mode: "string" })
+			.defaultNow()
+			.notNull(),
+		updatedAt: timestamp("updated_at", { mode: "string" })
+			.defaultNow()
+			.notNull(),
+	},
+	(table) => [
+		index("verification_identifier_idx").using(
+			"btree",
+			table.identifier.asc().nullsLast().op("text_ops"),
+		),
+	],
 );
 
 export const user = pgTable(
-  "user",
-  {
-    id: text().primaryKey().notNull(),
-    name: text().notNull(),
-    email: text().notNull(),
-    emailVerified: boolean("email_verified").default(false).notNull(),
-    image: text(),
-    createdAt: timestamp("created_at", { mode: "string" }).defaultNow().notNull(),
-    updatedAt: timestamp("updated_at", { mode: "string" }).defaultNow().notNull(),
-  },
-  (table) => [unique("user_email_unique").on(table.email)],
+	"user",
+	{
+		id: text().primaryKey().notNull(),
+		name: text().notNull(),
+		email: text().notNull(),
+		emailVerified: boolean("email_verified").default(false).notNull(),
+		image: text(),
+		createdAt: timestamp("created_at", { mode: "string" })
+			.defaultNow()
+			.notNull(),
+		updatedAt: timestamp("updated_at", { mode: "string" })
+			.defaultNow()
+			.notNull(),
+	},
+	(table) => [unique("user_email_unique").on(table.email)],
 );
 
 export const passkey = pgTable(
-  "passkey",
-  {
-    id: text().primaryKey().notNull(),
-    name: text(),
-    publicKey: text("public_key").notNull(),
-    userId: text("user_id").notNull(),
-    credentialId: text("credential_id").notNull(),
-    counter: integer().notNull(),
-    deviceType: text("device_type").notNull(),
-    backedUp: boolean("backed_up").notNull(),
-    transports: text(),
-    createdAt: timestamp("created_at", { mode: "string" }),
-    aaguid: text(),
-  },
-  (table) => [
-    index("passkey_credentialID_idx").using(
-      "btree",
-      table.credentialId.asc().nullsLast().op("text_ops"),
-    ),
-    index("passkey_userId_idx").using("btree", table.userId.asc().nullsLast().op("text_ops")),
-    foreignKey({
-      columns: [table.userId],
-      foreignColumns: [user.id],
-      name: "passkey_user_id_user_id_fk",
-    }).onDelete("cascade"),
-  ],
+	"passkey",
+	{
+		id: text().primaryKey().notNull(),
+		name: text(),
+		publicKey: text("public_key").notNull(),
+		userId: text("user_id").notNull(),
+		credentialId: text("credential_id").notNull(),
+		counter: integer().notNull(),
+		deviceType: text("device_type").notNull(),
+		backedUp: boolean("backed_up").notNull(),
+		transports: text(),
+		createdAt: timestamp("created_at", { mode: "string" }),
+		aaguid: text(),
+	},
+	(table) => [
+		index("passkey_credentialID_idx").using(
+			"btree",
+			table.credentialId.asc().nullsLast().op("text_ops"),
+		),
+		index("passkey_userId_idx").using(
+			"btree",
+			table.userId.asc().nullsLast().op("text_ops"),
+		),
+		foreignKey({
+			columns: [table.userId],
+			foreignColumns: [user.id],
+			name: "passkey_user_id_user_id_fk",
+		}).onDelete("cascade"),
+	],
 );
 
 export const session = pgTable(
-  "session",
-  {
-    id: text().primaryKey().notNull(),
-    expiresAt: timestamp("expires_at", { mode: "string" }).notNull(),
-    token: text().notNull(),
-    createdAt: timestamp("created_at", { mode: "string" }).defaultNow().notNull(),
-    updatedAt: timestamp("updated_at", { mode: "string" }).notNull(),
-    ipAddress: text("ip_address"),
-    userAgent: text("user_agent"),
-    userId: text("user_id").notNull(),
-  },
-  (table) => [
-    index("session_userId_idx").using("btree", table.userId.asc().nullsLast().op("text_ops")),
-    foreignKey({
-      columns: [table.userId],
-      foreignColumns: [user.id],
-      name: "session_user_id_user_id_fk",
-    }).onDelete("cascade"),
-    unique("session_token_unique").on(table.token),
-  ],
+	"session",
+	{
+		id: text().primaryKey().notNull(),
+		expiresAt: timestamp("expires_at", { mode: "string" }).notNull(),
+		token: text().notNull(),
+		createdAt: timestamp("created_at", { mode: "string" })
+			.defaultNow()
+			.notNull(),
+		updatedAt: timestamp("updated_at", { mode: "string" }).notNull(),
+		ipAddress: text("ip_address"),
+		userAgent: text("user_agent"),
+		userId: text("user_id").notNull(),
+	},
+	(table) => [
+		index("session_userId_idx").using(
+			"btree",
+			table.userId.asc().nullsLast().op("text_ops"),
+		),
+		foreignKey({
+			columns: [table.userId],
+			foreignColumns: [user.id],
+			name: "session_user_id_user_id_fk",
+		}).onDelete("cascade"),
+		unique("session_token_unique").on(table.token),
+	],
 );
 
 export const githubInstallation = pgTable(
-  "github_installation",
-  {
-    userId: text("user_id").notNull(),
-    // You can use { mode: "bigint" } if numbers are exceeding js number limitations
-    installationId: bigint("installation_id", { mode: "number" }).notNull(),
-    accountLogin: text("account_login").notNull(),
-    createdAt: timestamp("created_at", { mode: "string" }).defaultNow().notNull(),
-  },
-  (table) => [
-    index("github_installation_userId_idx").using(
-      "btree",
-      table.userId.asc().nullsLast().op("text_ops"),
-    ),
-    foreignKey({
-      columns: [table.userId],
-      foreignColumns: [user.id],
-      name: "github_installation_user_id_user_id_fk",
-    }).onDelete("cascade"),
-    primaryKey({
-      columns: [table.installationId, table.userId],
-      name: "github_installation_user_id_installation_id_pk",
-    }),
-  ],
+	"github_installation",
+	{
+		userId: text("user_id").notNull(),
+		// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+		installationId: bigint("installation_id", { mode: "number" }).notNull(),
+		accountLogin: text("account_login").notNull(),
+		createdAt: timestamp("created_at", { mode: "string" })
+			.defaultNow()
+			.notNull(),
+	},
+	(table) => [
+		index("github_installation_userId_idx").using(
+			"btree",
+			table.userId.asc().nullsLast().op("text_ops"),
+		),
+		foreignKey({
+			columns: [table.userId],
+			foreignColumns: [user.id],
+			name: "github_installation_user_id_user_id_fk",
+		}).onDelete("cascade"),
+		primaryKey({
+			columns: [table.installationId, table.userId],
+			name: "github_installation_user_id_installation_id_pk",
+		}),
+	],
 );

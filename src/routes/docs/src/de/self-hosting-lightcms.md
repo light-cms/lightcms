@@ -1,4 +1,5 @@
 ---
+
 title: Selbst-Hosting LightCMS
 description: Leitfaden zum Selbst-Host von LightCMS, die GitHub App, PostgreSQL, Umgebungsvariablen, optionale AI, CDN und E-Mail abdecken und in Kanten bereitstellen.
 serial: 4
@@ -7,18 +8,20 @@ badge: Deploy
 date: 18.09.20T01:45:00Z
 draft: falsch
 tags:
-  - selfhost
-  - hellcms
-  - postgresql
-  - einrichten
-keywords:
-  - hellcms
-  - probot
-  - selbst-Hosting
-  - github_app
-  - Paket
-  - sveltekit
-preview: /og-image.png
+
+- selfhost
+- hellcms
+- postgresql
+- einrichten
+  keywords:
+- hellcms
+- probot
+- selbst-Hosting
+- github_app
+- Paket
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 Möchten Sie LightCMS voll unter Ihrer Kontrolle? LightCMS ist eine [SvelteKit](https://svelte.dev) Anwendung, so dass sie überall eingesetzt werden kann, unterstützt von einer PostgreSQL Datenbank und einer GitHub App (Octokit). Dein Inhalt hinterlässt niemals deine eigenen GitHub Repositories.

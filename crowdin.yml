@@ -57,7 +57,7 @@ export_languages:
 
 files:
   #
-  # UI messages consumed by native i18n ($lib/i18n).
+  # UI messages consumed by native i18n (#lib/i18n).
   #
   # `%locale%` is used instead of `%two_letters_code%` because the
   # two-letter placeholder collapses every language that shares a code:

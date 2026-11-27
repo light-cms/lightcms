@@ -1,23 +1,26 @@
 ---
+
 title: "Why LightCMS: Git-backed CMS for static sites"
 description: Most hosted CMS platforms keep your content in a database. LightCMS writes Markdown into your repo so you control the files and the workflow.
 serial: 2
 date: 2026-10-14T14:00:00Z
 draft: false
 tags:
-  - lightcms
-  - git
-  - cms
-  - static
-  - markdown
-  - publishing
-keywords:
-  - why lightcms
-  - git based cms
-  - headless cms
-  - markdown cms
-  - static site cms
-preview: /og-image.png
+
+- lightcms
+- git
+- cms
+- static
+- markdown
+- publishing
+  keywords:
+- why lightcms
+- git based cms
+- headless cms
+- markdown cms
+- static site cms
+  preview: /og-image.png
+
 ---
 
 Many hosted platforms store content behind their APIs. When the platform changes pricing or features, migrating content can be slow and error prone.

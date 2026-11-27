@@ -1,17 +1,20 @@
 ---
+
 title: "静态站点和CO2：建立一个绿色网络"
 description: 为什么静态网站减少碳排放，CDN缓存如何削减能源使用，以及绿色网站的形式。
 date: 2026-10-14T13:30Z
 draft: false
 tags:
-  - 可持续性
-  - 静态站点
-  - 绿色网络
-  - 二极管
-  - ssg
-keywords: 闪光
-preview: /og-image.png
-serial: 3
+
+- 可持续性
+- 静态站点
+- 绿色网络
+- 二极管
+- ssg
+  keywords: 闪光
+  preview: /og-image.png
+  serial: 3
+
 ---
 
 加载页面需要花费很多钱。有时一个页面无法从缓存中加载数据库被多次打击，每个查询都使用大量能量释放公斤CO2。据说2%-4%的炼焦厂排放来自网上。

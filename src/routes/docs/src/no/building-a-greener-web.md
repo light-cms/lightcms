@@ -1,17 +1,20 @@
 ---
+
 title: "Statiske nettsteder og CO2: Bygge et Greener Web"
 description: Derfor gir statiske steder mindre karbon, hvordan CDN hurtigbufrer energibruken, og hvordan et grønnere nett ser ut.
 date: 2026-10-14T13:30:00Z
 draft: usann
 tags:
-  - bærekraft
-  - statiske steder
-  - grønn-web
-  - k2
-  - ssg
-keywords: lysdioder
-preview: /og-image.png
-serial: 3
+
+- bærekraft
+- statiske steder
+- grønn-web
+- k2
+- ssg
+  keywords: lysdioder
+  preview: /og-image.png
+  serial: 3
+
 ---
 
 Det koster mye å laste inn en side. Noen ganger blir ikke en side lastet fra cachen databasen blir påtruffet flere ganger, og hver spørring bruker mange kilogram strømuttak av CO2. 2-4 % av utslippene fra k2 kommer fra nettet.

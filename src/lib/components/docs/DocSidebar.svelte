@@ -1,9 +1,8 @@
 <script lang="ts">
+import { localizeHref, stripLocaleFromPathname } from "#lib/i18n";
+import type { DocNavSection } from "#lib/server/docs";
+import { cn } from "#lib/utils";
 import { page } from "$app/state";
-import { localizeHref } from "$lib/i18n";
-import { stripLocaleFromPathname } from "$lib/i18n";
-import type { DocNavSection } from "$lib/server/docs";
-import { cn } from "$lib/utils";
 
 let {
 	sections = [],

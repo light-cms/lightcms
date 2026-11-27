@@ -1,23 +1,26 @@
 ---
+
 title: "为什么LightCMS：Git支持的静态站点CMS"
 description: 大多数CMS平台拥有您的内容。 LightCMS将其保存在您的Git仓库中，在普通Markdown中，由您自己的管道部署。
 serial: 2
 date: 2026-10-14T14:00:00Z
 draft: false
 tags:
-  - 闪光
-  - git
-  - 厘米
-  - 静态的
-  - markdown
-  - 发布
-keywords:
-  - 为什么闪光
-  - 基于 git 的 cms
-  - 无头cms
-  - markdown cms
-  - 静态站点cms
-preview: /og-image.png
+
+- 闪光
+- git
+- 厘米
+- 静态的
+- markdown
+- 发布
+  keywords:
+- 为什么闪光
+- 基于 git 的 cms
+- 无头cms
+- markdown cms
+- 静态站点cms
+  preview: /og-image.png
+
 ---
 
 大多数内容平台都将您的写入数据库，在他们的服务器上渲染，并要求您继续访问它。当平台关闭、提升价格或更改其条款时，您的内容会与之相伴。

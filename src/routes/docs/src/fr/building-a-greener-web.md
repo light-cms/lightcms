@@ -1,17 +1,20 @@
 ---
+
 title: "Sites statiques et CO2 : Construire un Web plus vert"
 description: Pourquoi les sites statiques émettent moins de carbone, comment la mise en cache de CDN réduit la consommation d'énergie et à quoi ressemble un web plus vert.
 date: 2026-10-14T13:30:00Z
 draft: Faux
 tags:
-  - durabilité
-  - sites statiques
-  - Toile verte
-  - co2
-  - ssg
-keywords: lightcms
-preview: /og-image.png
-serial: 3
+
+- durabilité
+- sites statiques
+- Toile verte
+- co2
+- ssg
+  keywords: lightcms
+  preview: /og-image.png
+  serial: 3
+
 ---
 
 Le chargement d'une page coûte cher. Parfois, une page échoue à charger à partir du cache la base de données est frappée plusieurs fois et chaque requête utilise beaucoup de puissance émettant des kilogrammes de CO2. On dit que de 2 à 4 % des émissions de co2 proviennent de l'internet.

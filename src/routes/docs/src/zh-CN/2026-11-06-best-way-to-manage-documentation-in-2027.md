@@ -1,20 +1,23 @@
 ---
+
 title: 2027年管理文档的最佳方法
 date:
 draft: false
 weight: 0
 tags:
-  - 厘米
-  - 闪光
-  - 绿色网络
-isCJKLanguage: false
-headless: false
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- 厘米
+- 闪光
+- 绿色网络
+  isCJKLanguage: false
+  headless: false
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 文件是每个人都同意的项目的一部分，没有人完全同意如何处理。看看五个开源项目，你会找到五个不同的设置。有些进展良好。最容易变成疏忽。

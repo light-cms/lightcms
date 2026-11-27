@@ -3,10 +3,11 @@ import ArrowRight from "@lucide/svelte/icons/arrow-right";
 import BookOpen from "@lucide/svelte/icons/book-open";
 import Sparkles from "@lucide/svelte/icons/sparkles";
 import { onMount } from "svelte";
-import DemoPreview from "$lib/components/DemoPreview.svelte";
-import Hero from "$lib/components/Hero.svelte";
-import { localizeHref } from "$lib/i18n";
-import * as m from "$lib/i18n/messages";
+import DemoPreview from "#lib/components/DemoPreview.svelte";
+import Hero from "#lib/components/Hero.svelte";
+import Supademo from "#lib/components/Supademo.svelte";
+import { localizeHref } from "#lib/i18n";
+import * as m from "#lib/i18n/messages";
 
 interface SupademoWindow {
 	Supademo?: {
@@ -92,6 +93,8 @@ onMount(() => {
             <span aria-hidden="true">&rarr;</span>
           </button>
         </div>
+
+        <Supademo />
       </div>
     </div>
 

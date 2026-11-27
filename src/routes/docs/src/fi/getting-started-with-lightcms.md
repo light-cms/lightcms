@@ -1,23 +1,26 @@
 ---
+
 title: Johdanto
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: epätosi
 tags:
-  - lightcms
-  - cms
-  - git
-  - ssg
-  - staattinen
-  - sivusto
-  - generaattori
-keywords:
-  - lightcms
-  - aloitettaessa
-  - esittely
-  - wysiwyg
-  - markdown
-  - git pohjainen
+
+- lightcms
+- cms
+- git
+- ssg
+- staattinen
+- sivusto
+- generaattori
+  keywords:
+- lightcms
+- aloitettaessa
+- esittely
+- wysiwyg
+- markdown
+- git pohjainen
+
 ---
 
 [LightCMS](https://www.lightcms.me) on Git-tukema editori staattisille sivustoille. Kirjoitat rikkaan editorin, paina julkaisun, ja [LightCMS](https://www.lightcms.me) toimittaa puhtaan Markdownin arkistoon. Käyttöputkesi — Cloudflare sivut, Netlify, Vercel, GitHub sivut — vie sen sieltä.

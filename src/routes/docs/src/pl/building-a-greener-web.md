@@ -1,17 +1,20 @@
 ---
+
 title: "Static Sites and CO2: Building a Greener Web"
 description: Dlaczego statyczne strony emitują mniej dwutlenku węgla, jak buforowanie CDN zmniejsza zużycie energii i jak wygląda bardziej ekologiczna strona internetowa.
 date: 2026-10-14T13:30:00Z
 draft: fałszywy
 tags:
-  - trwałość
-  - lokalizacje statyczne
-  - zielona strona
-  - co2
-  - ssg
-keywords: Światła
-preview: /og-image.png
-serial: 3
+
+- trwałość
+- lokalizacje statyczne
+- zielona strona
+- co2
+- ssg
+  keywords: Światła
+  preview: /og-image.png
+  serial: 3
+
 ---
 
 Ładowanie strony jest bardzo kosztowne. Czasami strona nie ładuje się z pamięci podręcznej, a każda zapytanie wykorzystuje dużo mocy emitujących kilogramy CO2. Mówi się, że 2-4% emisji CO2 pochodzi z sieci.

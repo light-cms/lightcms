@@ -1,17 +1,20 @@
 ---
+
 title: "Staattiset sivustot ja CO2: Greener Webin rakentaminen"
 description: Miksi staattiset sivustot tuottavat vähemmän hiiltä, miten CDN välimuisti vähentää energian käyttöä, ja miltä vihreämpi verkko näyttää.
 date: 2026-10-14T13:30:00Z
 draft: epätosi
 tags:
-  - kestävyys
-  - staattiset sivustot
-  - vihreä-verkko
-  - co2
-  - ssg
-keywords: lightcms
-preview: /og-image.png
-serial: 3
+
+- kestävyys
+- staattiset sivustot
+- vihreä-verkko
+- co2
+- ssg
+  keywords: lightcms
+  preview: /og-image.png
+  serial: 3
+
 ---
 
 Se maksaa paljon ladata sivun. Joskus sivu ei lataudu kätköstä, tietokanta osuu useita kertoja ja jokainen kysely käyttää paljon virtaa lähettää kiloa CO2. Sanotaan, että 2–4 prosenttia hiilidioksidipäästöistä on peräisin verkosta.

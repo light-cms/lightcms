@@ -1,4 +1,5 @@
 ---
+
 slug: faq
 title: "LightCMS FAQ: 静的サイト、Git & Markdown"
 description: "LightCMSに関する一般的な質問への答えは、Gitベースの編集がどのように動作するか、静的サイトジェネレータが適合するか、自己ホスティング、価格設定、コンテンツ所有権です。"
@@ -7,13 +8,15 @@ badge: FAQ
 date: 2026-10-14T13:30:00Z
 draft: false
 tags:
-  - faq
-  - lightcms
-  - static-site
-  - green-web
-keywords: cms
-weight: 1
-isCJKLanguage: false
+
+- faq
+- lightcms
+- static-site
+- green-web
+  keywords: cms
+  weight: 1
+  isCJKLanguage: false
+
 ---
 
 ## よく寄せられる質問

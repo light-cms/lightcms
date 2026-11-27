@@ -1,4 +1,5 @@
 ---
+
 title: Själv Hosting LightCMS
 description: Guide till själv värd LightCMS, täcker GitHub App, PostgreSQL, miljövariabler, valfri AI, CDN och e-post, och distribuera till kanten.
 serial: 4
@@ -7,18 +8,20 @@ badge: Distribuera
 date: 2026-09-18T01:45:00Z
 draft: falskt
 tags:
-  - selfhost
-  - ljusslingor
-  - postgresql
-  - distribution
-keywords:
-  - ljusslingor
-  - probot
-  - själv hosting
-  - github_app
-  - vercel
-  - sveltekit
-preview: /og-image.png
+
+- selfhost
+- ljusslingor
+- postgresql
+- distribution
+  keywords:
+- ljusslingor
+- probot
+- själv hosting
+- github_app
+- vercel
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 Vill du ha LightCMS helt under din kontroll? LightCMS är ett [SvelteKit](https://svelte.dev) program, så det kan distribueras var som helst, med stöd av en PostgreSQL-databas och en GitHub App (oktokit). Ditt innehåll lämnar aldrig dina egna GitHub-arkiv.

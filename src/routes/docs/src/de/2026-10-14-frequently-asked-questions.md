@@ -1,4 +1,5 @@
 ---
+
 slug: faq
 title: "LightCMS FAQ: statische Seiten, Git & Markdown"
 description: "Antworten auf häufige Fragen zu LightCMS wie Git basierte Bearbeitung funktioniert, welche statischen Site-Generatoren passen, Selbstverwaltung, Preisgestaltung und Content-Besitz."
@@ -7,13 +8,15 @@ badge: FAQ
 date: 2026-10-14T13:30:00Z
 draft: falsch
 tags:
-  - faq
-  - hellcms
-  - statische Seiten
-  - grünes Web
-keywords: cms
-weight: 1
-isCJKLanguage: falsch
+
+- faq
+- hellcms
+- statische Seiten
+- grünes Web
+  keywords: cms
+  weight: 1
+  isCJKLanguage: falsch
+
 ---
 
 ## Häufig gestellte Fragen

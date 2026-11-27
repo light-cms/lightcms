@@ -16,10 +16,10 @@ export const DICTATION_SHORTCUT_LABEL = "Alt+S";
  * `code` keeps the match working on layouts where a modifier rewrites the key.
  */
 export function isDictationShortcut(event: KeyboardEvent): boolean {
-  if (!event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
-    return false;
-  }
-  return event.key.toLowerCase() === "s" || event.code === "KeyS";
+	if (!event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+		return false;
+	}
+	return event.key.toLowerCase() === "s" || event.code === "KeyS";
 }
 
 /**
@@ -27,8 +27,11 @@ export function isDictationShortcut(event: KeyboardEvent): boolean {
  * chord from regular inputs, dialogs, or the AI prompt textarea.
  */
 export function isEditableTarget(target: EventTarget | null): boolean {
-  if (!(target instanceof HTMLElement)) {
-    return false;
-  }
-  return target.isContentEditable || target.closest('[contenteditable="true"]') !== null;
+	if (!(target instanceof HTMLElement)) {
+		return false;
+	}
+	return (
+		target.isContentEditable ||
+		target.closest('[contenteditable="true"]') !== null
+	);
 }

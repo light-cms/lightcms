@@ -1,23 +1,26 @@
 ---
+
 title: Introductie
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: Onjuist
 tags:
-  - lightcms
-  - cms
-  - git
-  - ssg
-  - statisch
-  - Werkruimte
-  - generator
-keywords:
-  - lightcms
-  - aan de slag
-  - inleiding
-  - wysiwyg
-  - markdown
-  - Git gebaseerd
+
+- lightcms
+- cms
+- git
+- ssg
+- statisch
+- Werkruimte
+- generator
+  keywords:
+- lightcms
+- aan de slag
+- inleiding
+- wysiwyg
+- markdown
+- Git gebaseerd
+
 ---
 
 [LightCMS](https://www.lightcms.me) is een door Git-ondersteunde editor voor statische sites. U schrijft in een rijke editor, druk op publiceren en [LightCMS](https://www.lightcms.me) commits Cleits Markdown naar uw repository. Je inzet pipeline — Cloudflare pagina's, Netlify, Vercel, GitHub Pagina's — neemt het daar vandaan.

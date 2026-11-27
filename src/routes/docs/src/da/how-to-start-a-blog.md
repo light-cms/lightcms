@@ -1,22 +1,25 @@
 ---
+
 title: "Sådan starter en blog i 2026: Statiske steder & Markdown"
 description: "Guide til at starte en hurtig, billig, holdbar blog med Markdown, en statisk site generator, og en Git bakkes CMS — ingen hosting regninger, ingen lås i."
 serial: 12
 date: 2026-10-14T12:50:00Z
 draft: falsk
 tags:
-  - blogging
-  - statisk
-  - websteder
-  - markdown
-  - getting-startet
-keywords:
-  - hvordan man starter en blog
-  - start en blog gratis
-  - markdown blog
-  - statisk hjemmeside blog
-  - bedste måde at starte en blog 2026
-preview: /og-image.png
+
+- blogging
+- statisk
+- websteder
+- markdown
+- getting-startet
+  keywords:
+- hvordan man starter en blog
+- start en blog gratis
+- markdown blog
+- statisk hjemmeside blog
+- bedste måde at starte en blog 2026
+  preview: /og-image.png
+
 ---
 
 I 2026, starter en blog er nemmere og billigere end nogensinde. Du behøver ikke længere en WordPress vært, en sidebygger eller en månedlig platform gebyr. Du kan bygge en blog med Markdown filer, en statisk site generator, gratis hosting, og en git-baserede CMS. Uden omkostninger. Og din blog vil indlæse hurtigere end 99% af blogs om blogging.

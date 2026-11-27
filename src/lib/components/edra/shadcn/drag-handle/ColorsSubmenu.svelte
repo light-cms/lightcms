@@ -1,8 +1,8 @@
 <script lang="ts">
 import Palette from "@lucide/svelte/icons/palette";
-import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-import type { Editor } from "../../tiptap/index.js";
-import { quickcolors } from "../../utils.js";
+import * as DropdownMenu from "#lib/components/ui/dropdown-menu/index";
+import type { Editor } from "../../tiptap/index";
+import { quickcolors } from "../../utils";
 
 interface Props {
 	editor: Editor;

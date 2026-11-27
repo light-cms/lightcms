@@ -1,4 +1,5 @@
 ---
+
 title: Vlastní hostování LightCMS
 description: Průvodce pro vlastní hostování LightCMS, zahrnující GitHub App, PostgreSQL, proměnné prostředí, volitelné AI, CDN a e-mail a nasazení na okraj.
 serial: 4
@@ -7,18 +8,20 @@ badge: Publikovat
 date: 2026-09-18T01:45:00Z
 draft: nepravda
 tags:
-  - selfhost
-  - světlomety
-  - postgresql
-  - nasazení
-keywords:
-  - světlomety
-  - probot
-  - vlastní hostování
-  - github_app
-  - vercel
-  - sveltekit
-preview: /og-image.png
+
+- selfhost
+- světlomety
+- postgresql
+- nasazení
+  keywords:
+- světlomety
+- probot
+- vlastní hostování
+- github_app
+- vercel
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 Chceš LightCMS plně pod kontrolou? LightCMS je aplikace [SvelteKit](https://svelte.dev) , takže může být nasazena kdekoli, s podporou PostgreSQL databáze a GitHub aplikace (Octokit). Váš obsah nikdy nezanechává vaše vlastní GitHub repositáře.

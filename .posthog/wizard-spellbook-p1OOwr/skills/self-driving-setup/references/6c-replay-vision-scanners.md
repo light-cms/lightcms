@@ -48,12 +48,10 @@ Core also owns loading the in-product `creating-replay-vision-scanners` skill (`
 ## Do
 
 1. **Check recordings and existing scanners.** You already know from step 2 whether this project has recordings, and step 3 turned Session Replay on. Call `vision-scanners-list` once and reuse the inventory for every brief's re-run check.
-
    - **No recordings yet** (a fresh project that has never recorded a session): still create the scanners — they cost nothing until recordings exist and start working the day they do, with no second setup. Note it in the report.
    - **The team already runs its own scanners** covering a brief's ground (they fail core's re-run test): create only the briefs that add something, and say in the report which you skipped and why.
 
 2. **Size before you ship**, per core. Two self-driving overlays:
-
    - **Don't nag on a clearly-cheap create.** The briefs are deliberately small, so their projected spend is normally a tiny fraction of the budget — just create. Only when core's credit-to-credit comparison says the projected spend is a large fraction of (or exceeds) what's left, or the org is already `exhausted`, surface the concrete numbers in ONE `wizard_ask` (decline option first) — create-anyway vs skip — rather than creating blind. Record the estimate for the report either way.
    - **Soft-degrade, never abort.** If the sizing skill or the estimate/quota tools aren't on this deploy, fall back to creating the briefs as-is — they can't burn a month at these defaults — and note in the report that spend wasn't verified. A missing tool here is a follow-up, not an abort. This step also always creates **standing** scanners: skip the in-product skill's "is a scanner even the right thing?" section and never substitute a one-off `vision-scanners-inline-scan-create`.
 

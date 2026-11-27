@@ -1,23 +1,26 @@
 ---
+
 title: "Miksi LightCMS: Git-backed CMS staattisille sivustoille"
 description: Useimmat CMS-alustat omistavat sisältösi. LightCMS pitää sen Git repo, plain Markdown, joka on lähetetty oman putken avulla.
 serial: 2
 date: 2026-10-14T14:00Z
 draft: epätosi
 tags:
-  - lightcms
-  - git
-  - cms
-  - staattinen
-  - markdown
-  - julkaiseminen
-keywords:
-  - miksi lightcms
-  - git pohjainen cms
-  - headless cms
-  - markdown cms
-  - staattinen sivusto cms
-preview: /og-image.png
+
+- lightcms
+- git
+- cms
+- staattinen
+- markdown
+- julkaiseminen
+  keywords:
+- miksi lightcms
+- git pohjainen cms
+- headless cms
+- markdown cms
+- staattinen sivusto cms
+  preview: /og-image.png
+
 ---
 
 Useimmat sisältöalustot tallentavat kirjoituksesi heidän tietokantaansa, tekevät sen heidän palvelimilleen, ja lataavat sinut käyttämään sitä. Kun alustan sulkee, nostaa hintoja tai muuttaa sen ehtoja, sisältö menee sen mukana.

@@ -1,20 +1,23 @@
 ---
+
 title: Il modo migliore per gestire la documentazione nel 2027
 date:
 draft: falso
 weight: 0
 tags:
-  - cms
-  - lightcms
-  - green-web
-isCJKLanguage: falso
-headless: falso
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- cms
+- lightcms
+- green-web
+  isCJKLanguage: falso
+  headless: falso
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 La documentazione è la parte di un progetto che tutti concordano e nessuno è assolutamente d'accordo su come gestire. Guarda cinque progetti open source e troverai cinque configurazioni diverse. Alcuni funzionano bene. La maggior parte deriva in negligenza.

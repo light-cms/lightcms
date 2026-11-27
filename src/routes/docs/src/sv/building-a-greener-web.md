@@ -1,17 +1,20 @@
 ---
+
 title: "Statiska platser och CO2: bygga en grönare webb"
 description: Varför statiska webbplatser avger mindre kol, hur CDN cachelagring minskar energianvändningen, och hur en grönare webben ser ut.
 date: 2026-10-14T13:30:00Z
 draft: falskt
 tags:
-  - hållbarhet
-  - statisk-platser
-  - grön-webb
-  - co2
-  - ssg
-keywords: ljusslingor
-preview: /og-image.png
-serial: 3
+
+- hållbarhet
+- statisk-platser
+- grön-webb
+- co2
+- ssg
+  keywords: ljusslingor
+  preview: /og-image.png
+  serial: 3
+
 ---
 
 Det kostar mycket att ladda en sida. Ibland misslyckas en sida att ladda från cache databasen träffas flera gånger och varje fråga använder en hel del makt avger kilogram CO2. Det sägs att 2–4 procent av co2-utsläppen kommer från webben.

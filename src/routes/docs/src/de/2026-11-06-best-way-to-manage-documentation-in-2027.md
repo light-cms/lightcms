@@ -1,20 +1,23 @@
 ---
+
 title: Die beste Möglichkeit, die Dokumentation 2027 zu verwalten
 date:
 draft: falsch
 weight: 0
 tags:
-  - cms
-  - hellcms
-  - grünes Web
-isCJKLanguage: falsch
-headless: falsch
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- cms
+- hellcms
+- grünes Web
+  isCJKLanguage: falsch
+  headless: falsch
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 Dokumentation ist Teil eines Projekts, dem jeder zustimmt, und niemand ist sich völlig einig, wie man damit umgehen soll. Schauen Sie sich fünf Open-Source-Projekte an und Sie finden fünf verschiedene Setups. Einige funktionieren gut. Die meisten treiben in die Vernachlässigung.

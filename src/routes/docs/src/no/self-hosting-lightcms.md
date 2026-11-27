@@ -1,4 +1,5 @@
 ---
+
 title: Self Hosting LightCMS
 description: Guide to themselves host LightCMS, covering the GitHub App, PostgreSQL, environment variables, optional AI, CDN and email, and deploying to edge.
 serial: 4
@@ -7,18 +8,20 @@ badge: Installer
 date: 2026-09-18T01:45:00Z
 draft: usann
 tags:
-  - selfhost
-  - lysdioder
-  - postgresql
-  - distribuering
-keywords:
-  - lysdioder
-  - probot
-  - selvbetjent
-  - github_app
-  - versell
-  - sveltekit
-preview: /og-image.png
+
+- selfhost
+- lysdioder
+- postgresql
+- distribuering
+  keywords:
+- lysdioder
+- probot
+- selvbetjent
+- github_app
+- versell
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 Vil du ha LightCMS helt under kontrollen? LightCMS er en [SvelteKit](https://svelte.dev) applikasjon, så det kan distribueres hvor som helst, støttet av en PostgreSQL database og en GitHub App (Octokit). Ditt innhold forlater aldri ditt eget GitHub-lager.

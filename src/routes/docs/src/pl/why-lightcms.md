@@ -1,23 +1,26 @@
 ---
+
 title: "Dlaczego LightCMS: CMS obsługiwane przez Gita dla witryn statycznych"
 description: Większość platform CMS posiada Twoje treści. LightCMS utrzymuje to w twoim repozytorium Git, w prostych Markdown wdrożonych przez Twój własny rurociąg.
 serial: 2
 date: 2026-10-14T14:00:00Z
 draft: fałszywy
 tags:
-  - Światła
-  - git
-  - cms
-  - statyczne
-  - markdown
-  - publikowanie
-keywords:
-  - dlaczego światła
-  - Bazujące na gitach cms
-  - bezgłowy cms
-  - markdown cms
-  - statyczne cms witryny
-preview: /og-image.png
+
+- Światła
+- git
+- cms
+- statyczne
+- markdown
+- publikowanie
+  keywords:
+- dlaczego światła
+- Bazujące na gitach cms
+- bezgłowy cms
+- markdown cms
+- statyczne cms witryny
+  preview: /og-image.png
+
 ---
 
 Większość platform treści przechowuje Twój zapis w swojej bazie danych, renderowanie go na swoich serwerach i pobieranie opłat za dostęp do niego. Gdy platforma zamyka się, podnosi ceny lub zmienia jej warunki, twoja treść jest z tym związana.

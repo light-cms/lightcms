@@ -1,4 +1,5 @@
 ---
+
 title: PostHog Setup - Edit
 description: Implement PostHog event tracking in the identified files, following best practices and the example project
 ---

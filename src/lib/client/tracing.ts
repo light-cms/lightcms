@@ -1,7 +1,15 @@
-import { trace, type Attributes, type Span, type Tracer } from "@opentelemetry/api";
+import {
+	type Attributes,
+	type Span,
+	type Tracer,
+	trace,
+} from "@opentelemetry/api";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { resourceFromAttributes } from "@opentelemetry/resources";
-import { BasicTracerProvider, BatchSpanProcessor } from "@opentelemetry/sdk-trace-base";
+import {
+	BasicTracerProvider,
+	BatchSpanProcessor,
+} from "@opentelemetry/sdk-trace-base";
 
 /**
  * Browser tracing for PostHog.
@@ -15,43 +23,49 @@ import { BasicTracerProvider, BatchSpanProcessor } from "@opentelemetry/sdk-trac
 const SERVICE_NAME = "lightcms-web";
 
 interface BrowserTracingConfig {
-  posthogKey: string;
-  posthogHost: string;
+	posthogKey: string;
+	posthogHost: string;
 }
 
 let tracer: Tracer | undefined;
 
-export function initBrowserTracing({ posthogKey, posthogHost }: BrowserTracingConfig): void {
-  if (tracer) {
-    return;
-  }
+export function initBrowserTracing({
+	posthogKey,
+	posthogHost,
+}: BrowserTracingConfig): void {
+	if (tracer) {
+		return;
+	}
 
-  const exporter = new OTLPTraceExporter({
-    url: new URL("/i/v1/traces", posthogHost).toString(),
-    headers: { Authorization: `Bearer ${posthogKey}` },
-  });
+	const exporter = new OTLPTraceExporter({
+		url: new URL("/i/v1/traces", posthogHost).toString(),
+		headers: { Authorization: `Bearer ${posthogKey}` },
+	});
 
-  const provider = new BasicTracerProvider({
-    resource: resourceFromAttributes({ "service.name": SERVICE_NAME }),
-    spanProcessors: [new BatchSpanProcessor(exporter)],
-  });
+	const provider = new BasicTracerProvider({
+		resource: resourceFromAttributes({ "service.name": SERVICE_NAME }),
+		spanProcessors: [new BatchSpanProcessor(exporter)],
+	});
 
-  trace.setGlobalTracerProvider(provider);
-  tracer = provider.getTracer(SERVICE_NAME);
+	trace.setGlobalTracerProvider(provider);
+	tracer = provider.getTracer(SERVICE_NAME);
 }
 
 /**
  * Starts a span, or returns undefined when tracing is not configured. Callers
  * own the returned span and must end it.
  */
-export function startSpan(name: string, attributes?: Attributes): Span | undefined {
-  if (!tracer) {
-    return undefined;
-  }
+export function startSpan(
+	name: string,
+	attributes?: Attributes,
+): Span | undefined {
+	if (!tracer) {
+		return undefined;
+	}
 
-  if (attributes) {
-    return tracer.startSpan(name, { attributes });
-  }
+	if (attributes) {
+		return tracer.startSpan(name, { attributes });
+	}
 
-  return tracer.startSpan(name);
+	return tracer.startSpan(name);
 }

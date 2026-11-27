@@ -1,20 +1,23 @@
 ---
+
 title: Beste måte å administrere dokumentasjon i 2027
 date:
 draft: usann
 weight: 0
 tags:
-  - cm
-  - lysdioder
-  - grønn-web
-isCJKLanguage: usann
-headless: usann
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- cm
+- lysdioder
+- grønn-web
+  isCJKLanguage: usann
+  headless: usann
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 Dokumentasjon er den delen av et prosjekt som alle er enige om saker og at ingen er enig i dette. Se på fem prosjekter med åpen kildekode og du finner fem forskjellige oppsett. Noen fungerer bra. De fleste ruller ned i vanvare.

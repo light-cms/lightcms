@@ -1,23 +1,26 @@
 ---
+
 title: مقدمة
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: خاطئ
 tags:
-  - ضوضاء
-  - سم
-  - git
-  - ssg
-  - ثابت
-  - الموقع
-  - مولد
-keywords:
-  - ضوضاء
-  - البدء
-  - مقدمة
-  - wysiwyg
-  - markdown
-  - Git مبني
+
+- ضوضاء
+- سم
+- git
+- ssg
+- ثابت
+- الموقع
+- مولد
+  keywords:
+- ضوضاء
+- البدء
+- مقدمة
+- wysiwyg
+- markdown
+- Git مبني
+
 ---
 
 [LightCMS](https://www.lightcms.me) هو محرر مدعوم بنظام Git-للمواقع الثابتة. You write in a rich editor, hit publish, and [LightCMS](https://www.lightcms.me) commits clean Markdown to your repository. خط أنابيب النشر الخاص بك - صفحات Cloudflare ، Netliy، Vercel، GitHub - تأخذه من هناك.

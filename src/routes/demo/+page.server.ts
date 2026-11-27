@@ -35,31 +35,31 @@ const post = {
 `;
 
 export const load: PageServerLoad = () => {
-  return {
-    file: {
-      path: "posts/hello-lightcms.md",
-      filename: "hello-lightcms.md",
-      extension: "md",
-      sha: "d3a0c0f7e1b2a3c4d5e6f708192a3b4c5d6e7f80",
-      isMarkdown: true,
-      frontMatter: {
-        title: "Hello, LightCMS",
-        description: "A sample post for trying the LightCMS editor.",
-        date: "2026-10-22",
-        author: "LightCMS Team",
-        tags: ["demo", "editor"],
-        draft: false,
-      },
-      body: demoBody,
-      rawContent: demoBody,
-    },
-    repository: "lightcms/demo",
-    branch: "main",
-  };
+	return {
+		file: {
+			path: "posts/hello-lightcms.md",
+			filename: "hello-lightcms.md",
+			extension: "md",
+			sha: "d3a0c0f7e1b2a3c4d5e6f708192a3b4c5d6e7f80",
+			isMarkdown: true,
+			frontMatter: {
+				title: "Hello, LightCMS",
+				description: "A sample post for trying the LightCMS editor.",
+				date: "2026-10-22",
+				author: "LightCMS Team",
+				tags: ["demo", "editor"],
+				draft: false,
+			},
+			body: demoBody,
+			rawContent: demoBody,
+		},
+		repository: "lightcms/demo",
+		branch: "main",
+	};
 };
 
 export const actions: Actions = {
-  save: async () => {
-    return { success: true, savedAt: new Date().toISOString() };
-  },
+	save: async () => {
+		return { success: true, savedAt: new Date().toISOString() };
+	},
 };

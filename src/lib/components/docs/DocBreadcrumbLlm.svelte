@@ -6,10 +6,10 @@ import Copy from "@lucide/svelte/icons/copy";
 import FileCode from "@lucide/svelte/icons/file-code";
 import Link from "@lucide/svelte/icons/link";
 import { toast } from "svelte-sonner";
-import { buttonVariants } from "$lib/components/ui/button";
-import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
-import * as m from "$lib/i18n/messages";
-import { cn } from "$lib/utils";
+import { buttonVariants } from "#lib/components/ui/button";
+import * as DropdownMenu from "#lib/components/ui/dropdown-menu";
+import * as m from "#lib/i18n/messages";
+import { cn } from "#lib/utils";
 
 let {
 	section = "Get Started",

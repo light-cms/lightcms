@@ -1,4 +1,5 @@
 ---
+
 slug: FAQ
 title: "LightCMS FAQ: statische sites, Git & Markdown"
 description: "Antwoorden op veelgestelde vragen over LightCMS hoe Git bewerkt wordt, wat past bij statische site generatoren, zichzelf hosting, prijzen en content eigenaar."
@@ -7,13 +8,15 @@ badge: FAQ
 date: 2026-10-14T13:30:00Z
 draft: Onjuist
 tags:
-  - FAQ
-  - lightcms
-  - statisch-sites
-  - groen-web
-keywords: cms
-weight: 1
-isCJKLanguage: Onjuist
+
+- FAQ
+- lightcms
+- statisch-sites
+- groen-web
+  keywords: cms
+  weight: 1
+  isCJKLanguage: Onjuist
+
 ---
 
 ## Veelgestelde vragen (FAQ's)

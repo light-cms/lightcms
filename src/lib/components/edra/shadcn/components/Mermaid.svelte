@@ -1,15 +1,15 @@
 <script lang="ts">
 import type { NodeViewProps } from "@tiptap/core";
 import { onDestroy, onMount, tick } from "svelte";
-import { NodeViewWrapper } from "../../tiptap/index.js";
-import { downloadDiagramAsPng } from "./mermaid/download.js";
+import { NodeViewWrapper } from "../../tiptap/index";
+import { downloadDiagramAsPng } from "./mermaid/download";
 import MermaidEditor from "./mermaid/MermaidEditor.svelte";
 import MermaidPreview from "./mermaid/MermaidPreview.svelte";
 import {
 	createMermaidRenderer,
 	MERMAID_EDIT_DEBOUNCE_DELAY,
 	MERMAID_INLINE_RENDER_DELAY,
-} from "./mermaid/render.js";
+} from "./mermaid/render";
 
 const { node, editor, getPos }: NodeViewProps = $props();
 const code = $derived(node.textContent);

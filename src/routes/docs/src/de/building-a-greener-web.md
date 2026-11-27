@@ -1,17 +1,20 @@
 ---
+
 title: "Statische Stätten und CO2: Baue ein grüneres Web"
 description: Warum statische Websites weniger Kohlenstoff emittieren, wie CDN Caching den Energieverbrauch senkt und wie ein grüneres Web aussieht.
 date: 2026-10-14T13:30:00Z
 draft: falsch
 tags:
-  - nachhaltiger
-  - statische Seiten
-  - grünes Web
-  - ko2
-  - ssg
-keywords: hellcms
-preview: /og-image.png
-serial: 3
+
+- nachhaltiger
+- statische Seiten
+- grünes Web
+- ko2
+- ssg
+  keywords: hellcms
+  preview: /og-image.png
+  serial: 3
+
 ---
 
 Es kostet viel eine Seite zu laden. Manchmal kann eine Seite nicht aus dem Cache geladen werden, wird die Datenbank mehrmals getroffen und jede Abfrage verwendet eine Menge Energie emittieren Kilogramm CO2. Es wird gesagt, dass 2–4% der CO2-Emissionen aus dem Netz kommen.

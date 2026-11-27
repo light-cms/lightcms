@@ -1,23 +1,26 @@
 ---
+
 title: "Por que LightCMS: CMS apoiado pelo GitLab para sites estáticos"
 description: A maioria das plataformas CMS possuem seu conteúdo. O LightCMS o mantém no seu repositório Git, em Markdown simples, implementado pelo seu próprio pipeline.
 serial: 2
 date: 2026-10-14T14:00Z
 draft: Falso
 tags:
-  - luzes
-  - git
-  - SMS
-  - estático
-  - markdown
-  - publicação
-keywords:
-  - por que luzes
-  - git baseado em cms
-  - cms sem cabeça
-  - markdown cms
-  - site estático cms
-preview: /og-image.png
+
+- luzes
+- git
+- SMS
+- estático
+- markdown
+- publicação
+  keywords:
+- por que luzes
+- git baseado em cms
+- cms sem cabeça
+- markdown cms
+- site estático cms
+  preview: /og-image.png
+
 ---
 
 A maioria das plataformas de conteúdo armazenam sua escrita em seu banco de dados, torná-lo em seus servidores e carregá-lo para continuar acessando. Quando a plataforma se desliga, aumenta preços ou altera os termos, o seu conteúdo acompanha a plataforma.

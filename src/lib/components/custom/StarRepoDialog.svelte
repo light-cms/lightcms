@@ -1,7 +1,7 @@
 <script lang="ts">
 import Star from "@lucide/svelte/icons/star";
 import Users from "@lucide/svelte/icons/users";
-import { Button } from "$lib/components/ui/button";
+import { Button } from "#lib/components/ui/button";
 import {
 	Dialog,
 	DialogContent,
@@ -9,9 +9,9 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-} from "$lib/components/ui/dialog";
-import * as m from "$lib/i18n/messages";
-import { SITE } from "$lib/seo";
+} from "#lib/components/ui/dialog";
+import * as m from "#lib/i18n/messages";
+import { SITE } from "#lib/seo";
 
 interface Props {
 	open?: boolean;

@@ -5,11 +5,11 @@ import BookOpen from "@lucide/svelte/icons/book-open";
 import Check from "@lucide/svelte/icons/check";
 import Copy from "@lucide/svelte/icons/copy";
 import { onMount } from "svelte";
-import { DocsBlogBanner } from "$lib/components/custom";
-import { DocBreadcrumbLlm, DocCardsGrid } from "$lib/components/docs";
-import { Button } from "$lib/components/ui/button";
-import { Separator } from "$lib/components/ui/separator";
-import * as m from "$lib/i18n/messages";
+import { DocsBlogBanner } from "#lib/components/custom";
+import { DocBreadcrumbLlm, DocCardsGrid } from "#lib/components/docs";
+import { Button } from "#lib/components/ui/button";
+import { Separator } from "#lib/components/ui/separator";
+import * as m from "#lib/i18n/messages";
 
 interface DocLink {
 	slug: string;
@@ -258,7 +258,7 @@ onMount(() => {
 	}
 
 	.docs-article :global(code) {
-		font-family: var(--font-mono, ui-monospace, monospace);
+		font-family: --font-mono, ui-monospace, monospace;
 		font-size: 0.875em;
 	}
 
@@ -343,6 +343,55 @@ onMount(() => {
 		border-radius: var(--radius-lg);
 		border: 1px solid var(--border);
 		margin: 1.75rem 0;
+	}
+
+	.docs-article :global(a:has(> img[src*="youtube.com"])),
+	.docs-article :global(a:has(> img[src*="ytimg.com"])) {
+		display: block;
+		position: relative;
+		margin: 1.75rem 0;
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		text-decoration: none;
+	}
+
+	.docs-article :global(a:has(> img[src*="youtube.com"]) img),
+	.docs-article :global(a:has(> img[src*="ytimg.com"]) img) {
+		margin: 0;
+		width: 100%;
+		display: block;
+		transition: transform 200ms ease;
+	}
+
+	.docs-article :global(a:has(> img[src*="youtube.com"]):hover img),
+	.docs-article :global(a:has(> img[src*="ytimg.com"]):hover img) {
+		transform: scale(1.02);
+	}
+
+	.docs-article :global(a:has(> img[src*="youtube.com"])::after),
+	.docs-article :global(a:has(> img[src*="ytimg.com"])::after) {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 4rem;
+		height: 2.75rem;
+		background-color: rgba(220, 38, 38, 0.9);
+		border-radius: 0.85rem;
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><polygon points="9.5,7.5 16.5,12 9.5,16.5"/></svg>');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 1.5rem 1.5rem;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+		transition: transform 200ms ease, background-color 200ms ease;
+		pointer-events: none;
+	}
+
+	.docs-article :global(a:has(> img[src*="youtube.com"]):hover::after),
+	.docs-article :global(a:has(> img[src*="ytimg.com"]):hover::after) {
+		background-color: rgb(220, 38, 38);
+		transform: translate(-50%, -50%) scale(1.1);
 	}
 
 	:global(.copy-code-btn) {

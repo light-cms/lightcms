@@ -1,21 +1,24 @@
 ---
+
 title: Розсилка новин
 description: "Налаштуйте автоматичні розсилки для вашого статичного блогу з Newsy: пости, опубліковані прямо з Git, електронних листів, що надсилаються для вас, без щомісячної плати за платформу."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: хибність
 tags:
-  - розсилка новин
-  - ел. пошта
-  - новачок
-  - контрабанда
-keywords:
-  - розсилка новин
-  - email automation
-  - новачок
-  - контрабанда
-  - лампочки
-preview: /og-image.png
+
+- розсилка новин
+- ел. пошта
+- новачок
+- контрабанда
+  keywords:
+- розсилка новин
+- email automation
+- новачок
+- контрабанда
+- лампочки
+  preview: /og-image.png
+
 ---
 
 Reaching your audience directly after posting new content is among the most effective ways to build a loyal, dedicated reader base. Однак звичайний спосіб роботи інформаційного бюлетеня виріс надмірно незграбний і дорогий.

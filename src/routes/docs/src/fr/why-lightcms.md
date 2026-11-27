@@ -1,23 +1,26 @@
 ---
+
 title: "Pourquoi LightCMS : CMS gérés par Git pour les sites statiques"
 description: La plupart des plateformes CMS possèdent votre contenu. LightCMS le garde dans votre dépôt Git, en clair Markdown, déployé par votre propre pipeline.
 serial: 2
 date: 2026-10-14T14:00:00Z
 draft: Faux
 tags:
-  - lightcms
-  - git
-  - cms
-  - statique
-  - markdown
-  - Publication
-keywords:
-  - pourquoi Lightcms
-  - Cms basés sur git
-  - cms sans tête
-  - markdown cms
-  - cms statique du site
-preview: /og-image.png
+
+- lightcms
+- git
+- cms
+- statique
+- markdown
+- Publication
+  keywords:
+- pourquoi Lightcms
+- Cms basés sur git
+- cms sans tête
+- markdown cms
+- cms statique du site
+  preview: /og-image.png
+
 ---
 
 La plupart des plateformes de contenu stockent votre écriture dans leur base de données, la rendent sur leurs serveurs, et vous chargent de continuer à y accéder. Lorsque la plateforme s'éteint, augmente les prix ou modifie ses termes, votre contenu est en accord avec elle.

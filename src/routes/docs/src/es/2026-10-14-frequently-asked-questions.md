@@ -1,4 +1,5 @@
 ---
+
 slug: faq
 title: "Preguntas frecuentes de LightCMS: sitios estáticos, Git & Markdown"
 description: "Respuestas a preguntas comunes sobre LightCMS cómo funciona la edición basada en Git, qué generadores estáticos de sitio encaja, autoalojamiento, precio y propiedad de contenido."
@@ -7,13 +8,15 @@ badge: FAQ
 date: 2026-10-14T13:30:00Z
 draft: falso
 tags:
-  - faq
-  - luces
-  - sitios estáticos
-  - verde-web
-keywords: cms
-weight: 1
-isCJKLanguage: falso
+
+- faq
+- luces
+- sitios estáticos
+- verde-web
+  keywords: cms
+  weight: 1
+  isCJKLanguage: falso
+
 ---
 
 ## Preguntas frecuentes

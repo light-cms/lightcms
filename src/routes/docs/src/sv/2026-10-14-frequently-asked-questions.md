@@ -1,4 +1,5 @@
 ---
+
 slug: faq
 title: "LightCMS FAQ: statiska platser, Git & Markdown"
 description: "Svar på vanliga frågor om LightCMS hur Git-baserade redigering fungerar, vilka statiska webbplatsgeneratorer passar, självhosting, prissättning och innehållsägande."
@@ -7,13 +8,15 @@ badge: Vanliga frågor
 date: 2026-10-14T13:30:00Z
 draft: falskt
 tags:
-  - faq
-  - ljusslingor
-  - statisk-platser
-  - grön-webb
-keywords: cm
-weight: 1
-isCJKLanguage: falskt
+
+- faq
+- ljusslingor
+- statisk-platser
+- grön-webb
+  keywords: cm
+  weight: 1
+  isCJKLanguage: falskt
+
 ---
 
 ## Vanliga frågor

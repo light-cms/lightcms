@@ -1,22 +1,25 @@
 ---
+
 title: "2026年にブログを開始する方法: 静的サイト & Markdown"
 description: "Markdownで高速で安価で耐久性のあるブログを開始するためのガイド 静的サイトジェネレータとGitがCMSをバックアップしました — ホスティング料金もロックインもありません。"
 serial: 12
 date: 2026-10-14T12:50:00Z
 draft: false
 tags:
-  - ブログ
-  - static
-  - サイト
-  - markdown
-  - getting-started
-keywords:
-  - ブログを始めるには
-  - ブログを無料で開始
-  - markdown blog
-  - 静的サイトブログ
-  - ブログ2026を始める最善の方法は
-preview: /og-image.png
+
+- ブログ
+- static
+- サイト
+- markdown
+- getting-started
+  keywords:
+- ブログを始めるには
+- ブログを無料で開始
+- markdown blog
+- 静的サイトブログ
+- ブログ2026を始める最善の方法は
+  preview: /og-image.png
+
 ---
 
 2026年には、ブログを始めることはこれまで以上に簡単で安価です。 WordPressのホスト、ページビルダー、または月額プラットフォーム料金は不要になりました。 Markdownファイル、静的サイトジェネレータ、無料ホスティング、GitベースのCMSを使ってブログを作成できます。無償で。そして、あなたのブログはブログについての99%よりも速くロードされます。

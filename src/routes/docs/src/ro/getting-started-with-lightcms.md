@@ -1,23 +1,26 @@
 ---
+
 title: Introducere
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: fals
 tags:
-  - beculețe
-  - cmp
-  - git
-  - ssg
-  - static
-  - site
-  - generator
-keywords:
-  - beculețe
-  - a începe
-  - Introducere
-  - wysiwyg
-  - markdown
-  - git bazat
+
+- beculețe
+- cmp
+- git
+- ssg
+- static
+- site
+- generator
+  keywords:
+- beculețe
+- a începe
+- Introducere
+- wysiwyg
+- markdown
+- git bazat
+
 ---
 
 [LightCMS](https://www.lightcms.me) este un editor sprijinit de Git, pentru site-uri statice. Scrii într-un editor bogat, apasă publicarea, și [LightCMS](https://www.lightcms.me) angajează Markdown în depozitul tău. Conducta ta de implementare — Pagini de Cloudflare, Netlify, Vercel, Pagini GitHub — o duce de acolo.

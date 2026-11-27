@@ -1,20 +1,23 @@
 ---
+
 title: La meilleure façon de gérer la documentation en 2027
 date:
 draft: Faux
 weight: 0
 tags:
-  - cms
-  - lightcms
-  - Toile verte
-isCJKLanguage: Faux
-headless: Faux
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- cms
+- lightcms
+- Toile verte
+  isCJKLanguage: Faux
+  headless: Faux
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 La documentation est la partie d'un projet que tout le monde est d'accord avec les choses et personne n'est tout à fait d'accord sur la manière de gérer. Regardez cinq projets open source et vous trouverez cinq configurations différentes. Certains fonctionnent bien. La plupart des dérives vers la négligence.

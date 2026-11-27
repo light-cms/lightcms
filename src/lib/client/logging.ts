@@ -14,28 +14,28 @@ export type LogLevel = "info" | "warn" | "error";
 export type LogAttributeValue = string | number | boolean;
 
 export interface LogContext {
-  span?: Span;
-  attributes?: Record<string, LogAttributeValue>;
+	span?: Span;
+	attributes?: Record<string, LogAttributeValue>;
 }
 
 export function captureLog(
-  level: LogLevel,
-  body: string,
-  { span, attributes = {} }: LogContext = {},
+	level: LogLevel,
+	body: string,
+	{ span, attributes = {} }: LogContext = {},
 ): void {
-  if (!span) {
-    posthog.captureLog({ body, level, attributes });
-    return;
-  }
+	if (!span) {
+		posthog.captureLog({ body, level, attributes });
+		return;
+	}
 
-  const { traceId, spanId, traceFlags } = span.spanContext();
+	const { traceId, spanId, traceFlags } = span.spanContext();
 
-  posthog.captureLog({
-    body,
-    level,
-    attributes,
-    trace_id: traceId,
-    span_id: spanId,
-    trace_flags: traceFlags,
-  });
+	posthog.captureLog({
+		body,
+		level,
+		attributes,
+		trace_id: traceId,
+		span_id: spanId,
+		trace_flags: traceFlags,
+	});
 }

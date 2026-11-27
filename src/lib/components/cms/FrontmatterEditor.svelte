@@ -5,14 +5,14 @@ import ChevronRight from "@lucide/svelte/icons/chevron-right";
 import Plus from "@lucide/svelte/icons/plus";
 import Trash2 from "@lucide/svelte/icons/trash-2";
 import X from "@lucide/svelte/icons/x";
-import { Button } from "$lib/components/ui/button";
-import { Checkbox } from "$lib/components/ui/checkbox";
-import { Input } from "$lib/components/ui/input";
-import { Textarea } from "$lib/components/ui/textarea";
 import type {
 	FrontmatterRow,
 	FrontmatterType,
-} from "$lib/components/cms/frontmatter.types";
+} from "#lib/components/cms/frontmatter.types";
+import { Button } from "#lib/components/ui/button";
+import { Checkbox } from "#lib/components/ui/checkbox";
+import { Input } from "#lib/components/ui/input";
+import { Textarea } from "#lib/components/ui/textarea";
 
 interface Props {
 	rows: FrontmatterRow[];

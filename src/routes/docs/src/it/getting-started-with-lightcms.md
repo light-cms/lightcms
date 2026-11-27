@@ -1,23 +1,26 @@
 ---
+
 title: Introduzione
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: falso
 tags:
-  - lightcms
-  - cms
-  - git
-  - ssg
-  - statico
-  - sito
-  - generatore
-keywords:
-  - lightcms
-  - per iniziare
-  - introduzione
-  - wysiwyg
-  - markdown
-  - git based
+
+- lightcms
+- cms
+- git
+- ssg
+- statico
+- sito
+- generatore
+  keywords:
+- lightcms
+- per iniziare
+- introduzione
+- wysiwyg
+- markdown
+- git based
+
 ---
 
 [LightCMS](https://www.lightcms.me) è un editor supportato da Git per siti statici. Scrivi in un editor ricco, premi pubblica, e [LightCMS](https://www.lightcms.me) commette Markdown pulito nel tuo repository. La tua pipeline di distribuzione — Pagine Cloudflare, Netlify, Vercel, Pagine GitHub — lo prende da lì.

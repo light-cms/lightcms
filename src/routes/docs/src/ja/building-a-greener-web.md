@@ -1,17 +1,20 @@
 ---
+
 title: "静的サイトと CO2: Greener Web の構築"
 description: 静的サイトがカーボンを排出しない理由、CDNキャッシュがエネルギー使用量を削減する方法、そして環境に優しいウェブがどのように見えるか。
 date: 2026-10-14T13:30:00Z
 draft: false
 tags:
-  - 持続可能性は
-  - static-site
-  - green-web
-  - co2
-  - ssg
-keywords: lightcms
-preview: /og-image.png
-serial: 3
+
+- 持続可能性は
+- static-site
+- green-web
+- co2
+- ssg
+  keywords: lightcms
+  preview: /og-image.png
+  serial: 3
+
 ---
 
 ページを読み込むのに多くの費用がかかります。時には、ページがキャッシュから読み込めないことがあり、データベースが複数回ヒットし、各クエリはCO2の発生キログラムを大量に使用します。 CO2排出量の2~4%はウェブから来ていると言われています。

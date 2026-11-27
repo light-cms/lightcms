@@ -1,4 +1,5 @@
 ---
+
 slug: q
 title: "LightCMS FAQ: statiske sider, Git & Markdown"
 description: "Svar på vanlige spørsmål om LightCMS hvordan Git basert redigering fungerer, hvilke statiske nettstedsgeneratorer som passer, egenhosting, pris og eierskap av innhold."
@@ -7,13 +8,15 @@ badge: OSS
 date: 2026-10-14T13:30:00Z
 draft: usann
 tags:
-  - q
-  - lysdioder
-  - statiske steder
-  - grønn-web
-keywords: cm
-weight: 1
-isCJKLanguage: usann
+
+- q
+- lysdioder
+- statiske steder
+- grønn-web
+  keywords: cm
+  weight: 1
+  isCJKLanguage: usann
+
 ---
 
 ## Ofte stilte spørsmål

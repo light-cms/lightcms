@@ -1,20 +1,23 @@
 ---
+
 title: Nejlepší způsob, jak spravovat dokumentaci v roce 2027
 date:
 draft: nepravda
 weight: 0
 tags:
-  - cms
-  - světlomety
-  - zelený web
-isCJKLanguage: nepravda
-headless: nepravda
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- cms
+- světlomety
+- zelený web
+  isCJKLanguage: nepravda
+  headless: nepravda
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 Dokumentace je součástí projektu, na kterém se všichni shodnou, a nikdo se zcela neshodne na tom, jak naložit. Podívejte se na pět open source projektů a najdete pět různých nastavení. Některé fungují dobře. Největší posun do zanedbávání.

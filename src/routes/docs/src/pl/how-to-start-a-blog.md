@@ -1,22 +1,25 @@
 ---
+
 title: "Jak rozpocząć blog w 2026: Statyczne witryny & Markdown"
 description: "Przewodnik po rozpoczęciu szybkiego, taniego, trwałego bloga z Markdown statyczny generator witryn i obsługiwane przez Git CMS — bez rachunków hostingowych, bez blokady."
 serial: 12
 date: 2026-10-14T12:50:00Z
 draft: fałszywy
 tags:
-  - blogowanie
-  - statyczne
-  - strony
-  - markdown
-  - rozpoczęto
-keywords:
-  - jak rozpocząć blog
-  - rozpocznij blog za darmo
-  - blog markdown
-  - statyczny blog witryny
-  - najlepszy sposób na rozpoczęcie bloga 2026
-preview: /og-image.png
+
+- blogowanie
+- statyczne
+- strony
+- markdown
+- rozpoczęto
+  keywords:
+- jak rozpocząć blog
+- rozpocznij blog za darmo
+- blog markdown
+- statyczny blog witryny
+- najlepszy sposób na rozpoczęcie bloga 2026
+  preview: /og-image.png
+
 ---
 
 W 2026 r. tworzenie bloga jest łatwiejsze i tańsze niż kiedykolwiek. Nie potrzebujesz już hosta WordPress, konstruktora stron ani miesięcznej opłaty za platformę. Możesz zbudować blog z plikami Markdown i statycznym generatorem witryn, darmowym hostingiem oraz bazą na kodzie CMS. Bezpłatnie. Twój blog załaduje więcej niż 99% blogów o blogu.

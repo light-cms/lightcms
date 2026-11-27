@@ -37,7 +37,6 @@ Reach both through the PostHog `exec` tool (`info` then `call`): `data-warehouse
 - **skip** → record "picked but not connected" and return to step 5 (enable the dormant responder + follow-up — harmless, since it only emits once a warehouse source syncs).
 
 3. **On done, verify once.** Call `external-data-sources-list` and look for a source whose `source_type` is `GoogleSearchConsole`.
-
    - **Present** → record "connected by this setup (source id …, first sync started)". The connect page syncs `search_analytics_by_query_page` — the table the responder reads — by default, so there is nothing more to enable here.
    - **Absent** (the user didn't finish, or closed the page early) → **don't re-ask or wait** — record "picked but not connected" and return to step 5 (the dormant responder + follow-up cover it; the user can finish the connect page later). This run never nudges.
 

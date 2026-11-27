@@ -1,21 +1,24 @@
 ---
+
 title: Рассылка
 description: "Настройте автоматизированную рассылку для вашего статического блога с Новостью: сообщения, опубликованные прямо из Git, электронные письма, отправляемые для вас, без ежемесячной платы."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: ложь
 tags:
-  - рассылка
-  - почта
-  - новость
-  - smtp
-keywords:
-  - рассылка
-  - email automation
-  - новость
-  - smtp
-  - молнии
-preview: /og-image.png
+
+- рассылка
+- почта
+- новость
+- smtp
+  keywords:
+- рассылка
+- email automation
+- новость
+- smtp
+- молнии
+  preview: /og-image.png
+
 ---
 
 Reaching your audience directly after posting new content is among the most effective ways to build a loyal, dedicated reader base. Yet the conventional way of running a newsletter has grown unnecessarily clunky and costly.

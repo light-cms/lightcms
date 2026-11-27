@@ -1,11 +1,12 @@
 ---
+
 name: self-driving-setup
 description: >-
-  Set up PostHog Self-driving — enable the right signal sources, tune the scout
-  troop, and design custom scouts
+Set up PostHog Self-driving — enable the right signal sources, tune the scout
+troop, and design custom scouts
 metadata:
-  author: PostHog
-  version: 1.59.0
+author: PostHog
+version: 1.59.0
 ---
 
 # PostHog Self-driving setup

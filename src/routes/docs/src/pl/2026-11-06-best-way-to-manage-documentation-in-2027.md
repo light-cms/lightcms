@@ -1,20 +1,23 @@
 ---
+
 title: Najlepszy sposób zarządzania dokumentacją w 2027 r.
 date:
 draft: fałszywy
 weight: 0
 tags:
-  - cms
-  - Światła
-  - zielona strona
-isCJKLanguage: fałszywy
-headless: fałszywy
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- cms
+- Światła
+- zielona strona
+  isCJKLanguage: fałszywy
+  headless: fałszywy
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 Dokumentacja jest częścią projektu, który wszyscy zgadzają się co do tego, i nikt nie zgadza się co do sposobu działania. Spójrz na pięć projektów open source i znajdziesz pięć różnych konfiguracji. Niektóre działają dobrze. Większość znoszenia w lekceważenie.

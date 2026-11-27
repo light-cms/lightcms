@@ -11,17 +11,17 @@ import {
 	theme,
 	userPrefersMode,
 } from "mode-watcher";
-import { buttonVariants } from "$lib/components/ui/button/button.js";
-import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-import * as m from "$lib/i18n/messages";
-import type { ModePreference } from "$lib/themes.js";
+import { buttonVariants } from "#lib/components/ui/button/button";
+import * as DropdownMenu from "#lib/components/ui/dropdown-menu/index";
+import * as m from "#lib/i18n/messages";
+import type { ModePreference } from "#lib/themes";
 import {
 	APP_THEMES,
 	getThemeById,
 	normalizeModePreference,
 	normalizeThemeId,
-} from "$lib/themes.js";
-import { cn } from "$lib/utils.js";
+} from "#lib/themes";
+import { cn } from "#lib/utils";
 
 const resolvedMode = $derived(mode.current ?? "light");
 const preferredMode = $derived(
@@ -110,7 +110,7 @@ const triggerLabel = $derived(
 				<DropdownMenu.Item onclick={() => selectTheme(item.id)} title={item.description}>
 					<span
 						class="size-3 shrink-0 rounded-full border border-border"
-						style="background-color: var(--color-primary-500);"
+						style="background-color: --color-primary-500"
 						data-theme={item.id}
 						aria-hidden="true"
 					></span>

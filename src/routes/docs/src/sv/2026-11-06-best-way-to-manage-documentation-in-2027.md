@@ -1,20 +1,23 @@
 ---
+
 title: Bästa sättet att hantera dokumentation 2027
 date:
 draft: falskt
 weight: 0
 tags:
-  - cm
-  - ljusslingor
-  - grön-webb
-isCJKLanguage: falskt
-headless: falskt
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- cm
+- ljusslingor
+- grön-webb
+  isCJKLanguage: falskt
+  headless: falskt
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 Dokumentation är den del av ett projekt som alla är överens om och ingen är helt överens om hur man ska hantera. Titta på fem projekt med öppen källkod så hittar du fem olika inställningar. En del fungerar bra. De flesta glider till försummelse.

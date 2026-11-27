@@ -1,6 +1,6 @@
 <script lang="ts">
-import EditorWorkspace from "$lib/components/cms/EditorWorkspace.svelte";
-import { createLightCmsClient } from "$lib/orpc-client";
+import EditorWorkspace from "#lib/components/cms/EditorWorkspace.svelte";
+import { createLightCmsClient } from "#lib/orpc-client";
 import type { PageData } from "./$types";
 
 let { data }: { data: PageData } = $props();
@@ -17,10 +17,7 @@ function readFileAsDataUrl(file: File): Promise<string> {
 
 let orpcClient: ReturnType<typeof createLightCmsClient> | undefined;
 
-const callAI = async (
-	prompt: string,
-	onChunk: (chunk: string) => void,
-) => {
+const callAI = async (prompt: string, onChunk: (chunk: string) => void) => {
 	try {
 		if (!orpcClient) {
 			orpcClient = createLightCmsClient();

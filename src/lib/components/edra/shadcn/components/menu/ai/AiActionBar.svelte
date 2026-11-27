@@ -4,8 +4,8 @@ import Check from "@lucide/svelte/icons/check";
 import RotateCcw from "@lucide/svelte/icons/rotate-ccw";
 import Trash2 from "@lucide/svelte/icons/trash-2";
 import { fade } from "svelte/transition";
-import { Button } from "$lib/components/ui/button/index.js";
-import { cn } from "$lib/utils.js";
+import { Button } from "#lib/components/ui/button/index";
+import { cn } from "#lib/utils";
 
 interface Props {
 	onAccept: () => void;

@@ -1,21 +1,24 @@
 ---
+
 title: Newsletter
 description: "Configurez des newsletters automatisées pour votre blog statique avec Newsy : les messages publiés directement depuis Git, les e-mails d'abonné vous sont envoyés, sans frais mensuels de la plate-forme."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: Faux
 tags:
-  - Newsletter
-  - Email
-  - Nouvelles
-  - smtp
-keywords:
-  - Newsletter
-  - email automation
-  - Nouvelles
-  - smtp
-  - lightcms
-preview: /og-image.png
+
+- Newsletter
+- Email
+- Nouvelles
+- smtp
+  keywords:
+- Newsletter
+- email automation
+- Nouvelles
+- smtp
+- lightcms
+  preview: /og-image.png
+
 ---
 
 Atteindre votre public directement après avoir posté un nouveau contenu est l'un des moyens les plus efficaces pour construire une base de lecteurs loyale et dédiée. Yet the conventional way of running a newsletter has grown unnecessarily clunky and costly.

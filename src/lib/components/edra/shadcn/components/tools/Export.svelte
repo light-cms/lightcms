@@ -1,9 +1,9 @@
 <script lang="ts">
 import ChevronDown from "@lucide/svelte/icons/chevron-down";
 import Download from "@lucide/svelte/icons/download";
-import { buttonVariants } from "$lib/components/ui/button/button.js";
-import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-import { getEditor } from "../../../tiptap/index.js";
+import { buttonVariants } from "#lib/components/ui/button/button";
+import * as DropdownMenu from "#lib/components/ui/dropdown-menu/index";
+import { getEditor } from "../../../tiptap/index";
 
 const editor = getEditor();
 const handleExport = (as: "markdown" | "html" | "json") => {

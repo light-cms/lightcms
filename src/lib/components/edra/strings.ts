@@ -1,2 +1,2 @@
 // Re-export from the split strings module
-export { default } from "./strings/index.js";
+export { default } from "./strings/index";

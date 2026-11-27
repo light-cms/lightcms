@@ -1,21 +1,24 @@
 ---
+
 title: ニュースレター
 description: "Newsyで静的なブログの自動ニュースレターを設定する:Gitから直接公開された投稿、あなたのために送信された購読者のメール、月額プラットフォーム料金はかかりません。"
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: false
 tags:
-  - ニュースレター|ニュースレター|ニュースレターを
-  - メールアドレス
-  - newsy
-  - smtp
-keywords:
-  - ニュースレター|ニュースレター|ニュースレターを
-  - email automation
-  - newsy
-  - smtp
-  - lightcms
-preview: /og-image.png
+
+- ニュースレター|ニュースレター|ニュースレターを
+- メールアドレス
+- newsy
+- smtp
+  keywords:
+- ニュースレター|ニュースレター|ニュースレターを
+- email automation
+- newsy
+- smtp
+- lightcms
+  preview: /og-image.png
+
 ---
 
 新しいコンテンツを投稿した直後にオーディエンスにリーチすることは、 忠実な専用のリーダーベースを構築するための最も効果的な方法の1つです。しかし、従来のニュースレターの実行方法は、 不必要に不安定で高価なものに成長しました。

@@ -36,7 +36,6 @@ Load `wizard_ask` via `ToolSearch select:mcp__wizard-tools__wizard_ask`. Reach `
 ## Do
 
 1. **Build a short list from the codebase scan, then ask once.** The full catalog is ~36 tools — too many to show at once. The run prompt carries a **"Tools detected in this codebase"** block (a deterministic dependency + env-key scan the wizard ran on this project). Use it to keep the first ask short:
-
    - **Detected tools first.** From that block, take every tool whose `source_type` matches an entry in the connected-tools catalog (the `source_type` list in step 2 — e.g. detected `Sentry` → Sentry, `Github` → GitHub Issues). Ignore detected sources that are **not** in the catalog (Postgres, Stripe, …) — those belong to step 4, not this ask. List these first, right after "None of these". If the run prompt carries no detected block (older wizard), fall back to any step-2 evidence for ordering.
    - **Then the SaaS basics** — always offer GitHub Issues, Linear, Jira, Sentry, and Zendesk even when the scan didn't flag them; skip any already added above.
    - **Then "Show more (N more hidden)"** — a final `show-more` option that opens the full catalog. Set `N` to the number of catalog tools you did **not** list above (36 minus the detected-plus-basics rows), so the label says how many are behind it instead of leaving the user to guess.
@@ -120,14 +119,12 @@ Two things narrow what actually bills, so don't imply every record becomes a PR:
 2. Call `external-data-sources-list` once (step 2's project profile also lists warehouse sources when it exists). For each picked tool whose source already exists, match its warehouse `source_type`: `Github` / `Linear` / `Jira` / `GitLab` / `Gitea` / `Shortcut` / `Sentry` / `Rollbar` / `Bugsnag` / `Honeybadger` / `Raygun` / `Zendesk` / `Freshdesk` / `Freshservice` / `Front` / `Gorgias` / `Kustomer` / `Dixa` / `Plain` / `PgAnalyze` / `Snyk` / `Sonarqube` / `Semgrep` / `Rapid7Insightvm` / `Featurebase` / `Frill` / `Aha` / `Uservoice` / `Productboard` / `Canny` / `Asknicely` / `Retently` / `Appfigures` / `Appfollow` / `JudgeMeReviews` / `GoogleSearchConsole`. Record "already connected" — no connector flow needed, just enable its responder row (step 4 below).
 
 3. Dispatch each picked tool that's still missing:
-
    - **GitHub Issues** → read `references/5a-github.md` and follow it.
    - **Linear** → read `references/5b-linear.md` and follow it.
    - **Zendesk / pganalyze / Jira** (and any other API-credential source) → read `references/5c-credentials.md` and follow it. It hands the user a secure PostHog connect link, waits for them to store their credentials in the browser, then creates the live source from that stored credential. If they skip or don't finish, it falls back to the dormant responder + follow-up (step 4 below).
    - **Google Search Console** → read `references/5d-google-search-console.md` and follow it. It hands the user a PostHog connect link that runs Google's OAuth grant and property pick in the browser and creates the source there, then verifies it via `external-data-sources-list`. If they skip or don't finish, it falls back to the dormant responder + follow-up (step 4 below).
 
 4. Enable the source row (step 4's write recipe) for every tool the user picked — created, verified, and picked-but-not-connected alike (a dormant row is harmless and saves a later trip):
-
    - GitHub Issues → `github` / `issue`
    - Linear → `linear` / `issue`. When `5b-linear.md` recorded `linear_team_ids`, add `config: { "linear_team_ids": [...] }` to the create. When a row already exists, **read it with `inbox-source-configs-retrieve` first** and send that row's existing `config` keys back with the team ids merged in — a partial update replaces `config` as one whole object, and `inbox-source-configs-list` doesn't return it, so team ids written on their own delete the user's `steering` text and `default_not_actionable` flag. Both keys drive the actionability gate, so losing them silently changes which Linear issues become signals and which ones get a paid draft PR. A failed retrieve → still write `enabled: true`, write no `config`, and record the team pick as a follow-up; reading every team costs the user less than losing their steering. No recorded pick (already connected, or picked but not connected) → write no `config`; the row reads every team.
    - Jira → `jira` / `issue`
@@ -166,7 +163,6 @@ Two things narrow what actually bills, so don't imply every record becomes a PR:
    - Google Search Console → `google_search_console` / `search_opportunity`
 
 5. Record each picked tool's final class honestly — the report consumes these verbatim:
-
    - **connected by this setup** — the connector flow created the source (you have its id; the first sync starts automatically). This now includes credential sources the user connected through the `5c-credentials.md` link, not just GitHub/Linear.
    - **already connected** / **verified connected** — the source row was seen in `external-data-sources-list`
    - **picked but not connected** — the user picked the tool but skipped or didn't finish its connect step, so no live warehouse source exists: a connect link they didn't complete (Zendesk / pganalyze / Jira), Linear when its integration didn't land, or a GitHub Issues fallback the user skipped. **Enable the dormant responder and add a "Connect <tool>…" follow-up** — this is harmless, because a responder only emits once its warehouse source actually syncs, so a dormant row just saves the user a later trip. Record it honestly — never write that the user "confirmed connecting" and never "not used". Phrase it as "you selected <tool>, but no warehouse source was connected — the responder is enabled and stays dormant until you add the source and it starts syncing", plus the follow-up with the new-warehouse-source URL

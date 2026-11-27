@@ -2,7 +2,7 @@
 import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
 import XIcon from "@lucide/svelte/icons/x";
 import { Dialog, Portal } from "@skeletonlabs/skeleton-svelte";
-import type { TemplatesResult } from "$lib/templates";
+import type { TemplatesResult } from "#lib/templates";
 
 interface Props {
 	open?: boolean;

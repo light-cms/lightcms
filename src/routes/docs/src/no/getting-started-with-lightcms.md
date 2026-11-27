@@ -1,23 +1,26 @@
 ---
+
 title: Introduksjon
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: usann
 tags:
-  - lysdioder
-  - cm
-  - git
-  - ssg
-  - statisk
-  - nettsted
-  - generator
-keywords:
-  - lysdioder
-  - kom i gang
-  - introduksjon
-  - wysiwyg
-  - markdown
-  - git basert
+
+- lysdioder
+- cm
+- git
+- ssg
+- statisk
+- nettsted
+- generator
+  keywords:
+- lysdioder
+- kom i gang
+- introduksjon
+- wysiwyg
+- markdown
+- git basert
+
 ---
 
 [LightCMS](https://www.lightcms.me) er en Git-backed editor for static sites. Du skriver i et rikt redigeringsprogram, trykk publisering, og [LightCMS](https://www.lightcms.me) kommanderer Markdown reng til ditt depot. Rørledningen din — Skyflare sider, Netlify, Vercel, GitHub sider — tar den derfra.

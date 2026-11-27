@@ -1,22 +1,25 @@
 ---
+
 title: "Miten aloittaa blogi vuonna 2026: Staattiset sivustot & Markdown"
 description: "Opas aloittaa nopea, halpa, kestävä blogi Markdown, staattisen toimipaikan generaattori, ja Git backed CMS – ei hosting laskuja, ei lukita sisään."
 serial: 12
 date: 2026-10-14T12:50:00Z
 draft: epätosi
 tags:
-  - bloggaaminen
-  - staattinen
-  - sivustot
-  - markdown
-  - getting-started
-keywords:
-  - miten aloittaa blogin
-  - käynnistä blogi ilmaiseksi
-  - markdown blogi
-  - staattisen sivuston blogi
-  - paras tapa aloittaa blogi 2026
-preview: /og-image.png
+
+- bloggaaminen
+- staattinen
+- sivustot
+- markdown
+- getting-started
+  keywords:
+- miten aloittaa blogin
+- käynnistä blogi ilmaiseksi
+- markdown blogi
+- staattisen sivuston blogi
+- paras tapa aloittaa blogi 2026
+  preview: /og-image.png
+
 ---
 
 Vuonna 2026, blogin aloittaminen on helpompaa ja halvempaa kuin koskaan. Et enää tarvitse WordPress isäntä, sivun rakentaja, tai kuukausittain alustan maksu. Voit rakentaa blogin Markdown-tiedostoja, staattinen sivusto generaattori, ilmainen hosting, ja git-pohjainen CMS. Ilman kustannuksia. Ja blogisi lataa nopeammin kuin 99% blogeja bloggaamisesta.

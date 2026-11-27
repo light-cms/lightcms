@@ -1,4 +1,5 @@
 ---
+
 title: Само-хостинг LightCMS
 description: Прямуйте до власного хосту LightCMS, що охоплює програму GitHub, PostgreSQL, змінні середовища, параметри додаткового AI, CDN та електронну пошту, а також розгортання до краю.
 serial: 4
@@ -7,18 +8,20 @@ badge: Розгортання
 date: 2026-09-18T01:45:00Z
 draft: хибність
 tags:
-  - selfhost
-  - лампочки
-  - postgresql
-  - розгортання
-keywords:
-  - лампочки
-  - робот
-  - самохостинг
-  - github_app
-  - версель
-  - sveltekit
-preview: /og-image.png
+
+- selfhost
+- лампочки
+- postgresql
+- розгортання
+  keywords:
+- лампочки
+- робот
+- самохостинг
+- github_app
+- версель
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 Хочете LightCMS повністю під керуванням? LightCMS is a [SvelteKit](https://svelte.dev) application, so it can be deployed anywhere, backed by a PostgreSQL database and a GitHub App (Octokit). Ваш контент ніколи не залишає власного репозиторію GitHub.

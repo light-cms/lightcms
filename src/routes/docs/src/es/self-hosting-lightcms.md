@@ -1,4 +1,5 @@
 ---
+
 title: Autoalojando LightCMS
 description: Guía para LightCMS, que cubre la aplicación de GitHub, PostgreSQL, variables de entorno, IA opcional, CDN y correo electrónico, e implementando en el borde.
 serial: 4
@@ -7,18 +8,20 @@ badge: Desplegar
 date: 2026-09-18T01:45:00Z
 draft: falso
 tags:
-  - selfhost
-  - luces
-  - postgresql
-  - despliegue
-keywords:
-  - luces
-  - probot
-  - auto alojamiento
-  - github_app
-  - vértice
-  - sveltekit
-preview: /og-image.png
+
+- selfhost
+- luces
+- postgresql
+- despliegue
+  keywords:
+- luces
+- probot
+- auto alojamiento
+- github_app
+- vértice
+- sveltekit
+  preview: /og-image.png
+
 ---
 
 ¿Quieres LightCMS completamente bajo tu control? LightCMS es una aplicación [SvelteKit](https://svelte.dev) , por lo que puede ser desplegada en cualquier lugar, respaldada por una base de datos PostgreSQL y una aplicación de GitHub (kit de octubre). Su contenido nunca abandona sus propios repositorios de GitHub.

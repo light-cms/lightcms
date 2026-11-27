@@ -5,8 +5,9 @@
  * a generic OpenAI-compatible endpoint and Wit.ai.
  */
 export const SPEECH_PROVIDERS = {
-  openaiCompatible: "openai-compatible",
-  wit: "wit",
+	openaiCompatible: "openai-compatible",
+	wit: "wit",
 } as const;
 
-export type SpeechProvider = (typeof SPEECH_PROVIDERS)[keyof typeof SPEECH_PROVIDERS];
+export type SpeechProvider =
+	(typeof SPEECH_PROVIDERS)[keyof typeof SPEECH_PROVIDERS];

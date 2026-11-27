@@ -1,11 +1,11 @@
 <script lang="ts">
 import ArrowRight from "@lucide/svelte/icons/arrow-right";
 import FileText from "@lucide/svelte/icons/file-text";
+import * as Command from "#lib/components/ui/command";
+import { localizeHref } from "#lib/i18n";
+import * as m from "#lib/i18n/messages";
+import type { DocNavSection } from "#lib/server/docs";
 import { goto } from "$app/navigation";
-import * as Command from "$lib/components/ui/command";
-import { localizeHref } from "$lib/i18n";
-import * as m from "$lib/i18n/messages";
-import type { DocNavSection } from "$lib/server/docs";
 
 let {
 	open = $bindable(false),

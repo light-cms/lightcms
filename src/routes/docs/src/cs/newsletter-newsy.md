@@ -1,21 +1,24 @@
 ---
+
 title: Newsletter
 description: "Nastavte automatické newslettery pro váš statický blog s Newsy: příspěvky publikované přímo z Gitu, emaily předplatitelů, které vám byly zaslány, bez měsíčního poplatku za platformu."
 serial: 5
 date: 2026-09-18T01:50:00Z
 draft: nepravda
 tags:
-  - newsletter
-  - E-mail
-  - novozézní
-  - SMTP
-keywords:
-  - newsletter
-  - email automation
-  - novozézní
-  - SMTP
-  - světlomety
-preview: /og-image.png
+
+- newsletter
+- E-mail
+- novozézní
+- SMTP
+  keywords:
+- newsletter
+- email automation
+- novozézní
+- SMTP
+- světlomety
+  preview: /og-image.png
+
 ---
 
 Dosažení publika přímo po odeslání nového obsahu je jedním z nejúčinnějších způsobů, jak vytvořit loajální, oddanou čtenářskou základnu. Konvenční způsob provozování newsletteru se však rozrostl zbytečně skromným a nákladným.

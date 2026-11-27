@@ -1,20 +1,23 @@
 ---
+
 title: La mejor manera de administrar la documentación en 2027
 date:
 draft: falso
 weight: 0
 tags:
-  - cms
-  - luces
-  - verde-web
-isCJKLanguage: falso
-headless: falso
-keywords: ""
-preview: ""
-description: ""
-serial: 0
-section: ""
-badge: ""
+
+- cms
+- luces
+- verde-web
+  isCJKLanguage: falso
+  headless: falso
+  keywords: ""
+  preview: ""
+  description: ""
+  serial: 0
+  section: ""
+  badge: ""
+
 ---
 
 La documentación es parte de un proyecto que todo el mundo está de acuerdo y nadie está totalmente de acuerdo en cómo gestionar. Mira cinco proyectos de código abierto y encontrarás cinco configuraciones diferentes. Algunos funcionan bien. La mayoría de ellos se derivan hacia el abandono.

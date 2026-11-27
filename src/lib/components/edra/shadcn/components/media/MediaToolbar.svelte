@@ -10,12 +10,12 @@ import AlignCenter from "@lucide/svelte/icons/text-align-center";
 import AlignRight from "@lucide/svelte/icons/text-align-end";
 import AlignLeft from "@lucide/svelte/icons/text-align-start";
 import Trash from "@lucide/svelte/icons/trash-2";
-import { Button, buttonVariants } from "$lib/components/ui/button/index.js";
-import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-import { Input } from "$lib/components/ui/input/index.js";
-import * as Popover from "$lib/components/ui/popover/index.js";
-import { cn } from "$lib/utils.js";
-import strings from "../../../strings.js";
+import { Button, buttonVariants } from "#lib/components/ui/button/index";
+import * as DropdownMenu from "#lib/components/ui/dropdown-menu/index";
+import { Input } from "#lib/components/ui/input/index";
+import * as Popover from "#lib/components/ui/popover/index";
+import { cn } from "#lib/utils";
+import strings from "../../../strings";
 
 interface Props {
 	align: string | null;

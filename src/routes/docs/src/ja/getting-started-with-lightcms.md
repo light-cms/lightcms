@@ -1,23 +1,26 @@
 ---
+
 title: はじめに
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: false
 tags:
-  - lightcms
-  - cms
-  - git
-  - ssg
-  - static
-  - サイト
-  - ジェネレーター|ジェネレーター
-keywords:
-  - lightcms
-  - 始めよう
-  - 紹介
-  - wysiwyg
-  - markdown
-  - git based
+
+- lightcms
+- cms
+- git
+- ssg
+- static
+- サイト
+- ジェネレーター|ジェネレーター
+  keywords:
+- lightcms
+- 始めよう
+- 紹介
+- wysiwyg
+- markdown
+- git based
+
 ---
 
 [LightCMS](https://www.lightcms.me) は、静的サイト用の Git-backed エディタです。リッチエディタに書き込み、パブリッシュを押して、 [LightCMS](https://www.lightcms.me) がリポジトリにマークダウンを削除することを約束します。デプロイパイプライン(Cloudflare Pages, Netlify, Vercel, GitHub Pages)はそこから取っていきます。

@@ -1,17 +1,20 @@
 ---
+
 title: "Site-uri statice și CO2: Construirea unui web Greener"
 description: De ce siturile statice emit mai puțin carbon, cum cache-ul CDN reduce consumul de energie, și cum arată o rețea mai verde.
 date: 2026-10-14T13:30:00Z
 draft: fals
 tags:
-  - sustenabilitate;
-  - situri statice
-  - web verde
-  - co2
-  - ssg
-keywords: beculețe
-preview: /og-image.png
-serial: 3
+
+- sustenabilitate;
+- situri statice
+- web verde
+- co2
+- ssg
+  keywords: beculețe
+  preview: /og-image.png
+  serial: 3
+
 ---
 
 Costă mult să încarci o pagină. Uneori o pagină nu se încarcă din cache-ul bazei de date este lovit de mai multe ori şi fiecare interogare utilizează multe kilograme de CO2 care emit energie. Se afirmă că 2-4% din emisiile de co2 provin de pe internet.

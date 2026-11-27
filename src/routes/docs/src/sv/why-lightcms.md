@@ -1,23 +1,26 @@
 ---
+
 title: "Varför LightCMS: CMS med Git-stöd för statiska platser"
 description: De flesta CMS-plattformar äger ditt innehåll. LightCMS håller den i din Git repo, i vanlig Markdown, utplacerad av din egen rörledning.
 serial: 2
 date: 2026-10-14T14:00:00Z
 draft: falskt
 tags:
-  - ljusslingor
-  - git
-  - cm
-  - statisk
-  - markdown
-  - publicering
-keywords:
-  - varför ljusstyrka
-  - git baserad cms
-  - huvudlösa cms
-  - markdown cms
-  - statisk webbplats cms
-preview: /og-image.png
+
+- ljusslingor
+- git
+- cm
+- statisk
+- markdown
+- publicering
+  keywords:
+- varför ljusstyrka
+- git baserad cms
+- huvudlösa cms
+- markdown cms
+- statisk webbplats cms
+  preview: /og-image.png
+
 ---
 
 De flesta innehållsplattformar lagrar ditt skrivande i sin databas, gör det på sina servrar, och debiterar dig att fortsätta komma åt det. När plattformen stängs, höjer priserna, eller ändrar dess villkor, ditt innehåll går med det.
