@@ -1,97 +1,97 @@
 {
-	"$schema": "https://turbo.build",
-	"globalDependencies": [".env", ".env.*"],
-	"tasks": {
-		"build": {
-			"tags": ["ci"],
-			"outputs": [".svelte-kit/**", ".vercel/output/**"],
-			"inputs": [
-				"$TURBO_DEFAULT$",
-				"!.posthog/**",
-				"!.devcontainer/**",
-				"!.zed/**",
-				"!.jj/**",
-				"!.github/**",
-				"!.frontmatter/database/**",
-				"!README.md",
-				"!LICENSE"
-			],
-			"env": ["PUBLIC_*"],
-			"passThroughEnv": [
-				"BETTER_AUTH_SECRET",
-				"BETTER_AUTH_URL",
-				"CDN_KEY",
-				"CDN_URL",
-				"DATABASE_URL",
-				"GITHUB_APP_ID",
-				"GITHUB_CLIENT_ID",
-				"GITHUB_CLIENT_SECRET",
-				"GITHUB_PRIVATE_KEY",
-				"GITHUB_WEBHOOK_SECRET",
-				"MAIL_FROM",
-				"MAIL_HOST",
-				"MAIL_PASS",
-				"MAIL_PORT",
-				"MAIL_SECURE",
-				"MAIL_USER",
-				"OPEN_AI_APIKEY",
-				"OPEN_AI_ENDPOINT",
-				"OPEN_AI_MODEL",
-				"SPEECH_API_KEY",
-				"SPEECH_ENDPOINT",
-				"SPEECH_MODEL",
-				"WIT_ACCESS_TOKEN",
-				"WIT_AI_API_KEY",
-				"WIT_AI_TOKEN",
-				"WIT_TOKEN"
-			]
-		},
-		"check": {
-			"outputs": [],
-			"inputs": [
-				"$TURBO_DEFAULT$",
-				"!.posthog/**",
-				"!.devcontainer/**",
-				"!.zed/**",
-				"!.jj/**",
-				"!.github/**",
-				"!.frontmatter/database/**",
-				"!README.md",
-				"!LICENSE"
-			]
-		},
-		"lint": {
-			"outputs": [],
-			"inputs": [
-				"$TURBO_DEFAULT$",
-				"!.posthog/**",
-				"!.devcontainer/**",
-				"!.zed/**",
-				"!.jj/**",
-				"!.github/**",
-				"!.frontmatter/database/**",
-				"!README.md",
-				"!LICENSE"
-			]
-		},
-		"test": {
-			"outputs": [],
-			"passThroughEnv": ["PUBLIC_*"],
-			"inputs": [
-				"$TURBO_DEFAULT$",
-				"!.posthog/**",
-				"!.devcontainer/**",
-				"!.zed/**",
-				"!.jj/**",
-				"!.github/**",
-				"!.frontmatter/database/**",
-				"!README.md",
-				"!LICENSE"
-			]
-		},
-		"dev": {
-			"cache": false,
-			"persistent": true
-		}
-	}
+  "$schema": "https://turbo.build",
+  "globalDependencies": [".env", ".env.*"],
+  "tasks": {
+    "build": {
+      "tags": ["ci"],
+      "outputs": [".svelte-kit/**", ".vercel/output/**"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!.posthog/**",
+        "!.devcontainer/**",
+        "!.zed/**",
+        "!.jj/**",
+        "!.github/**",
+        "!.frontmatter/database/**",
+        "!README.md",
+        "!LICENSE"
+      ],
+      "env": ["PUBLIC_*"],
+      "passThroughEnv": [
+        "BETTER_AUTH_SECRET",
+        "BETTER_AUTH_URL",
+        "CDN_KEY",
+        "CDN_URL",
+        "DATABASE_URL",
+        "GITHUB_APP_ID",
+        "GITHUB_CLIENT_ID",
+        "GITHUB_CLIENT_SECRET",
+        "GITHUB_PRIVATE_KEY",
+        "GITHUB_WEBHOOK_SECRET",
+        "MAIL_FROM",
+        "MAIL_HOST",
+        "MAIL_PASS",
+        "MAIL_PORT",
+        "MAIL_SECURE",
+        "MAIL_USER",
+        "OPEN_AI_APIKEY",
+        "OPEN_AI_ENDPOINT",
+        "OPEN_AI_MODEL",
+        "SPEECH_API_KEY",
+        "SPEECH_ENDPOINT",
+        "SPEECH_MODEL",
+        "WIT_ACCESS_TOKEN",
+        "WIT_AI_API_KEY",
+        "WIT_AI_TOKEN",
+        "WIT_TOKEN"
+      ]
+    },
+    "check": {
+      "outputs": [],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!.posthog/**",
+        "!.devcontainer/**",
+        "!.zed/**",
+        "!.jj/**",
+        "!.github/**",
+        "!.frontmatter/database/**",
+        "!README.md",
+        "!LICENSE"
+      ]
+    },
+    "lint": {
+      "outputs": [],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!.posthog/**",
+        "!.devcontainer/**",
+        "!.zed/**",
+        "!.jj/**",
+        "!.github/**",
+        "!.frontmatter/database/**",
+        "!README.md",
+        "!LICENSE"
+      ]
+    },
+    "test": {
+      "outputs": [],
+      "passThroughEnv": ["PUBLIC_*"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!.posthog/**",
+        "!.devcontainer/**",
+        "!.zed/**",
+        "!.jj/**",
+        "!.github/**",
+        "!.frontmatter/database/**",
+        "!README.md",
+        "!LICENSE"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
 }

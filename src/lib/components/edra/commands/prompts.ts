@@ -61,11 +61,11 @@ You will receive context in this format:
  * @returns A prompt string to be sent to the AI model.
  */
 export const generatePrompt = (
-	userPrompt: string,
-	precedingText?: string,
-	selectedText?: string,
+  userPrompt: string,
+  precedingText?: string,
+  selectedText?: string,
 ) => {
-	return `
+  return `
     ${precedingText ? `[PRECEDING_TEXT]: ${precedingText}` : ""}
     ${selectedText ? `[SELECTED_TEXT]: ${selectedText}` : ""}
     [USER_PROMPT]: ${userPrompt}

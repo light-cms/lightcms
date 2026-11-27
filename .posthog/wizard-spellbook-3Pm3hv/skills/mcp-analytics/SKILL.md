@@ -129,7 +129,7 @@ Create the PostHog client **once at module scope** (never per request), reading 
 import { PostHog } from "posthog-node";
 
 const posthog = new PostHog(process.env.POSTHOG_PROJECT_TOKEN, {
-	host: process.env.VITE_POSTHOG_HOST, // https://us.i.posthog.com or https://eu.i.posthog.com
+  host: process.env.VITE_POSTHOG_HOST, // https://us.i.posthog.com or https://eu.i.posthog.com
 });
 ```
 
@@ -143,7 +143,7 @@ import { instrument } from "@posthog/mcp";
 
 const server = new McpServer({ name: "my-mcp-server", version: "1.0.0" });
 const analytics = instrument(server, posthog, {
-	captureModel: true,
+  captureModel: true,
 }); // wrap immediately after constructing the server
 // register tools as usual — tools added after instrument() are still captured
 ```
@@ -156,8 +156,8 @@ import { instrument } from "@posthog/mcp";
 
 const server = new McpServer({ name: "my-mcp-server", version: "1.0.0" });
 const analytics = instrument(server, posthog, {
-	captureModel: true,
-	enableConversationId: true,
+  captureModel: true,
+  enableConversationId: true,
 }); // wrap immediately after constructing the server
 // register tools with registerTool() as usual — tools added after instrument() are still captured
 ```
@@ -174,23 +174,17 @@ v2 reminders:
 import { instrument, getRequestHeaders } from "@posthog/mcp";
 
 const handler = createMcpHandler((server) => {
-	instrument(server, posthog, {
-		captureModel: true,
-		enableConversationId: true,
-		identify: async (request, extra) => {
-			const token = getRequestHeaders(extra)?.["authorization"];
-			return token ? { distinctId: await resolveUserId(token) } : null;
-		},
-	});
-	server.registerTool(
-		"...",
-		{
-			/* ... */
-		},
-		async () => {
-			/* ... */
-		},
-	);
+  instrument(server, posthog, {
+    captureModel: true,
+    enableConversationId: true,
+    identify: async (request, extra) => {
+      const token = getRequestHeaders(extra)?.["authorization"];
+      return token ? { distinctId: await resolveUserId(token) } : null;
+    },
+  });
+  server.registerTool("...", {/* ... */}, async () => {
+    /* ... */
+  });
 });
 ```
 
@@ -202,8 +196,8 @@ const handler = createMcpHandler((server) => {
 import { PostHogMCP } from "@posthog/mcp";
 
 const posthog = new PostHogMCP(process.env.POSTHOG_PROJECT_TOKEN, {
-	host: process.env.VITE_POSTHOG_HOST,
-	captureModel: true,
+  host: process.env.VITE_POSTHOG_HOST,
+  captureModel: true,
 });
 
 // when building the tools/list response:
@@ -212,35 +206,36 @@ const advertisedTools = posthog.prepareToolList(serverTools);
 
 // only on a 2025-11-25 initialize handshake:
 posthog.captureInitialize({
-	clientName,
-	clientVersion,
-	distinctId,
-	protocolVersion: "2025-11-25",
+  clientName,
+  clientVersion,
+  distinctId,
+  protocolVersion: "2025-11-25",
 });
 
 // after each tools/call resolves (wrap the existing handler, time it):
 const start = Date.now();
-const originalTool = serverTools.find(
-	(tool) => tool.name === request.params.name,
+const originalTool = serverTools.find((tool) => tool.name === request.params.name);
+const { args, intent, intentSource, llmModel, llmModelSource } = posthog.prepareToolCall(
+  request.params.name,
+  request.params.arguments,
+  {
+    originalTool,
+  },
 );
-const { args, intent, intentSource, llmModel, llmModelSource } =
-	posthog.prepareToolCall(request.params.name, request.params.arguments, {
-		originalTool,
-	});
 const result = await runTool(request.params.name, args);
 posthog.captureToolCall({
-	toolName: request.params.name,
-	parameters: args,
-	response: result,
-	durationMs: Date.now() - start,
-	isError: false,
-	intent,
-	intentSource,
-	llmModel,
-	llmModelSource,
-	distinctId, // who the request is from, if known
-	sessionId, // your transport/session id, if you have one
-	protocolVersion, // read this from the current request
+  toolName: request.params.name,
+  parameters: args,
+  response: result,
+  durationMs: Date.now() - start,
+  isError: false,
+  intent,
+  intentSource,
+  llmModel,
+  llmModelSource,
+  distinctId, // who the request is from, if known
+  sessionId, // your transport/session id, if you have one
+  protocolVersion, // read this from the current request
 });
 ```
 
@@ -256,19 +251,19 @@ import { McpModule } from "@rekog/mcp-nest";
 import { PostHog, instrumentMutator } from "@posthog/mcp";
 
 const posthog = new PostHog(process.env.POSTHOG_PROJECT_TOKEN, {
-	host: process.env.VITE_POSTHOG_HOST,
+  host: process.env.VITE_POSTHOG_HOST,
 });
 
 @Module({
-	imports: [
-		McpModule.forRoot({
-			name: "my-mcp-server",
-			version: "1.0.0",
-			serverMutator: instrumentMutator(posthog, {
-				enableConversationId: true,
-			}),
-		}),
-	],
+  imports: [
+    McpModule.forRoot({
+      name: "my-mcp-server",
+      version: "1.0.0",
+      serverMutator: instrumentMutator(posthog, {
+        enableConversationId: true,
+      }),
+    }),
+  ],
 })
 class AppModule {}
 ```

@@ -1,8 +1,4 @@
-import type {
-	MarkViewProps,
-	MarkViewRenderer,
-	MarkViewRendererOptions,
-} from "@tiptap/core";
+import type { MarkViewProps, MarkViewRenderer, MarkViewRendererOptions } from "@tiptap/core";
 import { MarkView } from "@tiptap/core";
 import type { Component } from "svelte";
 
@@ -10,57 +6,52 @@ import MarkViewFrame from "../components/MarkViewFrame.svelte";
 import { SvelteRenderer } from "./SvelteRenderer.svelte";
 
 export interface SvelteMarkViewRendererOptions extends MarkViewRendererOptions {
-	as?: string;
-	className?: string;
-	attrs?: { [key: string]: string };
+  as?: string;
+  className?: string;
+  attrs?: { [key: string]: string };
 }
 
-class SvelteMarkView extends MarkView<
-	Component<any>,
-	SvelteMarkViewRendererOptions
-> {
-	renderer: SvelteRenderer;
+class SvelteMarkView extends MarkView<Component<any>, SvelteMarkViewRendererOptions> {
+  renderer: SvelteRenderer;
 
-	constructor(
-		component: Component<any>,
-		props: MarkViewProps,
-		options?: Partial<SvelteMarkViewRendererOptions>,
-	) {
-		super(component, props, options);
+  constructor(
+    component: Component<any>,
+    props: MarkViewProps,
+    options?: Partial<SvelteMarkViewRendererOptions>,
+  ) {
+    super(component, props, options);
 
-		const componentProps = {
-			...props,
-			updateAttributes: this.updateAttributes.bind(this),
-		} satisfies MarkViewProps;
+    const componentProps = {
+      ...props,
+      updateAttributes: this.updateAttributes.bind(this),
+    } satisfies MarkViewProps;
 
-		this.renderer = new SvelteRenderer(MarkViewFrame, {
-			props: {
-				component: this.component,
-				...componentProps,
-			},
-		});
-	}
+    this.renderer = new SvelteRenderer(MarkViewFrame, {
+      props: {
+        component: this.component,
+        ...componentProps,
+      },
+    });
+  }
 
-	get dom() {
-		return this.renderer.element as HTMLElement;
-	}
+  get dom() {
+    return this.renderer.element as HTMLElement;
+  }
 
-	get contentDOM() {
-		return this.dom.querySelector(
-			"[data-mark-view-content]",
-		) as HTMLElement | null;
-	}
+  get contentDOM() {
+    return this.dom.querySelector("[data-mark-view-content]") as HTMLElement | null;
+  }
 
-	destroy() {
-		this.renderer.destroy();
-	}
+  destroy() {
+    this.renderer.destroy();
+  }
 }
 
 export function SvelteMarkViewRenderer(
-	component: Component<any>,
-	options: Partial<SvelteMarkViewRendererOptions> = {},
+  component: Component<any>,
+  options: Partial<SvelteMarkViewRendererOptions> = {},
 ): MarkViewRenderer {
-	return (props) => {
-		return new SvelteMarkView(component, props, options);
-	};
+  return (props) => {
+    return new SvelteMarkView(component, props, options);
+  };
 }

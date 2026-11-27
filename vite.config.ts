@@ -4,29 +4,27 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite-plus";
 
 export default defineConfig({
-	server: {
-		allowedHosts: true,
-	},
-	plugins: [
-		tailwindcss(),
-		sveltekit({
-			adapter: adapter(),
-			paths: {
-				relative: false,
-			},
-			prerender: {
-				handleMissingId: "warn",
-				handleHttpError: ({ path, referrer, message }) => {
-					console.warn(
-						`[prerender] ${message} at ${path} (linked from ${referrer})`,
-					);
-				},
-			},
+  server: {
+    allowedHosts: true,
+  },
+  plugins: [
+    tailwindcss(),
+    sveltekit({
+      adapter: adapter(),
+      paths: {
+        relative: false,
+      },
+      prerender: {
+        handleMissingId: "warn",
+        handleHttpError: ({ path, referrer, message }) => {
+          console.warn(`[prerender] ${message} at ${path} (linked from ${referrer})`);
+        },
+      },
 
-			experimental: {
-				remoteFunctions: true,
-				forkPreloads: true,
-			},
-		}),
-	],
+      experimental: {
+        remoteFunctions: true,
+        forkPreloads: true,
+      },
+    }),
+  ],
 });

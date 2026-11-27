@@ -9,20 +9,20 @@ import { page } from "$app/state";
  * Call it during component initialisation.
  */
 export function injectAnalytics(props: AnalyticsProps = {}): void {
-	inject(
-		{
-			...props,
-			basePath: import.meta.env.VITE_VERCEL_OBSERVABILITY_BASEPATH,
-			disableAutoTrack: true,
-			framework: "sveltekit",
-		},
-		import.meta.env.VITE_VERCEL_OBSERVABILITY_CLIENT_CONFIG,
-	);
+  inject(
+    {
+      ...props,
+      basePath: import.meta.env.VITE_VERCEL_OBSERVABILITY_BASEPATH,
+      disableAutoTrack: true,
+      framework: "sveltekit",
+    },
+    import.meta.env.VITE_VERCEL_OBSERVABILITY_CLIENT_CONFIG,
+  );
 
-	$effect(() => {
-		const route = page.route.id;
-		if (route) {
-			pageview({ route, path: page.url.pathname });
-		}
-	});
+  $effect(() => {
+    const route = page.route.id;
+    if (route) {
+      pageview({ route, path: page.url.pathname });
+    }
+  });
 }

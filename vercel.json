@@ -1,35 +1,35 @@
 {
-	"$schema": "https://openapi.vercel.sh/vercel.json",
-	"framework": "sveltekit",
-	"rewrites": [
-		{
-			"source": "/ingest/static/:path*",
-			"destination": "https://us-assets.i.posthog.com/static/:path*"
-		},
-		{
-			"source": "/ingest/array/:path*",
-			"destination": "https://us-assets.i.posthog.com/array/:path*"
-		},
-		{
-			"source": "/ingest/:path*",
-			"destination": "https://us.i.posthog.com/:path*"
-		}
-	],
-	"redirects": [
-		{
-			"source": "/docs/2026-09-18-why-lightcms",
-			"destination": "/docs/why-lightcms",
-			"permanent": true
-		},
-		{
-			"source": "/docs/2026-10-14-frequently-asked-questions",
-			"destination": "/docs/faq",
-			"permanent": true
-		},
-		{
-			"source": "/docs/2026-11-06-best-way-to-manage-documentation-in-2027",
-			"destination": "/docs/managing-documentation",
-			"permanent": true
-		}
-	]
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "sveltekit",
+  "rewrites": [
+    {
+      "source": "/ingest/static/:path*",
+      "destination": "https://us-assets.i.posthog.com/static/:path*"
+    },
+    {
+      "source": "/ingest/array/:path*",
+      "destination": "https://us-assets.i.posthog.com/array/:path*"
+    },
+    {
+      "source": "/ingest/:path*",
+      "destination": "https://us.i.posthog.com/:path*"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/docs/2026-09-18-why-lightcms",
+      "destination": "/docs/why-lightcms",
+      "permanent": true
+    },
+    {
+      "source": "/docs/2026-10-14-frequently-asked-questions",
+      "destination": "/docs/faq",
+      "permanent": true
+    },
+    {
+      "source": "/docs/2026-11-06-best-way-to-manage-documentation-in-2027",
+      "destination": "/docs/managing-documentation",
+      "permanent": true
+    }
+  ]
 }

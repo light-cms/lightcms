@@ -10,12 +10,12 @@ export * from "./image-upload.ts";
 export * from "./link/LinkExtended.ts";
 export * from "./mermaid/index";
 export {
-	ATOM_SLIGHT_PENETRATION_PX,
-	excludeAtomFromDragSelection,
-	includeAtomInDragSelection,
-	resolveAtomLeave,
-	SelectAcrossAtoms,
-	selectionCoveringNode,
+  ATOM_SLIGHT_PENETRATION_PX,
+  excludeAtomFromDragSelection,
+  includeAtomInDragSelection,
+  resolveAtomLeave,
+  SelectAcrossAtoms,
+  selectionCoveringNode,
 } from "./SelectAcrossAtoms/index";
 export { default as SlashCommand } from "./slash/index";
 export * from "./table/index.ts";

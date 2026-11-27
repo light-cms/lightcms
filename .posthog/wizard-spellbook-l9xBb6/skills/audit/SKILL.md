@@ -1,5 +1,4 @@
 ---
-
 name: audit
 description: Audit an existing PostHog integration for correctness and best practices
 metadata:

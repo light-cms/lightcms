@@ -54,13 +54,11 @@ The connect page renders the right credential form for that kind on its own.
 
 ```json
 {
-	"source_type": "<Type>",
-	"payload": {
-		"credential_id": "<credential id>",
-		"schemas": [
-			{ "name": "<table>", "should_sync": true, "sync_type": "full_refresh" }
-		]
-	}
+  "source_type": "<Type>",
+  "payload": {
+    "credential_id": "<credential id>",
+    "schemas": [{ "name": "<table>", "should_sync": true, "sync_type": "full_refresh" }]
+  }
 }
 ```
 

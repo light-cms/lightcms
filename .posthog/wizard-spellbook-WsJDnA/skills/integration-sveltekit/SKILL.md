@@ -1,5 +1,4 @@
 ---
-
 name: integration-sveltekit
 description: PostHog integration for SvelteKit applications
 metadata:

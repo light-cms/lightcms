@@ -4,21 +4,21 @@ import type { Session, User } from "better-auth";
 // for information about these interfaces
 /// <reference types="vite/client" />
 declare global {
-	interface Window {
-		Supademo?: {
-			open: (id: string) => void;
-		};
-	}
+  interface Window {
+    Supademo?: {
+      open: (id: string) => void;
+    };
+  }
 
-	namespace App {
-		interface Locals {
-			user?: User;
-			session?: Session;
-		}
+  namespace App {
+    interface Locals {
+      user?: User;
+      session?: Session;
+    }
 
-		interface Error {}
-		interface PageData {}
-		interface PageState {}
-		interface Platform {}
-	}
+    interface Error {}
+    interface PageData {}
+    interface PageState {}
+    interface Platform {}
+  }
 }

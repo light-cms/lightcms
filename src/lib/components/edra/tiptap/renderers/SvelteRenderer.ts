@@ -1,4 +1,1 @@
-export {
-	SvelteRenderer,
-	type SvelteRendererOptions,
-} from "./SvelteRenderer.svelte";
+export { SvelteRenderer, type SvelteRendererOptions } from "./SvelteRenderer.svelte";

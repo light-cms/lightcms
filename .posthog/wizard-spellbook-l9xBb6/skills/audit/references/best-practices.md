@@ -29,9 +29,9 @@ Track your signup event explicitly from both frontend and backend:
 
 ```javascript
 posthog.capture("user_signed_up", {
-	signup_method: "email",
-	referral_source: "google",
-	plan: "free",
+  signup_method: "email",
+  referral_source: "google",
+  plan: "free",
 });
 ```
 

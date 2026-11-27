@@ -173,10 +173,7 @@ For product code that queries against the SDK's contract, the package exports:
 Use them instead of hard-coding strings so renames stay typesafe:
 
 ```typescript
-import {
-	PostHogMCPAnalyticsEvent,
-	PostHogMCPAnalyticsProperty,
-} from "@posthog/mcp";
+import { PostHogMCPAnalyticsEvent, PostHogMCPAnalyticsProperty } from "@posthog/mcp";
 
 const event = PostHogMCPAnalyticsEvent.ToolCall; // "$mcp_tool_call"
 const key = PostHogMCPAnalyticsProperty.ToolName; // "$mcp_tool_name"

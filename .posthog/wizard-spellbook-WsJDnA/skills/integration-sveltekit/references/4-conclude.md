@@ -1,5 +1,4 @@
 ---
-
 title: PostHog Setup - Conclusion
 description: Review and fix any errors in the PostHog integration implementation
 ---
@@ -31,9 +30,9 @@ Create the parent dashboard first with `dashboard-create`, capture its returned 
 
 ```json
 {
-	"name": "Analytics basics (wizard)",
-	"description": "Key views for the events instrumented by the PostHog wizard.",
-	"tags": ["wizard"]
+  "name": "Analytics basics (wizard)",
+  "description": "Key views for the events instrumented by the PostHog wizard.",
+  "tags": ["wizard"]
 }
 ```
 

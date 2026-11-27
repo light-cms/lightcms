@@ -6,13 +6,13 @@ import Title from "./alert-title.svelte";
 export { type AlertVariant, alertVariants } from "./alert";
 
 export {
-	Action,
-	Action as AlertAction,
-	Description,
-	Description as AlertDescription,
-	Root,
-	//
-	Root as Alert,
-	Title,
-	Title as AlertTitle,
+  Action,
+  Action as AlertAction,
+  Description,
+  Description as AlertDescription,
+  Root,
+  //
+  Root as Alert,
+  Title,
+  Title as AlertTitle,
 };

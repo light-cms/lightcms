@@ -1,15 +1,15 @@
 {
-	"taxonomy": {
-		"tags": [
-			"cms",
-			"co2",
-			"faq",
-			"green-web",
-			"lightcms",
-			"philosophy",
-			"ssg",
-			"static-sites",
-			"sustainability"
-		]
-	}
+  "taxonomy": {
+    "tags": [
+      "cms",
+      "co2",
+      "faq",
+      "green-web",
+      "lightcms",
+      "philosophy",
+      "ssg",
+      "static-sites",
+      "sustainability"
+    ]
+  }
 }

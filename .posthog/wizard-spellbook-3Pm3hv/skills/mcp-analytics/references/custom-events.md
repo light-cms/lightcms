@@ -22,10 +22,10 @@ Pass a callback to attach extra properties to automatically captured MCP events.
 import { instrument, getRequestHeaders } from "@posthog/mcp";
 
 const analytics = instrument(server, posthog, {
-	eventProperties: async (request, extra) => ({
-		$app_version: process.env.GIT_SHA ?? "unknown",
-		request_id: getRequestHeaders(extra)?.["x-request-id"],
-	}),
+  eventProperties: async (request, extra) => ({
+    $app_version: process.env.GIT_SHA ?? "unknown",
+    request_id: getRequestHeaders(extra)?.["x-request-id"],
+  }),
 });
 ```
 
@@ -74,13 +74,13 @@ The returned object is spread flat onto the event's properties alongside the bui
 
 ```json
 {
-	"event": "$mcp_tool_call",
-	"properties": {
-		"$mcp_tool_name": "search_events",
-		"$app_version": "a1b2c3d",
-		"region": "iad",
-		"request_id": "req_…"
-	}
+  "event": "$mcp_tool_call",
+  "properties": {
+    "$mcp_tool_name": "search_events",
+    "$app_version": "a1b2c3d",
+    "region": "iad",
+    "request_id": "req_…"
+  }
 }
 ```
 
@@ -106,8 +106,8 @@ You name the event. It's sent verbatim – it's your event, so it is **not** `$`
 const analytics = instrument(server, posthog);
 
 await analytics.capture({
-	event: "feedback_submitted",
-	properties: { rating: 5 },
+  event: "feedback_submitted",
+  properties: { rating: 5 },
 });
 ```
 

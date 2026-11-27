@@ -5,10 +5,10 @@ import type { LayoutServerLoad } from "./$types";
 export const prerender = true;
 
 export const load: LayoutServerLoad = async ({ url }) => {
-	const entries = await loadDocEntries(resolveLocaleFromPathname(url.pathname));
-	const sections = groupDocsBySection(entries);
+  const entries = await loadDocEntries(resolveLocaleFromPathname(url.pathname));
+  const sections = groupDocsBySection(entries);
 
-	return {
-		sections,
-	};
+  return {
+    sections,
+  };
 };

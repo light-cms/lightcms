@@ -3,12 +3,12 @@ import Fallback from "./avatar-fallback.svelte";
 import Image from "./avatar-image.svelte";
 
 export {
-	Fallback,
-	Fallback as AvatarFallback,
-	Image,
-	Image as AvatarImage,
-	Root,
-	Root as AvatarRoot,
+  Fallback,
+  Fallback as AvatarFallback,
+  Image,
+  Image as AvatarImage,
+  Root,
+  Root as AvatarRoot,
 };
 
 export const Avatar = { Root, Fallback, Image };

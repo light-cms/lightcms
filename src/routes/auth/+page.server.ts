@@ -7,45 +7,45 @@ import { getAuth } from "#lib/server/auth";
 import type { PageServerLoad } from "./$types";
 
 const authFormSchema = z.object({
-	email: z.string().trim().min(1, "Enter an email address."),
+  email: z.string().trim().min(1, "Enter an email address."),
 });
 
 export const load: PageServerLoad = async ({ url }) => {
-	const next = url.searchParams.get("next");
-	const safeNext = next?.startsWith("/cms") ? next : "/cms";
-	return {
-		next: safeNext,
-		form: await superValidate(zod4(authFormSchema), { id: "auth-magic-link" }),
-	};
+  const next = url.searchParams.get("next");
+  const safeNext = next?.startsWith("/cms") ? next : "/cms";
+  return {
+    next: safeNext,
+    form: await superValidate(zod4(authFormSchema), { id: "auth-magic-link" }),
+  };
 };
 
 export const actions = {
-	default: async (event: { request: Request; url: URL }) => {
-		const form = await superValidate(event.request, zod4(authFormSchema), {
-			id: "auth-magic-link",
-		});
+  default: async (event: { request: Request; url: URL }) => {
+    const form = await superValidate(event.request, zod4(authFormSchema), {
+      id: "auth-magic-link",
+    });
 
-		if (!form.valid) {
-			return fail(400, { form });
-		}
+    if (!form.valid) {
+      return fail(400, { form });
+    }
 
-		const next = event.url.searchParams.get("next");
-		const safeNext = next?.startsWith("/cms") ? next : "/cms";
-		const auth = getAuth();
-		try {
-			await auth.api.signInMagicLink({
-				body: {
-					email: form.data.email,
-					callbackURL: safeNext,
-					newUserCallbackURL: safeNext,
-				},
-				headers: event.request.headers,
-			});
-		} catch (cause) {
-			console.error("Failed to send magic link:", cause);
-			return message(form, "Failed to send magic link", { status: 500 });
-		}
+    const next = event.url.searchParams.get("next");
+    const safeNext = next?.startsWith("/cms") ? next : "/cms";
+    const auth = getAuth();
+    try {
+      await auth.api.signInMagicLink({
+        body: {
+          email: form.data.email,
+          callbackURL: safeNext,
+          newUserCallbackURL: safeNext,
+        },
+        headers: event.request.headers,
+      });
+    } catch (cause) {
+      console.error("Failed to send magic link:", cause);
+      return message(form, "Failed to send magic link", { status: 500 });
+    }
 
-		return message(form, "Check your inbox for a secure sign-in link.");
-	},
+    return message(form, "Check your inbox for a secure sign-in link.");
+  },
 };

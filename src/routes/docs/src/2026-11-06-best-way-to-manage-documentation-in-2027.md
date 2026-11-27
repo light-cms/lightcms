@@ -1,23 +1,12 @@
 ---
-
 title: Best way to manage documentation in 2027
 date: null
 draft: false
 weight: 0
 tags:
-
-- cms
-- lightcms
-- green-web
-  isCJKLanguage: false
-  headless: false
-  keywords: ""
-  preview: ""
-  description: ""
-  serial: 0
-  section: ""
-  badge: ""
-
+  - cms
+  - lightcms
+  - green-web
 ---
 
 Documentation matters, but teams use different systems and those systems shape what gets updated. Below are common approaches and what tends to work over time.

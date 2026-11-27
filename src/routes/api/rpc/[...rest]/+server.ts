@@ -4,24 +4,24 @@ import { router } from "#lib/server/orpc/router";
 import type { RequestHandler } from "./$types";
 
 const handler = new RPCHandler(router, {
-	interceptors: [
-		onError((error) => {
-			throw new Error(error instanceof Error ? error.message : String(error));
-		}),
-	],
+  interceptors: [
+    onError((error) => {
+      throw new Error(error instanceof Error ? error.message : String(error));
+    }),
+  ],
 });
 
 const handle: RequestHandler = async ({ locals, request }) => {
-	const { response } = await handler.handle(request, {
-		prefix: "/api/rpc",
-		context: { session: locals.session ?? null },
-	});
+  const { response } = await handler.handle(request, {
+    prefix: "/api/rpc",
+    context: { session: locals.session ?? null },
+  });
 
-	if (response) {
-		return response;
-	}
+  if (response) {
+    return response;
+  }
 
-	return new Response("Not found", { status: 404 });
+  return new Response("Not found", { status: 404 });
 };
 
 export const GET = handle;

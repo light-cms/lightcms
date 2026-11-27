@@ -1,5 +1,4 @@
 ---
-
 title: Self Hosting LightCMS
 description: Guide to self host LightCMS, covering the GitHub App, PostgreSQL, environment variables, optional AI, CDN and email, and deploying to edge.
 serial: 4
@@ -8,10 +7,9 @@ badge: Deploy
 date: 2026-09-18T01:45:00Z
 draft: false
 tags:
-
-- selfhost
-- lightcms
-- postgresql
+  - selfhost
+  - lightcms  
+  - postgresql
 - deployment
   keywords:
 - lightcms

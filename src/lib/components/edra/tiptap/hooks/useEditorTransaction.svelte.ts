@@ -6,21 +6,21 @@ import type { Editor } from "../Editor.ts";
  * that re-evaluates on every editor transaction.
  */
 export function useEditorTransaction(editor: Editor) {
-	let version = $state(0);
+  let version = $state(0);
 
-	$effect(() => {
-		const handler = () => {
-			version++;
-		};
-		editor.on("transaction", handler);
-		return () => {
-			editor.off("transaction", handler);
-		};
-	});
+  $effect(() => {
+    const handler = () => {
+      version++;
+    };
+    editor.on("transaction", handler);
+    return () => {
+      editor.off("transaction", handler);
+    };
+  });
 
-	return {
-		get version() {
-			return version;
-		},
-	};
+  return {
+    get version() {
+      return version;
+    },
+  };
 }

@@ -1,5 +1,4 @@
 ---
-
 title: PostHog Setup - Revise
 description: Review and fix any errors in the PostHog integration implementation
 ---

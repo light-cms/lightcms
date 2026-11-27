@@ -7,18 +7,11 @@ serial: 5
 date: 2026-09-18T01:50:00Z
 draft: false
 tags:
-
-- newsletter
-- email
-- newsy
-- smtp
-  keywords:
-- newsletter
-- email automation
-- newsy
-- smtp
-- lightcms
-  preview: /og-image.png
+  - newsletter
+  - email
+  - newsy
+  - smtp
+ 
 
 ---
 

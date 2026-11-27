@@ -7,19 +7,19 @@ export { AutocompleteKey } from "./plugin";
 export type { AutocompleteOptions } from "./types";
 
 export const InlineAutocomplete = Extension.create<AutocompleteOptions>({
-	name: "inlineAutocomplete",
+  name: "inlineAutocomplete",
 
-	addOptions() {
-		return {
-			blockTriggers: BLOCK_TRIGGERS,
-			inlinePairs: INLINE_PAIRS,
-			emoji: true,
-		};
-	},
+  addOptions() {
+    return {
+      blockTriggers: BLOCK_TRIGGERS,
+      inlinePairs: INLINE_PAIRS,
+      emoji: true,
+    };
+  },
 
-	addProseMirrorPlugins() {
-		return [createAutocompletePlugin(this.editor, this.options)];
-	},
+  addProseMirrorPlugins() {
+    return [createAutocompletePlugin(this.editor, this.options)];
+  },
 });
 
 export default InlineAutocomplete;

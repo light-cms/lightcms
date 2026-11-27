@@ -3,36 +3,31 @@ import { getContext, setContext } from "svelte";
 export type PackageManager = "npm" | "pnpm" | "yarn" | "bun";
 
 export class PackageManagerState {
-	value = $state<PackageManager>("npm");
+  value = $state<PackageManager>("npm");
 
-	constructor() {
-		if (typeof window !== "undefined") {
-			const stored = localStorage.getItem("edra-package-manager");
-			if (
-				stored === "npm" ||
-				stored === "pnpm" ||
-				stored === "yarn" ||
-				stored === "bun"
-			) {
-				this.value = stored;
-			}
-		}
-	}
+  constructor() {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("edra-package-manager");
+      if (stored === "npm" || stored === "pnpm" || stored === "yarn" || stored === "bun") {
+        this.value = stored;
+      }
+    }
+  }
 
-	set(val: PackageManager) {
-		this.value = val;
-		if (typeof window !== "undefined") {
-			localStorage.setItem("edra-package-manager", val);
-		}
-	}
+  set(val: PackageManager) {
+    this.value = val;
+    if (typeof window !== "undefined") {
+      localStorage.setItem("edra-package-manager", val);
+    }
+  }
 }
 
 const CONTEXT_KEY = "__edra_package_manager__";
 
 export function initPackageManager() {
-	return setContext(CONTEXT_KEY, new PackageManagerState());
+  return setContext(CONTEXT_KEY, new PackageManagerState());
 }
 
 export function getPackageManager(): PackageManagerState {
-	return getContext(CONTEXT_KEY);
+  return getContext(CONTEXT_KEY);
 }
