@@ -5,6 +5,7 @@ import Image from "@lucide/svelte/icons/image";
 import Link2 from "@lucide/svelte/icons/link-2";
 import Loader2 from "@lucide/svelte/icons/loader-2";
 import Play from "@lucide/svelte/icons/play";
+import StickyNotePlus from "@lucide/svelte/icons/sticky-note-plus";
 import Video from "@lucide/svelte/icons/video";
 import type { NodeViewProps } from "@tiptap/core";
 import { toast } from "svelte-sonner";
@@ -158,9 +159,10 @@ async function handleFiles(fileList: FileList | File[] | null | undefined) {
 		if (uploadedUrls.length > 0) {
 			insertUploadedMedia(uploadedUrls);
 		}
-	} catch (error: any) {
+	} catch (error: unknown) {
 		console.error("Upload error:", error);
-		const msg = error?.message ?? "Failed to upload file";
+		const msg =
+			error instanceof Error ? error.message : "Failed to upload file";
 		toast.error(msg);
 	} finally {
 		isUploading = false;
@@ -201,7 +203,7 @@ function insertUploadedMedia(urls: string[]) {
 	}
 }
 
-function handleInsertEmbed() {
+function _handleInsertEmbed() {
 	const trimmedUrl = embedUrl.trim();
 	if (trimmedUrl.length === 0) {
 		toast.error("Please enter a valid URL.");
@@ -243,7 +245,6 @@ function handleInsertEmbed() {
 					src: thumbnailUrl,
 					alt: finalTitle,
 					title: finalTitle,
-					href: watchUrl,
 				})
 				.run();
 		}
@@ -301,21 +302,15 @@ function handleInsertEmbed() {
 	toast.success("Embedded media successfully.");
 }
 
-function handleDrop(event: DragEvent) {
+function _handleDragLeave(event: DragEvent) {
 	event.preventDefault();
 	isDragging = false;
-	const files = event.dataTransfer?.files;
-	void handleFiles(files);
 }
 
-function handleDragOver(event: DragEvent) {
-	event.preventDefault();
-	isDragging = true;
-}
-
-function handleDragLeave(event: DragEvent) {
+function _handleDrop(event: DragEvent) {
 	event.preventDefault();
 	isDragging = false;
+	void handleFiles(event.dataTransfer?.files);
 }
 </script>
 
@@ -354,9 +349,9 @@ function handleDragLeave(event: DragEvent) {
 				role="button"
 				tabindex={0}
 				onclick={triggerFileInput}
-				ondragover={handleDragOver}
-				ondragleave={handleDragLeave}
-				ondrop={handleDrop}
+				ondragover={_handleDragLeave}
+				ondragleave={_handleDragLeave}
+				ondrop={_handleDrop}
 				class={cn(
 					"group relative flex w-full cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed py-8 sm:py-10 px-6 text-center transition-all duration-200 select-none",
 					isDragging
@@ -380,28 +375,7 @@ function handleDragLeave(event: DragEvent) {
 					</div>
 				{:else}
 					<div class="relative mb-3 flex items-center justify-center">
-						<svg
-							class="h-14 w-11 text-zinc-600 transition-transform duration-200 group-hover:scale-105"
-							viewBox="0 0 44 56"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M4 1C2.34315 1 1 2.34315 1 4V52C1 53.6569 2.34315 55 4 55H40C41.6569 55 43 53.6569 43 52V14.5L29.5 1H4Z"
-								fill="#27272a"
-								fill-opacity="0.3"
-								stroke="#52525b"
-								stroke-width="1.75"
-								stroke-linejoin="round"
-							/>
-							<path
-								d="M29 1V14.5H42.5"
-								stroke="#52525b"
-								stroke-width="1.75"
-								stroke-linejoin="round"
-							/>
-						</svg>
-
+						<StickyNotePlus />
 						<div class="absolute inset-0 flex items-center justify-center pr-1 pb-1 text-zinc-400 group-hover:text-zinc-200 transition-colors">
 							{#if mediaType === "video"}
 								<Video class="size-5" />
@@ -487,7 +461,10 @@ function handleDragLeave(event: DragEvent) {
 					<Button
 						type="button"
 						size="sm"
-						onclick={handleInsertEmbed}
+						ondragleave={_handleDragLeave}
+						ondrop={_handleDrop}
+						ondragover={_handleDragOver}
+						onclick={_handleInsertEmbed}
 						disabled={embedUrl.trim().length === 0}
 						class="gap-1.5 text-xs font-semibold"
 					>

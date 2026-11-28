@@ -98,8 +98,13 @@ export function addHeadingIds(html: string): string {
   return rendered.html;
 }
 
+const FRONTMATTER_PATTERN = /^---[ \t]*\r?\n[\s\S]*?\r?\n---[ \t]*(?:\r?\n|$)/;
+
 export async function renderDocMarkdown(source: string): Promise<RenderedDoc> {
-  const compiled = await compile(source, {
+  // Frontmatter is parsed separately (with a safe fallback) by loadDocEntries;
+  // strip the leading block so a malformed one can't fail mdsvex's own parse.
+  const body = source.replace(FRONTMATTER_PATTERN, "");
+  const compiled = await compile(body, {
     highlight: (code, { lang, inline }) => {
       if (inline) {
         return null;

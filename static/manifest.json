@@ -1,7 +1,7 @@
 {
   "name": "LightCMS",
   "short_name": "LightCMS",
-  "description": "Git-backed content workspace for editing and publishing markdown.",
+  "description": "Lightcms is an frontmatter first git based content management system for editing and publishing markdown files for static site generators.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#1e1e2e",

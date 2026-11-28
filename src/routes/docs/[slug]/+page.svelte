@@ -47,19 +47,15 @@ onMount(() => {
 		const button = document.createElement("button");
 		button.className = "copy-code-btn";
 		button.setAttribute("aria-label", m.docs_copy_code());
-		button.innerHTML =
-			'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>';
-
+		button.innerHTML = "<Copy size={14} />";
 		button.addEventListener("click", async () => {
 			const codeEl = pre.querySelector("code");
 			const textToCopy = codeEl ? codeEl.innerText : pre.innerText;
 			try {
 				await navigator.clipboard.writeText(textToCopy);
-				button.innerHTML =
-					'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+				button.innerHTML = "<SquareCheckBig />";
 				setTimeout(() => {
-					button.innerHTML =
-						'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>';
+					button.innerHTML = "<Copy size={14} />";
 				}, 2000);
 			} catch {
 				// Fallback silent failure
@@ -284,7 +280,7 @@ onMount(() => {
 	}
 
 	.docs-article :global(pre code) {
-		background-color: transparent;
+		background-color: --tw-ring-color;
 		border: none;
 		padding: 0;
 	}
@@ -294,7 +290,7 @@ onMount(() => {
 		padding: 0.75rem 1.25rem;
 		border-left: 3px solid var(--primary);
 		border-radius: 0 var(--radius) var(--radius) 0;
-		background-color: color-mix(in oklab, var(--primary) 6%, transparent);
+		background-color: color-mix(in oklab, var(--primary) 6%, --tw-ring-color);
 		color: var(--muted-foreground);
 		font-style: normal;
 	}
@@ -334,7 +330,7 @@ onMount(() => {
 	}
 
 	.docs-article :global(tr:nth-child(even) td) {
-		background-color: color-mix(in oklab, var(--muted) 30%, transparent);
+		background-color: color-mix(in oklab, var(--muted) 30%, --tw-ring-color);
 	}
 
 	.docs-article :global(img) {
@@ -379,7 +375,7 @@ onMount(() => {
 		height: 2.75rem;
 		background-color: rgba(220, 38, 38, 0.9);
 		border-radius: 0.85rem;
-		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><polygon points="9.5,7.5 16.5,12 9.5,16.5"/></svg>');
+		background-image: url('https://cdn.jsdelivr.net/npm/simple-icons@16.38.1/icons/viaplay.svg');
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: 1.5rem 1.5rem;

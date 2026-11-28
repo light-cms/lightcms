@@ -1,6 +1,6 @@
 ---
 slug: faq
-title: "LightCMS FAQ: static sites, Git & Markdown"
+title: "LightCMS FAQ static sites, Git & Markdown"
 description: "Answers to common questions about LightCMS, Git‑backed editing, static site generators, self‑hosting, pricing, and content ownership."
 section: Reference
 badge: FAQ

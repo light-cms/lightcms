@@ -18,27 +18,12 @@ function describeError(error: unknown): string {
 }
 
 export function init() {
-  const key = import.meta.env.PUBLIC_POSTHOG_PROJECT_TOKEN;
-  const host = import.meta.env.PUBLIC_POSTHOG_HOST;
-
-  if (!key || !host) {
-    if (dev) {
-      let missingVariable = "PUBLIC_POSTHOG_PROJECT_TOKEN";
-      if (key) {
-        missingVariable = "PUBLIC_POSTHOG_HOST";
-      }
-      console.warn(
-        `${missingVariable} variable required by PostHog is missing or un-configured, this causes events to be silently missed. This warning stops appearing once ${missingVariable} is configured`,
-      );
-    }
-    return;
-  }
-
+  const key = "phc_AS2JXQsqEwNNreH5kra5Eefd5TijExE5eiLfwdzXLhPg";
+  const host = "https://us.i.posthog.com";
   posthog.init(key, {
     api_host: host,
     defaults: "2026-05-30",
     person_profiles: "always",
-    // Include browser identity and session headers on same-origin server requests.
     tracing_headers: [window.location.hostname],
     capture_exceptions: {
       capture_unhandled_errors: true,

@@ -1,5 +1,5 @@
 ---
-title: "How to Start a Blog in 2026: Static sites & Markdown"
+title: "How to Start a Blog in 2026 Static sites & Markdown"
 description: "A practical guide to a fast, low-cost blog using Markdown, a static site generator, and a Git-backed CMS."
 serial: 12
 date: 2026-10-14T12:50:00Z
