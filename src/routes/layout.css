@@ -31,7 +31,7 @@ select {
 
 button,
 a {
-  -webkit-tap-highlight-color: --tw-ring-color;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
@@ -39,7 +39,7 @@ a {
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--primary) 35%, --tw-ring-color);
+  background: color-mix(in oklab, var(--primary) 35%, transparent);
 }
 
 .input,
@@ -75,7 +75,7 @@ a {
 .select:focus {
   outline: none;
   border-color: var(--ring);
-  box-shadow: 0 0 0 2px color-mix(in oklab, var(--ring) 30% --tw-ring-color);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--ring) 30%, transparent);
 }
 
 .eyebrow {
@@ -99,7 +99,7 @@ a {
   border: 1px solid var(--border);
   background: var(--card);
   color: var(--card-foreground);
-  box-shadow: 0 1px 3px color-mix(in oklab, var(--foreground) 10%, --tw-ring-color);
+  box-shadow: 0 1px 3px color-mix(in oklab, var(--foreground) 10%, transparent);
 }
 
 .text-subtle {
