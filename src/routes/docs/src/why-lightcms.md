@@ -11,12 +11,6 @@ tags:
   - static
   - markdown
   - publishing
-keywords:
-  - why lightcms
-  - git based cms
-  - headless cms
-  - markdown cms
-  - static site cms
 preview: /og-image.png
 ---
 

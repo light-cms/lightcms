@@ -46,7 +46,7 @@ After you connect the repo to LightCMS:
 
 - Publish useful, focused posts regularly.
 - Use search engine friendly titles and clear subheadings.
-- Convert some posts to newsletters with Newsy (see /docs/newsletter-newsy).
+- Convert some posts to newsletters with Newsy (see [/docs/newsletter-newsy](/docs/newsletter-newsy)).
 
 ---
 

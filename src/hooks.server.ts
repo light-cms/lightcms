@@ -1,7 +1,9 @@
 import { context, isSpanContextValid, trace } from "@opentelemetry/api";
 import type { Handle, HandleServerError } from "@sveltejs/kit/hooks";
 import { enrichCurrentSpan } from "posthog-node/otel";
+import { getAuth } from "#lib/server/auth";
 import { posthog } from "#lib/server/posthog";
+import { building } from "$app/env";
 
 declare global {
   namespace App {
@@ -49,6 +51,15 @@ export const handle: Handle = async ({ event, resolve }) => {
   return posthog.withContext(
     data,
     async () => {
+      if (!building) {
+        const session = await getAuth().api.getSession({
+          headers: event.request.headers,
+        });
+
+        event.locals.session = session?.session;
+        event.locals.user = session?.user;
+      }
+
       if (event.tracing.enabled) {
         context.with(trace.setSpan(context.active(), event.tracing.root), () =>
           enrichCurrentSpan(posthog),
@@ -66,13 +77,10 @@ export const handleError: HandleServerError = ({ kind, error, event }) => {
     return;
   }
 
-export function handleError({ error, event, kind }) {
-  const notFound = kind !== "unknown" && error.status === 404;
-  if (!notFound) {
-    posthog.captureException(error, {
-      distinctId: event.locals.posthogError?.distinctId,
-      properties: event.locals.posthogError?.properties,
-    });
-  }
+  posthog.captureException(error, {
+    distinctId: event.locals.posthogError?.distinctId,
+    properties: event.locals.posthogError?.properties,
+  });
+
   return { message: error instanceof Error ? error.message : "Internal Error" };
-}
+};
