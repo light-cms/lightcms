@@ -1,4 +1,5 @@
 import { context, isSpanContextValid, trace } from "@opentelemetry/api";
+import type { Handle, HandleServerError } from "@sveltejs/kit/hooks";
 import { enrichCurrentSpan } from "posthog-node/otel";
 import { posthog } from "#lib/server/posthog";
 
@@ -27,7 +28,7 @@ function tracingId(value: string | null | undefined): string | undefined {
   );
 }
 
-export async function handle({ event, resolve }) {
+export const handle: Handle = async ({ event, resolve }) => {
   const existing = posthog.getContext();
   const data = {
     distinctId:
@@ -58,7 +59,12 @@ export async function handle({ event, resolve }) {
     },
     { fresh: true },
   );
-}
+};
+
+export const handleError: HandleServerError = ({ kind, error, event }) => {
+  if (kind !== "unknown") {
+    return;
+  }
 
 export function handleError({ error, event, kind }) {
   const notFound = kind !== "unknown" && error.status === 404;

@@ -1,50 +1,87 @@
 import type { RequestEvent } from "@sveltejs/kit";
 import { beforeEach, describe, expect, it, vi } from "vite-plus/test";
 
-const { captureException } = vi.hoisted(() => ({ captureException: vi.fn() }));
-
-vi.mock("#lib/server/posthog", () => ({
-  posthog: { captureException },
+const { captureExceptionMock } = vi.hoisted(() => ({
+  captureExceptionMock: vi.fn(),
 }));
 
-const { handleError } = await import("./hooks.server");
-
-const event = {
-  locals: {
-    posthogError: { distinctId: "user-1", properties: { $session_id: "session-1" } },
+vi.mock("#lib/server/posthog", () => ({
+  posthog: {
+    captureException: captureExceptionMock,
+    getContext: vi.fn(),
+    withContext: vi.fn(),
   },
-} as unknown as RequestEvent;
+}));
 
-describe("handleError", () => {
+vi.mock("posthog-node/otel", () => ({
+  enrichCurrentSpan: vi.fn(),
+}));
+
+import { handleError } from "./hooks.server";
+
+function createMockEvent(posthogError?: RequestEvent["locals"]["posthogError"]): RequestEvent {
+  return {
+    locals: { posthogError },
+  } as RequestEvent;
+}
+
+describe("hooks.server handleError", () => {
   beforeEach(() => {
-    captureException.mockReset();
+    captureExceptionMock.mockReset();
   });
 
-  it("does not report a framework 404", () => {
-    handleError({ kind: "framework", error: { status: 404, message: "Not Found" }, event });
-    expect(captureException).not.toHaveBeenCalled();
-  });
-
-  it("does not report an app 404", () => {
-    handleError({ kind: "app", error: { status: 404, message: "Not Found" }, event });
-    expect(captureException).not.toHaveBeenCalled();
-  });
-
-  it("reports a framework error that is not a 404", () => {
-    const error = { status: 405, message: "Method Not Allowed" };
-    handleError({ kind: "framework", error, event });
-    expect(captureException).toHaveBeenCalledWith(error, {
-      distinctId: "user-1",
-      properties: { $session_id: "session-1" },
+  it("ignores framework errors such as 404 Not Found", async () => {
+    const result = await handleError({
+      kind: "framework",
+      error: { status: 404, message: "Not Found" },
+      event: createMockEvent(),
     });
+
+    expect(captureExceptionMock).not.toHaveBeenCalled();
+    expect(result).toBeUndefined();
   });
 
-  it("reports an unknown error", () => {
-    const error = new Error("boom");
-    expect(handleError({ kind: "unknown", error, event })).toEqual({ message: "boom" });
-    expect(captureException).toHaveBeenCalledWith(error, {
-      distinctId: "user-1",
-      properties: { $session_id: "session-1" },
+  it("ignores expected app errors thrown via error()", async () => {
+    const result = await handleError({
+      kind: "app",
+      error: { message: "Document not found" },
+      event: createMockEvent(),
     });
+
+    expect(captureExceptionMock).not.toHaveBeenCalled();
+    expect(result).toBeUndefined();
+  });
+
+  it("ignores validation errors", async () => {
+    const result = await handleError({
+      kind: "validation",
+      error: { status: 400, message: "Bad Request" },
+      issues: [],
+      event: createMockEvent(),
+    });
+
+    expect(captureExceptionMock).not.toHaveBeenCalled();
+    expect(result).toBeUndefined();
+  });
+
+  it("captures unknown errors in PostHog with request metadata", async () => {
+    const unexpected = new Error("Database connection failed");
+    const posthogError = {
+      distinctId: "user-123",
+      properties: {
+        $session_id: "session-456",
+        $trace_id: "trace-789",
+      },
+    };
+
+    const result = await handleError({
+      kind: "unknown",
+      error: unexpected,
+      event: createMockEvent(posthogError),
+    });
+
+    expect(captureExceptionMock).toHaveBeenCalledTimes(1);
+    expect(captureExceptionMock).toHaveBeenCalledWith(unexpected, posthogError);
+    expect(result).toBeUndefined();
   });
 });
