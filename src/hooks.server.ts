@@ -60,10 +60,13 @@ export async function handle({ event, resolve }) {
   );
 }
 
-export function handleError({ error, event }) {
-  posthog.captureException(error, {
-    distinctId: event.locals.posthogError?.distinctId,
-    properties: event.locals.posthogError?.properties,
-  });
+export function handleError({ error, event, kind }) {
+  const notFound = kind !== "unknown" && error.status === 404;
+  if (!notFound) {
+    posthog.captureException(error, {
+      distinctId: event.locals.posthogError?.distinctId,
+      properties: event.locals.posthogError?.properties,
+    });
+  }
   return { message: error instanceof Error ? error.message : "Internal Error" };
 }
