@@ -19,7 +19,6 @@ keywords:
   - vercel
   - sveltekit
 preview: /og-image.png
-
 ---
 
 If you want full control, you can run LightCMS yourself. LightCMS is a SvelteKit app that needs a PostgreSQL database and a GitHub App. This guide shows the pieces, local setup, and deployment notes.

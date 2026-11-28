@@ -2,10 +2,26 @@ import { context, isSpanContextValid, trace } from "@opentelemetry/api";
 import { enrichCurrentSpan } from "posthog-node/otel";
 import { posthog } from "#lib/server/posthog";
 
-function tracingId(value) {
+declare global {
+  namespace App {
+    interface Locals {
+      posthogError?: {
+        distinctId: string | undefined;
+        properties: Record<string, string>;
+      };
+    }
+  }
+}
+
+function tracingId(value: string | null | undefined): string | undefined {
   return (
     value
-      ?.replace(/[\x00-\x1F\x7F-\x9F]/g, "")
+      ?.split("")
+      .filter((character: string) => {
+        const code = character.charCodeAt(0);
+        return !(code <= 0x1f || (code >= 0x7f && code <= 0x9f));
+      })
+      .join("")
       .trim()
       .slice(0, 1000) || undefined
   );
@@ -44,10 +60,10 @@ export async function handle({ event, resolve }) {
   );
 }
 
-export function handleError({ error, event, message }) {
+export function handleError({ error, event }) {
   posthog.captureException(error, {
     distinctId: event.locals.posthogError?.distinctId,
     properties: event.locals.posthogError?.properties,
   });
-  return { message };
+  return { message: error instanceof Error ? error.message : "Internal Error" };
 }

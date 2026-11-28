@@ -21,7 +21,7 @@ Sending a newsletter when you publish a post is one of the simplest ways to grow
 
 Key points:
 
-- Content stays in your repo, not locked in a newsletter platform.
-- You control delivery settings via SMTP and your provider account.
+- Content stays in your repo, same as news letter.
+- You have no headaches of controlling the notification process email deliverability.
 - Newsy is open source. See the implementation and examples at [https://github.com/light-cms/newsy](https://github.com/light-cms/newsy)
 - Newsy link [newsy.lightcms.me](newsy.lightcms.me)

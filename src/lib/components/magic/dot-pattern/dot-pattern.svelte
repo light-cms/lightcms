@@ -1,7 +1,6 @@
 <script lang="ts">
 import { onMount } from "svelte";
 import type { SVGAttributes } from "svelte/elements";
-import { cn } from "#lib/utils";
 
 interface DotPatternProps extends SVGAttributes<SVGSVGElement> {
 	width?: number;
@@ -72,10 +71,7 @@ const _dots = $derived(
 <svg
   bind:this={containerRef}
   aria-hidden="true"
-  class={cn(
-    "pointer-events-none absolute inset-0 h-full w-full text-neutral-400/80",
-    className,
-  )}
+  class="pointer-events-none absolute inset-0 h-full w-full text-neutral-400/80"
   {...props}
 >
   <defs>

@@ -59,5 +59,5 @@ It is not the right choice if you need real time features or complex relational 
 
 - [Getting started with LightCMS](/docs/getting-started-with-lightcms)
 - [How to start a blog](/docs/how-to-start-a-blog)
-- [Self-hosting LightCMS](/docs/self-hosting-lightcms)
+- [Self hosting LightCMS](/docs/self-hosting-lightcms)
 - [Static sites and CO2](/docs/building-a-greener-web)
