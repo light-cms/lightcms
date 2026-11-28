@@ -77,13 +77,10 @@ export const handleError: HandleServerError = ({ kind, error, event }) => {
     return;
   }
 
-export function handleError({ error, event, kind }) {
-  const notFound = kind !== "unknown" && error.status === 404;
-  if (!notFound) {
-    posthog.captureException(error, {
-      distinctId: event.locals.posthogError?.distinctId,
-      properties: event.locals.posthogError?.properties,
-    });
-  }
+  posthog.captureException(error, {
+    distinctId: event.locals.posthogError?.distinctId,
+    properties: event.locals.posthogError?.properties,
+  });
+
   return { message: error instanceof Error ? error.message : "Internal Error" };
-}
+};

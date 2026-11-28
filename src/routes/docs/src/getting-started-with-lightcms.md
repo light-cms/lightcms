@@ -14,7 +14,7 @@ tags:
   - generator
 ---
 
-LightCMS is a Git-backed editor for static sites. You write in a rich editor and press Publish; LightCMS commits clean Markdown into your repository. Your build and deploy pipeline — Cloudflare Pages, Netlify, Vercel, GitHub Pages, or similar — takes it from there.
+LightCMS is a Git based content editor for static sites. Where, you write in a rich editor and press Publish; LightCMS commits clean Markdown into your repository. Your build and deploy pipeline — Cloudflare Pages, Netlify, Vercel, GitHub Pages, or similar — takes it from there.
 
 Your content stays in a repository you own as plain Markdown files. Any static site generator that reads Markdown can build the site.
 
@@ -34,7 +34,7 @@ LightCMS runs only while someone writes. Site visitors see the static pages serv
 - Optional AI helper that connects to any OpenAI-compatible API to suggest edits or continue a draft.
 - Voice dictation via OpenAI-compatible transcription or Wit.ai for quick drafts.
 - Light and dark themes so the editor is comfortable for long writing sessions.
-- Optional newsletter automation that can send posts to subscribers using Newsy (see /docs/newsletter-newsy).
+- Optional newsletter automation that can send posts to subscribers using Newsy (see [/docs/newsletter-newsy](/docs/newsletter-newsy)).
 
 ## What LightCMS does not do
 
