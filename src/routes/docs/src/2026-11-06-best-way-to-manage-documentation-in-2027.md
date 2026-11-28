@@ -1,5 +1,6 @@
 ---
 title: Best way to manage documentation in 2027
+description: "using lightcms for managing documentation"
 date: null
 draft: false
 weight: 0

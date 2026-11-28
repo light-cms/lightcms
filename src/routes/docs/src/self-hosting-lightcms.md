@@ -8,17 +8,17 @@ date: 2026-09-18T01:45:00Z
 draft: false
 tags:
   - selfhost
-  - lightcms  
+  - lightcms
   - postgresql
-- deployment
-  keywords:
-- lightcms
-- probot
-- self-hosting
-- github_app
-- vercel
-- sveltekit
-  preview: /og-image.png
+  - deployment
+keywords:
+  - lightcms
+  - probot
+  - self-hosting
+  - github_app
+  - vercel
+  - sveltekit
+preview: /og-image.png
 
 ---
 

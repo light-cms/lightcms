@@ -284,7 +284,7 @@ onMount(() => {
 	}
 
 	.docs-article :global(pre code) {
-		background-color: transparent;
+		background-color: --tw-ring-color;
 		border: none;
 		padding: 0;
 	}
@@ -294,7 +294,7 @@ onMount(() => {
 		padding: 0.75rem 1.25rem;
 		border-left: 3px solid var(--primary);
 		border-radius: 0 var(--radius) var(--radius) 0;
-		background-color: color-mix(in oklab, var(--primary) 6%, transparent);
+		background-color: color-mix(in oklab, var(--primary) 6%, --tw-ring-color);
 		color: var(--muted-foreground);
 		font-style: normal;
 	}
@@ -334,7 +334,7 @@ onMount(() => {
 	}
 
 	.docs-article :global(tr:nth-child(even) td) {
-		background-color: color-mix(in oklab, var(--muted) 30%, transparent);
+		background-color: color-mix(in oklab, var(--muted) 30%, --tw-ring-color);
 	}
 
 	.docs-article :global(img) {

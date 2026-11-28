@@ -1,6 +1,6 @@
 ---
-title: "Why LightCMS: Git-backed CMS for static sites"
-description: Most hosted CMS platforms keep your content in a database. LightCMS writes Markdown into your repo so you control the files and the workflow.
+title: "Why LightCMS Git-backed CMS for static sites"
+description: Most cms platforms keep your content out of your soverignity LightCMS writes Markdown into your repo so you control the files and the workflow.
 serial: 2
 date: 2026-10-14T14:00:00Z
 draft: false
@@ -53,7 +53,7 @@ LightCMS is a good fit if you:
 - Prefer to keep content portable and durable in your repo.
 - Want low-cost, fast content delivery via a CDN.
 
-It is not the right choice if you need real-time features or complex relational content that requires a managed backend.
+It is not the right choice if you need real time features or complex relational content that requires a managed backend.
 
 ## Next steps
 

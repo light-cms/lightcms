@@ -1,5 +1,6 @@
 ---
 title: Introduction
+description: "Getting started with Lightcms "
 serial: 1
 date: 2026-09-01T16:44:00Z
 draft: false
