@@ -1,4 +1,5 @@
 import { context, isSpanContextValid, trace } from "@opentelemetry/api";
+import type { Handle, HandleServerError } from "@sveltejs/kit/hooks";
 import { enrichCurrentSpan } from "posthog-node/otel";
 import { posthog } from "#lib/server/posthog";
 
@@ -27,7 +28,7 @@ function tracingId(value: string | null | undefined): string | undefined {
   );
 }
 
-export async function handle({ event, resolve }) {
+export const handle: Handle = async ({ event, resolve }) => {
   const existing = posthog.getContext();
   const data = {
     distinctId:
@@ -58,12 +59,15 @@ export async function handle({ event, resolve }) {
     },
     { fresh: true },
   );
-}
+};
 
-export function handleError({ error, event }) {
+export const handleError: HandleServerError = ({ kind, error, event }) => {
+  if (kind !== "unknown") {
+    return;
+  }
+
   posthog.captureException(error, {
     distinctId: event.locals.posthogError?.distinctId,
     properties: event.locals.posthogError?.properties,
   });
-  return { message: error instanceof Error ? error.message : "Internal Error" };
-}
+};

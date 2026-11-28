@@ -43,7 +43,11 @@ export function init() {
   });
 }
 
-export const handleError: HandleClientError = ({ error }) => {
+export const handleError: HandleClientError = ({ kind, error }) => {
+  if (kind !== "unknown") {
+    return;
+  }
+
   if (!posthogInitialized) {
     return;
   }
