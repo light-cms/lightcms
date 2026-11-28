@@ -115,7 +115,11 @@ export async function getFileContent(
       path: normalizedPath,
       ...(branch ? { ref: branch } : {}),
     });
-    if (Array.isArray(response.data) || response.data.type !== "file" || !response.data.content) {
+    if (
+      Array.isArray(response.data) ||
+      response.data.type !== "file" ||
+      response.data.encoding !== "base64"
+    ) {
       throw new Error(`Expected "${normalizedPath}" to be a file.`);
     }
     return {
