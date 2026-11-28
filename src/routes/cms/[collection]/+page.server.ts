@@ -84,14 +84,26 @@ export const actions: Actions = {
       params.collection,
     );
 
+    const folder = normalizeFolder(url.searchParams.get("folder") ?? "");
     const formData = await request.formData();
     const rawName = formData.get("name");
     const name = typeof rawName === "string" ? rawName.trim() : "";
     if (!name) {
-      throw new Error("Folder name is required.");
+      return fail(400, {
+        folder,
+        folderError: "Folder name is required.",
+      });
     }
-    const folder = normalizeFolder(url.searchParams.get("folder") ?? "");
-    await createCollectionFolder(collection, folder, name, ctx);
+
+    try {
+      await createCollectionFolder(collection, folder, name, ctx);
+    } catch (cause) {
+      return fail(400, {
+        folder,
+        folderError: cause instanceof Error ? cause.message : "Could not create the folder.",
+      });
+    }
+
     await captureServerEvent(locals.session.userId, "collection_folder_created");
 
     const folderQuery = new URLSearchParams(query);

@@ -38,6 +38,7 @@ let {
 const dialogTitle = $derived(title ?? m.folder_dialog_title());
 
 let folderName = $state("");
+let submitting = $state(false);
 
 $effect(() => {
 	if (dialogOpen) {
@@ -65,8 +66,10 @@ $effect(() => {
 			method="POST"
 			{action}
 			use:enhance={() => {
+				submitting = true;
 				return async ({ result, update }) => {
 					await update();
+					submitting = false;
 					if (result.type === "redirect" || result.type === "success") {
 						dialogOpen = false;
 						onSuccess?.();
@@ -91,7 +94,7 @@ $effect(() => {
 				<Button type="button" variant="outline" onclick={() => (dialogOpen = false)}>
 					{m.action_cancel()}
 				</Button>
-				<Button type="submit" class="gap-2">
+				<Button type="submit" class="gap-2" disabled={submitting}>
 					<FolderPlus size={15} />
 					{m.folder_dialog_submit()}
 				</Button>
